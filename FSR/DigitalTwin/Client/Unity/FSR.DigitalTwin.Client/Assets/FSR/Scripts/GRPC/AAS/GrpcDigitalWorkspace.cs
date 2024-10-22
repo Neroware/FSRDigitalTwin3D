@@ -14,6 +14,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         public IDigitalWorkspaceServerConnection Connection { get => _connection ?? throw new System.Exception("Should not happen!"); }
         public IDigitalWorkspaceOperational Operational { get => _operational ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
         public IDigitalWorkspaceEntityApi Entities { get => _entityApi ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
+        public DigitalWorkspace.EOperationMode OperationMode { get; set; }
 
         private GrpcDigitalWorkspaceConnection _connection = null;
         private GrpcDigitalWorkspaceOperational _operational = null;

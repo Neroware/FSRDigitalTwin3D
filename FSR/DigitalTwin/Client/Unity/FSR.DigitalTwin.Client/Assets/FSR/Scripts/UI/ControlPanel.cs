@@ -21,6 +21,8 @@ namespace FSR.DigitalTwin.Client.Unity.UI {
         [SerializeField] private Toggle isListeningToggle;
         [SerializeField] private Toggle noClippingToggle;
 
+        [SerializeField] private TMP_Dropdown operationMode;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -57,11 +59,15 @@ namespace FSR.DigitalTwin.Client.Unity.UI {
         }
 
         public void OnIsListeningTick(bool value) {
-            // DigitalWorkspace.Instance.Settings.SetListening(value);
+            
         }
 
         public void OnNoClipTick(bool value) {
-            // DigitalWorkspace.Instance.Settings.SetNoClipMode(value);
+            
+        }
+
+        public void OnOperationModeChanged(int value) {
+
         }
     }
 }
