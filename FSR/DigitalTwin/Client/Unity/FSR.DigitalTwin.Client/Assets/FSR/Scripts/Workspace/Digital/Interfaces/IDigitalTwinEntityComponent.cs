@@ -7,11 +7,14 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces {
         string Id { get; init; }
         bool HasConnection { get; }
 
-        bool SetProperty<T>(string prop, T value);
-        Task<bool> SetPropertyAsync<T>(string prop, T value);
+        bool OnPush();
+        Task<bool> OnPushAsync();
 
-        T GetProperty<T>(string prop);
-        Task<T> GetPropertyAsync<T>(string prop);
+        bool OnPull();
+        Task<bool> OnPullAsync();
+
+        bool OnSynchronize();
+        Task<bool> OnSynchronizeAsync();
     }
 
 }
