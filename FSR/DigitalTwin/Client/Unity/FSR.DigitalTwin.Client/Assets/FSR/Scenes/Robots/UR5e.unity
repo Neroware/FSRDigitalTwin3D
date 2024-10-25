@@ -421,6 +421,31 @@ Transform:
   - {fileID: 5955250382980222830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579219119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603320903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ad498610bad734980a18df59369cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: https://www.hs-emden-leer.de/ids/sm/6494_2162_5032_2813
+  _actor: {fileID: 5955250382980222833}
+  _enableOperationModeOverrride: 0
+  _operationModeOverride: 0
+  _joints:
+  - {fileID: 5955250382980222834}
+  - {fileID: 1335401657}
+  - {fileID: 1537722273}
+  - {fileID: 186768515}
+  - {fileID: 1330607645}
+  - {fileID: 820867011}
+  - {fileID: 1464140682}
+  - {fileID: 284822241}
 --- !u!1001 &669197473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1431,7 +1456,7 @@ PrefabInstance:
       addedObject: {fileID: 5955250382980222833}
     - targetCorrespondingSourceObject: {fileID: 472273861288168908, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5955250382980222835}
+      addedObject: {fileID: 579219119}
     - targetCorrespondingSourceObject: {fileID: 8272980315594807359, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5955250382980222834}
@@ -1486,7 +1511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: https://www.hs-emden-leer.de/ids/aas/2414_0152_5032_4364
   _components:
-  - {fileID: 5955250382980222835}
+  - {fileID: 579219119}
 --- !u!114 &5955250382980222834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,31 +1526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _articulationBody: {fileID: 5955250382980222832}
   _jointPrefix: joint_base
---- !u!114 &5955250382980222835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603320903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ad498610bad734980a18df59369cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: mycomponent
-  _actor: {fileID: 5955250382980222833}
-  _enableOperationModeOverrride: 0
-  _operationModeOverride: 0
-  _joints:
-  - {fileID: 5955250382980222834}
-  - {fileID: 1335401657}
-  - {fileID: 1537722273}
-  - {fileID: 186768515}
-  - {fileID: 1330607645}
-  - {fileID: 820867011}
-  - {fileID: 1464140682}
-  - {fileID: 284822241}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
