@@ -20,7 +20,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor {
             get => _components.Cast<IDigitalTwinEntityComponent>(); 
             set => throw new NotImplementedException(); }
 
-        void Start() {
+        private void Start() {
             DigitalWorkspace.Instance?.Connection.IsConnected.Subscribe(OnConnectionChanged).AddTo(this);
         }
 
