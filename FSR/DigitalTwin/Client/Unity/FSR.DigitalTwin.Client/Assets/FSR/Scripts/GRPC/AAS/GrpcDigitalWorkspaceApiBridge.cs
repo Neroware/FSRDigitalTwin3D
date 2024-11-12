@@ -107,25 +107,8 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         }
 
         private SubmodelElementDTO CreateProperty<T>(T value) {
-            string propValue = "";
-            DataTypeDefXsd propType = DataTypeDefXsd.String;
-
-            if (value is string s) { propType = DataTypeDefXsd.String; propValue = s; }
-            else if (value is uint ui) { propType = DataTypeDefXsd.UnsignedInt; propValue = ui.ToString(); }
-            else if (value is int i) { propType = DataTypeDefXsd.Int; propValue = i.ToString(); }
-            else if (value is ulong ul) { propType = DataTypeDefXsd.UnsignedLong; propValue = ul.ToString(); }
-            else if (value is long l) { propType = DataTypeDefXsd.Int; propValue = l.ToString(); }
-            else if (value is ushort ush) { propType = DataTypeDefXsd.UnsignedShort; propValue = ush.ToString(); }
-            else if (value is short sh) { propType = DataTypeDefXsd.Short; propValue = sh.ToString(); }
-            else if (value is byte by) { propType = DataTypeDefXsd.Byte; propValue = by.ToString(); }
-            else if (value is char c) { propType = DataTypeDefXsd.UnsignedByte; propValue = ((byte) c).ToString(); }
-            else if (value is double d) { propType = DataTypeDefXsd.Double; propValue = d.ToString(); }
-            else if (value is float f) { propType = DataTypeDefXsd.Float; propValue = f.ToString(); }
-            else if (value is bool b) { propType = DataTypeDefXsd.Boolean; propValue = b.ToString(); }
-            // Add more types if needed...
-            else { throw new ArgumentException("The specified property type is currently not supported by the client!"); }
-
-            return SubmodelElementFactory.Create(SubmodelElementType.Property, null, propValue, propType);
+            var propValue = DataTypeDefXsdConverter.Convert(value);
+            return SubmodelElementFactory.Create(SubmodelElementType.Property, null, propValue.Item2, propValue.Item1);
         }
 
         public bool CreateComponentProperty<T>(string id, string prop, T value)
@@ -255,23 +238,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         }
 
         private T GetProperty<T>(PropertyPayloadDTO property) {
-            string value = property.Value;
-            object result = null;
-            switch(property.ValueType) {
-                case DataTypeDefXsd.UnsignedInt: result = uint.Parse(value); break;
-                case DataTypeDefXsd.Int: result = int.Parse(value); break;
-                case DataTypeDefXsd.UnsignedLong: result = ulong.Parse(value); break;
-                case DataTypeDefXsd.Long: result = long.Parse(value); break;
-                case DataTypeDefXsd.UnsignedShort: result = ushort.Parse(value); break;
-                case DataTypeDefXsd.Short: result = short.Parse(value); break;
-                case DataTypeDefXsd.Byte: result = byte.Parse(value); break;
-                case DataTypeDefXsd.UnsignedByte: result = (char) byte.Parse(value); break;
-                case DataTypeDefXsd.Double: result = double.Parse(value); break;
-                case DataTypeDefXsd.Float: result = float.Parse(value); break;
-                case DataTypeDefXsd.Boolean: result = bool.Parse(value); break;
-                // TODO Add more types if needed...
-            }
-            return (T) result;
+            return DataTypeDefXsdConverter.Convert<T>(property.ValueType, property.Value);
         }
 
         public T GetComponentProperty<T>(string id, string prop)

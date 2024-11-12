@@ -1,7 +1,6 @@
 //var builder = WebApplication.CreateBuilder(args);
 //var app = builder.Build();
 
-using AasOperationInvocation;
 using AasSecurity;
 using AasxServer;
 using AasxServerStandardBib.Extensions;
@@ -9,6 +8,7 @@ using AasxServerStandardBib.Interfaces;
 using AasxServerStandardBib.Logging;
 using AasxServerStandardBib.Services;
 using AdminShellNS;
+using FSR.DigitalTwin.App;
 using FSR.DigitalTwin.App.Common.Utils;
 using FSR.DigitalTwin.App.GRPC.Common.Utils;
 using IO.Swagger.Controllers;
