@@ -7,6 +7,6 @@ namespace FSR.DigitalTwin.App.Common.Utils;
 public static class DependencyInjection {
     public static void AddAppServices(this IServiceCollection services) {
         services.AddSingleton<IDigitalTwinClientConnectionService, DigitalTwinClientConnectionService>();
-        services.AddSingleton<IDigitalTwinOperationalService, DigitalTwinOperationalService>();
+        // services.AddTransient<IDigitalTwinOperationalService, DigitalTwinOperationalService>();
     }
 }

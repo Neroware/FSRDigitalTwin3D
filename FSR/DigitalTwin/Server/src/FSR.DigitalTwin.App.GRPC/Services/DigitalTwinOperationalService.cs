@@ -20,9 +20,9 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
     private readonly Dictionary<string, TaskCompletionSource<OperationResult>> _results = [];
 
     public DigitalTwinOperationalService(IAppLogger<DigitalTwinOperationalService> logger, IMapper mapper, IDigitalTwinClientConnectionService connectionService) {
-        _logger = logger ?? throw new NullReferenceException();
-        _mapper = mapper ?? throw new NullReferenceException();
-        _connectionService = connectionService ?? throw new NullReferenceException();
+        _logger = logger ?? throw new NullReferenceException(nameof(logger));
+        _mapper = mapper ?? throw new NullReferenceException(nameof(mapper));
+        _connectionService = connectionService ?? throw new NullReferenceException(nameof(connectionService));
     }
 
     public Task<ExecutionState> GetExecutionStateAsync(string handleId)
@@ -45,7 +45,7 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
             OperationIdShort = operation.IdShort,
             Timestamp = timestamp ?? -1,
             IsAsync = handleId != null,
-            HandleId = handleId
+            HandleId = handleId ?? ""
         };
         invocation.InputVariables.AddRange(operation.InputVariables?.Select(x => _mapper.Map<OperationVariableDTO>(x)));
         invocation.InoutVariables.AddRange(operation.InoutputVariables?.Select(x => _mapper.Map<OperationVariableDTO>(x)));
@@ -56,7 +56,8 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
         foreach (var conn in connections) {
             try {
                 IAsyncStreamWriter<ClientNotification> writer = (IAsyncStreamWriter<ClientNotification>) conn.Item2;
-                await writer.WriteAsync(new ClientNotification() { InvokeOperation = invocation });
+                _results[requestId] = new();
+                await writer.WriteAsync(new ClientNotification() { Type = ClientNotificationType.InvokeOperation, InvokeOperation = invocation });
             } catch (ObjectDisposedException) { 
                 _logger.LogError("Invocation failed because the underlying rpc stream was disposed!");
             }

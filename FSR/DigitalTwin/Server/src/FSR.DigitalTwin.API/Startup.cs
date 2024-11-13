@@ -96,6 +96,7 @@ internal class Startup
         services.AddTransient<IAasDescriptorPaginationService, AasDescriptorPaginationService>();
         services.AddTransient<IOperationReceiver, OperationReceiver>();
         services.AddAppServices();
+        services.AddAppGrpcServices();
 
         // Add GraphQL services
         services

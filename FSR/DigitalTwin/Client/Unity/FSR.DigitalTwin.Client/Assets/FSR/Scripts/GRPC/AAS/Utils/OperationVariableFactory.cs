@@ -21,7 +21,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils
 
         private static OperationVariableDTO FromProperty<T>(T value) {
             var propValue = DataTypeDefXsdConverter.Convert(value);
-            var property = SubmodelElementFactory.Create(SubmodelElementType.Property, propValue.Item2, propValue.Item1);
+            var property = SubmodelElementFactory.Create(SubmodelElementType.Property, null, propValue.Item2, propValue.Item1);
             return new OperationVariableDTO() { Value = property };
         }
 
