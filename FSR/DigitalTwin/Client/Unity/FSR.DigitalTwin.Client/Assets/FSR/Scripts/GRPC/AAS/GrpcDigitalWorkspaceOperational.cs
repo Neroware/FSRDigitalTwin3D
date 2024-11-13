@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -5,8 +6,11 @@ using System.Threading.Tasks;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.Services.SubmodelService;
 using FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using Grpc.Core;
+using UniRx;
 using Unity.VisualScripting;
 
 namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
@@ -17,68 +21,72 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private readonly GrpcAdminShellApiServiceClient _client;
         private static long _counter = 0;
 
+        public IObservable<ProcessInvocation> ProcessInvoked => DigitalWorkspace.Instance.Connection.OnNotify
+            .Where(x => x.Type == EServerNotificationType.PROCESS_INVOKED)
+            .Select(x => (ProcessInvocation) x);
+
         public GrpcDigitalWorkspaceOperational(Channel channel) {
             _rpcChannel = channel;
             _client = new(channel);
         }
 
-        public bool GetResult(string actorId, string processId)
+        public bool GetResult(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> GetResultAsync(string actorId, string processId)
+        public Task<bool> GetResultAsync(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool HasSucceeded(string actorId, string processId)
+        public bool HasSucceeded(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> HasSucceededAsync(string actorId, string processId)
+        public Task<bool> HasSucceededAsync(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool IsCompleted(string actorId, string processId)
+        public bool IsCompleted(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> IsCompletedAsync(string actorId, string processId)
+        public Task<bool> IsCompletedAsync(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool IsRunning(string actorId, string processId)
+        public bool IsRunning(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> IsRunningAsync(string actorId, string processId)
+        public Task<bool> IsRunningAsync(string ownerId, string processId)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool LaunchProcess(string actorId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
+        public bool LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<bool> LaunchProcessAsync(string actorId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
+        public Task<bool> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool RunProcess(string actorId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
+        public bool RunProcess(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
         {
             var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
 
             InvokeOperationSyncRequest request = new() {
-                SubmodelId = Base64Converter.ToBase64(actorId),
+                SubmodelId = Base64Converter.ToBase64(ownerId),
                 Timestamp = -1,
                 RequestId = "FSR.DigitalTwin.Client.Unity::" + _counter++
             };
@@ -104,13 +112,13 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             return true;
         }
 
-        public async Task<bool> RunProcessAsync(string actorId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
+        public async Task<bool> RunProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
         {
             var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
 
             InvokeOperationSyncRequest request = new() {
-                SubmodelId = Base64Converter.ToBase64(actorId),
+                SubmodelId = Base64Converter.ToBase64(ownerId),
                 Timestamp = -1,
                 RequestId = "FSR.DigitalTwin.Client.Unity::" + _counter++
             };
