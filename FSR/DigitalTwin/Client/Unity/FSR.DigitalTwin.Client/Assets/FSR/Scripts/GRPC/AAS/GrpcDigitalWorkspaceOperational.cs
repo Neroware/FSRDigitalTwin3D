@@ -20,6 +20,9 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private readonly Channel _rpcChannel;
         private readonly GrpcAdminShellApiServiceClient _client;
         private static long _counter = 0;
+        private static readonly Dictionary<string, string> _handles = new();
+
+        public static string GetHandle(string requestId) => _handles[requestId];
 
         public IObservable<ProcessInvocation> ProcessInvoked => DigitalWorkspace.Instance.Connection.OnNotify
             .Where(x => x.Type == EClientNotificationType.PROCESS_INVOKED)
@@ -58,7 +61,8 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
             inOut.Clear();
             inOut.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
-            output.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
+            output.Clear();
+            output.AddRange(response.Payload.OutputArguments.Select(x => x.GetRawValue<object>()));
             return true;
         }
 
@@ -90,28 +94,109 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
             inOut.Clear();
             inOut.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
-            output.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
+            output.Clear();
+            output.AddRange(response.Payload.OutputArguments.Select(x => x.GetRawValue<object>()));
             return true;
         }
 
-        public bool LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut)
+        public long LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut)
         {
-            throw new NotImplementedException();
+            var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
+            var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
+            long rid = _counter++;
+            string requestId = "FSR.DigitalTwin.Client.Unity::" + rid;
+
+            InvokeOperationAsyncRequest request = new() {
+                SubmodelId = Base64Converter.ToBase64(ownerId),
+                Timestamp = -1,
+                RequestId = requestId
+            };
+
+            string[] path = processId.Split('.');
+            foreach (string idShort in path) {
+                request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
+            }
+            request.InputArguments.AddRange(inputVars);
+            request.InoutputArguments.AddRange(inOutVars);
+
+            var response = _client.Submodel.InvokeOperationAsync(request);
+            if (response.StatusCode != (int) HttpStatusCode.OK) {
+                return -1;
+            }
+            
+            _handles[requestId] = response.Payload;
+            return rid;
         }
 
-        public Task<bool> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut)
+        public async Task<long> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut)
         {
-            throw new NotImplementedException();
+            var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
+            var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
+            long rid = _counter++;
+            string requestId = "FSR.DigitalTwin.Client.Unity::" + rid;
+
+            InvokeOperationAsyncRequest request = new() {
+                SubmodelId = Base64Converter.ToBase64(ownerId),
+                Timestamp = -1,
+                RequestId = requestId
+            };
+
+            string[] path = processId.Split('.');
+            foreach (string idShort in path) {
+                request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
+            }
+            request.InputArguments.AddRange(inputVars);
+            request.InoutputArguments.AddRange(inOutVars);
+
+            var response = await _client.Submodel.InvokeOperationAsyncAsync(request);
+            if (response.StatusCode != (int) HttpStatusCode.OK) {
+                return -1;
+            }
+            
+            _handles[requestId] = response.Payload;
+            return rid;
         }
 
-        public bool GetResult(string ownerId, string processId, IList<object> inOut, IList<object> output)
+        public bool GetResult(long requestId, IList<object> inOut, IList<object> output)
         {
-            throw new NotImplementedException();
+            string handleId = _handles["FSR.DigitalTwin.Client.Unity::" + requestId];
+            GetOperationAsyncResultRequest request = new() { HandleId = handleId };
+
+            var response = _client.Submodel.GetOperationAsyncResult(request);
+            if (response.StatusCode != (int) HttpStatusCode.OK) {
+                return false;
+            }
+            if (!response.Result.Success) {
+                return false;
+            }
+
+            inOut.Clear();
+            inOut.AddRange(response.Result.InoutputArguments.Select(x => x.GetRawValue<object>()));
+            output.Clear();
+            output.AddRange(response.Result.OutputArguments.Select(x => x.GetRawValue<object>()));
+
+            return true;
         }
 
-        public Task<bool> GetResultAsync(string ownerId, string processId, IList<object> inOut, IList<object> output)
+        public async Task<bool> GetResultAsync(long requestId, IList<object> inOut, IList<object> output)
         {
-            throw new NotImplementedException();
+            string handleId = _handles["FSR.DigitalTwin.Client.Unity::" + requestId];
+            GetOperationAsyncResultRequest request = new() { HandleId = handleId };
+
+            var response = await _client.Submodel.GetOperationAsyncResultAsync(request);
+            if (response.StatusCode != (int) HttpStatusCode.OK) {
+                return false;
+            }
+            if (!response.Result.Success) {
+                return false;
+            }
+
+            inOut.Clear();
+            inOut.AddRange(response.Result.InoutputArguments.Select(x => x.GetRawValue<object>()));
+            output.Clear();
+            output.AddRange(response.Result.OutputArguments.Select(x => x.GetRawValue<object>()));
+
+            return true;
         }
 
         public bool IsRunning(string ownerId, string processId)
@@ -152,6 +237,16 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         public async Task SetResultAsync(ProcessResult result)
         {
             await DigitalWorkspace.Instance.Connection.Notify(result);
+        }
+
+        public async void SetExecutionProcessState(ProcessExecutionState executionState)
+        {
+            await DigitalWorkspace.Instance.Connection.Notify(executionState);
+        }
+
+        public async Task SetExecutionProcessStateAsync(ProcessExecutionState executionState)
+        {
+            await DigitalWorkspace.Instance.Connection.Notify(executionState);
         }
     }
 

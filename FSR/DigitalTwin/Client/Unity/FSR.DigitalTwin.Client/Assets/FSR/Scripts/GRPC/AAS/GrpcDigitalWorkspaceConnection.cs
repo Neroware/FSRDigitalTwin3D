@@ -90,6 +90,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         public async Task Notify(ServerNotificationBase message) {
             switch(message.Type) {
                 case EServerNotificationType.PROCESS_RESULT: await OnOperationResult(message as ProcessResult); break;
+                case EServerNotificationType.PROCESS_EXECUTION_STATE: await OnUpdateProcessExecutionState(message as ProcessExecutionState); break;
             }
         }
 
@@ -104,6 +105,19 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
                 InOuts = notification.InoutVariables.Select(x => x.GetRawValue<object>()).ToArray(),
                 TimeStamp = notification.Timestamp
             });
+        }
+
+        private async Task OnUpdateProcessExecutionState(ProcessExecutionState executionState)
+        {
+            string handleId = GrpcDigitalWorkspaceOperational.GetHandle(executionState.Id);
+            ServerNotification notification = new() {
+                Type = ServerNotificationType.OperationState,
+                OperationState = new() {
+                    HandleId = handleId,
+                    ExecutionState = (ExecutionState) executionState.State
+                }
+            };
+            await _notificationStream.RequestStream.WriteAsync(notification);
         }
 
         private async Task OnOperationResult(ProcessResult processResult) {

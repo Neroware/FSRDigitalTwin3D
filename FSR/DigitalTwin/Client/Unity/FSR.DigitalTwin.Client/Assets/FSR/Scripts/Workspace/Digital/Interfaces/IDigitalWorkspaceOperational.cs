@@ -10,14 +10,17 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces {
         bool RunProcess(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output);
         Task<bool> RunProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output);
 
-        bool LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut);
-        Task<bool> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut);
+        long LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut);
+        Task<long> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut);
 
-        bool GetResult(string ownerId, string processId, IList<object> inOut, IList<object> output);
-        Task<bool> GetResultAsync(string ownerId, string processId, IList<object> inOut, IList<object> output);
+        bool GetResult(long requestId, IList<object> inOut, IList<object> output);
+        Task<bool> GetResultAsync(long requestId, IList<object> inOut, IList<object> output);
 
         void SetResult(ProcessResult result);
         Task SetResultAsync(ProcessResult result);
+
+        void SetExecutionProcessState(ProcessExecutionState executionState);
+        Task SetExecutionProcessStateAsync(ProcessExecutionState executionState);
 
         bool IsRunning(string ownerId, string processId);
         Task<bool> IsRunningAsync(string ownerId, string processId);

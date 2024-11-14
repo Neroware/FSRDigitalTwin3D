@@ -27,13 +27,13 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
 
     public Task<ExecutionState> GetExecutionStateAsync(string handleId)
     {
-        return Task.FromResult(_operationalState.ExecutionStates[handleId]);
+        return Task.FromResult(_operationalState.Status[handleId]);
     }
 
     public async Task<OperationResult> GetResultAsync(string requestId)
     {
-        var result = await _operationalState.Results[requestId].Task;
-        _operationalState.Results.Remove(requestId);
+        var result = await _operationalState.Tasks[requestId].Task;
+        _operationalState.Tasks.Remove(requestId);
         return result;
     }
 
@@ -51,12 +51,12 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
         invocation.InoutVariables.AddRange(operation.InoutputVariables?.Select(x => _mapper.Map<OperationVariableDTO>(x)));
         var connections = _connectionService.GetAllConnections();
         if (handleId != null) {
-            _operationalState.ExecutionStates[handleId] = ExecutionState.InitiatedEnum;
+            _operationalState.Status[handleId] = ExecutionState.InitiatedEnum;
         }
         foreach (var conn in connections) {
             try {
                 IAsyncStreamWriter<ClientNotification> writer = (IAsyncStreamWriter<ClientNotification>) conn.Item2;
-                _operationalState.Results[requestId] = new();
+                _operationalState.Tasks[requestId] = new();
                 await writer.WriteAsync(new ClientNotification() { Type = ClientNotificationType.InvokeOperation, InvokeOperation = invocation });
             } catch (ObjectDisposedException) { 
                 _logger.LogError("Invocation failed because the underlying rpc stream was disposed!");
@@ -67,11 +67,11 @@ public class DigitalTwinOperationalService : IDigitalTwinOperationalService
 
     public void UpdateExecutionState(string handleId, ExecutionState executionState)
     {
-        _operationalState.ExecutionStates[handleId] = executionState;
+        _operationalState.Status[handleId] = executionState;
     }
 
     public void SetResult(string requestId, OperationResult result) 
     {
-        _operationalState.Results[requestId].SetResult(result);
+        _operationalState.Tasks[requestId].SetResult(result);
     }
 }
