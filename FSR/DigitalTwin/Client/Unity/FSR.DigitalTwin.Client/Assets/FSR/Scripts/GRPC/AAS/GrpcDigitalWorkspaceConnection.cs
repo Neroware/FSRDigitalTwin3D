@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using FSR.DigitalTwin.App.GRPC.Services.DigitalTwinClientConnectionService;
 using FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
@@ -15,7 +16,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
     {
         public ReadOnlyReactiveProperty<bool> IsConnected => _isConnected.ToReadOnlyReactiveProperty();
         public Channel RpcChannel => _rpcChannel ?? throw new RpcException(Status.DefaultCancelled, "No connection established!");
-        public IObservable<ServerNotificationBase> OnNotify => _onNotify;
+        public IObservable<ClientNotificationBase> OnNotify => _onNotify;
 
         private Channel _rpcChannel = null;
         private DigitalTwinClientConnectionService.DigitalTwinClientConnectionServiceClient _client = null;
@@ -24,7 +25,9 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private string _addr;
         private int _port;
         private ReactiveProperty<bool> _isConnected;
-        private Subject<ServerNotificationBase> _onNotify;
+        private Subject<ClientNotificationBase> _onNotify;
+
+        public const string UNITY_CLIENT_ID = "FSR.DigitalTwin.Client.Unity::0";
 
         public GrpcDigitalWorkspaceConnection(string addr, int port) {
             _addr = addr;
@@ -45,7 +48,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             ServerNotification connectNotification = new() {
                 Type = ServerNotificationType.Connect,
                 Connect = new ConnectServerNotification() {
-                    ClientId = "FSR.DigitalTwin.Client.Unity::0"
+                    ClientId = UNITY_CLIENT_ID
                 }
             };
             await _notificationStream.RequestStream.WriteAsync(connectNotification);
@@ -79,9 +82,15 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         {
             await _notificationStream.RequestStream.WriteAsync(new ServerNotification() {
                 Type = ServerNotificationType.Abort,
-                Abort = new AbortServerNotification() { ClientId = "FSR.DigitalTwin.Client.Unity::0" }
+                Abort = new AbortServerNotification() { ClientId = UNITY_CLIENT_ID }
             });
             return true;
+        }
+
+        public async Task Notify(ServerNotificationBase message) {
+            switch(message.Type) {
+                case EServerNotificationType.PROCESS_RESULT: await OnOperationResult(message as ProcessResult); break;
+            }
         }
 
         public async void Dispose() => await Disconnect();
@@ -95,6 +104,24 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
                 InOuts = notification.InoutVariables.Select(x => x.GetRawValue<object>()).ToArray(),
                 TimeStamp = notification.Timestamp
             });
+        }
+
+        private async Task OnOperationResult(ProcessResult processResult) {
+            ServerNotification notification = new() { 
+                Type = ServerNotificationType.OperationResult, 
+                OperationResult = new() { 
+                    ClientId = processResult.ClientId, 
+                    Result = new() {
+                        RequestId = processResult.Id,
+                        Success = true,
+                        Message = "Marked as finished by digital workspace",
+                        ExecutionState = ExecutionState.Completed
+                    }
+                }
+            };
+            notification.OperationResult.Result.OutputArguments.AddRange(processResult.Outputs.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x)));
+            notification.OperationResult.Result.InoutputArguments.AddRange(processResult.InOuts.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x)));
+            await _notificationStream.RequestStream.WriteAsync(notification);
         }
     }
 

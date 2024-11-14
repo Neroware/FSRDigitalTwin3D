@@ -22,62 +22,12 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private static long _counter = 0;
 
         public IObservable<ProcessInvocation> ProcessInvoked => DigitalWorkspace.Instance.Connection.OnNotify
-            .Where(x => x.Type == EServerNotificationType.PROCESS_INVOKED)
+            .Where(x => x.Type == EClientNotificationType.PROCESS_INVOKED)
             .Select(x => (ProcessInvocation) x);
 
         public GrpcDigitalWorkspaceOperational(Channel channel) {
             _rpcChannel = channel;
             _client = new(channel);
-        }
-
-        public bool GetResult(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> GetResultAsync(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool HasSucceeded(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> HasSucceededAsync(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsCompleted(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> IsCompletedAsync(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool IsRunning(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> IsRunningAsync(string ownerId, string processId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
-        {
-            throw new System.NotImplementedException();
         }
 
         public bool RunProcess(string ownerId, string processId, IList<object> input, IList<object> inOut, IList<object> output)
@@ -142,6 +92,66 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             inOut.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
             output.AddRange(response.Payload.InoutputArguments.Select(x => x.GetRawValue<object>()));
             return true;
+        }
+
+        public bool LaunchProcess(string ownerId, string processId, IList<object> input, IList<object> inOut)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> LaunchProcessAsync(string ownerId, string processId, IList<object> input, IList<object> inOut)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GetResult(string ownerId, string processId, IList<object> inOut, IList<object> output)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetResultAsync(string ownerId, string processId, IList<object> inOut, IList<object> output)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsRunning(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> IsRunningAsync(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsCompleted(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> IsCompletedAsync(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasSucceeded(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> HasSucceededAsync(string ownerId, string processId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async void SetResult(ProcessResult result)
+        {
+            await DigitalWorkspace.Instance.Connection.Notify(result);
+        }
+
+        public async Task SetResultAsync(ProcessResult result)
+        {
+            await DigitalWorkspace.Instance.Connection.Notify(result);
         }
     }
 
