@@ -34,7 +34,7 @@ namespace FSR.DigitalTwin.Client.Unity.Test {
             Debug.Log(">>>> " + result);
         }
 
-        private void RunAsyncTest() {
+        private async void RunAsyncTest() {
             Debug.Log(">>>> " + DigitalWorkspace.Instance.Connection);
 
             List<object> inputs = new() { 42, 43, 44, 45 };
@@ -45,6 +45,9 @@ namespace FSR.DigitalTwin.Client.Unity.Test {
             if (requestId < 0) {
                 Debug.LogError("Failed to launch process!");
             }
+
+            await Task.Delay(5000);
+
             var result = DigitalWorkspace.Instance.Operational.GetResult(requestId, inOuts, outputs);
 
             Debug.Log(">>>> " + result);
@@ -73,9 +76,9 @@ namespace FSR.DigitalTwin.Client.Unity.Test {
             };
 
             DigitalWorkspace.Instance.Operational.SetExecutionProcessState(state);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             DigitalWorkspace.Instance.Operational.SetExecutionProcessState(state with { State = ProcessExecutionState.EState.RUNNING });
-            await Task.Delay(2000);
+            await Task.Delay(1500);
             DigitalWorkspace.Instance.Operational.SetExecutionProcessState(state with { State = ProcessExecutionState.EState.COMPLETED });
             await DigitalWorkspace.Instance.Operational.SetResultAsync(new ProcessResult() {
                 ClientId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_ID,
