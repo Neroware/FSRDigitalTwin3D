@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45124692, g: 0.5009513, b: 0.573484, a: 1}
+  m_IndirectSpecularColor: {r: 0.45124727, g: 0.5009517, b: 0.5734845, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: https://www.hs-emden-leer.de/ids/sm/6494_2162_5032_2813
   _actor: {fileID: 5955250382980222833}
-  _enableOperationModeOverrride: 0
+  _enableOperationModeOverride: 0
   _operationModeOverride: 0
   _joints:
   - {fileID: 5955250382980222834}
@@ -502,6 +502,30 @@ PrefabInstance:
     - target: {fileID: 1062213978946170381, guid: f22e996517657df179548f7738209a13, type: 3}
       propertyPath: m_Name
       value: ControlPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_Value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Sleep
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: Pull Data
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: Push Data
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Sync
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851510984725059587, guid: f22e996517657df179548f7738209a13, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9212714079268626439, guid: f22e996517657df179548f7738209a13, type: 3}
       propertyPath: m_Pivot.x

@@ -29,12 +29,12 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
             }
         }
 
-        private void SetJointProperties() {
+        private async Task UpdateJointPropertiesAsync() {
             foreach (UrdfJointSensor joint in _joints) {
                 
                 switch (joint) {
                     case UrdfRevoluteJointSensor: {
-                        DigitalWorkspace.Instance.Entities.SetComponentProperty(Id, "Orientation." + joint.JointName + "_z", joint.Orientation[0]);
+                        await DigitalWorkspace.Instance.Entities.SetComponentPropertyAsync(Id, "Orientation." + joint.JointName + "_z", joint.Orientation[0]);
                     } break;
                     case UrdfFixedJointSensor: {
                         // Intentionally left empty
@@ -45,6 +45,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
         }
 
         private void Start() {
+            base.Start();
             DigitalWorkspace.Instance.Connection.IsConnected
                 .Where(x => x).Subscribe(_ => CreateJointProperties()).AddTo(this);
         }
@@ -61,12 +62,14 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
 
         public override bool OnPush()
         {
-            throw new System.NotImplementedException();
+            UpdateJointPropertiesAsync().GetAwaiter().GetResult();
+            return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override Task<bool> OnPushAsync()
+        public override async Task<bool> OnPushAsync()
         {
-            throw new System.NotImplementedException();
+            await UpdateJointPropertiesAsync();
+            return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
         public override bool OnSynchronize()

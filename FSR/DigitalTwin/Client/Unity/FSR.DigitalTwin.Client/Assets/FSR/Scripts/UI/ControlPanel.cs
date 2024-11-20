@@ -27,6 +27,7 @@ namespace FSR.DigitalTwin.Client.Unity.UI {
         void Start()
         {
             DigitalWorkspace.Instance.Connection.IsConnected.Subscribe(OnConnectionChanged).AddTo(this);
+            DigitalWorkspace.Instance.OperationMode = (DigitalWorkspace.EOperationMode) operationMode.value;
         }
 
         // Update is called once per frame
@@ -67,7 +68,7 @@ namespace FSR.DigitalTwin.Client.Unity.UI {
         }
 
         public void OnOperationModeChanged(int value) {
-
+            DigitalWorkspace.Instance.OperationMode = (DigitalWorkspace.EOperationMode) value;
         }
     }
 }
