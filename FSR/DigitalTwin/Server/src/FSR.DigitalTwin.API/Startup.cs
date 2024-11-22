@@ -11,6 +11,9 @@ using AdminShellNS;
 using FSR.DigitalTwin.App;
 using FSR.DigitalTwin.App.Common.Utils;
 using FSR.DigitalTwin.App.GRPC.Common.Utils;
+using FSR.DigitalTwin.App.Interfaces.Services;
+using FSR.DigitalTwin.Infra.Common.Utils;
+using FSR.DigitalTwin.Infra.ROS2.Common.Utils;
 using IO.Swagger.Controllers;
 using IO.Swagger.Lib.V3.Formatters;
 using IO.Swagger.Lib.V3.Interfaces;
@@ -97,6 +100,8 @@ internal class Startup
         services.AddTransient<IOperationReceiver, OperationReceiver>();
         services.AddAppServices();
         services.AddAppGrpcServices();
+        services.AddInfra();
+        services.AddInfraRos2();
 
         // Add GraphQL services
         services
@@ -179,8 +184,9 @@ internal class Startup
         services.AddGrpc();
 
         // For testing
-        // var serviceProvider = services.BuildServiceProvider();
-        // var dbService = serviceProvider.GetService<IDigitalTwinDb>();
+        var serviceProvider = services.BuildServiceProvider();
+        var robotControls = serviceProvider.GetService<IRobotControlService>() ?? throw new NullReferenceException("should not happen");
+        robotControls.RunTest();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

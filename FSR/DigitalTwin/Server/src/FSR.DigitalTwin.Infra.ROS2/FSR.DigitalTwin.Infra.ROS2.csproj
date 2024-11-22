@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../FSR.DigitalTwin.Infra/FSR.DigitalTwin.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Siemens.RosSharp.MessageGeneration" Version="2.0.0" />
+    <PackageReference Include="Siemens.RosSharp.RosBridgeClient.ROS2" Version="2.0.0" />
+    <PackageReference Include="Siemens.RosSharp.Urdf" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

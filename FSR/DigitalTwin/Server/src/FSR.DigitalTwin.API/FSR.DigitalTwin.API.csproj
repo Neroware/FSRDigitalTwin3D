@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../FSR.DigitalTwin.Infra/FSR.DigitalTwin.Infra.csproj" />
+    <ProjectReference Include="../FSR.DigitalTwin.Infra.ROS2/FSR.DigitalTwin.Infra.ROS2.csproj" />
   </ItemGroup>
 
 </Project>
