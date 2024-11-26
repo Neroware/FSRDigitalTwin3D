@@ -70,5 +70,20 @@ Copy-Item -Path "./.tmp/urdfimporter/" -Destination $DESTINATION -Recurse
 
 Write-Host "DONE"
 
+# =============== ROS TCP Connector ============== #
+
+$URL = "https://github.com/Unity-Technologies/ROS-TCP-Connector.git"
+$DESTINATION = "../DigitalTwin/Client/Unity/FSR.DigitalTwin.Client/Assets/Plugins/ROS-TCP-Connector/"
+
+Write-Host "Cloning repo from $URL..."
+git clone $URL  "./.tmp/ros_tcp_connector/"
+
+Write-Host "Copying ROS-TCP-Connector into Plugin folder..."
+Copy-Item -Path "./.tmp/ros_tcp_connector/" -Destination $DESTINATION -Recurse
+
+Write-Host "DONE"
+
+# =============== Cleanup ============== #
+
 Write-Host "Deleting temp directory..."
 Remove-Item -Recurse -Force -Path .tmp/

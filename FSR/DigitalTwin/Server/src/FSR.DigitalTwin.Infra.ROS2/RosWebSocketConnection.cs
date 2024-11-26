@@ -10,22 +10,22 @@ public class RosWebSocketConnection : IRosConnection
 
     public void RunRosBridgeTest()
     {
-        // RosSocket rosSocket = new RosSocket(new RosSharp.RosBridgeClient.Protocols.WebSocketNetProtocol(uri));
+        RosSocket rosSocket = new RosSocket(new RosSharp.RosBridgeClient.Protocols.WebSocketNetProtocol(uri));
 
-        // // Create a message object
-        // std_msgs.String message = new std_msgs.String
-        // {
-        //     data = "Hello ROS from .NET!"
-        // };
+        // Create a message object
+        std_msgs.String message = new std_msgs.String
+        {
+            data = "Hello ROS from .NET!"
+        };
 
-        // // // Advertise the topic
-        // string publication_id = rosSocket.Advertise<std_msgs.String>("my_awesome_topic");
+        // // Advertise the topic
+        string publication_id = rosSocket.Advertise<std_msgs.String>("my_awesome_topic");
 
-        // // // Publish the message
-        // rosSocket.Publish(publication_id, message);
+        // // Publish the message
+        rosSocket.Publish(publication_id, message);
 
-        // Console.WriteLine("Published message: " + message.data);
+        Console.WriteLine("Published message: " + message.data);
 
-        // rosSocket.Close();
+        rosSocket.Close();
     }
 }

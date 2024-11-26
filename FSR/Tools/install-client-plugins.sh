@@ -67,5 +67,20 @@ cp -r "./.tmp/urdfimporter/" "$DESTINATION"
 
 echo "DONE"
 
+# =============== ROS-TCP-Connector ============== #
+
+URL="https://github.com/Unity-Technologies/ROS-TCP-Connector.git"
+DESTINATION="../DigitalTwin/Client/Unity/FSR.DigitalTwin.Client/Assets/Plugins/ROS-TCP-Connector/"
+
+echo "Cloning repo from $URL..."
+git clone $URL  "./.tmp/ros_tcp_connector/"
+
+echo "Copying ROS-TCP-Connector into Plugin folder..."
+cp -r "./.tmp/ros_tcp_connector/" "$DESTINATION"
+
+echo "DONE"
+
+# =============== Cleanup ============== #
+
 echo "Deleting temp directory..."
 rm -rf .tmp/
