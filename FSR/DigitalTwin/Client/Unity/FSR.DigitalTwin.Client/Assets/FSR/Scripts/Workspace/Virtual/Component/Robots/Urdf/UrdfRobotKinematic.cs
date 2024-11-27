@@ -44,6 +44,23 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
             }
         }
 
+        private async Task UpdateJointOrientationsAsync() {
+            foreach (UrdfJointSensor joint in _joints) {
+                
+                switch (joint) {
+                    case UrdfRevoluteJointSensor: {
+                        float z = await DigitalWorkspace.Instance.Entities.GetComponentPropertyAsync<float>(Id, "Orientation." + joint.JointName + "_z");
+                        ArticulationBody articulationBody = joint.GetComponent<ArticulationBody>();
+                        articulationBody.SetDriveTarget(ArticulationDriveAxis.X, z);
+                    } break;
+                    case UrdfFixedJointSensor: {
+                        // Intentionally left empty
+                    }
+                    break;
+                }
+            }
+        }
+
         private void Start() {
             base.Start();
             DigitalWorkspace.Instance.Connection.IsConnected
@@ -52,12 +69,14 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
 
         public override bool OnPull()
         {
-            throw new System.NotImplementedException();
+            UpdateJointOrientationsAsync().GetAwaiter().GetResult();
+            return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override Task<bool> OnPullAsync()
+        public override async Task<bool> OnPullAsync()
         {
-            throw new System.NotImplementedException();
+            await UpdateJointOrientationsAsync();
+            return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
         public override bool OnPush()

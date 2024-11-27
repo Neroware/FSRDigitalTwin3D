@@ -33,14 +33,18 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component {
 
         protected void Start() {
             // TODO Adjust!
-            Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1.0))
+            bool requestRunning = false;
+            Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1.0f))
                 .Where(_ => DigitalWorkspace.Instance.Connection.IsConnected.Value)
                 .Subscribe(async _ => {
+                    if (requestRunning) return;
+                    requestRunning = true;
                     switch (_operationMode) {
                         case DigitalWorkspace.EOperationMode.Push: await OnPushAsync(); break;
                         case DigitalWorkspace.EOperationMode.Pull: await OnPullAsync(); break;
                         case DigitalWorkspace.EOperationMode.Sync: await OnSynchronizeAsync(); break;
                     }
+                    requestRunning = false;
                 })
                 .AddTo(this);
         }

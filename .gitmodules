@@ -4,3 +4,9 @@
 [submodule "FSR/DigitalTwin/Client/Unity/FSR.DigitalTwin.Client/Assets/Submodules/FSRDT3D-Models"]
 	path = FSR/DigitalTwin/Client/Unity/FSR.DigitalTwin.Client/Assets/Submodules/FSRDT3D-Models
 	url = https://github.com/Neroware/FSRDigitalTwin3D-Models.git
+[submodule "FSR/ROS/src/ros_tcp_endpoint"]
+	path = FSR/ROS/src/ros_tcp_endpoint
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+[submodule "FSR/ROS/src/moveit_msgs"]
+	path = FSR/ROS/src/moveit_msgs
+	url = https://github.com/moveit/moveit_msgs.git

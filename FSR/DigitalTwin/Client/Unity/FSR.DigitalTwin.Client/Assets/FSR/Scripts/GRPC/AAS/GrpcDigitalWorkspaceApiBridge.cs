@@ -84,7 +84,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         {
             SubmodelElementDTO property = CreateProperty(value);
             string[] path = prop.Split('.');
-            property.IdShort = path.First();
+            property.IdShort = path.Last();
             PutSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id), SubmodelElement = property };
             foreach (string idShort in path) {
                 request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
@@ -97,7 +97,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         {
             SubmodelElementDTO property = CreateProperty(value);
             string[] path = prop.Split('.');
-            property.IdShort = path.First();
+            property.IdShort = path.Last();
             PutSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id), SubmodelElement = property };
             foreach (string idShort in path) {
                 request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
@@ -243,12 +243,12 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
         public T GetComponentProperty<T>(string id, string prop)
         {
-            GetSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id) };
+            GetSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id), OutputModifier = DefaultOutput };
             foreach (string idShort in prop.Split('.')) {
                 request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
             }
             var response = _client.Submodel.GetSubmodelElementByPath(request);
-            if (response.StatusCode != 201 || response.Payload.SubmodelElementType != SubmodelElementType.Property) {
+            if (response.StatusCode != 200 || response.Payload.SubmodelElementType != SubmodelElementType.Property) {
                 throw new NullReferenceException("Property not found!");
             }
             return GetProperty<T>(response.Payload.Property);
@@ -256,12 +256,12 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
         public async Task<T> GetComponentPropertyAsync<T>(string id, string prop)
         {
-            GetSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id) };
+            GetSubmodelElementByPathRpcRequest request = new() { SubmodelId = Base64Converter.ToBase64(id), OutputModifier = DefaultOutput };
             foreach (string idShort in prop.Split('.')) {
                 request.Path.Add(new KeyDTO() { Type = KeyTypes.SubmodelElement, Value = idShort });
             }
             var response = await _client.Submodel.GetSubmodelElementByPathAsync(request);
-            if (response.StatusCode != 201 || response.Payload.SubmodelElementType != SubmodelElementType.Property) {
+            if (response.StatusCode != 200 || response.Payload.SubmodelElementType != SubmodelElementType.Property) {
                 throw new NullReferenceException("Property not found!");
             }
             return GetProperty<T>(response.Payload.Property);
