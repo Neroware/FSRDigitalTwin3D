@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
 
-    public class RosSourceDestinationPublisher : MonoBehaviour, IRosSourceDestinationPublisher
+    public class RosSourceDestinationPublisher : RosSourceDestinationPublisherBase
     {
-        const int NUM_ROBOT_JOINTS = 8;
+        const int NUM_ROBOT_JOINTS = 7;
 
         public static readonly string[] LinkNames =
-            { "world/base_link/shoulder_link", "/upper_arm_link", "/forearm_link", "/forearm_link", "/wrist_1_link", "/wrist_2_link", "/wrist_3_link", "/ee_link" };
+            { "world/base_link/shoulder_link", "/upper_arm_link", "/forearm_link", "/wrist_1_link", "/wrist_2_link", "/wrist_3_link", "/ee_link" };
 
         // Variables required for ROS communication
         [SerializeField] private string _topicName = "/ur5e_joints";
@@ -28,10 +28,10 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
         // ROS Connector
         private ROSConnection _rosConn;
 
-        public string TopicName => _topicName;
-        public GameObject Robot => _ur5e;
-        public GameObject Target => _target;
-        public GameObject TargetPlacement => _targetPlacement;
+        public override string TopicName => _topicName;
+        public override GameObject Robot => _ur5e;
+        public override GameObject Target => _target;
+        public override GameObject TargetPlacement => _targetPlacement;
 
         void Start()
         {
@@ -49,7 +49,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
             }
         }
 
-        public void Publish()
+        public override void Publish()
         {
             var sourceDestinationMessage = new UR5eMoveitJointsMsg();
 

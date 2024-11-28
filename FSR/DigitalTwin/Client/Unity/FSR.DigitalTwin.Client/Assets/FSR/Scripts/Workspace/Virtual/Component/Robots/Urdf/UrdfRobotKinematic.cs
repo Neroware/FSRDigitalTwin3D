@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robots.Urdf;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robots.Urdf.Joints;
 using UniRx;
@@ -12,7 +13,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
     public class UrdfRobotKinematic : DigitalTwinComponentBase
     {
         [SerializeField] private List<UrdfJointSensor> _joints;
-
+        [SerializeField] private RosSourceDestinationPublisherBase _rosSourceDestinationPublisher;
 
         private void CreateJointProperties() {
             foreach (UrdfJointSensor joint in _joints) {
