@@ -24,6 +24,8 @@ find_package(controller_manager REQUIRED)
 # find_package(roslaunch REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 
+install(DIRECTORY launch DESTINATION share/${PROJECT_NAME}/)
+
 set(msg_files
   "msg/UR5eMoveitJoints.msg"
   "msg/UR5eTrajectory.msg"
