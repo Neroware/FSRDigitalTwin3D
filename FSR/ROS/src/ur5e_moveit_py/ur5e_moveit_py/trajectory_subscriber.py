@@ -1,25 +1,43 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
     Subscribes to SourceDestination topic.
     Uses MoveIt to compute a trajectory from the target to the destination.
     Trajectory is then published to PickAndPlaceTrajectory topic.
 """
-import rospy
+import rclpy
+from rclpy.node import Node
 
-from ur5e_moveit.msg import UR5eMoveitJoints, NiryoTrajectory
+from ur5e_moveit.msg import UR5eMoveitJoints, UR5eTrajectory
 from moveit_msgs.msg import RobotTrajectory
 
 
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "I heard:\n%s", data)
+class TrajectorySubscriber(Node):
+    def __init__(self):
+        super().__init__('trajectory_subscriber')
+        self.subscription = self.create_subscription(
+            UR5eMoveitJoints,
+            '/ur5e_joints',
+            self.callback,
+            10  # QoS History depth
+        )
 
-def listener():
-    rospy.init_node('Trajectory_Subscriber', anonymous=True)
-    rospy.Subscriber("/ur5e_joints", UR5eMoveitJoints, callback)
+    def callback(self, msg):
+        self.get_logger().info(f"I heard:\n{msg}")
 
-    # spin() simply keeps python from exiting until this node is stopped
-    rospy.spin()
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    trajectory_subscriber = TrajectorySubscriber()
+
+    try:
+        rclpy.spin(trajectory_subscriber)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        trajectory_subscriber.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':
-    listener()
+    main()
