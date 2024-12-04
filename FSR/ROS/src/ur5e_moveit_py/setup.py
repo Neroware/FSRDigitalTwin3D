@@ -23,7 +23,8 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "trajectory_subscriber = ur5e_moveit_py.trajectory_subscriber:main"
+            "trajectory_subscriber = ur5e_moveit_py.trajectory_subscriber:main",
+            "mover = ur5e_moveit_py.mover:main"
         ]
     },
 )
