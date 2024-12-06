@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
+# !!!!!!!!!!! THIS SCRIPT WAS INSTALLED AND WILL BE OVERWRITTEN WHEN BUILD RE-INITS !!!!!!!!!!
+
 from __future__ import print_function
+
+from threading import Thread
 
 import rclpy
 from rclpy.node import Node
@@ -9,8 +13,8 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 import sys
 import copy
 import math
-# import moveit_commander
 from pymoveit2 import MoveIt2, MoveIt2State
+# import moveit_commander
 
 import moveit_msgs.msg
 from moveit_msgs.msg import Constraints, JointConstraint, PositionConstraint, OrientationConstraint, BoundingVolume
@@ -20,6 +24,25 @@ import geometry_msgs.msg
 from geometry_msgs.msg import Quaternion, Pose
 from std_msgs.msg import String
 # from moveit_commander.conversions import pose_to_list
+
+# ---
+
+# from moveit_msgs.srv import (
+#     ApplyPlanningScene,
+#     GetCartesianPath,
+#     GetMotionPlan,
+#     GetPlanningScene,
+#     GetPositionFK,
+#     GetPositionIK,
+# )
+# from rclpy.qos import (
+#     QoSDurabilityPolicy,
+#     QoSHistoryPolicy,
+#     QoSProfile,
+#     QoSReliabilityPolicy,
+# )
+
+# ---
 
 from ur5e_moveit.srv import MoverService
 
@@ -58,19 +81,53 @@ class UR5e_MoveIt_Server(Node):
         group_name = "arm"
         end_effector_name = "ee_link"
         base_link_name = "base"
+        planner_id = "RRTConnectkConfigDefault"
 
-        moveit2 = MoveIt2(
+        move_group = MoveIt2(
             node=self,
             joint_names=joint_names,
             base_link_name=base_link_name,
             end_effector_name=end_effector_name,
             group_name=group_name,
-            callback_group=callback_group
+            callback_group=callback_group,
         )
+        move_group.planner_id = ( planner_id )
 
-        # move_group = moveit_commander.MoveGroupCommander(group_name)
+        # Spin the node in background thread(s) and wait a bit for initialization
+        executor = rclpy.executors.MultiThreadedExecutor(2)
+        executor.add_node(self)
+        executor_thread = Thread(target=executor.spin, daemon=True, args=())
+        executor_thread.start()
+        self.create_rate(1.0).sleep()
+
+        # ---
+
+        # plan_kinematic_path_service = self.create_client(
+        #     srv_type=GetMotionPlan,
+        #     srv_name="plan_kinematic_path",
+        #     qos_profile=QoSProfile(
+        #         durability=QoSDurabilityPolicy.VOLATILE,
+        #         reliability=QoSReliabilityPolicy.RELIABLE,
+        #         history=QoSHistoryPolicy.KEEP_LAST,
+        #         depth=1,
+        #     ),
+        #     callback_group=callback_group,
+        # )
+        # while not plan_kinematic_path_service.service_is_ready():
+        #     executor = rclpy.executors.MultiThreadedExecutor(2)
+        #     executor.add_node(self)
+        #     executor_thread = Thread(target=executor.spin, daemon=True, args=())
+        #     executor_thread.start()
+        #     self.create_rate(1.0).sleep()
+        #     self.get_logger().info("Waiting for service...")
+
+        # ---
 
         current_robot_joint_configuration = req.joints_input.joints
+
+        # Pre grasp - position gripper directly above target object
+        pre_grasp_pose = self._plan_trajectory(move_group, req.pick_pose, current_robot_joint_configuration)
+    
 
         # Pre grasp - position gripper directly above target object
         # pre_grasp_pose = self._plan_trajectory(None, req.pick_pose, current_robot_joint_configuration)
@@ -84,17 +141,37 @@ class UR5e_MoveIt_Server(Node):
     """
     Given the start angles of the robot, plan a trajectory that ends at the destination pose.
     """
-    def _plan_trajectory(self, move_group, destination_pose, start_joint_angles): 
+    def _plan_trajectory(self, move_group, destination_pose, start_joint_angles):
+        start_joint_angles = start_joint_angles.tolist()
+
         current_joint_state = JointState()
         current_joint_state.name = joint_names
         current_joint_state.position = start_joint_angles
 
         moveit_robot_state = RobotState()
         moveit_robot_state.joint_state = current_joint_state
-        # move_group.set_start_state(moveit_robot_state)
 
-        move_group.set_pose_target(destination_pose)
+        move_group.max_velocity = 0.5
+        move_group.max_acceleration = 0.5
+
+        self.get_logger().info(f"Moving to start state {{joint_positions: {list(start_joint_angles)}}}")
+        plan = move_group.plan(start_joint_state=current_joint_state, pose=destination_pose)
+        self.get_logger().info(f">>> " + str(plan))
+        # move_group.move_to_configuration(start_joint_angles)
+        # move_group.wait_until_executed()
+
+        # return None
+        # current_joint_state = JointState()
+        # current_joint_state.name = joint_names
+        # current_joint_state.position = start_joint_angles
+
+        # moveit_robot_state = RobotState()
+        # moveit_robot_state.joint_state = current_joint_state
+        # # move_group.set_start_state(moveit_robot_state)
+
+        # move_group.set_pose_target(destination_pose)
         plan = None # move_group.plan()
+        return plan
 
         if not plan:
             exception_str = """
