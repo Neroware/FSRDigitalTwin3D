@@ -172,6 +172,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
         /// <returns></returns>
         IEnumerator ExecuteTrajectories(MoverServiceResponse response)
         {
+            Debug.Log("Begin trajectory coroutine...");
             if (response.trajectories != null)
             {
                 // For every trajectory plan returned
@@ -207,6 +208,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
 
                 // All trajectories have been executed, open the gripper to place the target cube
                 OpenGripper();
+                Debug.Log("END trajectory coroutine...");
             }
         }
 
