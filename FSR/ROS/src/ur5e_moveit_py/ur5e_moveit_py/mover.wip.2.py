@@ -133,7 +133,8 @@ class UR5e_MoveIt_Server(Node):
         # self.get_logger().info("JOINT ANGLES>>> " + str(start_joint_angles))
         # self.get_logger().info("DEST>>> " + str(destination_pose))
         # start_joint_angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        # destination_pose.position = geometry_msgs.msg.Point(x=-1.0, y=0.0, z=0.0)
+        # destination_pose.position = geometry_msgs.msg.Point(x=0.0, y=0.8, z=0.2)
+        # destination_pose.orientation = geometry_msgs.msg.Quaternion(x=0.0, y=1.0, z=0.0, w=0.0)
 
         current_joint_state = JointState()
         current_joint_state.name = joint_names

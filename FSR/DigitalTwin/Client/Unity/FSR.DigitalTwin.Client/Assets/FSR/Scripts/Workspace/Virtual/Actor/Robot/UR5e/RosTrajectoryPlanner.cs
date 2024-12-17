@@ -133,7 +133,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
                 position = (m_Target.transform.position + m_PickPoseOffset).To<FLU>(),
 
                 // The hardcoded x/z angles assure that the gripper is always positioned above the target cube before grasping.
-                orientation = Quaternion.Euler(90, m_Target.transform.eulerAngles.y, 0).To<FLU>()
+                orientation = Quaternion.Euler(new Vector3(-180, 0, 0)).To<FLU>()// Quaternion.identity.To<FLU>() // Quaternion.Euler(90, m_Target.transform.eulerAngles.y, 0).To<FLU>()
             };
 
             // Place Pose
