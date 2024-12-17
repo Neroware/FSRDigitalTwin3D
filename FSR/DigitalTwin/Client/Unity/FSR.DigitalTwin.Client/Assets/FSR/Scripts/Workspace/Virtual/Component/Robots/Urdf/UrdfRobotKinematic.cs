@@ -14,6 +14,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
     {
         [SerializeField] private List<UrdfJointSensor> _joints;
         [SerializeField] private RosSourceDestinationPublisherBase _rosSourceDestinationPublisher;
+        [SerializeField] private float[] _defaultPoseConfiguration = new float[] { -90.0f, -45.0f, 0.0f, -45.0f, -90.0f, 0.0f };
 
         private void CreateJointProperties() {
             foreach (UrdfJointSensor joint in _joints) {
@@ -62,14 +63,14 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
             }
         }
 
-        private void Start() {
+        private new void Start() {
             base.Start();
             DigitalWorkspace.Instance.Connection.IsConnected
                 .Where(x => x).Subscribe(_ => CreateJointProperties()).AddTo(this);
         }
 
-        public void SetDebugConfiguration() {
-            float[] target = new float[] { 55.0f, -33.0f, -13.0f, -77.0f, -76.0f, 0.0f };
+        public void MoveToDefaultPoseConfiguration() {
+            float[] target = _defaultPoseConfiguration;
             for (int i = 0; i < 6; i++) {
                 ArticulationDrive xDrive = _joints[i + 1].GetComponent<ArticulationBody>().xDrive;
                 xDrive.target = target[i];

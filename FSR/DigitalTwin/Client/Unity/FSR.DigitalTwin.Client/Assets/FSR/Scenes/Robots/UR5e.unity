@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 285295942}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.303, z: -0.75}
+  m_LocalPosition: {x: 0, y: 0.303, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -658,6 +658,13 @@ MonoBehaviour:
   - {fileID: 1464140682}
   - {fileID: 284822241}
   _rosSourceDestinationPublisher: {fileID: 230070}
+  _defaultPoseConfiguration:
+  - -90
+  - -45
+  - 0
+  - -45
+  - -90
+  - 0
 --- !u!1001 &669197473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1281,7 +1288,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1586025233}
@@ -1676,7 +1683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623299632640902648, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDebugConfiguration
+      value: MoveToDefaultPoseConfiguration
       objectReference: {fileID: 0}
     - target: {fileID: 8623299632640902648, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1790,6 +1797,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4580111575494814208, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665212941520693760, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665212941520693760, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665212941520693760, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665212941520693760, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665212941520693760, guid: b990ce72bcda62d4b871c5e92369120f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
       objectReference: {fileID: 0}
