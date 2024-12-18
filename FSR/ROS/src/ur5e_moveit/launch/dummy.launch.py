@@ -19,7 +19,7 @@ def generate_launch_description():
     other_launch_file = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ur5e_moveit'),
-                'launch/part_2.launch.py')
+                'launch/test/test.trajectory_subscriber.launch.py')
         )
     )
 
