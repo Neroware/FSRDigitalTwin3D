@@ -1,0 +1,12 @@
+*/
+
+# Submodule packages already referenced
+!moveit_msgs/
+!pymoveit2/
+!ros_tcp_endpoint/
+!Universal_Robots_ROS2_Driver/
+
+# Custom ROS2 packages
+!ur5e_moveit/
+!ur5e_moveit_py/
+
