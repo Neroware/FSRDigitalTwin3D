@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Tool.EE;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Ur5eMoveit;
 using Unity.Robotics.ROSTCPConnector;
@@ -17,28 +18,25 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
         const float k_PoseAssignmentWait = 0.5f;
 
         // Variables required for ROS communication
-        [SerializeField]
-        string m_RosServiceName = "ur5e_moveit";
+        [SerializeField] string m_RosServiceName = "ur5e_moveit";
         public string RosServiceName { get => m_RosServiceName; set => m_RosServiceName = value; }
 
-        [SerializeField]
-        GameObject m_UR5e;
+        [SerializeField] GameObject m_UR5e;
         public GameObject UR5e { get => m_UR5e; set => m_UR5e = value; }
-        [SerializeField]
-        GameObject m_Target;
+        [SerializeField] GameObject m_Target;
         public GameObject Target { get => m_Target; set => m_Target = value; }
-        [SerializeField]
-        GameObject m_TargetPlacement;
+        [SerializeField] GameObject m_TargetPlacement;
         public GameObject TargetPlacement { get => m_TargetPlacement; set => m_TargetPlacement = value; }
 
         // Assures that the gripper is always positioned above the m_Target cube before grasping.
-        readonly Quaternion m_PickOrientation = Quaternion.Euler(90, 90, 0);
-        readonly Vector3 m_PickPoseOffset = Vector3.up * 0.1f;
+        readonly Quaternion m_PickOrientation = Quaternion.Euler(new Vector3(-180, 0, 0));
+        readonly Vector3 m_PickPoseOffset = Vector3.up * 0.2f;
 
         // Articulation Bodies
         ArticulationBody[] m_JointArticulationBodies;
-        ArticulationBody m_LeftGripper;
-        ArticulationBody m_RightGripper;
+
+        // EE gripper tool
+        [SerializeField] GripperBase m_gripper;
 
         // ROS Connector
         ROSConnection m_Ros;
@@ -61,44 +59,17 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
                 linkName += RosSourceDestinationPublisher.LinkNames[i];
                 m_JointArticulationBodies[i] = m_UR5e.transform.Find(linkName).GetComponent<ArticulationBody>();
             }
-
-            // Find left and right fingers
-            // var rightGripper = linkName + "/tool_link/gripper_base/servo_head/control_rod_right/right_gripper";
-            // var leftGripper = linkName + "/tool_link/gripper_base/servo_head/control_rod_left/left_gripper";
-
-            // m_RightGripper = m_UR5e.transform.Find(rightGripper).GetComponent<ArticulationBody>();
-            // m_LeftGripper = m_UR5e.transform.Find(leftGripper).GetComponent<ArticulationBody>();
         }
 
         /// <summary>
         ///     Close the gripper
         /// </summary>
-        void CloseGripper()
-        {
-            // var leftDrive = m_LeftGripper.xDrive;
-            // var rightDrive = m_RightGripper.xDrive;
-
-            // leftDrive.target = -0.01f;
-            // rightDrive.target = 0.01f;
-
-            // m_LeftGripper.xDrive = leftDrive;
-            // m_RightGripper.xDrive = rightDrive;
-        }
+        void CloseGripper() => m_gripper.CloseGripper();
 
         /// <summary>
         ///     Open the gripper
         /// </summary>
-        void OpenGripper()
-        {
-            // var leftDrive = m_LeftGripper.xDrive;
-            // var rightDrive = m_RightGripper.xDrive;
-
-            // leftDrive.target = 0.01f;
-            // rightDrive.target = -0.01f;
-
-            // m_LeftGripper.xDrive = leftDrive;
-            // m_RightGripper.xDrive = rightDrive;
-        }
+        void OpenGripper() => m_gripper.OpenGripper();
 
         /// <summary>
         ///     Get the current values of the robot's joint angles.
@@ -133,7 +104,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
                 position = (m_Target.transform.position + m_PickPoseOffset).To<FLU>(),
 
                 // The hardcoded x/z angles assure that the gripper is always positioned above the target cube before grasping.
-                orientation = Quaternion.Euler(new Vector3(-180, 0, 0)).To<FLU>()// Quaternion.identity.To<FLU>() // Quaternion.Euler(90, m_Target.transform.eulerAngles.y, 0).To<FLU>()
+                orientation = m_PickOrientation.To<FLU>()// Quaternion.identity.To<FLU>() // Quaternion.Euler(90, m_Target.transform.eulerAngles.y, 0).To<FLU>()
             };
 
             // Place Pose
@@ -174,6 +145,9 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e {
         {
             if (response.trajectories != null)
             {
+                // First things first open gripper
+                OpenGripper();
+
                 // For every trajectory plan returned
                 for (var poseIndex = 0; poseIndex < response.trajectories.Length; poseIndex++)
                 {

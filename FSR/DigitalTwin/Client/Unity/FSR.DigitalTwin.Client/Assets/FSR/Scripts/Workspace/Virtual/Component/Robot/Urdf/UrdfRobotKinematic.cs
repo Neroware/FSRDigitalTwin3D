@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robots.Urdf;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robots.Urdf.Joints;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robot.Urdf;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robot.Urdf.Joints;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robot.Urdf {
 
     public class UrdfRobotKinematic : DigitalTwinComponentBase
     {

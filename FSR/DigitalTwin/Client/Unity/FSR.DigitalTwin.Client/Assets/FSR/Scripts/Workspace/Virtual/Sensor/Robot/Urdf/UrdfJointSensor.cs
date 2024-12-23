@@ -3,7 +3,7 @@ using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robots.Urdf {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Robot.Urdf {
 
     public abstract class UrdfJointSensor : MonoBehaviour, ISensorSource<float[]>
     {

@@ -88,37 +88,37 @@ class UR5e_MoveIt_Server(Node):
         if not pre_grasp_pose.joint_trajectory.points:
             return res
 
-        # previous_ending_joint_angles = pre_grasp_pose.joint_trajectory.points[-1].positions
+        previous_ending_joint_angles = pre_grasp_pose.joint_trajectory.points[-1].positions
 
-        # # Grasp - lower gripper so that fingers are on either side of object
-        # pick_pose = copy.deepcopy(req.pick_pose)
-        # pick_pose.position.z -= 0.05  # Static value coming from Unity, TODO: pass along with request
-        # grasp_pose = self._plan_trajectory(move_group, pick_pose, previous_ending_joint_angles)
+        # Grasp - lower gripper so that fingers are on either side of object
+        pick_pose = copy.deepcopy(req.pick_pose)
+        pick_pose.position.z -= 0.075  # Static value coming from Unity, TODO: pass along with request
+        grasp_pose = self._plan_trajectory(move_group, pick_pose, previous_ending_joint_angles)
 
-        # if not pre_grasp_pose.joint_trajectory.points:
-        #     return res
+        if not pre_grasp_pose.joint_trajectory.points:
+            return res
 
-        # previous_ending_joint_angles = grasp_pose.joint_trajectory.points[-1].positions
+        previous_ending_joint_angles = grasp_pose.joint_trajectory.points[-1].positions
 
-        # # Pick Up - raise gripper back to the pre grasp position
-        # pick_up_pose = self._plan_trajectory(move_group, req.pick_pose, previous_ending_joint_angles)
+        # Pick Up - raise gripper back to the pre grasp position
+        pick_up_pose = self._plan_trajectory(move_group, req.pick_pose, previous_ending_joint_angles)
 
-        # if not pick_up_pose.joint_trajectory.points:
-        #     return res
+        if not pick_up_pose.joint_trajectory.points:
+            return res
 
-        # previous_ending_joint_angles = pick_up_pose.joint_trajectory.points[-1].positions
+        previous_ending_joint_angles = pick_up_pose.joint_trajectory.points[-1].positions
 
-        # # Place - move gripper to desired placement position
-        # place_pose = self._plan_trajectory(move_group, req.place_pose, previous_ending_joint_angles)
+        # Place - move gripper to desired placement position
+        place_pose = self._plan_trajectory(move_group, req.place_pose, previous_ending_joint_angles)
 
-        # if not place_pose.joint_trajectory.points:
-        #     return res
+        if not place_pose.joint_trajectory.points:
+            return res
 
         # If trajectory planning worked for all pick and place stages, add plan to response
         res.trajectories.append(pre_grasp_pose)
-        # res.trajectories.append(grasp_pose)
-        # res.trajectories.append(pick_up_pose)
-        # res.trajectories.append(place_pose)
+        res.trajectories.append(grasp_pose)
+        res.trajectories.append(pick_up_pose)
+        res.trajectories.append(place_pose)
 
         self.get_logger().info("UR5e cobot trajectories generated. Have a nice day!")
 
@@ -129,12 +129,6 @@ class UR5e_MoveIt_Server(Node):
     """
     def _plan_trajectory(self, move_group, destination_pose, start_joint_angles):
         start_joint_angles = start_joint_angles.tolist()
-        
-        # self.get_logger().info("JOINT ANGLES>>> " + str(start_joint_angles))
-        # self.get_logger().info("DEST>>> " + str(destination_pose))
-        # start_joint_angles = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        # destination_pose.position = geometry_msgs.msg.Point(x=0.0, y=0.8, z=0.2)
-        # destination_pose.orientation = geometry_msgs.msg.Quaternion(x=0.0, y=1.0, z=0.0, w=0.0)
 
         current_joint_state = JointState()
         current_joint_state.name = joint_names
@@ -147,8 +141,6 @@ class UR5e_MoveIt_Server(Node):
         move_group.max_acceleration = 0.5
 
         plan = move_group.plan(start_joint_state=current_joint_state, pose=destination_pose, cartesian=True)
-        # self.get_logger().info("NEXT PLAN>>> " + str(plan))
-        # self.get_logger().info("===============================")
 
         if not plan:
             exception_str = """
