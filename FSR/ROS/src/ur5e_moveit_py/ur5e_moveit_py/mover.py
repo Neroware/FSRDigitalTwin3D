@@ -92,7 +92,7 @@ class UR5e_MoveIt_Server(Node):
 
         # Grasp - lower gripper so that fingers are on either side of object
         pick_pose = copy.deepcopy(req.pick_pose)
-        pick_pose.position.z -= 0.075  # Static value coming from Unity, TODO: pass along with request
+        pick_pose.position.z -= 0.066  # Static value coming from Unity, TODO: pass along with request
         grasp_pose = self._plan_trajectory(move_group, pick_pose, previous_ending_joint_angles)
 
         if not pre_grasp_pose.joint_trajectory.points:

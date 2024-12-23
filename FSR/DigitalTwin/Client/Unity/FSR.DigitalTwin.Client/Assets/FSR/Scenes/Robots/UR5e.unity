@@ -450,8 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: fsr:aab_actor
   _components: []
-  sMax: 0.25
-  sMin: 0
+  sMax: 0.025
+  sMin: 0.01
   fingerL: {fileID: 1957618346}
   fingerR: {fileID: 2007891978}
 --- !u!1 &186768509 stripped

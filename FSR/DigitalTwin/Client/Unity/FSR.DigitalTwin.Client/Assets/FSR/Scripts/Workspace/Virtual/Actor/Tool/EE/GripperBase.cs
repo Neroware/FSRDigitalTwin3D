@@ -6,7 +6,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Tool.EE {
     public class GripperBase : DigitalTwinActorBase, IGripperTool
     {
 
-        [SerializeField] private float sMax = 0.25f;
+        [SerializeField] private float sMax = 1.0f;
         [SerializeField] private float sMin = 0.0f;
 
         [SerializeField] private ArticulationBody fingerL;
