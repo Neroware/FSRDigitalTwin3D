@@ -1,4 +1,5 @@
 using FSR.DigitalTwin.App.Common.Middleware;
+using Microsoft.Extensions.Options;
 using RosSharp.RosBridgeClient;
 using std_msgs = RosSharp.RosBridgeClient.MessageTypes.Std;
 
@@ -6,11 +7,15 @@ namespace FSR.DigitalTwin.Infra.ROS2;
 
 public class RosWebSocketConnection : IRosWorkspace
 {
-    private static readonly string uri = "ws://localhost:9090"; // TODO Move this to API layer as it belongs there!
+    private string _baseUrl;
+
+    public RosWebSocketConnection(IOptions<RosWebSocketConnectionOptions> options) {
+        _baseUrl = options.Value.BaseUrl;
+    }
 
     public void RunRosBridgeTest()
     {
-        RosSocket rosSocket = new RosSocket(new RosSharp.RosBridgeClient.Protocols.WebSocketNetProtocol(uri));
+        RosSocket rosSocket = new RosSocket(new RosSharp.RosBridgeClient.Protocols.WebSocketNetProtocol(_baseUrl));
 
         // Create a message object
         std_msgs.String message = new std_msgs.String

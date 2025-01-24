@@ -7,7 +7,12 @@ namespace FSR.DigitalTwin.Infra.Common.Utils;
 public static class DependencyInjection {
     public static void AddInfra(this IServiceCollection services) {
         // ROS2
+        services.AddOptions<RosWebSocketConnectionOptions>()
+            .BindConfiguration(RosWebSocketConnectionOptions.ConfigurationSection)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
         services.AddTransient<IRosWorkspace, RosWebSocketConnection>();
+        
         // Insert more infrastructure if needed...
     }
 }
