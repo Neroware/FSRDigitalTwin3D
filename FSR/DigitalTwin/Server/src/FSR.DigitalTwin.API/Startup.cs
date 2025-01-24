@@ -180,9 +180,9 @@ internal class Startup
         services.AddAutoMapper(RpcAssembly.GetAssembly());
         services.AddGrpc();
 
-        // For testing
+        // For testing ROS
         // var serviceProvider = services.BuildServiceProvider();
-        // var robotControls = serviceProvider.GetService<IRobotControlService>() ?? throw new NullReferenceException("should not happen");
+        // var robotControls = serviceProvider.GetService<FSR.DigitalTwin.App.Interfaces.Services.IRobotControlService>() ?? throw new NullReferenceException("should not happen");
         // robotControls.RunTest();
     }
 

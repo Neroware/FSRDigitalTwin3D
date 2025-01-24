@@ -1,10 +1,10 @@
-using FSR.DigitalTwin.App.Common.Network;
+using FSR.DigitalTwin.App.Common.Middleware;
 using RosSharp.RosBridgeClient;
 using std_msgs = RosSharp.RosBridgeClient.MessageTypes.Std;
 
 namespace FSR.DigitalTwin.Infra.ROS2;
 
-public class RosWebSocketConnection : IRosConnection
+public class RosWebSocketConnection : IRosWorkspace
 {
     private static readonly string uri = "ws://localhost:9090"; // TODO Move this to API layer as it belongs there!
 
