@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125.4, y: -32}
-  m_SizeDelta: {x: 80, y: 30}
+  m_AnchoredPosition: {x: 119.42478, y: -32}
+  m_SizeDelta: {x: 68.0497, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5420466864743659361
 CanvasRenderer:
@@ -120,7 +120,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5013014825479680012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robots.Urdf.UrdfRobotKinematic,
+          Assembly-CSharp
+        m_MethodName: MoveToDefaultPoseConfiguration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1304672465908709504
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +522,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6789595833557877836}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e.RosTrajectoryPlanner,
+          Assembly-CSharp
+        m_MethodName: PublishJoints
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3370610138642567117
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +869,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2992559859912080695}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor.Robot.UR5e.RosSourceDestinationPublisher,
+          Assembly-CSharp
+        m_MethodName: Publish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7930755337849325724
 GameObject:
   m_ObjectHideFlags: 0

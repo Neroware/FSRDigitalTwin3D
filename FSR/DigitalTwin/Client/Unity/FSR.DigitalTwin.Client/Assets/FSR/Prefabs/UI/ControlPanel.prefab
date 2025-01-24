@@ -348,13 +348,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Sleep
+      m_Image: {fileID: 0}
     - m_Text: Pull Data
       m_Image: {fileID: 0}
     - m_Text: Push Data
       m_Image: {fileID: 0}
     - m_Text: Sync
-      m_Image: {fileID: 0}
-    - m_Text: Sleep
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -362,7 +362,7 @@ MonoBehaviour:
       - m_Target: {fileID: 156800203822149097}
         m_TargetAssemblyTypeName: FSR.DigitalTwin.Client.Unity.UI.ControlPanel, Assembly-CSharp
         m_MethodName: OnOperationModeChanged
-        m_Mode: 5
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2990,7 +2990,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pull Data
+  m_text: Sleep
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
