@@ -10,6 +10,7 @@ public static class DependencyInjection {
         services.AddSingleton<IConnectionState, ConnectionState>();
         services.AddSingleton<IOperationalState, OperationalState>();
         services.AddTransient<IDigitalTwinClientConnectionService, DigitalTwinClientConnectionService>();
-        services.AddTransient<IRobotControlService, RosRobotService>();
+        services.AddTransient<IDummyRosService, DummyRosService>();
+        services.AddTransient<IDummySemanticDataService, DummySemanticDataService>();
     }
 }

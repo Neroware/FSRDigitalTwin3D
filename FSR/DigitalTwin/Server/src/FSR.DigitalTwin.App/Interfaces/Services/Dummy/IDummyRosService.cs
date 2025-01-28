@@ -1,5 +1,5 @@
 namespace FSR.DigitalTwin.App.Interfaces.Services;
 
-public interface IRobotControlService {
+public interface IDummyRosService {
     public void RunTest();
 }

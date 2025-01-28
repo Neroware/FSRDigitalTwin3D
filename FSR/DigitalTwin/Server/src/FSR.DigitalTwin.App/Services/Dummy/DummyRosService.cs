@@ -3,11 +3,11 @@ using FSR.DigitalTwin.App.Interfaces.Services;
 
 namespace FSR.DigitalTwin.App.Services;
 
-public class RosRobotService : IRobotControlService
+public class DummyRosService : IDummyRosService
 {
     private readonly IRosWorkspace _rosWorkspace;
 
-    public RosRobotService(IRosWorkspace rosWorkspace) {
+    public DummyRosService(IRosWorkspace rosWorkspace) {
         _rosWorkspace = rosWorkspace ?? throw new ArgumentNullException(nameof(rosWorkspace));
     }
 

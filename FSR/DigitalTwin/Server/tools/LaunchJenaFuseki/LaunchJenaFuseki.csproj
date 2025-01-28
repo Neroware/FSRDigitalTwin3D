@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <Target Name="AttachToUnityWin" BeforeTargets="BeforeBuild" Condition=" '$(OS)' == 'Windows_NT' ">
+    <Exec Command="java -jar $(ProjectDir)\..\..\modules\Jena\jena-fuseki2\jena-fuseki-server\target\jena-fuseki-server-5.4.0-SNAPSHOT.jar" />
+  </Target>
+
+</Project>
