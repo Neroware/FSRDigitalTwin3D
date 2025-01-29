@@ -8,9 +8,9 @@ namespace FSR.DigitalTwin.App.Queries.Semantic.Example;
 
 public class GetAllTripletsQuery : ISparqlQuery<IEnumerable<Triple>>
 {
-    public ISparqlServer SparqlServer { get; init; }
     public string Query => "SELECT * WHERE { ?s ?p ?o . } ORDER BY ?p ?o";
     public ISparqlResponseParser Parser => new ResponseParser();
+    public ISparqlServer SparqlServer { get; init; }
 
     public GetAllTripletsQuery(ISparqlServer sparqlServer) {
         SparqlServer = sparqlServer;

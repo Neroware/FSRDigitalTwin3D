@@ -4,8 +4,8 @@ using FSR.DigitalTwin.Domain.SharedKernel;
 namespace FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
 
 public interface ISparqlQuery {
-    ISparqlResponseParser Parser { get; }
     string Query { get; }
+    ISparqlResponseParser Parser { get; }
     ISparqlServer SparqlServer { init; get; }
 }
 
