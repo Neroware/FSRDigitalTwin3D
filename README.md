@@ -38,6 +38,21 @@ The ROS2 Humble workspace is located in ```/FSR/ROS/```. We recommend setting up
 5. Run ```colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release```
 6. Lastly, source the installation ```source install/setup.sh```
 
+The digital twin maintains a connection to the ROS2 workspace through its infrastructure sub-layer.
+
+#### Data Backbone
+The Digital Twin consists of a data backbone, essentially a collection of databases specialized towards a specific type of information. Since we have a 90s-Linux-Mentality, open-source third party infrastructure modules are included and built from source.
+
+##### Semantic Data Repository (Apache Jena)
+The semantic data repository is realized through [Apache Jena](https://github.com/apache/jena) querying a knowledge graph through a Fuseki Server. If you want to include or implement services for semantic reasoning, you need to either install Apache Jena Fuseki, or build it from source. 
+
+Building from source:
+
+1. Ensure the Jena source is located at ```/FSR/DigitalTwin/Server/modules/Jena/```
+2. If missing, load Git submodules ```git submodule update --init --recursive```
+3. Navigate to folder ```/FSR/DigitalTwin/Server/tools/LaunchJenaFuseki/``` and run script ```build-jena-fuseki```
+4. Launch Jena by either building the project ```LaunchJenaFuseki``` or running the scripts ```build-jena-fuseki```
+
 ## The Framework
 
 ![image](./FSRDigitalTwin3D.jpg)
