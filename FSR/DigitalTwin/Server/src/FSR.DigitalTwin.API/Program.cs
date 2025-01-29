@@ -22,7 +22,8 @@ robotControls.RunTest();
 // Launch the Dummy Semantic Repo Service
 var semanticRepo = serviceProvider.GetService<FSR.DigitalTwin.App.Interfaces.Services.Dummy.IDummySemanticDataService>() 
     ?? throw new NullReferenceException("should not happten");
-await semanticRepo.PushDataAsync("pi:dog", "pi:inherits", "pi:animal");
+await semanticRepo.PushDataAsync("pi:cat", "pi:inherits", "pi:animal");
+await semanticRepo.RunSubPredObjQuery();
 
 // Run file
 await host.RunAsync();

@@ -1,3 +1,4 @@
+using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using VDS.RDF;
 
@@ -5,8 +6,8 @@ namespace FSR.DigitalTwin.App.Common.Semantic;
 
 public interface ISparqlServer
 {
-    Task<Result<IEnumerable<Triple>>> QueryAsync(string sparqlQuery, CancellationToken cancellationToken = default);
-    Result<IEnumerable<Triple>> Query(string sparqlQuery);
+    Task<Result<IEnumerable<Triple>>> QueryAsync(ISparqlQuery sparqlQuery, CancellationToken cancellationToken = default);
+    Result<IEnumerable<Triple>> Query(ISparqlQuery sparqlQuery);
 }
 
 public interface ISemanticGraphServer

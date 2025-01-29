@@ -1,5 +1,6 @@
 using System.Text;
 using FSR.DigitalTwin.App.Common.Semantic;
+using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using FSR.DigitalTwin.Infra.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -27,17 +28,26 @@ public class JenaSemanticDataRepository : ISemanticDataRepository
 
     public Result<bool> Add(string subject, string predicate, string obj)
     {
-        throw new NotImplementedException();
+        return AddAsync(subject, predicate, obj).Result;
     }
 
     public Result<bool> AddAll(Tuple<string, string, string>[] rule)
     {
-        throw new NotImplementedException();
+        if (rule.Select((triple) => Add(triple.Item1, triple.Item2, triple.Item3)).All(x => x.IsSuccess)) {
+            return Result.Success(true);
+        }
+        return Result.Failure<bool>($"Failed to add rule {rule}.");
     }
 
-    public Task<Result<bool>> AddAllAsync(Tuple<string, string, string>[] rule, CancellationToken cancellationToken = default)
+    public async Task<Result<bool>> AddAllAsync(Tuple<string, string, string>[] rule, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        foreach(Tuple<string, string, string> triple in rule) {
+            var result = await AddAsync(triple.Item1, triple.Item2, triple.Item3, cancellationToken);
+            if (result.IsFailure) {
+                return Result.Failure<bool>($"Failed to add rule {rule}.");
+            }
+        }
+        return Result.Success(true);
     }
 
     public async Task<Result<bool>> AddAsync(string subject, string predicate, string obj, CancellationToken cancellationToken = default)
@@ -80,13 +90,34 @@ public class JenaSemanticDataRepository : ISemanticDataRepository
         throw new NotImplementedException();
     }
 
-    public Result<IEnumerable<Triple>> Query(string sparqlQuery)
+    public Result<IEnumerable<Triple>> Query(ISparqlQuery sparqlQuery)
     {
-        throw new NotImplementedException();
+        return QueryAsync(sparqlQuery).Result;
     }
 
-    public Task<Result<IEnumerable<Triple>>> QueryAsync(string sparqlQuery, CancellationToken cancellationToken = default)
+    public async Task<Result<IEnumerable<Triple>>> QueryAsync(ISparqlQuery sparqlQuery, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return await _retryPolicy.ExecuteAsync(async () =>
+            {
+                var requestUrl = $"fsrtriples/sparql";
+                var content = new StringContent(sparqlQuery.Query, Encoding.UTF8, "application/sparql-query");
+
+                var response = await _jenaHttpClient.PostAsync(requestUrl, content, cancellationToken);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return Result.Failure<IEnumerable<Triple>>("SPARQL Query failed.");
+                }
+
+                var data = await response.Content.ReadAsStringAsync();
+                return Result.Success(sparqlQuery.Parser.FromJson(data));
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while executing the SPARQL Query: {Query}", sparqlQuery);
+            return Result.Failure<IEnumerable<Triple>>(ex.Message);
+        }
     }
 }
