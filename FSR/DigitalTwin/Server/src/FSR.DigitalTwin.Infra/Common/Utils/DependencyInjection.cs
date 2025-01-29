@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FSR.DigitalTwin.App.Common.Middleware;
 using FSR.DigitalTwin.Infra.ROS2;
 using FSR.DigitalTwin.Infra.Jena;
-using FSR.DigitalTwin.App.Common.SemanticData;
+using FSR.DigitalTwin.App.Common.Semantic;
 using FSR.DigitalTwin.Infra.Interfaces;
 using Microsoft.Extensions.Options;
 using System.Net.Http.Headers;
@@ -20,6 +20,10 @@ public static class DependencyInjection {
         services.AddTransient<IRosWorkspace, RosWebSocketConnection>();
         
         // Jena Database for semantic KG
+        services.AddOptions<JenaSemanticDataRepositoryOptions>()
+            .BindConfiguration(JenaSemanticDataRepositoryOptions.ConfigurationSection)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
         services.AddTransient<ISparqlServer, JenaSemanticDataRepository>();
         services.AddTransient<ISemanticGraphServer, JenaSemanticDataRepository>();
         services.AddTransient<ITripletServer, JenaSemanticDataRepository>();

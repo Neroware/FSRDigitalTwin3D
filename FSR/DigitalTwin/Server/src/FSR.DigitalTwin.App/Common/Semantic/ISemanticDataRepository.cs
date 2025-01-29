@@ -1,7 +1,7 @@
 using FSR.DigitalTwin.Domain.SharedKernel;
 using VDS.RDF;
 
-namespace FSR.DigitalTwin.App.Common.SemanticData;
+namespace FSR.DigitalTwin.App.Common.Semantic;
 
 public interface ISparqlServer
 {

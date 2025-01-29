@@ -1,5 +1,5 @@
 using System.Text;
-using FSR.DigitalTwin.App.Common.SemanticData;
+using FSR.DigitalTwin.App.Common.Semantic;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using FSR.DigitalTwin.Infra.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -53,7 +53,7 @@ public class JenaSemanticDataRepository : ISemanticDataRepository
                 //Endpoint: The correct endpoint for adding data is /data.
                 //Query Parameter: The ? default query parameter specifies that you're adding to the default graph.
                 //If you want to add to a specific named graph, you would use ?graph=URI instead.
-                var response = await _jenaHttpClient.PostAsync("pddtriples/data", content, cancellationToken);
+                var response = await _jenaHttpClient.PostAsync("fsrtriples/data", content, cancellationToken);
 
                 if (!response.IsSuccessStatusCode)
                 {

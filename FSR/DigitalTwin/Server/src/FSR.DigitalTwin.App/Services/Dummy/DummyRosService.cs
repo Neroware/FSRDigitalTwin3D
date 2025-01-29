@@ -1,7 +1,7 @@
 using FSR.DigitalTwin.App.Common.Middleware;
-using FSR.DigitalTwin.App.Interfaces.Services;
+using FSR.DigitalTwin.App.Interfaces.Services.Dummy;
 
-namespace FSR.DigitalTwin.App.Services;
+namespace FSR.DigitalTwin.App.Services.Dummy;
 
 public class DummyRosService : IDummyRosService
 {

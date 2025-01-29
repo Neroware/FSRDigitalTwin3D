@@ -1,5 +1,7 @@
-using FSR.DigitalTwin.App.Common.SemanticData;
-using FSR.DigitalTwin.App.Interfaces.Services;
+using FSR.DigitalTwin.App.Common.Semantic;
+using FSR.DigitalTwin.App.Interfaces.Services.Dummy;
+
+namespace FSR.DigitalTwin.App.Services.Dummy;
 
 public class DummySemanticDataService : IDummySemanticDataService
 {
