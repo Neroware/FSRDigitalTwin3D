@@ -55,7 +55,7 @@ Building from source:
 
 ## The Framework
 
-![image](./FSRDigitalTwin3D.jpg)
+![image](./FSRDigitalTwin3D.png)
 
 FSRDigitalTwin3D is split into three main layers:
 
