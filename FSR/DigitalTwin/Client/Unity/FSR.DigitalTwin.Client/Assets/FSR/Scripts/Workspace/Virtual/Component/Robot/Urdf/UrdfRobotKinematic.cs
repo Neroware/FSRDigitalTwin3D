@@ -16,42 +16,29 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robot.Urdf {
         [SerializeField] private RosSourceDestinationPublisherBase _rosSourceDestinationPublisher;
         [SerializeField] private float[] _defaultPoseConfiguration = new float[] { -90.0f, -45.0f, 0.0f, -45.0f, -90.0f, 0.0f };
 
-        private void CreateJointProperties() {
-            foreach (UrdfJointSensor joint in _joints) {
-                
-                switch (joint) {
-                    case UrdfRevoluteJointSensor: {
-                        DigitalWorkspace.Instance.Entities.CreateComponentProperty(Id, "Orientation." + joint.JointName + "_z", joint.Orientation[0]);
-                    } break;
-                    case UrdfFixedJointSensor: {
-                        // Intentionally left empty
-                    }
-                    break;
-                }
-            }
-        }
-
         private async Task UpdateJointPropertiesAsync() {
+            string path = "Segments.";
             foreach (UrdfJointSensor joint in _joints) {
-                
-                switch (joint) {
+                path += joint.name + ".";
+                switch(joint) {
                     case UrdfRevoluteJointSensor: {
-                        await DigitalWorkspace.Instance.Entities.SetComponentPropertyAsync(Id, "Orientation." + joint.JointName + "_z", joint.Orientation[0]);
+                        await DigitalWorkspace.Instance.Entities.SetComponentPropertyAsync(Id, path + "theta", joint.Orientation[0]);
                     } break;
                     case UrdfFixedJointSensor: {
                         // Intentionally left empty
-                    }
-                    break;
+                    } break;
                 }
+                path += "Children.";
             }
         }
 
         private async Task UpdateJointOrientationsAsync() {
+            string path = "Segments.";
             foreach (UrdfJointSensor joint in _joints) {
-                
+                path += joint.name + ".";
                 switch (joint) {
                     case UrdfRevoluteJointSensor: {
-                        float z = await DigitalWorkspace.Instance.Entities.GetComponentPropertyAsync<float>(Id, "Orientation." + joint.JointName + "_z");
+                        float z = await DigitalWorkspace.Instance.Entities.GetComponentPropertyAsync<float>(Id, path + "theta");
                         ArticulationBody articulationBody = joint.GetComponent<ArticulationBody>();
                         articulationBody.SetDriveTarget(ArticulationDriveAxis.X, z);
                     } break;
@@ -60,13 +47,8 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Robot.Urdf {
                     }
                     break;
                 }
+                path += "Children.";
             }
-        }
-
-        private new void Start() {
-            base.Start();
-            DigitalWorkspace.Instance.Connection.IsConnected
-                .Where(x => x).Subscribe(_ => CreateJointProperties()).AddTo(this);
         }
 
         public void MoveToDefaultPoseConfiguration() {

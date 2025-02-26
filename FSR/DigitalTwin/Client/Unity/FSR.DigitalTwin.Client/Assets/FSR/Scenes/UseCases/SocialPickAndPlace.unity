@@ -7751,7 +7751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ad498610bad734980a18df59369cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: https://www.hs-emden-leer.de/ids/sm/6494_2162_5032_2813
+  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots/aas/assets/ur5e#FWKinematics
   _actor: {fileID: 5955250382980222833}
   _enableOperationModeOverride: 0
   _operationModeOverride: 0
@@ -28351,7 +28351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff5cf8f9c5cdbe49ac219d68234b25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: https://www.hs-emden-leer.de/ids/aas/2414_0152_5032_4364
+  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots/aas/assets/ur5e#UR5e
   _components:
   - {fileID: 579219119}
 --- !u!114 &5955250382980222834
