@@ -14,7 +14,7 @@ namespace Unity.Robotics.UrdfImporter.Control
     public enum ControlType { PositionControl };
     public enum ShoulderChainSide { Right = 0, Left = 1 };
 
-    public class MotionPlanning : MonoBehaviour
+    public class PepperUrdfController : UrdfController
     {
         private ArticulationBody[] LShoulderChain;
         private ArticulationBody[] RShoulderChain;
@@ -91,6 +91,14 @@ namespace Unity.Robotics.UrdfImporter.Control
         private int finger41Index;
 
         [SerializeField] private string moveAction = "";
+
+        public override float Stiffness { get => stiffness; set => stiffness = value; }
+        public override float Damping { get => damping; set => damping = value; }
+        public override float ForceLimit { get => forceLimit; set => forceLimit = value; }
+        public override float Speed { get => speed; set => speed = value; }
+        public override float Torque { get => torque; set => torque = value; }
+        public override float Acceleration { get => acceleration; set => acceleration = value; }
+        public override int DefDyanmicVal { get => defDyanmicVal; set => defDyanmicVal = value; }
 
         private void InitialiseJointPhysics(ArticulationBody[] bodyChain){
             foreach (ArticulationBody joint in bodyChain)
@@ -234,7 +242,7 @@ namespace Unity.Robotics.UrdfImporter.Control
             }
         }
 
-        public void UpdateControlType(JointControl joint)
+        public override void UpdateControlType(JointControl joint)
         {
             joint.controltype = control;
             if (control == ControlType.PositionControl)

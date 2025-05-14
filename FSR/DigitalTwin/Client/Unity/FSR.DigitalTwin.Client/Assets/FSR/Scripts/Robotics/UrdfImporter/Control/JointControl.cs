@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Unity.Robotics.UrdfImporter.Control {
 public class JointControl : MonoBehaviour
 {
-    MotionPlanning controller;
+    UrdfController controller;
 
     public RotationDirection direction;
     public ControlType controltype;
@@ -23,19 +23,19 @@ public class JointControl : MonoBehaviour
     void Start()
     {
         direction = 0;
-        controller = (MotionPlanning)this.GetComponentInParent(typeof(MotionPlanning));
+        controller = (UrdfController)this.GetComponentInParent(typeof(UrdfController));
         joint = this.GetComponent<ArticulationBody>();
         controller.UpdateControlType(this);
-        speed = controller.speed;
-        torque = controller.torque;
-        acceleration = controller.acceleration;
+        speed = controller.Speed;
+        torque = controller.Torque;
+        acceleration = controller.Acceleration;
     }
 
     void FixedUpdate(){
 
-        speed = controller.speed;
-        torque = controller.torque;
-        acceleration = controller.acceleration;
+        speed = controller.Speed;
+        torque = controller.Torque;
+        acceleration = controller.Acceleration;
 
 
         if (joint.jointType != ArticulationJointType.FixedJoint)
