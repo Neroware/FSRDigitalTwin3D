@@ -144,24 +144,24 @@ namespace Unity.Robotics.UrdfImporter.Control
             InitialiseJointPhysics(LShoulderChain);
         }
 
-        // void Update()
-        // {
-        //     switch (moveAction) {
-        //         case "origin": {
-        //             ShoulderReturnToOrigin(shoulderIndex, ShoulderChainSide.Right);
-        //             ShoulderReturnToOrigin(shoulderIndex, ShoulderChainSide.Left);
-        //             BicepReturnToOrigin(bicepIndex, ShoulderChainSide.Right);
-        //             BicepReturnToOrigin(bicepIndex, ShoulderChainSide.Left);
-        //             WristReturnToOrigin(wristIndex, ShoulderChainSide.Right);
-        //             WristReturnToOrigin(wristIndex, ShoulderChainSide.Left);
-        //             ForeArmReturnToOrigin(forearmIndex, ShoulderChainSide.Right);
-        //             ForeArmReturnToOrigin(forearmIndex, ShoulderChainSide.Left);
-        //         } break;
-        //         default: {
-        //             // BlockJoints();
-        //         } break;
-        //     }
-        // }
+        void Update()
+        {
+            switch (moveAction) {
+                case "origin": {
+                    ShoulderReturnToOrigin(shoulderIndex, ShoulderChainSide.Right);
+                    ShoulderReturnToOrigin(shoulderIndex, ShoulderChainSide.Left);
+                    BicepReturnToOrigin(bicepIndex, ShoulderChainSide.Right);
+                    BicepReturnToOrigin(bicepIndex, ShoulderChainSide.Left);
+                    WristReturnToOrigin(wristIndex, ShoulderChainSide.Right);
+                    WristReturnToOrigin(wristIndex, ShoulderChainSide.Left);
+                    ForeArmReturnToOrigin(forearmIndex, ShoulderChainSide.Right);
+                    ForeArmReturnToOrigin(forearmIndex, ShoulderChainSide.Left);
+                } break;
+                default: {
+                    BlockJoints();
+                } break;
+            }
+        }
 
         private void BlockJoints() {
             foreach (int index in new int[]{wristIndex, bicepIndex, forearmIndex, shoulderIndex}) {
@@ -192,10 +192,10 @@ namespace Unity.Robotics.UrdfImporter.Control
             ArticulationDrive bicepDrive = (side == ShoulderChainSide.Right ? rbicep_ab : lbicep_ab).xDrive;
             var current_target  = bicepDrive.target;
             if (current_target < 0){
-                current_bicep.direction = side == ShoulderChainSide.Right ? RotationDirection.Positive : RotationDirection.Negative;
+                current_bicep.direction = RotationDirection.Positive;
             }
             else if (current_target > 0){
-                current_bicep.direction = side == ShoulderChainSide.Right ? RotationDirection.Negative : RotationDirection.Positive;
+                current_bicep.direction = RotationDirection.Negative;
             }
             else if (current_target == 0){
                 current_bicep.direction = RotationDirection.None;
