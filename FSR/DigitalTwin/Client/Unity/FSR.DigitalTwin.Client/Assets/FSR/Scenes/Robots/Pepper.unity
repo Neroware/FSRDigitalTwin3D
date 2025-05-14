@@ -357,11 +357,6 @@ Transform:
   - {fileID: 1934986285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &629371100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6190846082589354213, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-  m_PrefabInstance: {fileID: 1934986284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,11 +712,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1785155967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8004148436330928783, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-  m_PrefabInstance: {fileID: 1934986284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1934986284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,29 +720,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 384976193}
     m_Modifications:
-    - target: {fileID: 722965302708322147, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-      propertyPath: LThumb1
-      value: 
-      objectReference: {fileID: 1785155967}
-    - target: {fileID: 722965302708322147, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-      propertyPath: LFinger31
-      value: 
-      objectReference: {fileID: 629371100}
     - target: {fileID: 2011903126030180939, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
       propertyPath: m_Name
       value: PepperRobotv3
       objectReference: {fileID: 0}
-    - target: {fileID: 2494902183323530304, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-      propertyPath: m_ParentAnchorPosition.x
-      value: -0.00000005736365
+    - target: {fileID: 3713133323500574111, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
+      propertyPath: m_XDrive.lowerLimit
+      value: 0.5000002
       objectReference: {fileID: 0}
-    - target: {fileID: 2494902183323530304, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-      propertyPath: m_ParentAnchorPosition.y
-      value: -0.0000000037252903
-      objectReference: {fileID: 0}
-    - target: {fileID: 2494902183323530304, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
-      propertyPath: m_ParentAnchorPosition.z
-      value: 0.018000118
+    - target: {fileID: 3713133323500574111, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
+      propertyPath: m_XDrive.upperLimit
+      value: 89.50002
       objectReference: {fileID: 0}
     - target: {fileID: 8985073429012148599, guid: 122813a005a25ee4a9f996475e8db09c, type: 3}
       propertyPath: m_LocalPosition.x
