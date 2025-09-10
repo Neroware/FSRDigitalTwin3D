@@ -6,7 +6,7 @@ using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Urdf;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.ROS.Robot;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodiments {
 
     public class RobotKinematic : DigitalTwinComponentBase
     {

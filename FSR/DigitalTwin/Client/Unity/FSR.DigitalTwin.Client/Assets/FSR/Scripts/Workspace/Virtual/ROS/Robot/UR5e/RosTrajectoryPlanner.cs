@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Actor;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Ur5eMoveit;
 using Unity.Robotics.ROSTCPConnector;

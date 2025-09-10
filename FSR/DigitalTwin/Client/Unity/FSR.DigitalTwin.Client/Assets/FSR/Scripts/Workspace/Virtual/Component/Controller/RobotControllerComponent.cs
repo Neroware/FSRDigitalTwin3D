@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Controller
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 {
 
     public abstract class RobotControllerComponent : DigitalTwinComponentBase, IRobotController

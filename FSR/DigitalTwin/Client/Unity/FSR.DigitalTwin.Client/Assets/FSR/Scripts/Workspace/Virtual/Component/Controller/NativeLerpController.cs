@@ -1,20 +1,22 @@
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Controller
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 {
     /// <summary>
-    /// A native robot controller for very simple gripping end-effectors
+    /// A native robot controller that uses linear interpolation between fixed joint positions
     /// </summary>
-    public class NativeGripperController : RobotControllerComponent
+    public class NativeLerpController : RobotControllerComponent
     {
+        // NativeLerpController variables
+        [SerializeField] private float jointAssignmentWait = 0.1f;
+        [SerializeField] private ArticulationBody[] jointArticulationBodies;
+        
+
+        // Controller Interface
         public override GameObject Robot => throw new System.NotImplementedException();
-
         public override bool HasPlanned => throw new System.NotImplementedException();
-
         public override bool IsValid => throw new System.NotImplementedException();
-
         public override bool IsInterrupted => throw new System.NotImplementedException();
-
         public override bool IsRunning => throw new System.NotImplementedException();
 
         public override void ForceInterrupt()

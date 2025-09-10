@@ -1,4 +1,4 @@
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Actor {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor {
 
     public class KinematicRobotActor : DigitalTwinActorBase {
         

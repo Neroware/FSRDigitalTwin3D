@@ -7734,7 +7734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ad498610bad734980a18df59369cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots#SM_UR5e_FWKinematics
+  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#SM_UR5e_FWKinematics
   _actor: {fileID: 5955250382980222833}
   _enableOperationModeOverride: 0
   _operationModeOverride: 0
@@ -22203,7 +22203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6c8f723e4eff0458e787277febaba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots#SM_UR5e_Controller
+  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#SM_UR5e_Controller
   _actor: {fileID: 5955250382980222833}
   _enableOperationModeOverride: 0
   _operationModeOverride: 0
@@ -28367,7 +28367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff5cf8f9c5cdbe49ac219d68234b25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots#AAS_UR5e
+  _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#AAS_UR5e
   _components:
   - {fileID: 579219119}
 --- !u!114 &5955250382980222834

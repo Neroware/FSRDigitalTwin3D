@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Linq;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Actor;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Ur5eMoveit;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Controller
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 {
     /// <summary>
     /// A robot controller that uses the MoveIt service running in a ROS2 workspace for planning.
