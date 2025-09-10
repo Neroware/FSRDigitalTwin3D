@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService";
+
+import "Protos/Base.proto";
+import "Protos/DTO/HRCModels.proto";
+
+package FSR.DigitalTwin.App.GRPC;
+
+message DecomposeHRCTaskRequest {
+    string taskId = 1;
+}
+
+service HRCProcessSimulationService {
+    rpc CreateHRCModel (Empty) returns (HRCModelDTO);
+    rpc DecomposeProcess (GoalDTO) returns (TaskDecompositionDTO);
+}

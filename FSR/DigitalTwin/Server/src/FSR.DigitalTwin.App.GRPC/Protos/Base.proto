@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option csharp_namespace = "FSR.DigitalTwin.App.GRPC";
+
+package FSR.DigitalTwin.App.GRPC;
+
+message Empty {}

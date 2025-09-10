@@ -1,0 +1,22 @@
+PREFIX so: <http://schema.org/>
+PREFIX ex: <http://www.example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX DUL: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX soho: <http://pst.istc.cnr.it/ontologies/2019/01/soho#>
+PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots/sobots#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
+
+SELECT DISTINCT ?resource ?type
+WHERE {
+  	BIND(pi:tmp0 AS ?resource)
+    ?resource a ?type .
+    FILTER NOT EXISTS {
+        ?resource a ?otherType .
+        ?otherType rdfs:subClassOf+ ?type .
+        FILTER (?otherType != ?type)
+    }
+    FILTER(isUri(?type) && (STRSTARTS(STR(?type), STR(pi:)) || STRSTARTS(STR(?type), STR(soho:))))
+}

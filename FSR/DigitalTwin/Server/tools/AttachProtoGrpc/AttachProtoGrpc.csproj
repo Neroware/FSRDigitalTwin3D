@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <!-- Protos here -->
-    <Protos>"./Protos/DTO/AasModels.V3.proto,./Protos/DTO/AasApiModels.V3.proto,./Protos/Services/AdminShellRepositoryService.proto,./Protos/Services/SubmodelRepositoryService.proto,./Protos/Services/AssetAdministrationShellService.proto,./Protos/Services/SubmodelService.proto,./Protos/Services/DigitalTwinClientConnectionService.proto"</Protos>
+    <Protos>"./Protos/Base.proto,./Protos/DTO/AasModels.V3.proto,./Protos/DTO/AasApiModels.V3.proto,./Protos/Services/AdminShellRepositoryService.proto,./Protos/Services/SubmodelRepositoryService.proto,./Protos/Services/AssetAdministrationShellService.proto,./Protos/Services/SubmodelService.proto,./Protos/Services/DigitalTwinClientConnectionService.proto,./Protos/DTO/HRCModels.proto,./Protos/Services/HRCProcessSimulationService.proto"</Protos>
   </PropertyGroup>
 
   <Target Name="AttachToUnityWin" BeforeTargets="BeforeBuild" Condition=" '$(OS)' == 'Windows_NT' ">

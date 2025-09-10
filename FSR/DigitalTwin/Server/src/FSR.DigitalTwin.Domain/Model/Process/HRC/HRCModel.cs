@@ -13,6 +13,8 @@ public class HRCModel {
     public IList<HRCTask> RobotTasks => [.. _robotTasks.Values];
     public IList<HRCTask> HumanTasks => [.. _humanTasks.Values];
 
+    public List<INode> Goals { init; get; } = [];
+
     public HRCModel(long horizon)
     {
         _horizon = horizon;
@@ -22,7 +24,7 @@ public class HRCModel {
         HRCTask task = new(function, type, _horizon);
         _tasks.Add(task.Resource, task);
         _robotTasks.Add(task.Resource, task);
-        task.Agent = "robot";
+        task.Agent = HRCTask.EAgent.Robot;
         return task;
     }
 
@@ -30,7 +32,7 @@ public class HRCModel {
         HRCTask task = new(function, type, _horizon);
         _tasks.Add(task.Resource, task);
         _humanTasks.Add(task.Resource, task);
-        task.Agent = "human";
+        task.Agent = HRCTask.EAgent.Human;
         return task;
     }
 

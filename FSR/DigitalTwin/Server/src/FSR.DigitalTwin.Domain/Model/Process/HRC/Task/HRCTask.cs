@@ -4,6 +4,11 @@ namespace FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 
 public class HRCTask
 {
+    public enum EAgent
+    {
+        Any = 0, Human = 1, Robot = 2
+    }
+
     private readonly long _horizon;
     public INode Resource { get; }
     public INode Type { get; }
@@ -13,7 +18,7 @@ public class HRCTask
     public string? Description { set; get; }
     public string? Goal { set; get; }
     public string? Start { set; get; }
-    public string Agent { set; get; } = "any";
+    public EAgent Agent { set; get; } = EAgent.Any;
     public Tuple<long, long> Duration => new(
         Math.Max(1, AverageDuration - DurationUncertainty),
         Math.Min(AverageDuration + DurationUncertainty, _horizon)

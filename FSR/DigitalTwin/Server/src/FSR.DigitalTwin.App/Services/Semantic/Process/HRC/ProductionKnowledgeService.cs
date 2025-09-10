@@ -256,19 +256,19 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
     public IEnumerable<INode> GetProperty(Uri individual, Uri property)
     {
         var result = _ontology.RunSparqlQuery((server) =>
-            new GetPropertyQuery(individual, property) { SparqlServer = server });
+            new GetPropertyQuery(property, individual) { SparqlServer = server });
         return result.IsSuccess ? result.Value : [];
     }
 
     public INode GetResourceType(Uri resource)
     {
         var result = _ontology.RunSparqlQuery((server) =>
-            new GetPropertyQuery(resource, UriPrefix.RDF + "type") { SparqlServer = server });
+            new GetResourceTypeQuery(resource) { SparqlServer = server });
         if (result.IsFailure || !result.Value.Any())
         {
             throw new HRCKnowledgeException($"Missing RDF:type property for resource: {resource}");
         }
-        return result.Value.Last();
+        return result.Value.First();
     }
 
     public bool HasResourceType(Uri resource, Uri type)
