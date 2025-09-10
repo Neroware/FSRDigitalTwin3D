@@ -20,12 +20,12 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
         public string Id { get => _id; init => _id = "mycomponent"; }
         public bool HasConnection => _hasConnection;
 
-        public abstract bool OnPull();
-        public abstract Task<bool> OnPullAsync();
-        public abstract bool OnPush();
-        public abstract Task<bool> OnPushAsync();
-        public abstract bool OnSynchronize();
-        public abstract Task<bool> OnSynchronizeAsync();
+        protected abstract bool OnPull();
+        protected abstract Task<bool> OnPullAsync();
+        protected abstract bool OnPush();
+        protected abstract Task<bool> OnPushAsync();
+        protected abstract bool OnSynchronize();
+        protected abstract Task<bool> OnSynchronizeAsync();
 
         private DigitalWorkspace.EOperationMode _operationMode => 
             _enableOperationModeOverride ? _operationModeOverride : DigitalWorkspace.Instance.OperationMode;

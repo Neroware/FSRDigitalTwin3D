@@ -18,32 +18,32 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 
         // TODO Exchange control information with the Digital Twin's shell...
 
-        public override bool OnPull()
+        protected override bool OnPull()
         {
             return true;
         }
 
-        public override Task<bool> OnPullAsync()
+        protected override Task<bool> OnPullAsync()
         {
             return Task.FromResult(true);
         }
 
-        public override bool OnPush()
+        protected override bool OnPush()
         {
             return true;
         }
 
-        public override Task<bool> OnPushAsync()
+        protected override Task<bool> OnPushAsync()
         {
              return Task.FromResult(true);
         }
 
-        public override bool OnSynchronize()
+        protected override bool OnSynchronize()
         {
             return true;
         }
 
-        public override Task<bool> OnSynchronizeAsync()
+        protected override Task<bool> OnSynchronizeAsync()
         {
             return Task.FromResult(true);
         }

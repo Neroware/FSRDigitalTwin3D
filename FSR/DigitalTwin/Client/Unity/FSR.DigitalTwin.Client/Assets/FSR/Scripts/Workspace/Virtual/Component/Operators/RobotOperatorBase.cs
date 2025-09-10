@@ -1,17 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
+using UniRx;
 using UnityEngine;
 
-public class PickAndPlaceOperator : DigitalTwinComponentBase, IRobotOperator
+public abstract class RobotOperatorBase : DigitalTwinComponentBase, IRobotOperator
 {
-    private bool _isBusy = false;
-    private string _runningOperation = "idle";
+    public bool IsBusy => throw new System.NotImplementedException();
+    public string RunningOperation => throw new System.NotImplementedException();
+    private bool _localInvoke = false;
+    
+    public void Invoke(string process, object[] inputs, object[] inOuts)
+    {
+        if (!IsBusy)
+        {
+            ProcessInvocation invocation = new()
+            {
+                Id = Id,
+                OwnerId = DigitalTwinEntity.Id,
+                ProcessName = process,
+                Inputs = inputs,
+                InOuts = inOuts
+            };
+            OnInvoke(invocation);
+        }
+    }
 
-    public bool IsBusy => _isBusy;
-    public string RunningOperation => _runningOperation;
+    protected abstract void OnInvoke(ProcessInvocation invocation);
 
     protected override bool OnPull()
     {

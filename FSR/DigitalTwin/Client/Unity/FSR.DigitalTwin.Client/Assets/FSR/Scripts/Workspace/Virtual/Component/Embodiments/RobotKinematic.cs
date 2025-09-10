@@ -58,36 +58,36 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodim
             }
         }
 
-        public override bool OnPull()
+        protected override bool OnPull()
         {
             UpdateJointOrientationsAsync().GetAwaiter().GetResult();
             return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override async Task<bool> OnPullAsync()
+        protected override async Task<bool> OnPullAsync()
         {
             await UpdateJointOrientationsAsync();
             return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override bool OnPush()
+        protected override bool OnPush()
         {
             UpdateJointPropertiesAsync().GetAwaiter().GetResult();
             return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override async Task<bool> OnPushAsync()
+        protected override async Task<bool> OnPushAsync()
         {
             await UpdateJointPropertiesAsync();
             return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
 
-        public override bool OnSynchronize()
+        protected override bool OnSynchronize()
         {
             throw new System.NotImplementedException();
         }
 
-        public override Task<bool> OnSynchronizeAsync()
+        protected override Task<bool> OnSynchronizeAsync()
         {
             throw new System.NotImplementedException();
         }
