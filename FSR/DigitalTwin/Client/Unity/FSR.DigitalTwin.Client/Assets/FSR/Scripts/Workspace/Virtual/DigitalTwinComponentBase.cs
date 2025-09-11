@@ -24,25 +24,32 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
         protected abstract Task<bool> OnPullAsync();
         protected abstract bool OnPush();
         protected abstract Task<bool> OnPushAsync();
+        protected virtual void OnConnect() { }
+        protected virtual void OnDisconnect() { } 
 
-        private DigitalWorkspace.EOperationMode _operationMode => 
+        private DigitalWorkspace.EOperationMode _operationMode =>
             _enableOperationModeOverride ? _operationModeOverride : DigitalWorkspace.Instance.OperationMode;
 
-        protected void Start() {
+        protected void Start()
+        {
             // TODO Adjust!
             bool requestRunning = false;
             Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1.0f))
                 .Where(_ => DigitalWorkspace.Instance.Connection.IsConnected.Value)
-                .Subscribe(async _ => {
+                .Subscribe(async _ =>
+                {
                     if (requestRunning) return;
                     requestRunning = true;
-                    switch (_operationMode) {
+                    switch (_operationMode)
+                    {
                         case DigitalWorkspace.EOperationMode.Push: await OnPushAsync(); break;
                         case DigitalWorkspace.EOperationMode.Pull: await OnPullAsync(); break;
                     }
                     requestRunning = false;
                 })
                 .AddTo(this);
+            DigitalWorkspace.Instance.Connection.IsConnected.Where(x => x).Subscribe(_ => OnConnect()).AddTo(this);
+            DigitalWorkspace.Instance.Connection.IsConnected.Where(x => !x).Subscribe(_ => OnDisconnect()).AddTo(this);
         }
     }
 
