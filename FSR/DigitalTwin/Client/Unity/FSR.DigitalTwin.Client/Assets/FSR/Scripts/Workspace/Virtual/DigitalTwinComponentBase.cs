@@ -9,7 +9,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
 
     public abstract class DigitalTwinComponentBase : MonoBehaviour, IDigitalTwinEntityComponent
     {
-        [SerializeField] private string _id = "mycomponent";
+        [SerializeField] private string _id = "ex:mycomponent";
         [SerializeField] private DigitalTwinActorBase _actor;
         [SerializeField] private bool _enableOperationModeOverride = false;
         [SerializeField] private DigitalWorkspace.EOperationMode _operationModeOverride = DigitalWorkspace.EOperationMode.Sleep;
@@ -17,7 +17,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
 
         public IDigitalTwinEntity DigitalTwinEntity { get => _actor; init => _actor = null; }
 
-        public string Id { get => _id; init => _id = "mycomponent"; }
+        public Uri Id { get => new(_id); init => _id = "ex:mycomponent"; }
         public bool HasConnection => _hasConnection;
 
         protected abstract bool OnPull();

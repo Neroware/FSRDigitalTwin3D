@@ -1,5 +1,5 @@
 using System.Linq;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Sensor;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using UniRx;
 using UnityEngine;
 

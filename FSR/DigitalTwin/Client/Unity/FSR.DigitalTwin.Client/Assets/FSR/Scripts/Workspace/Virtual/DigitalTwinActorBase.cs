@@ -9,11 +9,11 @@ using UnityEngine;
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
     public abstract class DigitalTwinActorBase : MonoBehaviour, IDigitalTwinEntity
     {
-        [SerializeField] private string _id = "myactor";
+        [SerializeField] private string _id = "ex:myactor";
         [SerializeField] private List<DigitalTwinComponentBase> _components = new();
         private bool _hasConnection = false;
 
-        public string Id { get => _id; init => _id = "myactor"; }
+        public Uri Id { get => new(_id); init => _id = "ex:myactor"; }
         public bool HasConnection => _hasConnection;
         public IEnumerable<IDigitalTwinEntityComponent> Components { 
             get => _components.Cast<IDigitalTwinEntityComponent>(); 

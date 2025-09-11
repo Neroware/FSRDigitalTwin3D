@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.ROS.Robot {
 

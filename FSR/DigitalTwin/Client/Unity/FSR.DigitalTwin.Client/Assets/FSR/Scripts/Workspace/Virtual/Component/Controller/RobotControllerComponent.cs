@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller

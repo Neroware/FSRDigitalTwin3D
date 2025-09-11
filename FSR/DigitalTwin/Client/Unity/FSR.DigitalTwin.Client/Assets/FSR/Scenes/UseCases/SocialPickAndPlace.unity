@@ -28403,6 +28403,7 @@ MonoBehaviour:
   _actor: {fileID: 5955250382980222833}
   _enableOperationModeOverride: 0
   _operationModeOverride: 0
+  operatorId: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot
 --- !u!224 &6740993857694528104 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7453539377829711679, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}

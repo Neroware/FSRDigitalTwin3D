@@ -1,7 +1,7 @@
 using System;
 using UniRx;
 
-namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Sensor {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces {
     
     /// <summary>
     /// A sensor source within the Virtual Workspace. Generates observable data.

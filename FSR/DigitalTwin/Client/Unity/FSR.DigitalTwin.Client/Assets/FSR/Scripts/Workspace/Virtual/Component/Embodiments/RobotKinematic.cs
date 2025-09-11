@@ -5,6 +5,7 @@ using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Sensor.Urdf;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.ROS.Robot;
 using UnityEngine;
+using Unity.VisualScripting;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodiments {
 
@@ -20,7 +21,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodim
                 path += joint.name + ".";
                 switch(joint) {
                     case UrdfRevoluteJointSensor: {
-                        await DigitalWorkspace.Instance.Entities.SetComponentPropertyAsync(Id, path + "theta", joint.Orientation[0]);
+                        await DigitalWorkspace.Instance.Entities.SetComponentPropertyAsync(Id.ToSafeString(), path + "theta", joint.Orientation[0]);
                     } break;
                     case UrdfFixedJointSensor: {
                         // Intentionally left empty
@@ -36,7 +37,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodim
                 path += joint.name + ".";
                 switch (joint) {
                     case UrdfRevoluteJointSensor: {
-                        float z = await DigitalWorkspace.Instance.Entities.GetComponentPropertyAsync<float>(Id, path + "theta");
+                        float z = await DigitalWorkspace.Instance.Entities.GetComponentPropertyAsync<float>(Id.ToSafeString(), path + "theta");
                         ArticulationBody articulationBody = joint.GetComponent<ArticulationBody>();
                         articulationBody.SetDriveTarget(ArticulationDriveAxis.X, z);
                     } break;

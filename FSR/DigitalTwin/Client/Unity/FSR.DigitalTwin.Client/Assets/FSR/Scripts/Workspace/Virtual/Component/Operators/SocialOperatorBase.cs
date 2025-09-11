@@ -1,34 +1,32 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Unity.GRPC.AAS;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual;
-using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
+using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
+using ProcessResult = FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification.ProcessResult;
+using FunctionResult = FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process.ProcessResult;
 
-public abstract class RobotOperatorBase : DigitalTwinComponentBase, IRobotOperator
+public abstract class SocialOperatorBase : DigitalTwinComponentBase, ISocialOperator
 {
+    [SerializeField] private string operatorId = "";
+
     public abstract bool IsBusy { get; }
     public abstract string RunningOperation { get; }
-    public record FunctionResult
-    {
-        public object[] InOuts { init; get; }
-        public object[] Outputs { init; get; }
-        public long TimeStamp { init; get; }
-    }
 
     protected abstract FunctionResult OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, ProcessResult result);
     protected abstract FunctionResult OnFunction(string function, object[] inputs, object[] inOuts);
 
+    public Uri OperatorId => operatorId.Length == 0 ? Id : new(operatorId);
+
     protected override void OnConnect()
     {
         DigitalWorkspace.Instance.Operational.ProcessInvoked
-            .Where(i => i.OwnerId == Id)
+            .Where(i => i.OwnerId == Id.ToSafeString())
             .Subscribe(RunFunction).AddTo(this);
     }
 
@@ -58,7 +56,7 @@ public abstract class RobotOperatorBase : DigitalTwinComponentBase, IRobotOperat
         };
         var operatorInst = DigitalWorkspace.Instance.Operational;
         var res = OnFunction(invocation.ProcessName, operatorInst, state, result);
-        await operatorInst.SetResultAsync(result with {InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = res.TimeStamp });
+        await operatorInst.SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = res.TimeStamp });
     }
 
     public FunctionResult RunFunction(string function, object[] inputs, object[] inOuts)
