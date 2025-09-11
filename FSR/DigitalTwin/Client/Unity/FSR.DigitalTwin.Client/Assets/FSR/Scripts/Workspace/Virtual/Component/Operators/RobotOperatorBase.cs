@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces.Robot;
@@ -29,7 +30,7 @@ public abstract class RobotOperatorBase : DigitalTwinComponentBase, IRobotOperat
         }
     }
 
-    protected abstract void OnInvoke(ProcessInvocation invocation);
+    protected abstract void OnInvoke(ProcessInvocation invocation, Subject<ProcessResult> result = null);
 
     protected override bool OnPull()
     {
@@ -51,20 +52,11 @@ public abstract class RobotOperatorBase : DigitalTwinComponentBase, IRobotOperat
         throw new System.NotImplementedException();
     }
 
-    protected override bool OnSynchronize()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override Task<bool> OnSynchronizeAsync()
-    {
-        throw new System.NotImplementedException();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        // DigitalWorkspace.Instance.Operational.ProcessInvoked
+        //     .Where(x => x.OwnerId)
     }
 
     // Update is called once per frame

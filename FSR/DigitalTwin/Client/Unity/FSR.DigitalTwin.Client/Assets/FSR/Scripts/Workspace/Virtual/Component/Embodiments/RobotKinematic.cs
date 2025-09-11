@@ -81,16 +81,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Robot.Component.Embodim
             await UpdateJointPropertiesAsync();
             return DigitalWorkspace.Instance.Connection.IsConnected.Value;
         }
-
-        protected override bool OnSynchronize()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        protected override Task<bool> OnSynchronizeAsync()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 }

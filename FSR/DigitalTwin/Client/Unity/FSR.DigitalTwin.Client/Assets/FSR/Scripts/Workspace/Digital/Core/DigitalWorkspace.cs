@@ -5,7 +5,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core {
     public static class DigitalWorkspace {
 
         public enum EOperationMode {
-            Sleep = 0, Pull = 1, Push = 2, Sync = 3
+            Sleep = 0, Pull = 1, Push = 2
         };
 
         private static IDigitalWorkspace _workspace = null;

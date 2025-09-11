@@ -41,7 +41,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             InvokeOperationSyncRequest request = new() {
                 SubmodelId = Base64Converter.ToBase64(ownerId),
                 Timestamp = -1,
-                RequestId = "FSR.DigitalTwin.Client.Unity::" + _counter++
+                RequestId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + _counter++ + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID
             };
 
             string[] path = processId.Split('.');
@@ -74,7 +74,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             InvokeOperationSyncRequest request = new() {
                 SubmodelId = Base64Converter.ToBase64(ownerId),
                 Timestamp = -1,
-                RequestId = "FSR.DigitalTwin.Client.Unity::" + _counter++
+                RequestId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + _counter++ + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID
             };
 
             string[] path = processId.Split('.');
@@ -104,7 +104,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             long rid = _counter++;
-            string requestId = "FSR.DigitalTwin.Client.Unity::" + rid;
+            string requestId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + rid + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID;
 
             InvokeOperationAsyncRequest request = new() {
                 SubmodelId = Base64Converter.ToBase64(ownerId),
@@ -133,7 +133,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             var inputVars = input.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             var inOutVars = inOut.Select(x => OperationVariableFactory.From(SubmodelElementType.Property, x));
             long rid = _counter++;
-            string requestId = "FSR.DigitalTwin.Client.Unity::" + rid;
+            string requestId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + rid + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID;
 
             InvokeOperationAsyncRequest request = new() {
                 SubmodelId = Base64Converter.ToBase64(ownerId),
@@ -159,7 +159,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
         public bool GetResult(long requestId, IList<object> inOut, IList<object> output)
         {
-            string handleId = _handles["FSR.DigitalTwin.Client.Unity::" + requestId];
+            string handleId = _handles[GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + requestId + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID];
             GetOperationAsyncResultRequest request = new() { HandleId = handleId };
 
             var response = _client.Submodel.GetOperationAsyncResult(request);
@@ -180,7 +180,7 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
 
         public async Task<bool> GetResultAsync(long requestId, IList<object> inOut, IList<object> output)
         {
-            string handleId = _handles["FSR.DigitalTwin.Client.Unity::" + requestId];
+            string handleId = _handles[GrpcDigitalWorkspaceConnection.UNITY_CLIENT_REQUEST_PREFIX + requestId + "#" + GrpcDigitalWorkspaceConnection.UNITY_CLIENT_LOCAL_ID];
             GetOperationAsyncResultRequest request = new() { HandleId = handleId };
 
             var response = await _client.Submodel.GetOperationAsyncResultAsync(request);

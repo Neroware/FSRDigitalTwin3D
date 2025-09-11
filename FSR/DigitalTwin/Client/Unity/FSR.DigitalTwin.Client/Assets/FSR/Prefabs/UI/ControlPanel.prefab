@@ -354,8 +354,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Push Data
       m_Image: {fileID: 0}
-    - m_Text: Sync
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

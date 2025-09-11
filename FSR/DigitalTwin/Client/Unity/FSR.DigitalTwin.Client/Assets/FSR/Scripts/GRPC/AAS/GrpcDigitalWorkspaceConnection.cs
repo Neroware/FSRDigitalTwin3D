@@ -27,9 +27,12 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private ReactiveProperty<bool> _isConnected;
         private Subject<ClientNotificationBase> _onNotify;
 
-        public const string UNITY_CLIENT_ID = "FSR.DigitalTwin.Client.Unity::0";
+        public const string UNITY_CLIENT_LOCAL_ID = "FSR.DigitalTwin.Client.Unity";
+        public const string UNITY_CLIENT_ID = "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#" + UNITY_CLIENT_LOCAL_ID;
+        public const string UNITY_CLIENT_REQUEST_PREFIX = "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi?request=";
 
-        public GrpcDigitalWorkspaceConnection(string addr, int port) {
+        public GrpcDigitalWorkspaceConnection(string addr, int port)
+        {
             _addr = addr;
             _port = port;
             _isConnected = new(false);

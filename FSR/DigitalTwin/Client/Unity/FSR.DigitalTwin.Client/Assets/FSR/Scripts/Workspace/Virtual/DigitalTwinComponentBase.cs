@@ -24,8 +24,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
         protected abstract Task<bool> OnPullAsync();
         protected abstract bool OnPush();
         protected abstract Task<bool> OnPushAsync();
-        protected abstract bool OnSynchronize();
-        protected abstract Task<bool> OnSynchronizeAsync();
 
         private DigitalWorkspace.EOperationMode _operationMode => 
             _enableOperationModeOverride ? _operationModeOverride : DigitalWorkspace.Instance.OperationMode;
@@ -41,7 +39,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
                     switch (_operationMode) {
                         case DigitalWorkspace.EOperationMode.Push: await OnPushAsync(); break;
                         case DigitalWorkspace.EOperationMode.Pull: await OnPullAsync(); break;
-                        case DigitalWorkspace.EOperationMode.Sync: await OnSynchronizeAsync(); break;
                     }
                     requestRunning = false;
                 })

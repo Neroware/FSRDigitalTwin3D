@@ -38,16 +38,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
              return Task.FromResult(true);
         }
 
-        protected override bool OnSynchronize()
-        {
-            return true;
-        }
-
-        protected override Task<bool> OnSynchronizeAsync()
-        {
-            return Task.FromResult(true);
-        }
-
         public abstract void Plan();
         public abstract void PlanAndRunIfValid();
         public abstract void RunPlan();

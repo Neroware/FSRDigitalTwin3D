@@ -33,16 +33,6 @@ public class PickAndPlaceOperator : DigitalTwinComponentBase, IRobotOperator
         throw new System.NotImplementedException();
     }
 
-    protected override bool OnSynchronize()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override Task<bool> OnSynchronizeAsync()
-    {
-        throw new System.NotImplementedException();
-    }
-
     // Start is called before the first frame update
     void Start()
     {

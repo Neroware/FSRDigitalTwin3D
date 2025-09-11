@@ -29,7 +29,7 @@ namespace FSR.DigitalTwin.Client.Unity.Test {
             List<object> inputs = new() { 42, 43, 44, 45 };
             List<object> inOuts = new() { 4242 };
             List<object> outputs = new() { };
-            var result = await DigitalWorkspace.Instance.Operational.RunProcessAsync("https://www.hs-emden-leer.de/ids/sm/6494_2162_5032_2813", "pick_and_place", inputs, inOuts, outputs);
+            var result = await DigitalWorkspace.Instance.Operational.RunProcessAsync("https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#SM_UR5e_Operational", "pick_and_place", inputs, inOuts, outputs);
             
             Debug.Log(">>>> " + result);
         }
@@ -41,7 +41,7 @@ namespace FSR.DigitalTwin.Client.Unity.Test {
             List<object> inOuts = new() { 4242 };
             List<object> outputs = new() { };
             
-            long requestId = DigitalWorkspace.Instance.Operational.LaunchProcess("https://www.hs-emden-leer.de/ids/sm/6494_2162_5032_2813", "pick_and_place", inputs, inOuts);
+            long requestId = DigitalWorkspace.Instance.Operational.LaunchProcess("https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#SM_UR5e_Operational", "pick_and_place", inputs, inOuts);
             if (requestId < 0) {
                 Debug.LogError("Failed to launch process!");
             }
