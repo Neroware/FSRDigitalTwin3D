@@ -11,7 +11,21 @@ message DecomposeHRCTaskRequest {
     string taskId = 1;
 }
 
+message HRCProcessSimulationLogDTO {
+    string id = 1;
+    bool succeeded = 2;
+    int64 simulationStart = 3;
+    int64 simulationEnd = 4;
+    HRCModelDTO model = 5;
+    bytes data = 6;
+}
+
 service HRCProcessSimulationService {
     rpc CreateHRCModel (Empty) returns (HRCModelDTO);
-    rpc DecomposeProcess (GoalDTO) returns (TaskDecompositionDTO);
+    rpc DecomposeProcess (GoalDTO) returns (GoalDecompositionDTO);
+    rpc GetFunctionPropertyData (HRCTaskDTO) returns (FunctionPropertyDataDTO);
+    rpc GetFunctionObjectData (HRCTaskDTO) returns (FunctionObjectDataDTO);
+    rpc GetAllAgents (Empty) returns (stream AgentDTO);
+    rpc GetAllGoals (Empty) returns (stream GoalDTO);
+    rpc SendSimulationLog(HRCProcessSimulationLogDTO) returns (Empty);
 }

@@ -5,3 +5,9 @@ option csharp_namespace = "FSR.DigitalTwin.App.GRPC";
 package FSR.DigitalTwin.App.GRPC;
 
 message Empty {}
+
+message URI {
+    string prefix = 1;
+    string tail = 2;
+    string value = 3;
+}

@@ -1,5 +1,5 @@
 // Comment out definitions if unwanted
-// #define ENABLE_ONTOLOGY_MODEL
+#define ENABLE_ONTOLOGY_MODEL
 
 using AasSecurity;
 using FSR.DigitalTwin.App.Common.Utils.Semantic;

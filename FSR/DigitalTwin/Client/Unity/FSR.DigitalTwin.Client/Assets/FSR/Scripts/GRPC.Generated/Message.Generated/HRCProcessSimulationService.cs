@@ -27,18 +27,34 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             "CjFQcm90b3MvU2VydmljZXMvSFJDUHJvY2Vzc1NpbXVsYXRpb25TZXJ2aWNl",
             "LnByb3RvEhhGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMaEVByb3Rvcy9CYXNl",
             "LnByb3RvGhpQcm90b3MvRFRPL0hSQ01vZGVscy5wcm90byIpChdEZWNvbXBv",
-            "c2VIUkNUYXNrUmVxdWVzdBIOCgZ0YXNrSWQYASABKAky3gEKG0hSQ1Byb2Nl",
-            "c3NTaW11bGF0aW9uU2VydmljZRJYCg5DcmVhdGVIUkNNb2RlbBIfLkZTUi5E",
-            "aWdpdGFsVHdpbi5BcHAuR1JQQy5FbXB0eRolLkZTUi5EaWdpdGFsVHdpbi5B",
-            "cHAuR1JQQy5IUkNNb2RlbERUTxJlChBEZWNvbXBvc2VIUkNUYXNrEiEuRlNS",
-            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkdvYWxEVE8aLi5GU1IuRGlnaXRhbFR3",
-            "aW4uQXBwLkdSUEMuVGFza0RlY29tcG9zaXRpb25EVE9CTKoCSUZTUi5EaWdp",
-            "dGFsVHdpbi5BcHAuR1JQQy5Qcm9jZXNzLkhSQy5TZXJ2aWNlcy5IUkNQcm9j",
-            "ZXNzU2ltdWxhdGlvblNlcnZpY2ViBnByb3RvMw=="));
+            "c2VIUkNUYXNrUmVxdWVzdBIOCgZ0YXNrSWQYASABKAkirwEKGkhSQ1Byb2Nl",
+            "c3NTaW11bGF0aW9uTG9nRFRPEgoKAmlkGAEgASgJEhEKCXN1Y2NlZWRlZBgC",
+            "IAEoCBIXCg9zaW11bGF0aW9uU3RhcnQYAyABKAMSFQoNc2ltdWxhdGlvbkVu",
+            "ZBgEIAEoAxI0CgVtb2RlbBgFIAEoCzIlLkZTUi5EaWdpdGFsVHdpbi5BcHAu",
+            "R1JQQy5IUkNNb2RlbERUTxIMCgRkYXRhGAYgASgMMtoFChtIUkNQcm9jZXNz",
+            "U2ltdWxhdGlvblNlcnZpY2USWAoOQ3JlYXRlSFJDTW9kZWwSHy5GU1IuRGln",
+            "aXRhbFR3aW4uQXBwLkdSUEMuRW1wdHkaJS5GU1IuRGlnaXRhbFR3aW4uQXBw",
+            "LkdSUEMuSFJDTW9kZWxEVE8SZQoQRGVjb21wb3NlUHJvY2VzcxIhLkZTUi5E",
+            "aWdpdGFsVHdpbi5BcHAuR1JQQy5Hb2FsRFRPGi4uRlNSLkRpZ2l0YWxUd2lu",
+            "LkFwcC5HUlBDLkdvYWxEZWNvbXBvc2l0aW9uRFRPEnIKF0dldEZ1bmN0aW9u",
+            "UHJvcGVydHlEYXRhEiQuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Rh",
+            "c2tEVE8aMS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuRnVuY3Rpb25Qcm9w",
+            "ZXJ0eURhdGFEVE8SbgoVR2V0RnVuY3Rpb25PYmplY3REYXRhEiQuRlNSLkRp",
+            "Z2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8aLy5GU1IuRGlnaXRhbFR3",
+            "aW4uQXBwLkdSUEMuRnVuY3Rpb25PYmplY3REYXRhRFRPElUKDEdldEFsbEFn",
+            "ZW50cxIfLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5FbXB0eRoiLkZTUi5E",
+            "aWdpdGFsVHdpbi5BcHAuR1JQQy5BZ2VudERUTzABElMKC0dldEFsbEdvYWxz",
+            "Eh8uRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkVtcHR5GiEuRlNSLkRpZ2l0",
+            "YWxUd2luLkFwcC5HUlBDLkdvYWxEVE8wARJqChFTZW5kU2ltdWxhdGlvbkxv",
+            "ZxI0LkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNQcm9jZXNzU2ltdWxh",
+            "dGlvbkxvZ0RUTxofLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5FbXB0eUJM",
+            "qgJJRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlByb2Nlc3MuSFJDLlNlcnZp",
+            "Y2VzLkhSQ1Byb2Nlc3NTaW11bGF0aW9uU2VydmljZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::FSR.DigitalTwin.App.GRPC.BaseReflection.Descriptor, global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest.Parser, new[]{ "TaskId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest.Parser, new[]{ "TaskId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO.Parser, new[]{ "Id", "Succeeded", "SimulationStart", "SimulationEnd", "Model", "Data" }, null, null, null)
           }));
     }
     #endregion
@@ -166,6 +182,281 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             break;
           case 10: {
             TaskId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class HRCProcessSimulationLogDTO : pb::IMessage<HRCProcessSimulationLogDTO> {
+    private static readonly pb::MessageParser<HRCProcessSimulationLogDTO> _parser = new pb::MessageParser<HRCProcessSimulationLogDTO>(() => new HRCProcessSimulationLogDTO());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<HRCProcessSimulationLogDTO> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationServiceReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HRCProcessSimulationLogDTO() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HRCProcessSimulationLogDTO(HRCProcessSimulationLogDTO other) : this() {
+      id_ = other.id_;
+      succeeded_ = other.succeeded_;
+      simulationStart_ = other.simulationStart_;
+      simulationEnd_ = other.simulationEnd_;
+      model_ = other.model_ != null ? other.model_.Clone() : null;
+      data_ = other.data_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public HRCProcessSimulationLogDTO Clone() {
+      return new HRCProcessSimulationLogDTO(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "succeeded" field.</summary>
+    public const int SucceededFieldNumber = 2;
+    private bool succeeded_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Succeeded {
+      get { return succeeded_; }
+      set {
+        succeeded_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "simulationStart" field.</summary>
+    public const int SimulationStartFieldNumber = 3;
+    private long simulationStart_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long SimulationStart {
+      get { return simulationStart_; }
+      set {
+        simulationStart_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "simulationEnd" field.</summary>
+    public const int SimulationEndFieldNumber = 4;
+    private long simulationEnd_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long SimulationEnd {
+      get { return simulationEnd_; }
+      set {
+        simulationEnd_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "model" field.</summary>
+    public const int ModelFieldNumber = 5;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO model_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO Model {
+      get { return model_; }
+      set {
+        model_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 6;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as HRCProcessSimulationLogDTO);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(HRCProcessSimulationLogDTO other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Succeeded != other.Succeeded) return false;
+      if (SimulationStart != other.SimulationStart) return false;
+      if (SimulationEnd != other.SimulationEnd) return false;
+      if (!object.Equals(Model, other.Model)) return false;
+      if (Data != other.Data) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Succeeded != false) hash ^= Succeeded.GetHashCode();
+      if (SimulationStart != 0L) hash ^= SimulationStart.GetHashCode();
+      if (SimulationEnd != 0L) hash ^= SimulationEnd.GetHashCode();
+      if (model_ != null) hash ^= Model.GetHashCode();
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (Succeeded != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Succeeded);
+      }
+      if (SimulationStart != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(SimulationStart);
+      }
+      if (SimulationEnd != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(SimulationEnd);
+      }
+      if (model_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Model);
+      }
+      if (Data.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(Data);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Succeeded != false) {
+        size += 1 + 1;
+      }
+      if (SimulationStart != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SimulationStart);
+      }
+      if (SimulationEnd != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SimulationEnd);
+      }
+      if (model_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Model);
+      }
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(HRCProcessSimulationLogDTO other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.Succeeded != false) {
+        Succeeded = other.Succeeded;
+      }
+      if (other.SimulationStart != 0L) {
+        SimulationStart = other.SimulationStart;
+      }
+      if (other.SimulationEnd != 0L) {
+        SimulationEnd = other.SimulationEnd;
+      }
+      if (other.model_ != null) {
+        if (model_ == null) {
+          Model = new global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO();
+        }
+        Model.MergeFrom(other.Model);
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 16: {
+            Succeeded = input.ReadBool();
+            break;
+          }
+          case 24: {
+            SimulationStart = input.ReadInt64();
+            break;
+          }
+          case 32: {
+            SimulationEnd = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            if (model_ == null) {
+              Model = new global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO();
+            }
+            input.ReadMessage(Model);
+            break;
+          }
+          case 50: {
+            Data = input.ReadBytes();
             break;
           }
         }

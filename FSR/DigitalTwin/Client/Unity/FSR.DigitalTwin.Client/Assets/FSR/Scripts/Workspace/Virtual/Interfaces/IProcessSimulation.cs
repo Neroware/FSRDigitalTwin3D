@@ -11,14 +11,15 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
     {
         IProcessSimulationContext Context { get; }
 
-        IObservable<UniRx.Unit> SimulationStarted { get; }
-        IObservable<UniRx.Unit> SimulationFinished { get; }
-        IObservable<UniRx.Unit> SimulationReset { get; }
+        IObservable<IProcessSimulation> SimulationStarted { get; }
+        IObservable<IProcessSimulation> SimulationFinished { get; }
+        IObservable<IProcessSimulation> SimulationReset { get; }
 
         IObservable<ProcessResult> ProcessStarted { init; get; }
         IObservable<ProcessResult> ProcessFinished { init; get; }
         IObservable<Process.Process> ProcessFailed { init; get; }
 
+        bool Initialize(out IProcessSimulationContext context);
         void Run();
         void Reset();
 

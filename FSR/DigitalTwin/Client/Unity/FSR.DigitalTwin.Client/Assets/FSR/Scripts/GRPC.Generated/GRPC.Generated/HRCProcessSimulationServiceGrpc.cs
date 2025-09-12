@@ -15,7 +15,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Empty> __Marshaller_FSR_DigitalTwin_App_GRPC_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Empty.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_HRCModelDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_GoalDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_TaskDecompositionDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_GoalDecompositionDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_HRCTaskDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_FunctionPropertyDataDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_FunctionObjectDataDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_AgentDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_HRCProcessSimulationLogDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO.Parser.ParseFrom);
 
     static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO> __Method_CreateHRCModel = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO>(
         grpc::MethodType.Unary,
@@ -24,12 +29,47 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
         __Marshaller_FSR_DigitalTwin_App_GRPC_Empty,
         __Marshaller_FSR_DigitalTwin_App_GRPC_HRCModelDTO);
 
-    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO> __Method_DecomposeHRCTask = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO>(
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO> __Method_DecomposeProcess = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "DecomposeHRCTask",
+        "DecomposeProcess",
         __Marshaller_FSR_DigitalTwin_App_GRPC_GoalDTO,
-        __Marshaller_FSR_DigitalTwin_App_GRPC_TaskDecompositionDTO);
+        __Marshaller_FSR_DigitalTwin_App_GRPC_GoalDecompositionDTO);
+
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO> __Method_GetFunctionPropertyData = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFunctionPropertyData",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_HRCTaskDTO,
+        __Marshaller_FSR_DigitalTwin_App_GRPC_FunctionPropertyDataDTO);
+
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> __Method_GetFunctionObjectData = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetFunctionObjectData",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_HRCTaskDTO,
+        __Marshaller_FSR_DigitalTwin_App_GRPC_FunctionObjectDataDTO);
+
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> __Method_GetAllAgents = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAllAgents",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_Empty,
+        __Marshaller_FSR_DigitalTwin_App_GRPC_AgentDTO);
+
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO> __Method_GetAllGoals = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAllGoals",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_Empty,
+        __Marshaller_FSR_DigitalTwin_App_GRPC_GoalDTO);
+
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty> __Method_SendSimulationLog = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SendSimulationLog",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_HRCProcessSimulationLogDTO,
+        __Marshaller_FSR_DigitalTwin_App_GRPC_Empty);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -46,7 +86,32 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO> DecomposeHRCTask(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO> DecomposeProcess(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO> GetFunctionPropertyData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> GetFunctionObjectData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAllAgents(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::IServerStreamWriter<global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAllGoals(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::IServerStreamWriter<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Empty> SendSimulationLog(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -92,21 +157,85 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       {
         return CallInvoker.AsyncUnaryCall(__Method_CreateHRCModel, null, options, request);
       }
-      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO DecomposeHRCTask(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO DecomposeProcess(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return DecomposeHRCTask(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return DecomposeProcess(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO DecomposeHRCTask(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::CallOptions options)
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO DecomposeProcess(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_DecomposeHRCTask, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_DecomposeProcess, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO> DecomposeHRCTaskAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO> DecomposeProcessAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return DecomposeHRCTaskAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return DecomposeProcessAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO> DecomposeHRCTaskAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO> DecomposeProcessAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_DecomposeHRCTask, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_DecomposeProcess, null, options, request);
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO GetFunctionPropertyData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFunctionPropertyData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO GetFunctionPropertyData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFunctionPropertyData, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO> GetFunctionPropertyDataAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFunctionPropertyDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO> GetFunctionPropertyDataAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFunctionPropertyData, null, options, request);
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO GetFunctionObjectData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFunctionObjectData(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO GetFunctionObjectData(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetFunctionObjectData, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> GetFunctionObjectDataAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetFunctionObjectDataAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> GetFunctionObjectDataAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetFunctionObjectData, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> GetAllAgents(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllAgents(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> GetAllAgents(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAllAgents, null, options, request);
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO> GetAllGoals(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllGoals(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO> GetAllGoals(global::FSR.DigitalTwin.App.GRPC.Empty request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAllGoals, null, options, request);
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Empty SendSimulationLog(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SendSimulationLog(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::FSR.DigitalTwin.App.GRPC.Empty SendSimulationLog(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SendSimulationLog, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Empty> SendSimulationLogAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SendSimulationLogAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Empty> SendSimulationLogAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SendSimulationLog, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override HRCProcessSimulationServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -121,7 +250,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_CreateHRCModel, serviceImpl.CreateHRCModel)
-          .AddMethod(__Method_DecomposeHRCTask, serviceImpl.DecomposeHRCTask).Build();
+          .AddMethod(__Method_DecomposeProcess, serviceImpl.DecomposeProcess)
+          .AddMethod(__Method_GetFunctionPropertyData, serviceImpl.GetFunctionPropertyData)
+          .AddMethod(__Method_GetFunctionObjectData, serviceImpl.GetFunctionObjectData)
+          .AddMethod(__Method_GetAllAgents, serviceImpl.GetAllAgents)
+          .AddMethod(__Method_GetAllGoals, serviceImpl.GetAllGoals)
+          .AddMethod(__Method_SendSimulationLog, serviceImpl.SendSimulationLog).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -131,7 +265,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     public static void BindService(grpc::ServiceBinderBase serviceBinder, HRCProcessSimulationServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_CreateHRCModel, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO>(serviceImpl.CreateHRCModel));
-      serviceBinder.AddMethod(__Method_DecomposeHRCTask, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO>(serviceImpl.DecomposeHRCTask));
+      serviceBinder.AddMethod(__Method_DecomposeProcess, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO>(serviceImpl.DecomposeProcess));
+      serviceBinder.AddMethod(__Method_GetFunctionPropertyData, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO>(serviceImpl.GetFunctionPropertyData));
+      serviceBinder.AddMethod(__Method_GetFunctionObjectData, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO>(serviceImpl.GetFunctionObjectData));
+      serviceBinder.AddMethod(__Method_GetAllAgents, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO>(serviceImpl.GetAllAgents));
+      serviceBinder.AddMethod(__Method_GetAllGoals, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::FSR.DigitalTwin.App.GRPC.Empty, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO>(serviceImpl.GetAllGoals));
+      serviceBinder.AddMethod(__Method_SendSimulationLog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty>(serviceImpl.SendSimulationLog));
     }
 
   }

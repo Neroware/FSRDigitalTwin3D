@@ -21,10 +21,10 @@ message FunctionObjectDataDTO {
     string location = 5; 
 }
 
-enum Agent {
-    AGENT_ANY = 0;
-    AGENT_HUMAN = 1;
-    AGENT_ROBOT = 2;
+enum AgentType {
+    AGENT_TYPE_ANY = 0;
+    AGENT_TYPE_HUMAN = 1;
+    AGENT_TYPE_ROBOT = 2;
 }
 
 message HRCTaskDTO {
@@ -34,7 +34,7 @@ message HRCTaskDTO {
     string name = 4;
     string description = 5;
     string goal = 6;
-    Agent agent = 7;
+    AgentType agent = 7;
     int64 minDuration = 8;
     int64 maxDuration = 9;
     int64 duration = 10;
@@ -53,11 +53,27 @@ message GoalDTO {
     string goalId = 1;
 }
 
-message TaskConstituentListDTO {
-    repeated string constituents = 1; 
+enum TaskTyp {
+    TASK_TYPE_METHOD = 0;
+    TASK_TYPE_COMPLEX = 1;
+    TASK_TYPE_CONJUCTION = 2;
+    TASK_TYPE_DISJUCTION = 3;
+    TASK_TYPE_FUNCTION = 4;
 }
 
-message TaskDecompositionDTO {
-    string goalId = 1;
-    map<string, TaskConstituentListDTO> graph = 2;
+message BaseTaskDTO {
+    string id = 1;
+    TaskTyp type = 2;
+    repeated string subTasks = 3; 
+}
+
+message GoalDecompositionDTO {
+    GoalDTO goal = 1;
+    map<string, BaseTaskDTO> graph = 2;
+}
+
+message AgentDTO {
+    string id = 1;
+    AgentType type = 2;
+    string name = 3;
 }

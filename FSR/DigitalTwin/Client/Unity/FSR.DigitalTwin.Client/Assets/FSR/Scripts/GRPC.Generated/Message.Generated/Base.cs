@@ -25,12 +25,14 @@ namespace FSR.DigitalTwin.App.GRPC {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChFQcm90b3MvQmFzZS5wcm90bxIYRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBD",
-            "IgcKBUVtcHR5QhuqAhhGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUENiBnByb3Rv",
-            "Mw=="));
+            "IgcKBUVtcHR5IjIKA1VSSRIOCgZwcmVmaXgYASABKAkSDAoEdGFpbBgCIAEo",
+            "CRINCgV2YWx1ZRgDIAEoCUIbqgIYRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBD",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Empty), global::FSR.DigitalTwin.App.GRPC.Empty.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Empty), global::FSR.DigitalTwin.App.GRPC.Empty.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.URI), global::FSR.DigitalTwin.App.GRPC.URI.Parser, new[]{ "Prefix", "Tail", "Value" }, null, null, null)
           }));
     }
     #endregion
@@ -132,6 +134,191 @@ namespace FSR.DigitalTwin.App.GRPC {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class URI : pb::IMessage<URI> {
+    private static readonly pb::MessageParser<URI> _parser = new pb::MessageParser<URI>(() => new URI());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<URI> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::FSR.DigitalTwin.App.GRPC.BaseReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public URI() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public URI(URI other) : this() {
+      prefix_ = other.prefix_;
+      tail_ = other.tail_;
+      value_ = other.value_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public URI Clone() {
+      return new URI(this);
+    }
+
+    /// <summary>Field number for the "prefix" field.</summary>
+    public const int PrefixFieldNumber = 1;
+    private string prefix_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Prefix {
+      get { return prefix_; }
+      set {
+        prefix_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "tail" field.</summary>
+    public const int TailFieldNumber = 2;
+    private string tail_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tail {
+      get { return tail_; }
+      set {
+        tail_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 3;
+    private string value_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Value {
+      get { return value_; }
+      set {
+        value_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as URI);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(URI other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Prefix != other.Prefix) return false;
+      if (Tail != other.Tail) return false;
+      if (Value != other.Value) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Prefix.Length != 0) hash ^= Prefix.GetHashCode();
+      if (Tail.Length != 0) hash ^= Tail.GetHashCode();
+      if (Value.Length != 0) hash ^= Value.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Prefix.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Prefix);
+      }
+      if (Tail.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Tail);
+      }
+      if (Value.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Value);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Prefix.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Prefix);
+      }
+      if (Tail.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tail);
+      }
+      if (Value.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Value);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(URI other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Prefix.Length != 0) {
+        Prefix = other.Prefix;
+      }
+      if (other.Tail.Length != 0) {
+        Tail = other.Tail;
+      }
+      if (other.Value.Length != 0) {
+        Value = other.Value;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Prefix = input.ReadString();
+            break;
+          }
+          case 18: {
+            Tail = input.ReadString();
+            break;
+          }
+          case 26: {
+            Value = input.ReadString();
+            break;
+          }
         }
       }
     }

@@ -31,46 +31,62 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "b24YBSABKAESGwoTZHVyYXRpb25VbmNlcnRhaW50eRgGIAEoASJ5ChVGdW5j",
             "dGlvbk9iamVjdERhdGFEVE8SEgoKZnVuY3Rpb25JZBgBIAEoCRIOCgZ0YXJn",
             "ZXQYAiABKAkSFQoNc3RhcnRMb2NhdGlvbhgDIAEoCRITCgtlbmRMb2NhdGlv",
-            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSKFAgoKSFJDVGFza0RUTxIKCgJp",
+            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSKJAgoKSFJDVGFza0RUTxIKCgJp",
             "ZBgBIAEoCRIMCgR0eXBlGAIgASgJEg4KBnRhcmdldBgDIAEoCRIMCgRuYW1l",
-            "GAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEgwKBGdvYWwYBiABKAkSLgoF",
-            "YWdlbnQYByABKA4yHy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnQS",
-            "EwoLbWluRHVyYXRpb24YCCABKAMSEwoLbWF4RHVyYXRpb24YCSABKAMSEAoI",
-            "ZHVyYXRpb24YCiABKAMSGwoTZHVyYXRpb25VbmNlcnRhaW50eRgLIAEoAxIT",
-            "CgtzdWNjZXNzUmF0ZRgMIAEoASLHAQoLSFJDTW9kZWxEVE8SDwoHaG9yaXpv",
-            "bhgBIAEoAxIzCgV0YXNrcxgCIAMoCzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAu",
-            "R1JQQy5IUkNUYXNrRFRPEjgKCnJvYm90VGFza3MYAyADKAsyJC5GU1IuRGln",
-            "aXRhbFR3aW4uQXBwLkdSUEMuSFJDVGFza0RUTxI4CgpodW1hblRhc2tzGAQg",
-            "AygLMiQuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8iGQoH",
-            "R29hbERUTxIOCgZnb2FsSWQYASABKAkiLgoWVGFza0NvbnN0aXR1ZW50TGlz",
-            "dERUTxIUCgxjb25zdGl0dWVudHMYASADKAki0AEKFFRhc2tEZWNvbXBvc2l0",
-            "aW9uRFRPEg4KBmdvYWxJZBgBIAEoCRJICgVncmFwaBgCIAMoCzI5LkZTUi5E",
-            "aWdpdGFsVHdpbi5BcHAuR1JQQy5UYXNrRGVjb21wb3NpdGlvbkRUTy5HcmFw",
-            "aEVudHJ5Gl4KCkdyYXBoRW50cnkSCwoDa2V5GAEgASgJEj8KBXZhbHVlGAIg",
-            "ASgLMjAuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlRhc2tDb25zdGl0dWVu",
-            "dExpc3REVE86AjgBKjgKBUFnZW50Eg0KCUFHRU5UX0FOWRAAEg8KC0FHRU5U",
-            "X0hVTUFOEAESDwoLQUdFTlRfUk9CT1QQAkInqgIkRlNSLkRpZ2l0YWxUd2lu",
-            "LkFwcC5HUlBDLlByb2Nlc3MuSFJDYgZwcm90bzM="));
+            "GAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEgwKBGdvYWwYBiABKAkSMgoF",
+            "YWdlbnQYByABKA4yIy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRU",
+            "eXBlEhMKC21pbkR1cmF0aW9uGAggASgDEhMKC21heER1cmF0aW9uGAkgASgD",
+            "EhAKCGR1cmF0aW9uGAogASgDEhsKE2R1cmF0aW9uVW5jZXJ0YWludHkYCyAB",
+            "KAMSEwoLc3VjY2Vzc1JhdGUYDCABKAEixwEKC0hSQ01vZGVsRFRPEg8KB2hv",
+            "cml6b24YASABKAMSMwoFdGFza3MYAiADKAsyJC5GU1IuRGlnaXRhbFR3aW4u",
+            "QXBwLkdSUEMuSFJDVGFza0RUTxI4Cgpyb2JvdFRhc2tzGAMgAygLMiQuRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKaHVtYW5UYXNr",
+            "cxgEIAMoCzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRP",
+            "IhkKB0dvYWxEVE8SDgoGZ29hbElkGAEgASgJIlwKC0Jhc2VUYXNrRFRPEgoK",
+            "AmlkGAEgASgJEi8KBHR5cGUYAiABKA4yIS5GU1IuRGlnaXRhbFR3aW4uQXBw",
+            "LkdSUEMuVGFza1R5cBIQCghzdWJUYXNrcxgDIAMoCSLmAQoUR29hbERlY29t",
+            "cG9zaXRpb25EVE8SLwoEZ29hbBgBIAEoCzIhLkZTUi5EaWdpdGFsVHdpbi5B",
+            "cHAuR1JQQy5Hb2FsRFRPEkgKBWdyYXBoGAIgAygLMjkuRlNSLkRpZ2l0YWxU",
+            "d2luLkFwcC5HUlBDLkdvYWxEZWNvbXBvc2l0aW9uRFRPLkdyYXBoRW50cnka",
+            "UwoKR3JhcGhFbnRyeRILCgNrZXkYASABKAkSNAoFdmFsdWUYAiABKAsyJS5G",
+            "U1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQmFzZVRhc2tEVE86AjgBIlcKCEFn",
+            "ZW50RFRPEgoKAmlkGAEgASgJEjEKBHR5cGUYAiABKA4yIy5GU1IuRGlnaXRh",
+            "bFR3aW4uQXBwLkdSUEMuQWdlbnRUeXBlEgwKBG5hbWUYAyABKAkqSwoJQWdl",
+            "bnRUeXBlEhIKDkFHRU5UX1RZUEVfQU5ZEAASFAoQQUdFTlRfVFlQRV9IVU1B",
+            "ThABEhQKEEFHRU5UX1RZUEVfUk9CT1QQAiqCAQoHVGFza1R5cBIUChBUQVNL",
+            "X1RZUEVfTUVUSE9EEAASFQoRVEFTS19UWVBFX0NPTVBMRVgQARIYChRUQVNL",
+            "X1RZUEVfQ09OSlVDVElPThACEhgKFFRBU0tfVFlQRV9ESVNKVUNUSU9OEAMS",
+            "FgoSVEFTS19UWVBFX0ZVTkNUSU9OEARCJ6oCJEZTUi5EaWdpdGFsVHdpbi5B",
+            "cHAuR1JQQy5Qcm9jZXNzLkhSQ2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Agent), }, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO.Parser, new[]{ "FunctionId", "ProcedureName", "ProcedureDescr", "ProcedureId", "Duration", "DurationUncertainty" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser, new[]{ "FunctionId", "Target", "StartLocation", "EndLocation", "Location" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "Id", "Type", "Target", "Name", "Description", "Goal", "Agent", "MinDuration", "MaxDuration", "Duration", "DurationUncertainty", "SuccessRate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO.Parser, new[]{ "Horizon", "Tasks", "RobotTasks", "HumanTasks" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser, new[]{ "GoalId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO.Parser, new[]{ "Constituents" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDecompositionDTO.Parser, new[]{ "GoalId", "Graph" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO.Parser, new[]{ "Id", "Type", "SubTasks" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDecompositionDTO.Parser, new[]{ "Goal", "Graph" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO.Parser, new[]{ "Id", "Type", "Name" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Enums
-  public enum Agent {
-    [pbr::OriginalName("AGENT_ANY")] Any = 0,
-    [pbr::OriginalName("AGENT_HUMAN")] Human = 1,
-    [pbr::OriginalName("AGENT_ROBOT")] Robot = 2,
+  public enum AgentType {
+    [pbr::OriginalName("AGENT_TYPE_ANY")] Any = 0,
+    [pbr::OriginalName("AGENT_TYPE_HUMAN")] Human = 1,
+    [pbr::OriginalName("AGENT_TYPE_ROBOT")] Robot = 2,
+  }
+
+  public enum TaskTyp {
+    [pbr::OriginalName("TASK_TYPE_METHOD")] EMethod = 0,
+    [pbr::OriginalName("TASK_TYPE_COMPLEX")] EComplex = 1,
+    [pbr::OriginalName("TASK_TYPE_CONJUCTION")] EConjuction = 2,
+    [pbr::OriginalName("TASK_TYPE_DISJUCTION")] EDisjuction = 3,
+    [pbr::OriginalName("TASK_TYPE_FUNCTION")] EFunction = 4,
   }
 
   #endregion
@@ -699,9 +715,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "agent" field.</summary>
     public const int AgentFieldNumber = 7;
-    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.Agent agent_ = 0;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType agent_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.Agent Agent {
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType Agent {
       get { return agent_; }
       set {
         agent_ = value;
@@ -994,7 +1010,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             break;
           }
           case 56: {
-            Agent = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.Agent) input.ReadEnum();
+            Agent = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
             break;
           }
           case 64: {
@@ -1341,11 +1357,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
   }
 
-  public sealed partial class TaskConstituentListDTO : pb::IMessage<TaskConstituentListDTO> {
-    private static readonly pb::MessageParser<TaskConstituentListDTO> _parser = new pb::MessageParser<TaskConstituentListDTO>(() => new TaskConstituentListDTO());
+  public sealed partial class BaseTaskDTO : pb::IMessage<BaseTaskDTO> {
+    private static readonly pb::MessageParser<BaseTaskDTO> _parser = new pb::MessageParser<BaseTaskDTO>(() => new BaseTaskDTO());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<TaskConstituentListDTO> Parser { get { return _parser; } }
+    public static pb::MessageParser<BaseTaskDTO> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1358,54 +1374,82 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskConstituentListDTO() {
+    public BaseTaskDTO() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskConstituentListDTO(TaskConstituentListDTO other) : this() {
-      constituents_ = other.constituents_.Clone();
+    public BaseTaskDTO(BaseTaskDTO other) : this() {
+      id_ = other.id_;
+      type_ = other.type_;
+      subTasks_ = other.subTasks_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskConstituentListDTO Clone() {
-      return new TaskConstituentListDTO(this);
+    public BaseTaskDTO Clone() {
+      return new BaseTaskDTO(this);
     }
 
-    /// <summary>Field number for the "constituents" field.</summary>
-    public const int ConstituentsFieldNumber = 1;
-    private static readonly pb::FieldCodec<string> _repeated_constituents_codec
-        = pb::FieldCodec.ForString(10);
-    private readonly pbc::RepeatedField<string> constituents_ = new pbc::RepeatedField<string>();
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<string> Constituents {
-      get { return constituents_; }
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp type_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subTasks" field.</summary>
+    public const int SubTasksFieldNumber = 3;
+    private static readonly pb::FieldCodec<string> _repeated_subTasks_codec
+        = pb::FieldCodec.ForString(26);
+    private readonly pbc::RepeatedField<string> subTasks_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<string> SubTasks {
+      get { return subTasks_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as TaskConstituentListDTO);
+      return Equals(other as BaseTaskDTO);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(TaskConstituentListDTO other) {
+    public bool Equals(BaseTaskDTO other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!constituents_.Equals(other.constituents_)) return false;
+      if (Id != other.Id) return false;
+      if (Type != other.Type) return false;
+      if(!subTasks_.Equals(other.subTasks_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= constituents_.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      hash ^= subTasks_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1419,7 +1463,15 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      constituents_.WriteTo(output, _repeated_constituents_codec);
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Type);
+      }
+      subTasks_.WriteTo(output, _repeated_subTasks_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1428,7 +1480,13 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += constituents_.CalculateSize(_repeated_constituents_codec);
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      size += subTasks_.CalculateSize(_repeated_subTasks_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1436,11 +1494,17 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(TaskConstituentListDTO other) {
+    public void MergeFrom(BaseTaskDTO other) {
       if (other == null) {
         return;
       }
-      constituents_.Add(other.constituents_);
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      subTasks_.Add(other.subTasks_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1453,7 +1517,15 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            constituents_.AddEntriesFrom(input, _repeated_constituents_codec);
+            Id = input.ReadString();
+            break;
+          }
+          case 16: {
+            Type = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            subTasks_.AddEntriesFrom(input, _repeated_subTasks_codec);
             break;
           }
         }
@@ -1462,11 +1534,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
   }
 
-  public sealed partial class TaskDecompositionDTO : pb::IMessage<TaskDecompositionDTO> {
-    private static readonly pb::MessageParser<TaskDecompositionDTO> _parser = new pb::MessageParser<TaskDecompositionDTO>(() => new TaskDecompositionDTO());
+  public sealed partial class GoalDecompositionDTO : pb::IMessage<GoalDecompositionDTO> {
+    private static readonly pb::MessageParser<GoalDecompositionDTO> _parser = new pb::MessageParser<GoalDecompositionDTO>(() => new GoalDecompositionDTO());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<TaskDecompositionDTO> Parser { get { return _parser; } }
+    public static pb::MessageParser<GoalDecompositionDTO> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1479,59 +1551,59 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskDecompositionDTO() {
+    public GoalDecompositionDTO() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskDecompositionDTO(TaskDecompositionDTO other) : this() {
-      goalId_ = other.goalId_;
+    public GoalDecompositionDTO(GoalDecompositionDTO other) : this() {
+      goal_ = other.goal_ != null ? other.goal_.Clone() : null;
       graph_ = other.graph_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TaskDecompositionDTO Clone() {
-      return new TaskDecompositionDTO(this);
+    public GoalDecompositionDTO Clone() {
+      return new GoalDecompositionDTO(this);
     }
 
-    /// <summary>Field number for the "goalId" field.</summary>
-    public const int GoalIdFieldNumber = 1;
-    private string goalId_ = "";
+    /// <summary>Field number for the "goal" field.</summary>
+    public const int GoalFieldNumber = 1;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO goal_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string GoalId {
-      get { return goalId_; }
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO Goal {
+      get { return goal_; }
       set {
-        goalId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        goal_ = value;
       }
     }
 
     /// <summary>Field number for the "graph" field.</summary>
     public const int GraphFieldNumber = 2;
-    private static readonly pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO>.Codec _map_graph_codec
-        = new pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO.Parser), 18);
-    private readonly pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO> graph_ = new pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO>();
+    private static readonly pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO>.Codec _map_graph_codec
+        = new pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO.Parser), 18);
+    private readonly pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO> graph_ = new pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskConstituentListDTO> Graph {
+    public pbc::MapField<string, global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO> Graph {
       get { return graph_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as TaskDecompositionDTO);
+      return Equals(other as GoalDecompositionDTO);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(TaskDecompositionDTO other) {
+    public bool Equals(GoalDecompositionDTO other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalId != other.GoalId) return false;
+      if (!object.Equals(Goal, other.Goal)) return false;
       if (!Graph.Equals(other.Graph)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1539,7 +1611,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalId.Length != 0) hash ^= GoalId.GetHashCode();
+      if (goal_ != null) hash ^= Goal.GetHashCode();
       hash ^= Graph.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1554,9 +1626,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (GoalId.Length != 0) {
+      if (goal_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(GoalId);
+        output.WriteMessage(Goal);
       }
       graph_.WriteTo(output, _map_graph_codec);
       if (_unknownFields != null) {
@@ -1567,8 +1639,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(GoalId);
+      if (goal_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Goal);
       }
       size += graph_.CalculateSize(_map_graph_codec);
       if (_unknownFields != null) {
@@ -1578,12 +1650,15 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(TaskDecompositionDTO other) {
+    public void MergeFrom(GoalDecompositionDTO other) {
       if (other == null) {
         return;
       }
-      if (other.GoalId.Length != 0) {
-        GoalId = other.GoalId;
+      if (other.goal_ != null) {
+        if (goal_ == null) {
+          Goal = new global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO();
+        }
+        Goal.MergeFrom(other.Goal);
       }
       graph_.Add(other.graph_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1598,11 +1673,199 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            GoalId = input.ReadString();
+            if (goal_ == null) {
+              Goal = new global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO();
+            }
+            input.ReadMessage(Goal);
             break;
           }
           case 18: {
             graph_.AddEntriesFrom(input, _map_graph_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AgentDTO : pb::IMessage<AgentDTO> {
+    private static readonly pb::MessageParser<AgentDTO> _parser = new pb::MessageParser<AgentDTO>(() => new AgentDTO());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AgentDTO> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AgentDTO() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AgentDTO(AgentDTO other) : this() {
+      id_ = other.id_;
+      type_ = other.type_;
+      name_ = other.name_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AgentDTO Clone() {
+      return new AgentDTO(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType type_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 3;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AgentDTO);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AgentDTO other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Type != other.Type) return false;
+      if (Name != other.Name) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Id);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Type);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Name);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AgentDTO other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 16: {
+            Type = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            Name = input.ReadString();
             break;
           }
         }
