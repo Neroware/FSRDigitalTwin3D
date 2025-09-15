@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using UnityEngine;
 
@@ -15,28 +14,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 
         public abstract void ForceInterrupt();
         public abstract bool Interrupt();
-
-        // TODO Exchange control information with the Digital Twin's shell...
-
-        protected override bool OnPull()
-        {
-            return true;
-        }
-
-        protected override Task<bool> OnPullAsync()
-        {
-            return Task.FromResult(true);
-        }
-
-        protected override bool OnPush()
-        {
-            return true;
-        }
-
-        protected override Task<bool> OnPushAsync()
-        {
-             return Task.FromResult(true);
-        }
 
         public abstract void Plan();
         public abstract void PlanAndRunIfValid();

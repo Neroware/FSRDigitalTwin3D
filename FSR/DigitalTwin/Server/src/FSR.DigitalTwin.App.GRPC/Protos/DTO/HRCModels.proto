@@ -37,7 +37,7 @@ message HRCTaskDTO {
     AgentType agent = 7;
     int64 minDuration = 8;
     int64 maxDuration = 9;
-    int64 duration = 10;
+    int64 averageDuration  = 10;
     int64 durationUncertainty = 11;
     double successRate = 12;
 }

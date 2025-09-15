@@ -16,22 +16,22 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
         bool IsInterrupted { get; }
         bool IsRunning { get; }
 
-        public void Plan();
-        public bool ValidatePlan();
-        public void RunPlan();
-        public void PlanAndRunIfValid();
-        public bool Interrupt();
-        public void ForceInterrupt();
+        void Plan();
+        bool ValidatePlan();
+        void RunPlan();
+        void PlanAndRunIfValid();
+        bool Interrupt();
+        void ForceInterrupt();
     }
 
     public interface IRobotAsyncController : IRobotController
     {
-        public Task PlanAsync();
-        public Task<bool> ValidatePlanAsync();
-        public Task RunPlanAsync();
-        public Task PlanAndRunIfValidAsync();
-        public Task<bool> InterruptAsync();
-        public Task ForceInterruptAsync();
+        Task PlanAsync();
+        Task<bool> ValidatePlanAsync();
+        Task RunPlanAsync();
+        Task PlanAndRunIfValidAsync();
+        Task<bool> InterruptAsync();
+        Task ForceInterruptAsync();
     }
 
 }

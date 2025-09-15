@@ -5,7 +5,7 @@ using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 
-public class HRCKnowledgeAuthoringService
+public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
 {
     private readonly IHRCKnowledgeService _knowledgeBase;
     private readonly ILogger<HRCKnowledgeAuthoringService> _logger;

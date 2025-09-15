@@ -31,39 +31,39 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "b24YBSABKAESGwoTZHVyYXRpb25VbmNlcnRhaW50eRgGIAEoASJ5ChVGdW5j",
             "dGlvbk9iamVjdERhdGFEVE8SEgoKZnVuY3Rpb25JZBgBIAEoCRIOCgZ0YXJn",
             "ZXQYAiABKAkSFQoNc3RhcnRMb2NhdGlvbhgDIAEoCRITCgtlbmRMb2NhdGlv",
-            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSKJAgoKSFJDVGFza0RUTxIKCgJp",
+            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSKQAgoKSFJDVGFza0RUTxIKCgJp",
             "ZBgBIAEoCRIMCgR0eXBlGAIgASgJEg4KBnRhcmdldBgDIAEoCRIMCgRuYW1l",
             "GAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEgwKBGdvYWwYBiABKAkSMgoF",
             "YWdlbnQYByABKA4yIy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRU",
             "eXBlEhMKC21pbkR1cmF0aW9uGAggASgDEhMKC21heER1cmF0aW9uGAkgASgD",
-            "EhAKCGR1cmF0aW9uGAogASgDEhsKE2R1cmF0aW9uVW5jZXJ0YWludHkYCyAB",
-            "KAMSEwoLc3VjY2Vzc1JhdGUYDCABKAEixwEKC0hSQ01vZGVsRFRPEg8KB2hv",
-            "cml6b24YASABKAMSMwoFdGFza3MYAiADKAsyJC5GU1IuRGlnaXRhbFR3aW4u",
-            "QXBwLkdSUEMuSFJDVGFza0RUTxI4Cgpyb2JvdFRhc2tzGAMgAygLMiQuRlNS",
-            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKaHVtYW5UYXNr",
-            "cxgEIAMoCzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRP",
-            "IhkKB0dvYWxEVE8SDgoGZ29hbElkGAEgASgJIlwKC0Jhc2VUYXNrRFRPEgoK",
-            "AmlkGAEgASgJEi8KBHR5cGUYAiABKA4yIS5GU1IuRGlnaXRhbFR3aW4uQXBw",
-            "LkdSUEMuVGFza1R5cBIQCghzdWJUYXNrcxgDIAMoCSLmAQoUR29hbERlY29t",
-            "cG9zaXRpb25EVE8SLwoEZ29hbBgBIAEoCzIhLkZTUi5EaWdpdGFsVHdpbi5B",
-            "cHAuR1JQQy5Hb2FsRFRPEkgKBWdyYXBoGAIgAygLMjkuRlNSLkRpZ2l0YWxU",
-            "d2luLkFwcC5HUlBDLkdvYWxEZWNvbXBvc2l0aW9uRFRPLkdyYXBoRW50cnka",
-            "UwoKR3JhcGhFbnRyeRILCgNrZXkYASABKAkSNAoFdmFsdWUYAiABKAsyJS5G",
-            "U1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQmFzZVRhc2tEVE86AjgBIlcKCEFn",
-            "ZW50RFRPEgoKAmlkGAEgASgJEjEKBHR5cGUYAiABKA4yIy5GU1IuRGlnaXRh",
-            "bFR3aW4uQXBwLkdSUEMuQWdlbnRUeXBlEgwKBG5hbWUYAyABKAkqSwoJQWdl",
-            "bnRUeXBlEhIKDkFHRU5UX1RZUEVfQU5ZEAASFAoQQUdFTlRfVFlQRV9IVU1B",
-            "ThABEhQKEEFHRU5UX1RZUEVfUk9CT1QQAiqCAQoHVGFza1R5cBIUChBUQVNL",
-            "X1RZUEVfTUVUSE9EEAASFQoRVEFTS19UWVBFX0NPTVBMRVgQARIYChRUQVNL",
-            "X1RZUEVfQ09OSlVDVElPThACEhgKFFRBU0tfVFlQRV9ESVNKVUNUSU9OEAMS",
-            "FgoSVEFTS19UWVBFX0ZVTkNUSU9OEARCJ6oCJEZTUi5EaWdpdGFsVHdpbi5B",
-            "cHAuR1JQQy5Qcm9jZXNzLkhSQ2IGcHJvdG8z"));
+            "EhcKD2F2ZXJhZ2VEdXJhdGlvbhgKIAEoAxIbChNkdXJhdGlvblVuY2VydGFp",
+            "bnR5GAsgASgDEhMKC3N1Y2Nlc3NSYXRlGAwgASgBIscBCgtIUkNNb2RlbERU",
+            "TxIPCgdob3Jpem9uGAEgASgDEjMKBXRhc2tzGAIgAygLMiQuRlNSLkRpZ2l0",
+            "YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKcm9ib3RUYXNrcxgDIAMo",
+            "CzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPEjgKCmh1",
+            "bWFuVGFza3MYBCADKAsyJC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJD",
+            "VGFza0RUTyIZCgdHb2FsRFRPEg4KBmdvYWxJZBgBIAEoCSJcCgtCYXNlVGFz",
+            "a0RUTxIKCgJpZBgBIAEoCRIvCgR0eXBlGAIgASgOMiEuRlNSLkRpZ2l0YWxU",
+            "d2luLkFwcC5HUlBDLlRhc2tUeXASEAoIc3ViVGFza3MYAyADKAki5gEKFEdv",
+            "YWxEZWNvbXBvc2l0aW9uRFRPEi8KBGdvYWwYASABKAsyIS5GU1IuRGlnaXRh",
+            "bFR3aW4uQXBwLkdSUEMuR29hbERUTxJICgVncmFwaBgCIAMoCzI5LkZTUi5E",
+            "aWdpdGFsVHdpbi5BcHAuR1JQQy5Hb2FsRGVjb21wb3NpdGlvbkRUTy5HcmFw",
+            "aEVudHJ5GlMKCkdyYXBoRW50cnkSCwoDa2V5GAEgASgJEjQKBXZhbHVlGAIg",
+            "ASgLMiUuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkJhc2VUYXNrRFRPOgI4",
+            "ASJXCghBZ2VudERUTxIKCgJpZBgBIAEoCRIxCgR0eXBlGAIgASgOMiMuRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkFnZW50VHlwZRIMCgRuYW1lGAMgASgJ",
+            "KksKCUFnZW50VHlwZRISCg5BR0VOVF9UWVBFX0FOWRAAEhQKEEFHRU5UX1RZ",
+            "UEVfSFVNQU4QARIUChBBR0VOVF9UWVBFX1JPQk9UEAIqggEKB1Rhc2tUeXAS",
+            "FAoQVEFTS19UWVBFX01FVEhPRBAAEhUKEVRBU0tfVFlQRV9DT01QTEVYEAES",
+            "GAoUVEFTS19UWVBFX0NPTkpVQ1RJT04QAhIYChRUQVNLX1RZUEVfRElTSlVD",
+            "VElPThADEhYKElRBU0tfVFlQRV9GVU5DVElPThAEQieqAiRGU1IuRGlnaXRh",
+            "bFR3aW4uQXBwLkdSUEMuUHJvY2Vzcy5IUkNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO.Parser, new[]{ "FunctionId", "ProcedureName", "ProcedureDescr", "ProcedureId", "Duration", "DurationUncertainty" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser, new[]{ "FunctionId", "Target", "StartLocation", "EndLocation", "Location" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "Id", "Type", "Target", "Name", "Description", "Goal", "Agent", "MinDuration", "MaxDuration", "Duration", "DurationUncertainty", "SuccessRate" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "Id", "Type", "Target", "Name", "Description", "Goal", "Agent", "MinDuration", "MaxDuration", "AverageDuration", "DurationUncertainty", "SuccessRate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO.Parser, new[]{ "Horizon", "Tasks", "RobotTasks", "HumanTasks" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser, new[]{ "GoalId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.BaseTaskDTO.Parser, new[]{ "Id", "Type", "SubTasks" }, null, null, null),
@@ -636,7 +636,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       agent_ = other.agent_;
       minDuration_ = other.minDuration_;
       maxDuration_ = other.maxDuration_;
-      duration_ = other.duration_;
+      averageDuration_ = other.averageDuration_;
       durationUncertainty_ = other.durationUncertainty_;
       successRate_ = other.successRate_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -746,14 +746,14 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
-    /// <summary>Field number for the "duration" field.</summary>
-    public const int DurationFieldNumber = 10;
-    private long duration_;
+    /// <summary>Field number for the "averageDuration" field.</summary>
+    public const int AverageDurationFieldNumber = 10;
+    private long averageDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Duration {
-      get { return duration_; }
+    public long AverageDuration {
+      get { return averageDuration_; }
       set {
-        duration_ = value;
+        averageDuration_ = value;
       }
     }
 
@@ -801,7 +801,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Agent != other.Agent) return false;
       if (MinDuration != other.MinDuration) return false;
       if (MaxDuration != other.MaxDuration) return false;
-      if (Duration != other.Duration) return false;
+      if (AverageDuration != other.AverageDuration) return false;
       if (DurationUncertainty != other.DurationUncertainty) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(SuccessRate, other.SuccessRate)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -819,7 +819,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Agent != 0) hash ^= Agent.GetHashCode();
       if (MinDuration != 0L) hash ^= MinDuration.GetHashCode();
       if (MaxDuration != 0L) hash ^= MaxDuration.GetHashCode();
-      if (Duration != 0L) hash ^= Duration.GetHashCode();
+      if (AverageDuration != 0L) hash ^= AverageDuration.GetHashCode();
       if (DurationUncertainty != 0L) hash ^= DurationUncertainty.GetHashCode();
       if (SuccessRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(SuccessRate);
       if (_unknownFields != null) {
@@ -871,9 +871,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(72);
         output.WriteInt64(MaxDuration);
       }
-      if (Duration != 0L) {
+      if (AverageDuration != 0L) {
         output.WriteRawTag(80);
-        output.WriteInt64(Duration);
+        output.WriteInt64(AverageDuration);
       }
       if (DurationUncertainty != 0L) {
         output.WriteRawTag(88);
@@ -918,8 +918,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (MaxDuration != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(MaxDuration);
       }
-      if (Duration != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Duration);
+      if (AverageDuration != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(AverageDuration);
       }
       if (DurationUncertainty != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(DurationUncertainty);
@@ -965,8 +965,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.MaxDuration != 0L) {
         MaxDuration = other.MaxDuration;
       }
-      if (other.Duration != 0L) {
-        Duration = other.Duration;
+      if (other.AverageDuration != 0L) {
+        AverageDuration = other.AverageDuration;
       }
       if (other.DurationUncertainty != 0L) {
         DurationUncertainty = other.DurationUncertainty;
@@ -1022,7 +1022,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             break;
           }
           case 80: {
-            Duration = input.ReadInt64();
+            AverageDuration = input.ReadInt64();
             break;
           }
           case 88: {

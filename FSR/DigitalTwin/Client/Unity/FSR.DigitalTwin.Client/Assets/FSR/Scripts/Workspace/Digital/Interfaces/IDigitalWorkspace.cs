@@ -11,12 +11,14 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces {
     /// - Operational and process signals and callbacks<br />
     /// - The underlying semantic information for entities and their components<br />
     /// </summary>
-    public interface IDigitalWorkspace {
+    public interface IDigitalWorkspace
+    {
         IDigitalWorkspaceServerConnection Connection { get; }
         IDigitalWorkspaceOperational Operational { get; }
         IDigitalWorkspaceEntityApi Entities { get; }
 
         DigitalWorkspace.EOperationMode OperationMode { set; get; }
+        string WorkspaceName { get; }
     }
 
 }

@@ -10,11 +10,13 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
     {
         [SerializeField] private string digitalWorkspaceAddr = "127.0.0.1";
         [SerializeField] private int digitalWorkspacePort = 5001;
+        [SerializeField] private string digitalWorkspaceName = "0";
 
         public IDigitalWorkspaceServerConnection Connection { get => _connection ?? throw new System.Exception("Should not happen!"); }
         public IDigitalWorkspaceOperational Operational { get => _operational ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
         public IDigitalWorkspaceEntityApi Entities { get => _entityApi ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
         public DigitalWorkspace.EOperationMode OperationMode { get; set; }
+        public string WorkspaceName => digitalWorkspaceName;
 
         private GrpcDigitalWorkspaceConnection _connection = null;
         private GrpcDigitalWorkspaceOperational _operational = null;

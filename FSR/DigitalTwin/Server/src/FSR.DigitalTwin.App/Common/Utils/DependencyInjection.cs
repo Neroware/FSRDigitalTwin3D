@@ -21,5 +21,8 @@ public static class DependencyInjection {
         services.AddTransient<IDummySemanticDataService, DummySemanticDataService>();
         services.AddTransient<IOntologyModelService, OntologyModelService>();
         services.AddTransient<IHRCKnowledgeService, ProductionKnowledgeService>();
+        services.AddTransient<IHRCKnowledgeAuthoringService, HRCKnowledgeAuthoringService>();
+        services.AddSingleton<IHRCSimulationState, HRCSimulationState>();
+        services.AddTransient<IHRCProcessSimulationService, HRCProcessSimulationService>();
     }
 }

@@ -20,10 +20,10 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual {
         public Uri Id { get => new(_id); init => _id = "ex:mycomponent"; }
         public bool HasConnection => _hasConnection;
 
-        protected abstract bool OnPull();
-        protected abstract Task<bool> OnPullAsync();
-        protected abstract bool OnPush();
-        protected abstract Task<bool> OnPushAsync();
+        protected virtual bool OnPull() => true;
+        protected virtual Task<bool> OnPullAsync() => Task.FromResult(true);
+        protected virtual bool OnPush() => true;
+        protected virtual Task<bool> OnPushAsync() => Task.FromResult(true);
         protected virtual void OnConnect() { }
         protected virtual void OnDisconnect() { } 
 

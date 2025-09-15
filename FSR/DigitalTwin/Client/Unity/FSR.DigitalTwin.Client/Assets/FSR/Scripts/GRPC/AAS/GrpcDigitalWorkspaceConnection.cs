@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using FSR.DigitalTwin.App.GRPC.Services.DigitalTwinClientConnectionService;
 using FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using Grpc.Core;
@@ -27,9 +28,9 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         private ReactiveProperty<bool> _isConnected;
         private Subject<ClientNotificationBase> _onNotify;
 
-        public const string UNITY_CLIENT_LOCAL_ID = "FSR.DigitalTwin.Client.Unity";
-        public const string UNITY_CLIENT_ID = "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#" + UNITY_CLIENT_LOCAL_ID;
-        public const string UNITY_CLIENT_REQUEST_PREFIX = "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi?request=";
+        public static string UNITY_CLIENT_LOCAL_ID => "FSR.DigitalTwin.Client.Unity::" + DigitalWorkspace.Instance.WorkspaceName;
+        public static string UNITY_CLIENT_ID => "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#" + UNITY_CLIENT_LOCAL_ID;
+        public static string UNITY_CLIENT_REQUEST_PREFIX => "https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi?request=";
 
         public GrpcDigitalWorkspaceConnection(string addr, int port)
         {
