@@ -1,5 +1,3 @@
-using VDS.RDF;
-
 namespace FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 
 public class HRCTask
@@ -10,9 +8,9 @@ public class HRCTask
     }
 
     private readonly long _horizon;
-    public INode Resource { get; }
-    public INode Type { get; }
-    public INode? Target { set; get; }
+    public Resource Resource { get; }
+    public Resource Type { get; }
+    public Resource? Target { set; get; }
 
     public string Name { set; get; }
     public string? Description { set; get; }
@@ -27,10 +25,9 @@ public class HRCTask
     public long DurationUncertainty { set; get; }
     public double SuccessRate { set; get; } = 0.99;
 
-    public HRCTask(INode function, INode type, long horizon)
+    public HRCTask(Resource function, Resource type, long horizon)
     {
-        Name = function.NodeType == NodeType.Blank ? ((IBlankNode)function).InternalID
-            : function.ToSafeString();
+        Name = function.ToString();
         Description = Name;
         Resource = function;
         Type = type;
@@ -41,7 +38,7 @@ public class HRCTask
     public override string ToString()
     {
         return "RobotFunction{" +
-                "function=" + (Resource.NodeType == NodeType.Blank ? ((BlankNode) Resource).InternalID : ((UriNode) Resource).Uri) +
+                "function=" + Resource +
                 '}';
     }
 }

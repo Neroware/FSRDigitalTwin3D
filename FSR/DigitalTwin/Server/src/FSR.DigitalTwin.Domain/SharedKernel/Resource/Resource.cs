@@ -14,5 +14,5 @@ public abstract class Resource
         Resource => Uri != null && ((Resource)other).Uri == Uri,
         _ => false
     };
-    public override int GetHashCode() => Uri != null ? Uri.GetHashCode() : 0;
+    public override int GetHashCode() => Uri?.GetHashCode() ?? 0;
 }

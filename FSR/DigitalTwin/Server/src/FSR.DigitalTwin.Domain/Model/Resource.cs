@@ -14,6 +14,24 @@ public class Resource : SharedKernel.Resource.Resource
         _name = name;
         _bytes = bytes ?? [];
     }
+    private Resource(UriNode node, string name = "", byte[]? bytes = null)
+    {
+        Uri = node.Uri;
+        LocalName = null;
+        _name = name;
+        _bytes = bytes ?? [];
+    }
+    private Resource(BlankNode node, string name = "", byte[]? bytes = null)
+    {
+        Uri = null;
+        LocalName = node.InternalID;
+        _name = name;
+        _bytes = bytes ?? [];
+    }
+    private Resource(LiteralNode node)
+    {
+        _bytes = Encoding.ASCII.GetBytes(node.Value);
+    }
 
     public override Uri? Uri { get; init; }
     public override string? LocalName { get; init; }
@@ -24,13 +42,16 @@ public class Resource : SharedKernel.Resource.Resource
     public byte[] Data => GetBytes();
     public int Length => GetContentLength();
 
-    public static implicit operator Resource(BaseNode node) => node.NodeType switch
+    public static explicit operator Resource(BaseNode node) => node.NodeType switch
     {
-        NodeType.Uri => new Resource() { Uri = ((UriNode)node).Uri, LocalName = null },
-        NodeType.Blank => new Resource() { Uri = null, LocalName = ((BlankNode)node).InternalID },
-        NodeType.Literal => new Resource(bytes: Encoding.ASCII.GetBytes(((LiteralNode)node).Value)),
+        NodeType.Uri => new Resource((UriNode)node),
+        NodeType.Blank => new Resource((BlankNode)node),
+        NodeType.Literal => new Resource((LiteralNode)node),
         _ => throw new ArgumentException("should not happen")
     };
 
-    public override string ToString() => Uri != null ? Uri.ToSafeString() : LocalName ?? "";
+    public static Resource FromNode(INode node) => node is BaseNode ? (Resource)node : throw new ArgumentException("should not happen");
+
+    public override string ToString() => Uri?.ToSafeString() ?? LocalName ?? "_";
+    public override StreamReader GetStreamReader() => new(new MemoryStream(_bytes));
 }

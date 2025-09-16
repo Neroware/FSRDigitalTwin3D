@@ -3,6 +3,7 @@ namespace FSR.DigitalTwin.App.Common.Utils.Semantic;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using FSR.DigitalTwin.Domain.Model;
 
 public static class SparqlHelper
 {
@@ -23,16 +24,17 @@ public static class SparqlHelper
     /// Substitutes placeholders like pi:tmp0, pi:tmp1, ... with actual URIs from a list.
     /// </summary>
     /// <param name="filePath">Path to the .rq or .sparql file.</param>
-    /// <param name="replacementUris">A list of URIs to replace the placeholders.</param>
+    /// <param name="replacements">A list of Resources to replace the placeholders.</param>
     /// <returns>The query string with placeholders replaced.</returns>
-    public static string LoadQuery(string filePath, IList<string> replacementUris)
+    public static string LoadQuery(string filePath, IList<Resource> replacements)
     {
         string substitutedQuery = LoadQuery(filePath);
 
-        for (int i = 0; i < replacementUris.Count; i++)
+        for (int i = 0; i < replacements.Count; i++)
         {
             string placeholderPattern = $@"\bpi:tmp{i}\b";
-            substitutedQuery = Regex.Replace(substitutedQuery, placeholderPattern, $"<{replacementUris[i]}>");
+            substitutedQuery = Regex.Replace(substitutedQuery, placeholderPattern, replacements[i].Uri != null ?
+                $"<{replacements[i].Uri}>" : $"_:{replacements[i].LocalName ?? "_"}");
         }
 
         return substitutedQuery;
@@ -42,16 +44,17 @@ public static class SparqlHelper
     /// Substitutes placeholders like pi:tmp0, pi:tmp1, ... with actual URIs from a dictionary.
     /// </summary>
     /// <param name="filePath">Path to the .rq or .sparql file.</param>
-    /// <param name="replacements">Dictionary with keys like 'tmp0' and values as URIs.</param>
+    /// <param name="replacements">Dictionary with keys like 'tmp0' and values as Resources.</param>
     /// <returns>The query string with placeholders replaced.</returns>
-    public static string LoadQuery(string filePath, IDictionary<string, string> replacements)
+    public static string LoadQuery(string filePath, IDictionary<string, Resource> replacements)
     {
         string substitutedQuery = LoadQuery(filePath);
 
         foreach (var pair in replacements)
         {
             string placeholderPattern = $@"\bpi:{Regex.Escape(pair.Key)}\b";
-            substitutedQuery = Regex.Replace(substitutedQuery, placeholderPattern, $"<{pair.Value}>");
+            substitutedQuery = Regex.Replace(substitutedQuery, placeholderPattern, pair.Value.Uri != null ?
+                $"<{pair.Value.Uri}>" : $"_:{pair.Value.LocalName ?? "_"}");
         }
 
         return substitutedQuery;
