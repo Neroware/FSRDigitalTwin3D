@@ -27,6 +27,14 @@ enum AgentType {
     AGENT_TYPE_ROBOT = 2;
 }
 
+enum HRCAgentType {
+    HRC_AGENT_TYPE_UNDEFINED = 0;
+    HRC_AGENT_TYPE_HUMAN = 1;
+    HRC_AGENT_TYPE_ROBOT = 2;
+    HRC_AGENT_TYPE_WORKER_OPERATOR = 3;
+    HRC_AGENT_TYPE_COBOT = 4;
+}
+
 message HRCTaskDTO {
     string id = 1;
     string type = 2;
@@ -74,6 +82,6 @@ message GoalDecompositionDTO {
 
 message AgentDTO {
     string id = 1;
-    AgentType type = 2;
+    HRCAgentType type = 2;
     string name = 3;
 }
