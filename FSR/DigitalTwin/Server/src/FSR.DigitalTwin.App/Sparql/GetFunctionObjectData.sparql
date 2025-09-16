@@ -9,12 +9,11 @@ PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
 
-SELECT DISTINCT ?task ?target ?startLoc ?endLoc ?loc
+SELECT DISTINCT ?target ?startLoc ?endLoc ?loc
 WHERE {
-  	BIND(pi:tmp0 AS ?task)
-    ?task a soho:ProductionTask .
-    OPTIONAL { ?task soho:hasTarget ?target . }
-  	OPTIONAL { ?task soho:requiresStartLocation ?startLoc . }
-  	OPTIONAL { ?task soho:requiresEndLocation ?endLoc . }
-  	OPTIONAL { ?task soho:requiresLocation ?loc . }
+    pi:tmp0 a soho:ProductionTask .
+    OPTIONAL { pi:tmp0 soho:hasTarget ?target . }
+  	OPTIONAL { pi:tmp0 soho:requiresStartLocation ?startLoc . }
+  	OPTIONAL { pi:tmp0 soho:requiresEndLocation ?endLoc . }
+  	OPTIONAL { pi:tmp0 soho:requiresLocation ?loc . }
 }

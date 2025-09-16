@@ -9,8 +9,7 @@ PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
 
-SELECT ?property ?value
+SELECT ?value
 WHERE {
-    BIND(pi:tmp0 AS ?property)
-    pi:tmp1 ?property ?value .
+    pi:tmp1 pi:tmp0 ?value .
 }

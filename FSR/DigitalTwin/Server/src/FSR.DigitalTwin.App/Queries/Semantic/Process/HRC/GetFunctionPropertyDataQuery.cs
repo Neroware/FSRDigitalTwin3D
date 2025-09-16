@@ -17,7 +17,7 @@ public class GetFunctionPropertyDataQuery : ISparqlQuery<FunctionPropertyData>
 
     // TODO Use config paths!
     public string Query => SparqlHelper.LoadQuery("../FSR.DigitalTwin.App/Sparql/GetFunctionPropertyData.sparql", [_function]);
-    public ISparqlResponseParser Parser => new ResponseParser();
+    public ISparqlResponseParser Parser => new ResponseParser() { Function = _function };
     public ISparqlServer SparqlServer { get => _sparqlServer ?? throw new NullReferenceException(); init => _sparqlServer = value; }
 
     public GetFunctionPropertyDataQuery(Resource function)
@@ -27,6 +27,8 @@ public class GetFunctionPropertyDataQuery : ISparqlQuery<FunctionPropertyData>
 
     private class ResponseParser : ISparqlResponseParser
     {
+        public required Resource Function { init; get; }
+
         public IEnumerable<Triple> FromJson(string jsonResponse)
         {
             var json = JsonDocument.Parse(jsonResponse);
@@ -35,10 +37,7 @@ public class GetFunctionPropertyDataQuery : ISparqlQuery<FunctionPropertyData>
             var triples = new List<Triple>();
             foreach (var binding in bindings.EnumerateArray())
             {
-                if (!binding.TryGetProperty("task", out JsonElement task_))
-                    continue;
-
-                var task = RdfNodeFactory.CreateFromJson(task_);
+                var task = (BaseNode)Function;
                 triples.Add(new Triple(task, UriPrefix.RDF | "type", UriPrefix.SOHO | "ProductionTask"));
                 TripleHelper.AddOptionalTriple(binding, triples, task, UriPrefix.SOHO | "hasProcedureId", "id");
                 TripleHelper.AddOptionalTriple(binding, triples, task, UriPrefix.SOHO | "hasProcedureName", "name");

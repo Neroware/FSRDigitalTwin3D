@@ -9,13 +9,12 @@ PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
 
-SELECT DISTINCT ?task ?id ?name ?description ?duration ?durationUncertainty
+SELECT DISTINCT ?id ?name ?description ?duration ?durationUncertainty
 WHERE {
-  	BIND(pi:tmp0 AS ?task)
-    ?task a soho:ProductionTask .
-    OPTIONAL { ?task soho:hasProcedureId ?id . }
-    OPTIONAL { ?task soho:hasProcedureName ?name . }
-  	OPTIONAL { ?task soho:hasProcedureDescription ?description . }
-  	OPTIONAL { ?task soho:hasDuration ?duration . }
-  	OPTIONAL { ?task soho:hasDurationUncertainty ?durationUncertainty . }
+    pi:tmp0 a soho:ProductionTask .
+    OPTIONAL { pi:tmp0 soho:hasProcedureId ?id . }
+    OPTIONAL { pi:tmp0 soho:hasProcedureName ?name . }
+  	OPTIONAL { pi:tmp0 soho:hasProcedureDescription ?description . }
+  	OPTIONAL { pi:tmp0 soho:hasDuration ?duration . }
+  	OPTIONAL { pi:tmp0 soho:hasDurationUncertainty ?durationUncertainty . }
 }

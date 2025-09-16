@@ -9,12 +9,11 @@ PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
 
-SELECT DISTINCT ?resource ?type
+SELECT DISTINCT ?type
 WHERE {
-  	BIND(pi:tmp0 AS ?resource)
-    ?resource a ?type .
+    pi:tmp0 a ?type .
     FILTER NOT EXISTS {
-        ?resource a ?otherType .
+        pi:tmp0 a ?otherType .
         ?otherType rdfs:subClassOf+ ?type .
         FILTER (?otherType != ?type)
     }
