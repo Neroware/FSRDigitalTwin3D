@@ -20,32 +20,27 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
     {
         HRCModel hrc = new(horizon);
 
-        var humans = _knowledgeBase.GetHumans()
-            .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+        var humans = _knowledgeBase.GetHumans();
         foreach (var human in humans)
         {
-            var functions = _knowledgeBase.GetFunctionsByAgent(human.Uri)
-                .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+            var functions = _knowledgeBase.GetFunctionsByAgent(human);
             foreach (var function in functions)
             {
-                hrc.CreateHumanTask(function, _knowledgeBase.GetResourceType(function.Uri));
+                hrc.CreateHumanTask(function, _knowledgeBase.GetResourceType(function));
             }
         }
 
-        var robots = _knowledgeBase.GetCobots()
-            .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+        var robots = _knowledgeBase.GetCobots();
         foreach (var robot in robots)
         {
-            var functions = _knowledgeBase.GetFunctionsByAgent(robot.Uri)
-                .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+            var functions = _knowledgeBase.GetFunctionsByAgent(robot);
             foreach (var function in functions)
             {
-                hrc.CreateRobotTask(function, _knowledgeBase.GetResourceType(function.Uri));
+                hrc.CreateRobotTask(function, _knowledgeBase.GetResourceType(function));
             }
         }
 
-        var goals = _knowledgeBase.GetGoals()
-            .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+        var goals = _knowledgeBase.GetGoals();
         hrc.Goals.AddRange(goals);
 
         return hrc;

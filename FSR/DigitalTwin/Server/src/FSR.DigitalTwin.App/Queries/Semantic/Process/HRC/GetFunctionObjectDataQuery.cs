@@ -2,6 +2,7 @@ using System.Text.Json;
 using FSR.DigitalTwin.App.Common.Semantic;
 using FSR.DigitalTwin.App.Common.Utils.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using VDS.RDF;
@@ -11,16 +12,16 @@ namespace FSR.DigitalTwin.App.Queries.Semantic.Process.HRC;
 public class GetFunctionObjectDataQuery : ISparqlQuery<FunctionObjectData>
 {
     private readonly ISparqlServer? _sparqlServer;
-    private readonly Uri _functionUri;
+    private readonly Resource _function;
 
     // TODO Use config paths!
-    public string Query => SparqlHelper.LoadQuery("../FSR.DigitalTwin.App/Sparql/GetFunctionObjectData.sparql", [_functionUri.ToString()]);
+    public string Query => SparqlHelper.LoadQuery("../FSR.DigitalTwin.App/Sparql/GetFunctionObjectData.sparql", [_function]);
     public ISparqlResponseParser Parser => new ResponseParser();
     public ISparqlServer SparqlServer { get => _sparqlServer ?? throw new NullReferenceException(); init => _sparqlServer = value; }
 
-    public GetFunctionObjectDataQuery(Uri functionUri)
+    public GetFunctionObjectDataQuery(Resource function)
     {
-        _functionUri = functionUri;
+        _function = function;
     }
 
     private class ResponseParser : ISparqlResponseParser
@@ -52,23 +53,23 @@ public class GetFunctionObjectDataQuery : ISparqlQuery<FunctionObjectData>
     {
         var target = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasTarget"))
-            .Select(t => t.Object)
+            .Select(t => Resource.FromNode(t.Object))
             .ToHashSet();
         var startLoc = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "requiresStartLocation"))
-            .Select(t => t.Object)
+            .Select(t => Resource.FromNode(t.Object))
             .ToHashSet();
         var endLoc = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "requiresEndLocation"))
-            .Select(t => t.Object)
+            .Select(t => Resource.FromNode(t.Object))
             .ToHashSet();
         var loc = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "requiresLocation"))
-            .Select(t => t.Object)
+            .Select(t => Resource.FromNode(t.Object))
             .ToHashSet();
         return new FunctionObjectData()
         {
-            Function = new UriNode(_functionUri),
+            Function = _function,
             Target = target,
             StartLocation = startLoc,
             EndLocation = endLoc,

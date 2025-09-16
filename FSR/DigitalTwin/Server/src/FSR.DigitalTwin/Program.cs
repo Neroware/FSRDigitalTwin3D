@@ -7,6 +7,7 @@ using FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.App.Queries.Semantic.Base;
 using FSR.DigitalTwin.App.Queries.Semantic.Process.HRC;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Infra.Jena;
 using Microsoft.Extensions.Options;
 using VDS.RDF;
@@ -33,11 +34,11 @@ foreach (string modelFile in ontoOptions.ModelFiles)
 var knowledgeBase = host.Services.GetService<IHRCKnowledgeService>() ?? throw new NullReferenceException("should not happen");
 var doRotaryTable = knowledgeBase.GetDecompositionGraph(UriPrefix.PI + "task-assembly-goal");
 var method = doRotaryTable.First();
-foreach (ISet<INode> ns in method[UriPrefix.PI | "doRotaryTable"])
+foreach (ISet<Resource> rs in method[UriPrefix.PI + "doRotaryTable"])
 {
-    foreach (INode n in ns)
+    foreach (Resource r in rs)
     {
-        Console.WriteLine($"n> {n}");
+        Console.WriteLine($"n> {r}");
     }
 }
 Console.WriteLine($"Number of triples loaded in semantic database: {ontoModel.Count}");

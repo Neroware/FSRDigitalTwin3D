@@ -4,6 +4,7 @@ using FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.App.Queries.Semantic.Base;
 using FSR.DigitalTwin.App.Queries.Semantic.Process.HRC;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using Microsoft.Extensions.Logging;
 using VDS.RDF;
@@ -21,51 +22,49 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public IEnumerable<INode> GetAgents()
+    public IEnumerable<Resource> GetAgents()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "AutonomousAgent") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetBinaryResources()
+    public IEnumerable<Resource> GetBinaryResources()
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<INode> GetCobots()
+    public IEnumerable<Resource> GetCobots()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "Cobot") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetCompoundGoals()
+    public IEnumerable<Resource> GetCompoundGoals()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "CompoundProductionGoal") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<IDictionary<INode, IList<ISet<INode>>>> GetDecompositionGraph(Uri prodGoal)
+    public IEnumerable<IDictionary<Resource, IList<ISet<Resource>>>> GetDecompositionGraph(Resource prodGoal)
     {
         if (!HasResourceType(prodGoal, UriPrefix.SOHO + "ProductionGoal"))
         {
             throw new HRCKnowledgeException($"Wrong parameter type, a resource/individual of type <{UriPrefix.SOHO}ProductionGoal> expected, received <{prodGoal}> of other type!");
         }
-        List<IDictionary<INode, IList<ISet<INode>>>> graphs = [];
-        var methods = GetProperty(prodGoal, UriPrefix.DUL + "hasConstituent")
-            .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+        List<IDictionary<Resource, IList<ISet<Resource>>>> graphs = [];
+        var methods = GetProperty(prodGoal, UriPrefix.DUL + "hasConstituent");
         foreach (var method in methods)
         {
-            if (HasResourceType(method.Uri, UriPrefix.SOHO + "ProductionMethod"))
+            if (HasResourceType(method, UriPrefix.SOHO + "ProductionMethod"))
             {
-                Dictionary<INode, IList<ISet<INode>>> methodGraph = [];
-                var tasks = GetProperty(method.Uri, UriPrefix.DUL + "hasConstituent")
-                    .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
+                Dictionary<Resource, IList<ISet<Resource>>> methodGraph = [];
+                var tasks = GetProperty(method, UriPrefix.DUL + "hasConstituent");
                 foreach (var task in tasks)
                 {
-                    if (HasResourceType(task.Uri, UriPrefix.SOHO + "ProductionTask"))
+                    if (HasResourceType(task, UriPrefix.SOHO + "ProductionTask"))
                     {
                         if (!methodGraph.ContainsKey(task))
                         {
@@ -83,22 +82,22 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return graphs;
     }
 
-    public IDictionary<INode, ISet<INode>> GetDependencyGraph(Uri prodGoal)
+    public IDictionary<Resource, ISet<Resource>> GetDependencyGraph(Resource prodGoal)
     {
         if (!HasResourceType(prodGoal, UriPrefix.SOHO + "ProductionGoal"))
         {
             throw new HRCKnowledgeException($"Wrong parameter type, a resource/individual of type <{UriPrefix.SOHO}ProductionGoal> expected, received <{prodGoal}> of other type!");
         }
-        Dictionary<INode, ISet<INode>> depGraph = [];
+        Dictionary<Resource, ISet<Resource>> depGraph = [];
         var graphs = GetDecompositionGraph(prodGoal);
 
         foreach (var graph in graphs)
         {
-            foreach (INode key in graph.Keys.ToHashSet())
+            foreach (Resource key in graph.Keys.ToHashSet())
             {
                 if (!depGraph.ContainsKey(key))
                 {
-                    depGraph.Add(key, new HashSet<INode>());
+                    depGraph.Add(key, new HashSet<Resource>());
                 }
                 foreach (var subTasks in graph[key])
                 {
@@ -113,7 +112,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return depGraph;
     }
 
-    public FunctionPropertyData GetFunctionDataProperties(Uri function)
+    public FunctionPropertyData GetFunctionDataProperties(Resource function)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetFunctionPropertyDataQuery(function) { SparqlServer = server });
@@ -121,7 +120,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         {
             return new FunctionPropertyData()
             {
-                Function = new UriNode(function),
+                Function = function,
                 ProcedureId = null,
                 ProcedureName = null,
                 ProcedureDescription = null,
@@ -132,7 +131,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.Value;
     }
 
-    public FunctionObjectData GetFunctionObjectProperties(Uri function)
+    public FunctionObjectData GetFunctionObjectProperties(Resource function)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetFunctionObjectDataQuery(function) { SparqlServer = server });
@@ -140,7 +139,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         {
             return new FunctionObjectData()
             {
-                Function = new UriNode(function),
+                Function = function,
                 Target = [],
                 StartLocation = [],
                 EndLocation = [],
@@ -150,19 +149,19 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.Value;
     }
 
-    public IEnumerable<INode> GetFunctions()
+    public IEnumerable<Resource> GetFunctions()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "Function") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetFunctionsByAgent(Uri agent)
+    public IEnumerable<Resource> GetFunctionsByAgent(Resource agent)
     {
         return GetProperty(agent, UriPrefix.SOHO + "canPerform");
     }
 
-    public INode GetFunctionTarget(Uri function)
+    public Resource GetFunctionTarget(Resource function)
     {
         var functionObjects = GetFunctionObjectProperties(function);
         if (functionObjects.Target.Count == 0)
@@ -172,95 +171,95 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return functionObjects.Target.First();
     }
 
-    public IEnumerable<INode> GetHumans()
+    public IEnumerable<Resource> GetHumans()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "WorkerOperator") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetIndividuals(Uri classRes)
+    public IEnumerable<Resource> GetIndividuals(Resource classRes)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetIndividualsQuery(classRes) { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetInstances(Uri classRes)
+    public IEnumerable<Resource> GetInstances(Resource classRes)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(classRes) { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<INode> GetGoals()
+    public IEnumerable<Resource> GetGoals()
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(UriPrefix.SOHO + "ProductionGoal") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<IEnumerable<INode>> GetHierarchy(Uri prodGoal)
+    public IEnumerable<IEnumerable<Resource>> GetHierarchy(Resource prodGoal)
     {
         if (!HasResourceType(prodGoal, UriPrefix.SOHO + "ProductionGoal"))
         {
             throw new HRCKnowledgeException($"Wrong parameter type, a resource/individual of type <{UriPrefix.SOHO}ProductionGoal> expected, received <{prodGoal}> of other type!");
         }
         var graph = GetDependencyGraph(prodGoal);
-        Dictionary<INode, ISet<INode>> copy = new(graph);
-        foreach (UriNode task in copy.Keys.Where(k => k.NodeType == NodeType.Uri).Cast<UriNode>().ToHashSet())
+        Dictionary<Resource, ISet<Resource>> copy = new(graph);
+        foreach (Resource task in copy.Keys.ToHashSet())
         {
-            if (HasResourceType(task.Uri, UriPrefix.SOHO + "Function") &&
+            if (HasResourceType(task, UriPrefix.SOHO + "Function") &&
                     !copy[task].Any())
             {
                 graph.Remove(task);
-                foreach (UriNode key in graph.Keys.Where(k => k.NodeType == NodeType.Uri).Cast<UriNode>().ToHashSet())
+                foreach (Resource key in graph.Keys.ToHashSet())
                 {
                     graph[key].Remove(task);
                 }
             }
         }
 
-        Dictionary<INode, ISet<INode>> incidenceGraph = [];
-        HashSet<INode> visited = [];
-        foreach (INode from in graph.Keys.ToHashSet())
+        Dictionary<Resource, ISet<Resource>> incidenceGraph = [];
+        HashSet<Resource> visited = [];
+        foreach (Resource from in graph.Keys.ToHashSet())
         {
             visited.Add(from);
-            foreach (INode to in graph[from])
+            foreach (Resource to in graph[from])
             {
                 visited.Add(to);
                 if (!incidenceGraph.ContainsKey(to))
                 {
-                    incidenceGraph.Add(to, new HashSet<INode>());
+                    incidenceGraph.Add(to, new HashSet<Resource>());
                 }
                 incidenceGraph[to].Add(from);
             }
         }
 
-        foreach (INode node in visited)
+        foreach (Resource node in visited)
         {
             if (!incidenceGraph.ContainsKey(node))
             {
-                incidenceGraph.Add(node, new HashSet<INode>());
+                incidenceGraph.Add(node, new HashSet<Resource>());
             }
         }
 
         return RunTopolicalSort(incidenceGraph);
     }
 
-    public IEnumerable<INode> GetSubgoals()
+    public IEnumerable<Resource> GetSubgoals()
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<INode> GetProperty(Uri individual, Uri property)
+    public IEnumerable<Resource> GetProperty(Resource individual, Resource property)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetPropertyQuery(property, individual) { SparqlServer = server });
         return result.IsSuccess ? result.Value : [];
     }
 
-    public INode GetResourceType(Uri resource)
+    public Resource GetResourceType(Resource resource)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetResourceTypeQuery(resource) { SparqlServer = server });
@@ -271,52 +270,50 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.Value.First();
     }
 
-    public bool HasResourceType(Uri resource, Uri type)
+    public bool HasResourceType(Resource resource, Resource type)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetInstancesQuery(type) { SparqlServer = server });
-        return result.IsSuccess && result.Value.Where(n => n.NodeType == NodeType.Uri)
-            .Cast<UriNode>().Contains(new UriNode(resource));
+        return result.IsSuccess && result.Value.Contains(resource);
     }
 
-    public IDictionary<INode, ISet<INode>> RetrieveResourceStructure(Uri resource)
+    public IDictionary<Resource, ISet<Resource>> RetrieveResourceStructure(Resource resource)
     {
-        Dictionary<INode, ISet<INode>> structure = [];
+        Dictionary<Resource, ISet<Resource>> structure = [];
         RetrieveResourceStructure(resource, structure);
         return structure;
     }
 
-    private void RetrieveResourceStructure(Uri resource, Dictionary<INode, ISet<INode>> subTree)
+    private void RetrieveResourceStructure(Resource resource, Dictionary<Resource, ISet<Resource>> subTree)
     {
         var hasConstituent = GetProperty(resource, UriPrefix.DUL + "hasConstituent");
         if (hasConstituent == null || !hasConstituent.Any())
         {
-            subTree.Add(new UriNode(resource), new HashSet<INode>());
+            subTree.Add(resource, new HashSet<Resource>());
         }
         else
         {
-            HashSet<INode> children = [];
-            foreach (var child in hasConstituent.Where(child => child.NodeType == NodeType.Uri).Cast<UriNode>())
+            HashSet<Resource> children = [];
+            foreach (var child in hasConstituent)
             {
                 children.Add(child);
-                RetrieveResourceStructure(child.Uri, subTree);
+                RetrieveResourceStructure(child, subTree);
             }
-            subTree.Add(new UriNode(resource), children);
+            subTree.Add(resource, children);
         }
     }
 
     // TODO Very expensive, maybe translate to SPARQL query eventually...
-    private void RetrieveProductionTaskDecomposition(UriNode task, Dictionary<INode, IList<ISet<INode>>> graph)
+    private void RetrieveProductionTaskDecomposition(Resource task, Dictionary<Resource, IList<ISet<Resource>>> graph)
     {
-        var prop = GetProperty(task.Uri, UriPrefix.DUL + "hasConstituent")
-            .Where(n => n.NodeType == NodeType.Uri).Cast<UriNode>();
-        if (HasResourceType(task.Uri, UriPrefix.SOHO + "DisjunctiveComplexTask"))
+        var prop = GetProperty(task, UriPrefix.DUL + "hasConstituent");
+        if (HasResourceType(task, UriPrefix.SOHO + "DisjunctiveComplexTask"))
         {
             foreach (var subTask in prop)
             {
-                if (HasResourceType(subTask.Uri, UriPrefix.SOHO + "ProductionTask"))
+                if (HasResourceType(subTask, UriPrefix.SOHO + "ProductionTask"))
                 {
-                    HashSet<INode> disjunction = [];
+                    HashSet<Resource> disjunction = [];
                     disjunction.Add(subTask);
                     graph[task].Add(disjunction);
 
@@ -331,17 +328,17 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         }
         else
         {
-            HashSet<INode> subTasks = [];
+            HashSet<Resource> subTasks = [];
             foreach (var subTask in prop)
             {
-                if (HasResourceType(subTask.Uri, UriPrefix.SOHO + "ProductionTask"))
+                if (HasResourceType(subTask, UriPrefix.SOHO + "ProductionTask"))
                 {
                     subTasks.Add(subTask);
                     if (!graph.ContainsKey(subTask))
                     {
                         graph.Add(subTask, []);
                     }
-                    if (!HasResourceType(subTask.Uri, UriPrefix.SOHO + "Function"))
+                    if (!HasResourceType(subTask, UriPrefix.SOHO + "Function"))
                     {
                         RetrieveProductionTaskDecomposition(subTask, graph);
                     }
@@ -352,17 +349,17 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         }
     }
 
-    private static List<IList<INode>> RunTopolicalSort(Dictionary<INode, ISet<INode>> dependencies)
+    private static List<IList<Resource>> RunTopolicalSort(Dictionary<Resource, ISet<Resource>> dependencies)
     {
-        Dictionary<INode, ISet<INode>> graph = new(dependencies);
-        List<INode> sorted = [];
-        foreach (INode key in graph.Keys.ToHashSet()) {
+        Dictionary<Resource, ISet<Resource>> graph = new(dependencies);
+        List<Resource> sorted = [];
+        foreach (Resource key in graph.Keys.ToHashSet()) {
             if (!graph[key].Any()) {
                 sorted.Add(key);
             }
         }
 
-        List<IList<INode>> hierarchy = [];
+        List<IList<Resource>> hierarchy = [];
         int topLevel = 0;
         while (sorted.Count != 0)
         {
@@ -373,7 +370,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
                 }
                 hierarchy[topLevel].Add(res);
                 graph.Remove(res);
-                foreach (INode key in graph.Keys.ToHashSet()) {
+                foreach (Resource key in graph.Keys.ToHashSet()) {
                     graph[key].Remove(res);
                 }
             }
@@ -381,7 +378,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
             sorted.Clear();
             topLevel++;
 
-            foreach (INode key in graph.Keys.ToHashSet()) {
+            foreach (Resource key in graph.Keys.ToHashSet()) {
                 if (!graph[key].Any()) {
                     sorted.Add(key);
                 }

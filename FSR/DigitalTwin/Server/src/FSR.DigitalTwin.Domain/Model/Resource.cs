@@ -49,9 +49,26 @@ public class Resource : SharedKernel.Resource.Resource
         NodeType.Literal => new Resource((LiteralNode)node),
         _ => throw new ArgumentException("should not happen")
     };
+    public static explicit operator Resource(UriNode node) => new(node);
+    public static explicit operator Resource(BlankNode node) => new(node);
+    public static explicit operator Resource(LiteralNode node) => new(node);
 
-    public static Resource FromNode(INode node) => node is BaseNode ? (Resource)node : throw new ArgumentException("should not happen");
+    public static explicit operator BaseNode(Resource resource)
+    {
+        if (resource.Uri != null)
+        {
+            return new UriNode(resource.Uri);
+        }
+        if (resource.LocalName != null)
+        {
+            return new BlankNode(resource.LocalName);
+        }
+        throw new InvalidCastException("missing identifier");
+    }
+    public static implicit operator Resource(Uri uri) => new() { Uri = uri };
 
-    public override string ToString() => Uri?.ToSafeString() ?? LocalName ?? "_";
+    public static Resource FromNode(INode node) => node is BaseNode n ? ((Resource)n) : throw new ArgumentException("should not happen");
+
+    public override string ToString() => Uri?.ToSafeString() ?? $"_:{LocalName ?? "_"}";
     public override StreamReader GetStreamReader() => new(new MemoryStream(_bytes));
 }

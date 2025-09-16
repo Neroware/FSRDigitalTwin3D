@@ -5,11 +5,11 @@ namespace FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 
 public interface IHRCKnowledgeService
 {
-    IEnumerable<Resource> GetInstances(Uri classRes);
-    IEnumerable<Resource> GetIndividuals(Uri classRes);
-    IEnumerable<Resource> GetProperty(Uri individual, Uri property);
-    bool HasResourceType(Uri resource, Uri type);
-    IDictionary<Resource, ISet<Resource>> RetrieveResourceStructure(Uri resource);
+    IEnumerable<Resource> GetInstances(Resource classRes);
+    IEnumerable<Resource> GetIndividuals(Resource classRes);
+    IEnumerable<Resource> GetProperty(Resource individual, Resource property);
+    bool HasResourceType(Resource resource, Resource type);
+    IDictionary<Resource, ISet<Resource>> RetrieveResourceStructure(Resource resource);
     IEnumerable<Resource> GetGoals();
     IEnumerable<Resource> GetCompoundGoals();
     IEnumerable<Resource> GetSubgoals();
@@ -18,12 +18,12 @@ public interface IHRCKnowledgeService
     IEnumerable<Resource> GetHumans();
     IEnumerable<Resource> GetCobots();
     IEnumerable<Resource> GetFunctions();
-    IEnumerable<Resource> GetFunctionsByAgent(Uri agent);
-    IEnumerable<IDictionary<Resource, IList<ISet<Resource>>>> GetDecompositionGraph(Uri goal);
-    IDictionary<Resource, ISet<Resource>> GetDependencyGraph(Uri goal);
-    IEnumerable<IEnumerable<Resource>> GetHierarchy(Uri goal);
-    Resource GetResourceType(Uri resource);
-    Resource GetFunctionTarget(Uri function);
-    FunctionPropertyData GetFunctionDataProperties(Uri function);
-    FunctionObjectData GetFunctionObjectProperties(Uri function);
+    IEnumerable<Resource> GetFunctionsByAgent(Resource agent);
+    IEnumerable<IDictionary<Resource, IList<ISet<Resource>>>> GetDecompositionGraph(Resource goal);
+    IDictionary<Resource, ISet<Resource>> GetDependencyGraph(Resource goal);
+    IEnumerable<IEnumerable<Resource>> GetHierarchy(Resource goal);
+    Resource GetResourceType(Resource resource);
+    Resource GetFunctionTarget(Resource function);
+    FunctionPropertyData GetFunctionDataProperties(Resource function);
+    FunctionObjectData GetFunctionObjectProperties(Resource function);
 }

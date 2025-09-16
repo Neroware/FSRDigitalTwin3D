@@ -11,8 +11,17 @@ public abstract class Resource
     public override bool Equals(object? other) => other switch
     {
         null => false,
-        Resource => Uri != null && ((Resource)other).Uri == Uri,
+        Resource res => Uri == res.Uri && LocalName == res.LocalName,
         _ => false
     };
-    public override int GetHashCode() => Uri?.GetHashCode() ?? 0;
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            hash = hash * 31 + (Uri?.OriginalString.GetHashCode() ?? 0);
+            hash = hash * 31 + (LocalName?.GetHashCode() ?? 0);
+            return hash;
+        }
+    }
 }
