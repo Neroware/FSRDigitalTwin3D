@@ -10,13 +10,6 @@ namespace FSR.DigitalTwin.App.GRPC.Profiles;
 public class AssetAdministrationShellProfile : Profile {
     public AssetAdministrationShellProfile()
     {
-        // Necessary because protobuf does not have a concept of 'null'
-        CreateMap<string, string>().ConvertUsing(s => s ?? string.Empty);
-
-        // Convert System.Byte[] to Google.Protobuf.ByteString
-        CreateMap<byte[], ByteString>().ConvertUsing(bytes => ByteString.CopyFrom(bytes));
-        CreateMap<ByteString, byte[]>().ConvertUsing(bytes => bytes.ToArray());
-
         // Map SubmodelElementDTO <-> DataElementDTO
         CreateMap<SubmodelElementDTO, DataElementDTO>();
         CreateMap<DataElementDTO, SubmodelElementDTO>();

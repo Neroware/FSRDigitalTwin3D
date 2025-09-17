@@ -6,8 +6,25 @@ package FSR.DigitalTwin.App.GRPC;
 
 message Empty {}
 
-message URI {
-    string prefix = 1;
-    string tail = 2;
-    string value = 3;
+message Uri {
+    string absolutePath = 1;
+    string absoluteUri = 2;
+    string authority = 3;
+    string dnsSafeHost = 4;
+    string host = 5;
+    string idnHost = 6;
+    bool isAbsoluteUri = 7;
+    bool isDefaultPort = 8;
+    bool isFile = 9;
+    bool isLoopback = 10;
+    bool isUnc = 11;
+    string localPath = 12;
+    string originalString = 13;
+    string pathAndQuery = 14;
+    int32 port = 15;
+    string query = 16;
+    string scheme = 17;
+    string segments = 18;
+    string userEscaped = 19;
+    string userInfo = 20;
 }

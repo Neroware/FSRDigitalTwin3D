@@ -8,6 +8,8 @@ using Grpc.Core;
 
 namespace FSR.DigitalTwin.App.GRPC.Services.RPC;
 
+using Uri = System.Uri;
+
 public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCProcessSimulationServiceBase
 {
     private readonly IAppLogger<HRCProcessSimulationRpcService> _logger;
