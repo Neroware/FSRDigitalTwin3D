@@ -18,6 +18,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process
     {
         public Uri ProcessId { init; get; }
         public virtual EProcessType ProcessType => EProcessType.Event;
+        public DateTime Timestamp { init; get; }
         public object[] Inputs { init; get; }
         public object[] InOuts { init; get; }
         public override int GetHashCode() => ProcessId.GetHashCode();

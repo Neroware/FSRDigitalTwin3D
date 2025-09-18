@@ -15,12 +15,17 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
         public IDigitalWorkspaceServerConnection Connection { get => _connection ?? throw new System.Exception("Should not happen!"); }
         public IDigitalWorkspaceOperational Operational { get => _operational ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
         public IDigitalWorkspaceEntityApi Entities { get => _entityApi ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
+        public IDigitalWorkspaceKnowledge Knowledge { get => _knowledge ?? throw new RpcException(Status.DefaultCancelled, "No connection established!"); }
+
         public DigitalWorkspace.EOperationMode OperationMode { get; set; }
         public string WorkspaceName => digitalWorkspaceName;
+        public Channel RpcChannel => _connection.RpcChannel;
 
         private GrpcDigitalWorkspaceConnection _connection = null;
         private GrpcDigitalWorkspaceOperational _operational = null;
         private GrpcDigitalWorkspaceApiBridge _entityApi = null;
+        private GrpcDigitalWorkspaceKnowledge _knowledge = null;
+
 
         void Awake() {
             DigitalWorkspace.SetWorkspace(this);
@@ -28,9 +33,11 @@ namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
             _connection.IsConnected.Where(x => x).Subscribe(_ => OnConnect()).AddTo(this);
         }
 
-        public void OnConnect() {
+        public void OnConnect()
+        {
             _operational ??= new GrpcDigitalWorkspaceOperational(_connection.RpcChannel);
             _entityApi ??= new GrpcDigitalWorkspaceApiBridge(_connection.RpcChannel);
+            _knowledge ??= new GrpcDigitalWorkspaceKnowledge(_connection.RpcChannel);
 
             // For testing purposes...
             // var ur5e = "https://www.hs-emden-leer.de/ids/aas/2414_0152_5032_4364";

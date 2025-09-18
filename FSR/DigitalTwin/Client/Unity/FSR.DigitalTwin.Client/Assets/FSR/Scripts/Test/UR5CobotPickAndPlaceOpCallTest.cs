@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FSR.DigitalTwin.Client.Unity.GRPC.AAS;
+using FSR.DigitalTwin.Client.Unity.GRPC;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using UniRx;

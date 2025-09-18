@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process;
+using static FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationService;
 
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
 {
     public interface IProcessSimulation
     {
-        IProcessSimulationContext Context { get; }
-
         IObservable<IProcessSimulation> SimulationStarted { get; }
         IObservable<IProcessSimulation> SimulationFinished { get; }
         IObservable<IProcessSimulation> SimulationReset { get; }
@@ -28,10 +26,12 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
 
     public interface IProcessSimulationContext
     {
-        HRCProcessSimulationService SimulationService { init; get; }
+        HRCProcessSimulationServiceClient SimulationService { get; }
         IList<IDigitalTwinEntity> Actors { init; get; }
         IList<ISocialOperator> Operators { init; get; }
-        IDictionary<Goal, List<Method>> Methods { init; get; }
+        IDictionary<Goal, IList<Method>> Goals { init; get; }
+        IDictionary<Method, IList<ISet<Process.Process>>> Methods { init; get; }
+        IDictionary<ISocialOperator, Function> Functions { init; get; }
 
         /* TODO Later add parameters as well... */
     }
