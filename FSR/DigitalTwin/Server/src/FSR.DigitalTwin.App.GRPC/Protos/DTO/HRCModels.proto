@@ -69,15 +69,19 @@ enum TaskTyp {
     TASK_TYPE_FUNCTION = 4;
 }
 
-message BaseTaskDTO {
-    string id = 1;
-    TaskTyp type = 2;
-    repeated string subTasks = 3; 
+message TaskDTO {
+    string taskId = 1;
+    repeated SubtaskSetDTO steps = 2;
 }
 
-message GoalDecompositionDTO {
-    GoalDTO goal = 1;
-    map<string, BaseTaskDTO> graph = 2;
+message SubtaskSetDTO {
+    string taskId = 1;
+    repeated string subTasks = 2;
+}
+
+message MethodDTO {
+    string goalId = 1;
+    map<string, TaskDTO> graph = 2;
 }
 
 message AgentDTO {

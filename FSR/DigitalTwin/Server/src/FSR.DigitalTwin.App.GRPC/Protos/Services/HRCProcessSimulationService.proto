@@ -37,7 +37,7 @@ message HRCProcessSimulationLogDTO {
 service HRCProcessSimulationService {
     rpc CreateSimulationContext (CreateSimulationContextRequest) returns (HRCProcessSimulationContextDTO);
     rpc SendSimulationLog (HRCProcessSimulationLogDTO) returns (Empty);
-    rpc DecomposeProcess (GoalDTO) returns (GoalDecompositionDTO);
+    rpc DecomposeProcess (GoalDTO) returns (stream MethodDTO);
     rpc GetFunctionPropertyData (HRCTaskDTO) returns (FunctionPropertyDataDTO);
     rpc GetFunctionObjectData (HRCTaskDTO) returns (FunctionObjectDataDTO);
     rpc GetAllAgents (Empty) returns (stream AgentDTO);

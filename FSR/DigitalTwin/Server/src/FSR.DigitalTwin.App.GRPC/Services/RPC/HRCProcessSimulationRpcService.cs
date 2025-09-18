@@ -92,23 +92,31 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
         return Task.FromResult(_mapper.Map<FunctionPropertyDataDTO>(functionPropertyData));
     }
 
-    public override Task<GoalDecompositionDTO> DecomposeProcess(GoalDTO request, ServerCallContext context)
+    public override async Task DecomposeProcess(GoalDTO request, IServerStreamWriter<MethodDTO> responseStream, ServerCallContext context)
     {
         var decompositions = _knowledgeBase.GetDecompositionGraph(
-            request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId } : new Resource() { Uri = new Uri(request.GoalId) });
+            request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId } 
+            : new Resource() { Uri = new Uri(request.GoalId) });
 
-        GoalDecompositionDTO graph = new() { Goal = request };
-        if (!decompositions.Any())
+        foreach (var method in decompositions)
         {
-            return Task.FromResult(graph);
+            MethodDTO methodDTO = new() { GoalId = request.GoalId };
+            foreach (var pair in method)
+            {
+                TaskDTO taskDTO = new() { TaskId = pair.Key.ToString() };
+                foreach (ISet<Resource> task in pair.Value)
+                {
+                    SubtaskSetDTO subtaskSetDTO = new() { TaskId = pair.Key.ToString() };
+                    foreach (Resource subTask in task)
+                    {
+                        subtaskSetDTO.SubTasks.Add(subTask.ToString());
+                    }
+                    taskDTO.Steps.Add(subtaskSetDTO);
+                }
+                methodDTO.Graph.Add(pair.Key.ToString(), taskDTO);
+            }
+            await responseStream.WriteAsync(methodDTO);
         }
-
-        // (!) An arbitrary selection of the first decomposition, which would be first method.
-        // This here would be result of a future task scheduling/assignment service.
-        var decomposition = decompositions.First();
-
-        // TODO User proper scheduling
-        return Task.FromResult(graph);
     }
 
     private static HRCAgentType GetAgentType(Resource type)
