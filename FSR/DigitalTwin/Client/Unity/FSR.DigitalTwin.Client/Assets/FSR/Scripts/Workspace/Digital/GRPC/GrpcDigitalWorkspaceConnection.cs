@@ -3,16 +3,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using FSR.DigitalTwin.App.GRPC.Services.DigitalTwinClientConnectionService;
-using FSR.DigitalTwin.Client.Unity.GRPC.AAS;
-using FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS.Utils;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
 using Grpc.Core;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC {
 
     public class GrpcDigitalWorkspaceConnection : IDigitalWorkspaceServerConnection
     {

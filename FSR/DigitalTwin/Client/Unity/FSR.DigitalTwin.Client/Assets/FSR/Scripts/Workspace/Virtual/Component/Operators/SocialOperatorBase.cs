@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using ProcessResult = FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification.ProcessResult;
 using FunctionResult = FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process.ProcessResult;
-using FSR.DigitalTwin.Client.Unity.GRPC;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC;
 
 public abstract class SocialOperatorBase : DigitalTwinComponentBase, ISocialOperator
 {

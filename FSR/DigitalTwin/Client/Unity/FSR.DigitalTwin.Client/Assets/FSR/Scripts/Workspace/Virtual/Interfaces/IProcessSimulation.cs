@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process;
 using static FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationService;
 
@@ -27,11 +26,12 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
     public interface IProcessSimulationContext
     {
         HRCProcessSimulationServiceClient SimulationService { get; }
-        IList<IDigitalTwinEntity> Actors { init; get; }
-        IList<ISocialOperator> Operators { init; get; }
+        IList<DigitalTwinActorBase> Actors { init; get; }
+        IList<SocialOperatorBase> Operators { init; get; }
         IDictionary<Goal, IList<Method>> Goals { init; get; }
-        IDictionary<Method, IList<ISet<Process.Process>>> Methods { init; get; }
-        IDictionary<ISocialOperator, Function> Functions { init; get; }
+        IDictionary<Method, IList<Process.Process>> Methods { init; get; }
+        IDictionary<Task, IList<Process.Process>> Tasks { init; get; }
+        IDictionary<Function, SocialOperatorBase> Functions { init; get; }
 
         /* TODO Later add parameters as well... */
     }

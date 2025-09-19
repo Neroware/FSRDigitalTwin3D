@@ -59,10 +59,11 @@ message HRCModelDTO {
 
 message GoalDTO {
     string goalId = 1;
+    repeated MethodDTO methods = 2;
 }
 
-enum TaskTyp {
-    TASK_TYPE_METHOD = 0;
+enum TaskType {
+    TASK_TYPE_TASK = 0;
     TASK_TYPE_COMPLEX = 1;
     TASK_TYPE_CONJUCTION = 2;
     TASK_TYPE_DISJUCTION = 3;
@@ -71,12 +72,8 @@ enum TaskTyp {
 
 message TaskDTO {
     string taskId = 1;
-    repeated SubtaskSetDTO steps = 2;
-}
-
-message SubtaskSetDTO {
-    string taskId = 1;
-    repeated string subTasks = 2;
+    TaskType type = 2;
+    repeated TaskDTO subTasks = 3;
 }
 
 message MethodDTO {

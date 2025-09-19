@@ -1,7 +1,7 @@
 using System;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS.Utils {
 
     public static class DataTypeDefXsdConverter {
 

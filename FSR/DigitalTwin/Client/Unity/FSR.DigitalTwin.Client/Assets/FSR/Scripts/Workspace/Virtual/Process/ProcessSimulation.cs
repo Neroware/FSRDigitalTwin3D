@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using SimulationServer = FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationService.HRCProcessSimulationServiceClient;
 
@@ -16,12 +15,12 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process
                 _server = server;
             }
             public SimulationServer SimulationService => _server;
-            public IList<IDigitalTwinEntity> Actors { get; init; } = new List<IDigitalTwinEntity>();
-            public IList<ISocialOperator> Operators { get; init; } = new List<ISocialOperator>();
+            public IList<DigitalTwinActorBase> Actors { get; init; } = new List<DigitalTwinActorBase>();
+            public IList<SocialOperatorBase> Operators { get; init; } = new List<SocialOperatorBase>();
             public IDictionary<Goal, IList<Method>> Goals { get; init; } = new Dictionary<Goal, IList<Method>>();
-            public IDictionary<Method, IList<ISet<Process>>> Methods { get; init; } = new Dictionary<Method, IList<ISet<Process>>>();
-            public IDictionary<ISocialOperator, Function> Functions { get; init; } = new Dictionary<ISocialOperator, Function>();
-
+            public IDictionary<Task, IList<Process>> Tasks { get; init; } = new Dictionary<Task, IList<Process>>();
+            public IDictionary<Method, IList<Process>> Methods { get; init; } = new Dictionary<Method, IList<Process>>();
+            public IDictionary<Function, SocialOperatorBase> Functions { get; init; } = new Dictionary<Function, SocialOperatorBase>();
         }
 
         public IObservable<IProcessSimulation> SimulationStarted => throw new NotImplementedException();

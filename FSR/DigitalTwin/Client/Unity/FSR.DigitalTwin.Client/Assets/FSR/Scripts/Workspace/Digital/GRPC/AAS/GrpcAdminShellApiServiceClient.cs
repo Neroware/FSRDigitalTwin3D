@@ -4,7 +4,7 @@ using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.Services.SubmodelService;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.SubmodelRepository;
 using Grpc.Core;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS {
 
 /// <summary>
 /// API service client according to 'Details of the Asset Administration Shell - Part 2'

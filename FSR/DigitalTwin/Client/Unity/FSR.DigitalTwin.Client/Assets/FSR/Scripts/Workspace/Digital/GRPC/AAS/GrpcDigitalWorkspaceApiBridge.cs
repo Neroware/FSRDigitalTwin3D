@@ -6,11 +6,11 @@ using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.AssetAdministrationShellRepository;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.AssetAdministrationShellService;
 using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3.Services.Services.SubmodelService;
-using FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils;
+using FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS.Utils;
 using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Interfaces;
 using Grpc.Core;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS {
 
     public class GrpcDigitalWorkspaceApiBridge : IDigitalWorkspaceEntityApi
     {

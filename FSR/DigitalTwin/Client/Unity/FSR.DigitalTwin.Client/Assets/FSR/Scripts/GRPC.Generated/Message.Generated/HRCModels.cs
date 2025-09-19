@@ -42,35 +42,36 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKcm9ib3RUYXNrcxgDIAMo",
             "CzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPEjgKCmh1",
             "bWFuVGFza3MYBCADKAsyJC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJD",
-            "VGFza0RUTyIZCgdHb2FsRFRPEg4KBmdvYWxJZBgBIAEoCSJRCgdUYXNrRFRP",
-            "Eg4KBnRhc2tJZBgBIAEoCRI2CgVzdGVwcxgCIAMoCzInLkZTUi5EaWdpdGFs",
-            "VHdpbi5BcHAuR1JQQy5TdWJ0YXNrU2V0RFRPIjEKDVN1YnRhc2tTZXREVE8S",
-            "DgoGdGFza0lkGAEgASgJEhAKCHN1YlRhc2tzGAIgAygJIqsBCglNZXRob2RE",
-            "VE8SDgoGZ29hbElkGAEgASgJEj0KBWdyYXBoGAIgAygLMi4uRlNSLkRpZ2l0",
-            "YWxUd2luLkFwcC5HUlBDLk1ldGhvZERUTy5HcmFwaEVudHJ5Gk8KCkdyYXBo",
-            "RW50cnkSCwoDa2V5GAEgASgJEjAKBXZhbHVlGAIgASgLMiEuRlNSLkRpZ2l0",
-            "YWxUd2luLkFwcC5HUlBDLlRhc2tEVE86AjgBIloKCEFnZW50RFRPEgoKAmlk",
-            "GAEgASgJEjQKBHR5cGUYAiABKA4yJi5GU1IuRGlnaXRhbFR3aW4uQXBwLkdS",
-            "UEMuSFJDQWdlbnRUeXBlEgwKBG5hbWUYAyABKAkqSwoJQWdlbnRUeXBlEhIK",
-            "DkFHRU5UX1RZUEVfQU5ZEAASFAoQQUdFTlRfVFlQRV9IVU1BThABEhQKEEFH",
-            "RU5UX1RZUEVfUk9CT1QQAiqeAQoMSFJDQWdlbnRUeXBlEhwKGEhSQ19BR0VO",
-            "VF9UWVBFX1VOREVGSU5FRBAAEhgKFEhSQ19BR0VOVF9UWVBFX0hVTUFOEAES",
-            "GAoUSFJDX0FHRU5UX1RZUEVfUk9CT1QQAhIiCh5IUkNfQUdFTlRfVFlQRV9X",
-            "T1JLRVJfT1BFUkFUT1IQAxIYChRIUkNfQUdFTlRfVFlQRV9DT0JPVBAEKoIB",
-            "CgdUYXNrVHlwEhQKEFRBU0tfVFlQRV9NRVRIT0QQABIVChFUQVNLX1RZUEVf",
-            "Q09NUExFWBABEhgKFFRBU0tfVFlQRV9DT05KVUNUSU9OEAISGAoUVEFTS19U",
-            "WVBFX0RJU0pVQ1RJT04QAxIWChJUQVNLX1RZUEVfRlVOQ1RJT04QBEInqgIk",
-            "RlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlByb2Nlc3MuSFJDYgZwcm90bzM="));
+            "VGFza0RUTyJPCgdHb2FsRFRPEg4KBmdvYWxJZBgBIAEoCRI0CgdtZXRob2Rz",
+            "GAIgAygLMiMuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLk1ldGhvZERUTyKA",
+            "AQoHVGFza0RUTxIOCgZ0YXNrSWQYASABKAkSMAoEdHlwZRgCIAEoDjIiLkZT",
+            "Ui5EaWdpdGFsVHdpbi5BcHAuR1JQQy5UYXNrVHlwZRIzCghzdWJUYXNrcxgD",
+            "IAMoCzIhLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5UYXNrRFRPIqsBCglN",
+            "ZXRob2REVE8SDgoGZ29hbElkGAEgASgJEj0KBWdyYXBoGAIgAygLMi4uRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLk1ldGhvZERUTy5HcmFwaEVudHJ5Gk8K",
+            "CkdyYXBoRW50cnkSCwoDa2V5GAEgASgJEjAKBXZhbHVlGAIgASgLMiEuRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLlRhc2tEVE86AjgBIloKCEFnZW50RFRP",
+            "EgoKAmlkGAEgASgJEjQKBHR5cGUYAiABKA4yJi5GU1IuRGlnaXRhbFR3aW4u",
+            "QXBwLkdSUEMuSFJDQWdlbnRUeXBlEgwKBG5hbWUYAyABKAkqSwoJQWdlbnRU",
+            "eXBlEhIKDkFHRU5UX1RZUEVfQU5ZEAASFAoQQUdFTlRfVFlQRV9IVU1BThAB",
+            "EhQKEEFHRU5UX1RZUEVfUk9CT1QQAiqeAQoMSFJDQWdlbnRUeXBlEhwKGEhS",
+            "Q19BR0VOVF9UWVBFX1VOREVGSU5FRBAAEhgKFEhSQ19BR0VOVF9UWVBFX0hV",
+            "TUFOEAESGAoUSFJDX0FHRU5UX1RZUEVfUk9CT1QQAhIiCh5IUkNfQUdFTlRf",
+            "VFlQRV9XT1JLRVJfT1BFUkFUT1IQAxIYChRIUkNfQUdFTlRfVFlQRV9DT0JP",
+            "VBAEKoEBCghUYXNrVHlwZRISCg5UQVNLX1RZUEVfVEFTSxAAEhUKEVRBU0tf",
+            "VFlQRV9DT01QTEVYEAESGAoUVEFTS19UWVBFX0NPTkpVQ1RJT04QAhIYChRU",
+            "QVNLX1RZUEVfRElTSlVDVElPThADEhYKElRBU0tfVFlQRV9GVU5DVElPThAE",
+            "QieqAiRGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuUHJvY2Vzcy5IUkNiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCAgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskTyp), }, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCAgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO.Parser, new[]{ "FunctionId", "ProcedureName", "ProcedureDescr", "ProcedureId", "Duration", "DurationUncertainty" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser, new[]{ "FunctionId", "Target", "StartLocation", "EndLocation", "Location" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "Id", "Type", "Target", "Name", "Description", "Goal", "Agent", "MinDuration", "MaxDuration", "AverageDuration", "DurationUncertainty", "SuccessRate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO.Parser, new[]{ "Horizon", "Tasks", "RobotTasks", "HumanTasks" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser, new[]{ "GoalId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO.Parser, new[]{ "TaskId", "Steps" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO.Parser, new[]{ "TaskId", "SubTasks" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser, new[]{ "GoalId", "Methods" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO.Parser, new[]{ "TaskId", "Type", "SubTasks" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO.Parser, new[]{ "GoalId", "Graph" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO.Parser, new[]{ "Id", "Type", "Name" }, null, null, null)
           }));
@@ -93,12 +94,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [pbr::OriginalName("HRC_AGENT_TYPE_COBOT")] Cobot = 4,
   }
 
-  public enum TaskTyp {
-    [pbr::OriginalName("TASK_TYPE_METHOD")] EMethod = 0,
-    [pbr::OriginalName("TASK_TYPE_COMPLEX")] EComplex = 1,
-    [pbr::OriginalName("TASK_TYPE_CONJUCTION")] EConjuction = 2,
-    [pbr::OriginalName("TASK_TYPE_DISJUCTION")] EDisjuction = 3,
-    [pbr::OriginalName("TASK_TYPE_FUNCTION")] EFunction = 4,
+  public enum TaskType {
+    [pbr::OriginalName("TASK_TYPE_TASK")] Task = 0,
+    [pbr::OriginalName("TASK_TYPE_COMPLEX")] Complex = 1,
+    [pbr::OriginalName("TASK_TYPE_CONJUCTION")] Conjuction = 2,
+    [pbr::OriginalName("TASK_TYPE_DISJUCTION")] Disjuction = 3,
+    [pbr::OriginalName("TASK_TYPE_FUNCTION")] Function = 4,
   }
 
   #endregion
@@ -1266,6 +1267,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public GoalDTO(GoalDTO other) : this() {
       goalId_ = other.goalId_;
+      methods_ = other.methods_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1285,6 +1287,16 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
+    /// <summary>Field number for the "methods" field.</summary>
+    public const int MethodsFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO> _repeated_methods_codec
+        = pb::FieldCodec.ForMessage(18, global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO.Parser);
+    private readonly pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO> methods_ = new pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO> Methods {
+      get { return methods_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as GoalDTO);
@@ -1299,6 +1311,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         return true;
       }
       if (GoalId != other.GoalId) return false;
+      if(!methods_.Equals(other.methods_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1306,6 +1319,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     public override int GetHashCode() {
       int hash = 1;
       if (GoalId.Length != 0) hash ^= GoalId.GetHashCode();
+      hash ^= methods_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1323,6 +1337,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(10);
         output.WriteString(GoalId);
       }
+      methods_.WriteTo(output, _repeated_methods_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1334,6 +1349,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (GoalId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(GoalId);
       }
+      size += methods_.CalculateSize(_repeated_methods_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1348,6 +1364,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.GoalId.Length != 0) {
         GoalId = other.GoalId;
       }
+      methods_.Add(other.methods_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1361,6 +1378,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             break;
           case 10: {
             GoalId = input.ReadString();
+            break;
+          }
+          case 18: {
+            methods_.AddEntriesFrom(input, _repeated_methods_codec);
             break;
           }
         }
@@ -1395,7 +1416,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TaskDTO(TaskDTO other) : this() {
       taskId_ = other.taskId_;
-      steps_ = other.steps_.Clone();
+      type_ = other.type_;
+      subTasks_ = other.subTasks_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1415,14 +1437,25 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
-    /// <summary>Field number for the "steps" field.</summary>
-    public const int StepsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO> _repeated_steps_codec
-        = pb::FieldCodec.ForMessage(18, global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO.Parser);
-    private readonly pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO> steps_ = new pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO>();
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType type_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.SubtaskSetDTO> Steps {
-      get { return steps_; }
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subTasks" field.</summary>
+    public const int SubTasksFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO> _repeated_subTasks_codec
+        = pb::FieldCodec.ForMessage(26, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO.Parser);
+    private readonly pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO> subTasks_ = new pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO> SubTasks {
+      get { return subTasks_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1439,155 +1472,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         return true;
       }
       if (TaskId != other.TaskId) return false;
-      if(!steps_.Equals(other.steps_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (TaskId.Length != 0) hash ^= TaskId.GetHashCode();
-      hash ^= steps_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (TaskId.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(TaskId);
-      }
-      steps_.WriteTo(output, _repeated_steps_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (TaskId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(TaskId);
-      }
-      size += steps_.CalculateSize(_repeated_steps_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(TaskDTO other) {
-      if (other == null) {
-        return;
-      }
-      if (other.TaskId.Length != 0) {
-        TaskId = other.TaskId;
-      }
-      steps_.Add(other.steps_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            TaskId = input.ReadString();
-            break;
-          }
-          case 18: {
-            steps_.AddEntriesFrom(input, _repeated_steps_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class SubtaskSetDTO : pb::IMessage<SubtaskSetDTO> {
-    private static readonly pb::MessageParser<SubtaskSetDTO> _parser = new pb::MessageParser<SubtaskSetDTO>(() => new SubtaskSetDTO());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SubtaskSetDTO> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SubtaskSetDTO() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SubtaskSetDTO(SubtaskSetDTO other) : this() {
-      taskId_ = other.taskId_;
-      subTasks_ = other.subTasks_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SubtaskSetDTO Clone() {
-      return new SubtaskSetDTO(this);
-    }
-
-    /// <summary>Field number for the "taskId" field.</summary>
-    public const int TaskIdFieldNumber = 1;
-    private string taskId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string TaskId {
-      get { return taskId_; }
-      set {
-        taskId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "subTasks" field.</summary>
-    public const int SubTasksFieldNumber = 2;
-    private static readonly pb::FieldCodec<string> _repeated_subTasks_codec
-        = pb::FieldCodec.ForString(18);
-    private readonly pbc::RepeatedField<string> subTasks_ = new pbc::RepeatedField<string>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<string> SubTasks {
-      get { return subTasks_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as SubtaskSetDTO);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SubtaskSetDTO other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (TaskId != other.TaskId) return false;
+      if (Type != other.Type) return false;
       if(!subTasks_.Equals(other.subTasks_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1596,6 +1481,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     public override int GetHashCode() {
       int hash = 1;
       if (TaskId.Length != 0) hash ^= TaskId.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
       hash ^= subTasks_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1614,6 +1500,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(10);
         output.WriteString(TaskId);
       }
+      if (Type != 0) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Type);
+      }
       subTasks_.WriteTo(output, _repeated_subTasks_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1626,6 +1516,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (TaskId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(TaskId);
       }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
       size += subTasks_.CalculateSize(_repeated_subTasks_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1634,12 +1527,15 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SubtaskSetDTO other) {
+    public void MergeFrom(TaskDTO other) {
       if (other == null) {
         return;
       }
       if (other.TaskId.Length != 0) {
         TaskId = other.TaskId;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
       }
       subTasks_.Add(other.subTasks_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1657,7 +1553,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             TaskId = input.ReadString();
             break;
           }
-          case 18: {
+          case 16: {
+            Type = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType) input.ReadEnum();
+            break;
+          }
+          case 26: {
             subTasks_.AddEntriesFrom(input, _repeated_subTasks_codec);
             break;
           }
@@ -1675,7 +1575,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[7]; }
+      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1824,7 +1724,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[8]; }
+      get { return global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

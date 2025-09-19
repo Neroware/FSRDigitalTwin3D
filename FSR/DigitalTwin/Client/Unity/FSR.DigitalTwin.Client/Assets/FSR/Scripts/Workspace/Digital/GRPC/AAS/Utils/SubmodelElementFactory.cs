@@ -3,7 +3,7 @@ using FSR.DigitalTwin.App.GRPC.Aas.Lib.V3;
 using Google.Protobuf;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS.Utils
 {
 
     public static class SubmodelElementFactory {

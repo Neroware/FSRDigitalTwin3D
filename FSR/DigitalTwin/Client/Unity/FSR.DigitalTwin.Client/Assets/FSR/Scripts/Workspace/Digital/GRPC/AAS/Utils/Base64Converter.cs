@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS.Utils {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS.Utils {
 
     public static class Base64Converter {
 

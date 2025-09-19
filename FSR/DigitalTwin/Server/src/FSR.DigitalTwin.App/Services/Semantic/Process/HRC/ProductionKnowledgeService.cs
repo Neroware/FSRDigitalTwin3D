@@ -7,7 +7,6 @@ using FSR.DigitalTwin.App.Queries.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using Microsoft.Extensions.Logging;
-using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 

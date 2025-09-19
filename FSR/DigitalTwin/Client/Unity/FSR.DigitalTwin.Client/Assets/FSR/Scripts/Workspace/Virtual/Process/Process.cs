@@ -21,7 +21,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process
         public DateTime Timestamp { init; get; }
         public object[] Inputs { init; get; }
         public object[] InOuts { init; get; }
-        public override int GetHashCode() => ProcessId.GetHashCode();
+        public override int GetHashCode() => ProcessId.ToString().GetHashCode();
     }
 
     public record Goal : Process

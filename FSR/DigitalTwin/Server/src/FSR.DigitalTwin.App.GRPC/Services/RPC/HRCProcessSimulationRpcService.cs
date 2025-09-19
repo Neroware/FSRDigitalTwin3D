@@ -103,17 +103,17 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
             MethodDTO methodDTO = new() { GoalId = request.GoalId };
             foreach (var pair in method)
             {
-                TaskDTO taskDTO = new() { TaskId = pair.Key.ToString() };
+                TaskDTO disj = new() { TaskId = pair.Key.ToString(), Type = TaskType.Disjuction };
                 foreach (ISet<Resource> task in pair.Value)
                 {
-                    SubtaskSetDTO subtaskSetDTO = new() { TaskId = pair.Key.ToString() };
+                    TaskDTO conj = new() { TaskId = pair.Key.ToString(), Type = TaskType.Conjuction };
                     foreach (Resource subTask in task)
                     {
-                        subtaskSetDTO.SubTasks.Add(subTask.ToString());
+                        conj.SubTasks.Add(new TaskDTO() { TaskId = subTask.ToString(), Type = TaskType.Task });
                     }
-                    taskDTO.Steps.Add(subtaskSetDTO);
+                    disj.SubTasks.Add(conj);
                 }
-                methodDTO.Graph.Add(pair.Key.ToString(), taskDTO);
+                methodDTO.Graph.Add(pair.Key.ToString(), disj);
             }
             await responseStream.WriteAsync(methodDTO);
         }

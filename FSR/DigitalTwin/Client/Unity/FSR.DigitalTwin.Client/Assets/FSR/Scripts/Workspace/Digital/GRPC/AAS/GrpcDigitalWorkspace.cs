@@ -4,7 +4,7 @@ using Grpc.Core;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.GRPC.AAS {
+namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC.AAS {
 
     public class GrpcDigitalWorkspace : MonoBehaviour, IDigitalWorkspace
     {
