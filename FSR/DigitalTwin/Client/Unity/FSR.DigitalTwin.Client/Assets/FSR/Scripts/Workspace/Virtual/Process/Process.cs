@@ -34,7 +34,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process
     {
         public override EProcessType ProcessType => EProcessType.Method;
         public Goal Goal { init; get; }
-        public string MethodName { init; get; }
     }
 
     public record Task : Process

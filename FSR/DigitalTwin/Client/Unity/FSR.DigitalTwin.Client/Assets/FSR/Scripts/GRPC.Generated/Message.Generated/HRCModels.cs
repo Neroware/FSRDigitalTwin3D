@@ -58,11 +58,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "Q19BR0VOVF9UWVBFX1VOREVGSU5FRBAAEhgKFEhSQ19BR0VOVF9UWVBFX0hV",
             "TUFOEAESGAoUSFJDX0FHRU5UX1RZUEVfUk9CT1QQAhIiCh5IUkNfQUdFTlRf",
             "VFlQRV9XT1JLRVJfT1BFUkFUT1IQAxIYChRIUkNfQUdFTlRfVFlQRV9DT0JP",
-            "VBAEKoEBCghUYXNrVHlwZRISCg5UQVNLX1RZUEVfVEFTSxAAEhUKEVRBU0tf",
-            "VFlQRV9DT01QTEVYEAESGAoUVEFTS19UWVBFX0NPTkpVQ1RJT04QAhIYChRU",
-            "QVNLX1RZUEVfRElTSlVDVElPThADEhYKElRBU0tfVFlQRV9GVU5DVElPThAE",
-            "QieqAiRGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuUHJvY2Vzcy5IUkNiBnBy",
-            "b3RvMw=="));
+            "VBAEKqsBCghUYXNrVHlwZRISCg5UQVNLX1RZUEVfVEFTSxAAEhIKDlRBU0tf",
+            "VFlQRV9HT0FMEAESFAoQVEFTS19UWVBFX01FVEhPRBACEhUKEVRBU0tfVFlQ",
+            "RV9DT01QTEVYEAMSGAoUVEFTS19UWVBFX0NPTkpVQ1RJT04QBBIYChRUQVNL",
+            "X1RZUEVfRElTSlVDVElPThAFEhYKElRBU0tfVFlQRV9GVU5DVElPThAGQieq",
+            "AiRGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuUHJvY2Vzcy5IUkNiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCAgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType), }, new pbr::GeneratedClrTypeInfo[] {
@@ -96,10 +97,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
   public enum TaskType {
     [pbr::OriginalName("TASK_TYPE_TASK")] Task = 0,
-    [pbr::OriginalName("TASK_TYPE_COMPLEX")] Complex = 1,
-    [pbr::OriginalName("TASK_TYPE_CONJUCTION")] Conjuction = 2,
-    [pbr::OriginalName("TASK_TYPE_DISJUCTION")] Disjuction = 3,
-    [pbr::OriginalName("TASK_TYPE_FUNCTION")] Function = 4,
+    [pbr::OriginalName("TASK_TYPE_GOAL")] Goal = 1,
+    [pbr::OriginalName("TASK_TYPE_METHOD")] Method = 2,
+    [pbr::OriginalName("TASK_TYPE_COMPLEX")] Complex = 3,
+    [pbr::OriginalName("TASK_TYPE_CONJUCTION")] Conjuction = 4,
+    [pbr::OriginalName("TASK_TYPE_DISJUCTION")] Disjuction = 5,
+    [pbr::OriginalName("TASK_TYPE_FUNCTION")] Function = 6,
   }
 
   #endregion

@@ -37,30 +37,19 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
 
             Dictionary<Goal, List<Method>> goals = new();
             Dictionary<Method, List<Process>> methods = new();
-            Dictionary<Task, List<Task>> tasks = new();
+            Dictionary<Task, List<Process>> tasks = new();
             Dictionary<Function, SocialOperatorBase> functions = new();
 
-            foreach (var goal in _client.GetAllGoals(Empty).ResponseStream.ToListAsync().Result)
+            Dictionary<string, Process> allTasks = new();
+
+            foreach (var goal_ in _client.GetAllGoals(Empty).ResponseStream.ToListAsync().Result)
             {
-                var goalDecompositions = _client.DecomposeProcess(goal).ResponseStream.ToListAsync().Result;
-                System.Uri goalId = new(goal.GoalId);
-                goals.Add(new Goal() { ProcessId = goalId, GoalName = goalId.Fragment }, new List<Method>());
-                foreach (var method in goalDecompositions)
-                {
-                    foreach (string taskId in method.Graph.Keys)
-                    {
-                        
-                    }
-                }
+                var goal = _client.GetProcessDecomposition(goal_);
+                var deps = _client.GetProcessDependencies(goal_);
+                // TODO Continue with thought here, add tasks based on methods from decomposition, 
+                // prevent duplicates of events using the allTasks dictionary! Everything else should be
+                // fine! Then we can run processes!
             }
-
-            // Dictionary<Goal, Method>
-            // var goals = _client.GetAllGoals(Empty).ResponseStream.ToListAsync().Result
-            //     .Select(goal =>
-            //     {
-            //         
-
-            //     });
 
             ProcessSimulation.ProcessSimulationContext context = new(_client)
             {

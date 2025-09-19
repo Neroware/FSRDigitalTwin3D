@@ -7,6 +7,7 @@ using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using Grpc.Core;
+using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.GRPC.Services.RPC;
 
@@ -92,10 +93,10 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
         return Task.FromResult(_mapper.Map<FunctionPropertyDataDTO>(functionPropertyData));
     }
 
-    public override async Task DecomposeProcess(GoalDTO request, IServerStreamWriter<MethodDTO> responseStream, ServerCallContext context)
+    public override Task<GoalDTO> GetProcessDecomposition(GoalDTO request, ServerCallContext context)
     {
         var decompositions = _knowledgeBase.GetDecompositionGraph(
-            request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId } 
+            request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId }
             : new Resource() { Uri = new Uri(request.GoalId) });
 
         foreach (var method in decompositions)
@@ -115,8 +116,29 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
                 }
                 methodDTO.Graph.Add(pair.Key.ToString(), disj);
             }
-            await responseStream.WriteAsync(methodDTO);
+            request.Methods.Add(methodDTO);
         }
+        return Task.FromResult(request);
+    }
+
+    public override Task<TaskDTO> GetProcessDependencies(GoalDTO request, ServerCallContext context)
+    {
+        var dependencies = _knowledgeBase.GetDependencyGraph(request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId }
+            : new Resource() { Uri = new Uri(request.GoalId) });
+
+        TaskDTO result = new() { TaskId = request.GoalId, Type = TaskType.Goal };
+        foreach (var task in dependencies)
+        {
+            TaskDTO taskDTO = new() { TaskId = task.Key.Uri.ToSafeString(), Type = TaskType.Task };
+            foreach (var subTask in task.Value)
+            {
+                TaskDTO subTaskDTO = new() { TaskId = subTask.Uri.ToSafeString(), Type = TaskType.Task };
+                taskDTO.SubTasks.Add(subTaskDTO);
+            }
+            result.SubTasks.Add(taskDTO);
+        }
+
+        return Task.FromResult(result);
     }
 
     private static HRCAgentType GetAgentType(Resource type)
