@@ -3,6 +3,7 @@ using System.Linq;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Actor;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Ur5eMoveit;
+using UniRx;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using UnityEngine;
@@ -37,17 +38,20 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 
         // Controller interface
         public override GameObject Robot { get => robot; }
-        public override bool HasPlanned => _plannedTrajectory != null;
-        public override bool IsValid => ValidatePlan();
-        public override bool IsInterrupted => _isInterrupted;
-        public override bool IsRunning => _runningAction != null;
+        public override ReadOnlyReactiveProperty<bool> HasPlanned => _hasPlanned.ToReadOnlyReactiveProperty();
+        public override ReadOnlyReactiveProperty<bool> IsValid => _isValid.ToReadOnlyReactiveProperty();
+        public override ReadOnlyReactiveProperty<bool> IsInterrupted => _isInterrupted.ToReadOnlyReactiveProperty();
+        public override ReadOnlyReactiveProperty<bool> IsRunning => _isRunning.ToReadOnlyReactiveProperty();
+
+        private ReactiveProperty<bool> _hasPlanned = new(false);
+        private ReactiveProperty<bool> _isValid = new(false);
+        private ReactiveProperty<bool> _isInterrupted = new(false);
+        private ReactiveProperty<bool> _isRunning = new(false);
 
         // Internal state
         private MoverServiceResponse _plannedTrajectory = null;
         private ArticulationBody[] _jointArticulationBodies;
-        private bool _autoRun = false;
         private Coroutine _runningAction;
-        private bool _isInterrupted = false;
 
         // Base EE interface
         [SerializeField] private GripperBase gripper;
@@ -101,9 +105,9 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
             if (_runningAction != null)
             {
                 StopCoroutine(_runningAction);
-                _isInterrupted = true;
+                _isInterrupted.Value = true;
             }
-            return _isInterrupted;
+            return _isInterrupted.Value;
         }
 
         /// <summary>
@@ -135,17 +139,13 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
         private void OnTrajectoryResponse(MoverServiceResponse response)
         {
             _plannedTrajectory = response;
-            if (_autoRun && ValidatePlan())
-            {
-                _autoRun = false;
-                RunPlan();
-            }
+            _hasPlanned.Value = true;
         }
 
         public override void RunPlan()
         {
-            _isInterrupted = false;
-            if (!HasPlanned || !IsValid || IsRunning)
+            _isInterrupted.Value = false;
+            if (!HasPlanned.Value || !IsValid.Value || IsRunning.Value)
             {
                 Debug.LogError("Failed to run planned trajectory!");
                 return;
@@ -155,13 +155,24 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 
         public override bool ValidatePlan()
         {
-            return _plannedTrajectory.trajectories.Length > 0;
+            _isValid.Value = _plannedTrajectory.trajectories.Length > 0;
+            return _isValid.Value;
         }
 
-        public override void PlanAndRunIfValid()
+        public void PickAndPlace()
         {
-            _autoRun = true;
             Plan();
+            HasPlanned
+                .Where(x => x)
+                .First()
+                .Subscribe(_ =>
+                {
+                    if (ValidatePlan())
+                    {
+                        RunPlan();
+                    }
+                })
+                .AddTo(this);
         }
         
         /// <summary>

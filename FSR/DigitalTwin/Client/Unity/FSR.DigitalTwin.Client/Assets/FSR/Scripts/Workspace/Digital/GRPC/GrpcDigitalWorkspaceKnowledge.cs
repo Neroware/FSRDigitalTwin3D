@@ -24,24 +24,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
-            try
-            {
-                TestContext();
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError(e.Message);
-            }
-
-        }
-
-        private void TestContext()
-        {
-            var context = GetContext();
-            foreach (Function function in context.Functions)
-            {
-                Debug.Log(">>> " + function.Name);
-            }
         }
 
         public IProcessSimulationContext GetContext()

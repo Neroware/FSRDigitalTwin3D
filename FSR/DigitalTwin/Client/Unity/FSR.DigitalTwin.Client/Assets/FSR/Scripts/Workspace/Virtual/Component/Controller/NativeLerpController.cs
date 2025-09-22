@@ -1,3 +1,4 @@
+using UniRx;
 using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
@@ -14,10 +15,10 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
 
         // Controller Interface
         public override GameObject Robot => throw new System.NotImplementedException();
-        public override bool HasPlanned => throw new System.NotImplementedException();
-        public override bool IsValid => throw new System.NotImplementedException();
-        public override bool IsInterrupted => throw new System.NotImplementedException();
-        public override bool IsRunning => throw new System.NotImplementedException();
+        public override ReadOnlyReactiveProperty<bool> HasPlanned => throw new System.NotImplementedException();
+        public override ReadOnlyReactiveProperty<bool> IsValid => throw new System.NotImplementedException();
+        public override ReadOnlyReactiveProperty<bool> IsInterrupted => throw new System.NotImplementedException();
+        public override ReadOnlyReactiveProperty<bool> IsRunning => throw new System.NotImplementedException();
 
         public override void ForceInterrupt()
         {
@@ -30,11 +31,6 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Component.Controller
         }
 
         public override void Plan()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void PlanAndRunIfValid()
         {
             throw new System.NotImplementedException();
         }

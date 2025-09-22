@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UniRx;
 using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
@@ -11,15 +12,15 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
     public interface IRobotController
     {
         GameObject Robot { get; }
-        bool HasPlanned { get; }
-        bool IsValid { get; }
-        bool IsInterrupted { get; }
-        bool IsRunning { get; }
+        ReadOnlyReactiveProperty<bool> HasPlanned { get; }
+        ReadOnlyReactiveProperty<bool> IsValid { get; }
+        ReadOnlyReactiveProperty<bool> IsInterrupted { get; }
+        ReadOnlyReactiveProperty<bool> IsRunning { get; }
 
         void Plan();
         bool ValidatePlan();
         void RunPlan();
-        void PlanAndRunIfValid();
+        // void PlanAndRunIfValid();
         bool Interrupt();
         void ForceInterrupt();
     }

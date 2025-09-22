@@ -10,15 +10,15 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
         IObservable<IProcessSimulation> SimulationFinished { get; }
         IObservable<IProcessSimulation> SimulationReset { get; }
 
-        IObservable<ProcessResult> ProcessStarted { init; get; }
-        IObservable<ProcessResult> ProcessFinished { init; get; }
-        IObservable<Process.Process> ProcessFailed { init; get; }
+        IObservable<Process.Process> ProcessStarted { get; }
+        IObservable<ProcessResult> ProcessFinished { get; }
+        IObservable<Process.Process> ProcessFailed { get; }
 
         bool Initialize(out IProcessSimulationContext context);
         void Run();
         void Reset();
 
-        void Process(IObservable<ProcessResult> process);
+        void Process(Process.Process process, IObservable<ProcessResult> processResult);
     }
 
     public interface IProcessSimulationContext
@@ -28,7 +28,7 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces
         IDictionary<Goal, IList<Method>> Goals { init; get; }
         IDictionary<Method, IDictionary<Task, IList<ISet<Task>>>> Methods { init; get; }
         IList<Function> Functions { init; get; }
-        IProcessSimulation Simulation { init; get; }
+        IProcessSimulation Simulation { set; get; }
 
         /* TODO Later add parameters as well... */
     }
