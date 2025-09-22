@@ -11,42 +11,50 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process
 
     public enum ETaskType
     {
-        Basic = 0, Complex = 1, Conjuctive = 2, Disjunctive = 3
+        Basic = 0, Complex = 1
     }
 
     public record Process
     {
-        public Uri ProcessId { init; get; }
         public virtual EProcessType ProcessType => EProcessType.Event;
-        public DateTime Timestamp { init; get; }
+        public DateTime Timestamp { set; get; }
         public object[] Inputs { init; get; }
         public object[] InOuts { init; get; }
-        public override int GetHashCode() => ProcessId.ToString().GetHashCode();
     }
 
     public record Goal : Process
     {
+        public string GoalId { init; get; }
         public override EProcessType ProcessType => EProcessType.Goal;
         public string GoalName { init; get; }
+        public override int GetHashCode() => GoalId.GetHashCode();
     }
 
     public record Method : Process
     {
-        public override EProcessType ProcessType => EProcessType.Method;
+        public int MethodId { init; get; }
         public Goal Goal { init; get; }
+        public override EProcessType ProcessType => EProcessType.Method;
     }
 
     public record Task : Process
     {
+        private ETaskType _type;
+        public Task(ETaskType type)
+        {
+            _type = type;
+        }
+        public string TaskId { init; get; }
         public override EProcessType ProcessType => EProcessType.Task;
-        public ETaskType TaskType { init; get; }
-        public string TaskName { init; get; }
+        public ETaskType TaskType => _type;
+        public string Name { set; get; }
+        public override int GetHashCode() => TaskId.GetHashCode();
     }
 
-    public record Function : Process
+    public record Function : Task
     {
+        public Function() : base(ETaskType.Basic) { }
         public override EProcessType ProcessType => EProcessType.Function;
-        public string FunctionName { init; get; }
         public IDigitalTwinEntity Actor { init; get; }
         public ISocialOperator Operator { init; get; }
     }

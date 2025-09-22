@@ -9,7 +9,6 @@ using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Interfaces;
 using FSR.DigitalTwin.Client.Unity.Workspace.Virtual.Process;
 using Grpc.Core;
 using Grpc.Core.Utils;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
@@ -25,6 +24,16 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
+            TestContext();
+        }
+
+        private void TestContext()
+        {
+            var context = GetContext();
+            foreach (Function function in context.Functions)
+            {
+                Debug.Log(">>> " + function.Name);
+            }
         }
 
         public IProcessSimulationContext GetContext()
@@ -32,31 +41,104 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
             var actors = _client.GetAllAgents(Empty).ResponseStream.ToListAsync().Result
                 .Select(actor => Object.FindObjectsOfType<DigitalTwinActorBase>()
                     .FirstOrDefault(sceneActor => sceneActor.TryGetComponent(out SocialOperatorBase op) && op.OperatorId == new System.Uri(actor.Id)))
-                .NotNull();
+                .Where(x => x != null);
             var operators = actors.Select(actor => actor.GetComponent<SocialOperatorBase>());
 
-            Dictionary<Goal, List<Method>> goals = new();
-            Dictionary<Method, List<Process>> methods = new();
-            Dictionary<Task, List<Process>> tasks = new();
-            Dictionary<Function, SocialOperatorBase> functions = new();
+            var ctxt = _client.CreateSimulationContext(new CreateSimulationContextRequest()
+            {
+                ClientId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_ID,
+                DisplayName = "My Simulation",
+                Horizon = 1000000
+            });
+            var model = ctxt.Model;
 
-            Dictionary<string, Process> allTasks = new();
+            Dictionary<Goal, IList<Method>> goals = new();
+            Dictionary<Method, IDictionary<Task, IList<ISet<Task>>>> methods = new();
+            Dictionary<string, Task> tasks = new();
+            Dictionary<Task, List<HashSet<string>>> subTasks = new();
+            int methodCounter = 0;
 
             foreach (var goal_ in _client.GetAllGoals(Empty).ResponseStream.ToListAsync().Result)
             {
                 var goal = _client.GetProcessDecomposition(goal_);
-                var deps = _client.GetProcessDependencies(goal_);
-                // TODO Continue with thought here, add tasks based on methods from decomposition, 
-                // prevent duplicates of events using the allTasks dictionary! Everything else should be
-                // fine! Then we can run processes!
+                Goal g = new() { GoalId = goal.GoalId, GoalName = goal.GoalId };
+                if (!goals.ContainsKey(g))
+                {
+                    goals.Add(g, new List<Method>());
+                }
+                foreach (var method in goal.Methods)
+                {
+                    Method m = new() { Goal = g, MethodId = methodCounter++ };
+                    if (!methods.ContainsKey(m))
+                    {
+                        methods.Add(m, new Dictionary<Task, IList<ISet<Task>>>());
+                    }
+                    foreach (var (taskId, task) in method.Graph)
+                    {
+                        if (!task.SubTasks.Any())
+                        {
+                            Task t;
+                            if (model.Tasks.Select(hrcTask => hrcTask.Id).Contains(taskId))
+                            {
+                                // TODO Retreive addtional function data...
+                                t = new Function() { TaskId = taskId, Name = taskId, Operator = null, Actor = null };
+                            }
+                            else
+                            {
+                                t = new Task(ETaskType.Basic) { TaskId = taskId, Name = taskId };
+                            }
+                            if (!tasks.ContainsKey(taskId))
+                            {
+                                tasks.Add(taskId, t);
+                                subTasks.Add(t, new());
+                            }
+                        }
+                        else
+                        {
+                            Task t = new(ETaskType.Complex) { TaskId = taskId, Name = taskId };
+                            foreach (TaskDTO disj in task.SubTasks)
+                            {
+                                if (disj.Type != TaskType.Disjuction)
+                                {
+                                    throw new System.Exception("wrong format in decomposition graph");
+                                }
+                                if (!subTasks.ContainsKey(t))
+                                {
+                                    tasks.Add(taskId, t);
+                                    subTasks.Add(t, new());
+                                }
+                                foreach (TaskDTO conj in disj.SubTasks)
+                                {
+                                    if (disj.Type != TaskType.Conjuction)
+                                    {
+                                        throw new System.Exception("wrong format in decomposition graph");
+                                    }
+                                    HashSet<string> ts = new(conj.SubTasks.Select(x => x.TaskId));
+                                    subTasks[t].Add(ts);
+                                }
+                            }
+                        }
+                    }
+                    foreach (var taskId in method.Graph.Keys)
+                    {
+                        Task t = tasks[taskId];
+                        var taskDecomp = subTasks[t].Select(ts => ts.Select(x => tasks[x]).ToHashSet()).Cast<ISet<Task>>();
+                        foreach (var decomp in taskDecomp)
+                        {
+                            methods[m][t].Add(decomp);
+                        }
+                    }
+                }
             }
 
-            ProcessSimulation.ProcessSimulationContext context = new(_client)
+            return new ProcessSimulation.ProcessSimulationContext()
             {
-
+                Actors = actors.ToList(),
+                Goals = goals,
+                Functions = tasks.Values.Where(t => t.ProcessType == EProcessType.Function).Cast<Function>().ToList(),
+                Methods = methods,
+                Simulation = null
             };
-
-            return context;
         }
     }
 }

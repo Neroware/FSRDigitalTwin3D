@@ -38,7 +38,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     public override Task<HRCProcessSimulationContextDTO> CreateSimulationContext(CreateSimulationContextRequest request, ServerCallContext context)
     {
         var model = _authoring.CreateModel(request.Horizon);
-        var ctxt = _simulation.AddModel(new Uri(request.ClientId), model, request.DisplayName);
+        HRCProcessSimulationContext ctxt = _simulation.AddModel(new Uri(request.ClientId), model, request.DisplayName);
         return Task.FromResult(_mapper.Map<HRCProcessSimulationContextDTO>(ctxt));
     }
 
@@ -104,10 +104,10 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
             MethodDTO methodDTO = new() { GoalId = request.GoalId };
             foreach (var pair in method)
             {
-                TaskDTO disj = new() { TaskId = pair.Key.ToString(), Type = TaskType.Disjuction };
+                TaskDTO disj = new() { TaskId = "", Type = TaskType.Disjuction };
                 foreach (ISet<Resource> task in pair.Value)
                 {
-                    TaskDTO conj = new() { TaskId = pair.Key.ToString(), Type = TaskType.Conjuction };
+                    TaskDTO conj = new() { TaskId = "", Type = TaskType.Conjuction };
                     foreach (Resource subTask in task)
                     {
                         conj.SubTasks.Add(new TaskDTO() { TaskId = subTask.ToString(), Type = TaskType.Task });
