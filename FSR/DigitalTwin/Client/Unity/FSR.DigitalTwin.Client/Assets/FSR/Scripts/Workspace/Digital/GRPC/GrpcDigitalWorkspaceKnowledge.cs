@@ -24,7 +24,15 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
-            TestContext();
+            try
+            {
+                TestContext();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+
         }
 
         private void TestContext()
@@ -95,33 +103,31 @@ namespace FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC
                         }
                         else
                         {
-                            Task t = new(ETaskType.Complex) { TaskId = taskId, Name = taskId };
-                            foreach (TaskDTO disj in task.SubTasks)
+                            if (task.Type != TaskType.Disjuction)
                             {
-                                if (disj.Type != TaskType.Disjuction)
+                                throw new System.Exception("wrong format in decomposition graph");
+                            }
+                            Task t = new(ETaskType.Complex) { TaskId = taskId, Name = taskId };
+                            if (!tasks.ContainsKey(taskId))
+                            {
+                                tasks.Add(taskId, t);
+                                subTasks.Add(t, new());
+                            }
+                            foreach (TaskDTO subTask in task.SubTasks)
+                            {
+                                if (subTask.Type != TaskType.Conjuction)
                                 {
                                     throw new System.Exception("wrong format in decomposition graph");
                                 }
-                                if (!subTasks.ContainsKey(t))
-                                {
-                                    tasks.Add(taskId, t);
-                                    subTasks.Add(t, new());
-                                }
-                                foreach (TaskDTO conj in disj.SubTasks)
-                                {
-                                    if (disj.Type != TaskType.Conjuction)
-                                    {
-                                        throw new System.Exception("wrong format in decomposition graph");
-                                    }
-                                    HashSet<string> ts = new(conj.SubTasks.Select(x => x.TaskId));
-                                    subTasks[t].Add(ts);
-                                }
+                                HashSet<string> ts = new(subTask.SubTasks.Select(x => x.TaskId));
+                                subTasks[t].Add(ts);
                             }
                         }
                     }
                     foreach (var taskId in method.Graph.Keys)
                     {
                         Task t = tasks[taskId];
+                        methods[m].Add(t, new List<ISet<Task>>());
                         var taskDecomp = subTasks[t].Select(ts => ts.Select(x => tasks[x]).ToHashSet()).Cast<ISet<Task>>();
                         foreach (var decomp in taskDecomp)
                         {

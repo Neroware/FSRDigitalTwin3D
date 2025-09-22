@@ -173,7 +173,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
     public IEnumerable<Resource> GetHumans()
     {
         var result = _ontology.RunSparqlQuery((server) =>
-            new GetInstancesQuery(UriPrefix.SOHO + "WorkerOperator") { SparqlServer = server });
+            new GetInstancesQuery(UriPrefix.SOHO + "WorkOperator") { SparqlServer = server });
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 

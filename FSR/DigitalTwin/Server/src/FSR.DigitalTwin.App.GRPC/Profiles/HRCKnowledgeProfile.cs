@@ -23,7 +23,8 @@ public class HRCKnowledgeProfile : Profile
             .ForMember(dest => dest.MaxDuration, opt => opt.MapFrom(src => src.Duration.Item2))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? ""))
             .ForMember(dest => dest.Goal, opt => opt.MapFrom(src => src.Goal ?? ""))
-            .ForMember(dest => dest.Target, opt => opt.MapFrom(src => src.Target == null ? "" : src.Target.ToString()));
+            .ForMember(dest => dest.Target, opt => opt.MapFrom(src => src.Target == null ? "" : src.Target.ToString()))
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Resource.ToString()));
         CreateMap<HRCModel, HRCModelDTO>();
         CreateMap<FunctionObjectData, FunctionObjectDataDTO>()
             .ForMember(dest => dest.FunctionId, opt => opt.MapFrom(src => src.Function.Uri.ToSafeString()));
