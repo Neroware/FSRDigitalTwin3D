@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Core;
-using FSR.DigitalTwin.Client.Unity.Workspace.Digital.GRPC;
-using FSR.DigitalTwin.Client.Unity.Workspace.Digital.Notification;
+using FSR.DigitalTwin.Client.Features.UnityClient;
+using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Unity.Test {
+namespace FSR.DigitalTwin.Client.Test {
 
     public class UR5CobotPickAndPlaceOpCallTest : MonoBehaviour {
 
