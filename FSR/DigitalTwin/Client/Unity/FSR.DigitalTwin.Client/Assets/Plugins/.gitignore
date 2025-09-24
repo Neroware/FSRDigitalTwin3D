@@ -30,3 +30,6 @@ URDF-Importer.meta
 
 ROS-TCP-Connector/
 ROS-TCP-Connector.meta
+
+SimSharp/
+SimSharp.meta
