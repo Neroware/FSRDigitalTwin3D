@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 {
@@ -30,7 +31,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         public void Start()
         {
             Elapsed = TimeSpan.Zero;
-            _timer = Observable.EveryUpdate().Subscribe(delta => Elapsed += TimeSpan.FromMilliseconds(delta));
+            _timer = Observable.EveryUpdate().Subscribe(_ => Elapsed += TimeSpan.FromSeconds(Time.deltaTime));
         }
         public void Stop()
         {
