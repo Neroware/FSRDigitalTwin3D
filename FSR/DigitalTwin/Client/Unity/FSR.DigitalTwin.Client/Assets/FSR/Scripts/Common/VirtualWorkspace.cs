@@ -1,6 +1,6 @@
-using FSR.DigitalTwin.Client.Features.DES.Interfaces;
+using FSR.DigitalTwin.Client.Common.Interfaces;
 
-namespace FSR.DigitalTwin.Client.Features.DES
+namespace FSR.DigitalTwin.Client.Common
 {
     public static class VirtualWorkspace {
         private static IVirtualWorkspace _workspace = null;

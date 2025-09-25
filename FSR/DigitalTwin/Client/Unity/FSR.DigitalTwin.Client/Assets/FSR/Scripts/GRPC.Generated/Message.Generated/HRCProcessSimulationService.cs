@@ -27,44 +27,44 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             "CjFQcm90b3MvU2VydmljZXMvSFJDUHJvY2Vzc1NpbXVsYXRpb25TZXJ2aWNl",
             "LnByb3RvEhhGU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMaEVByb3Rvcy9CYXNl",
             "LnByb3RvGhpQcm90b3MvRFRPL0hSQ01vZGVscy5wcm90byIpChdEZWNvbXBv",
-            "c2VIUkNUYXNrUmVxdWVzdBIOCgZ0YXNrSWQYASABKAkiWAoeQ3JlYXRlU2lt",
-            "dWxhdGlvbkNvbnRleHRSZXF1ZXN0EhAKCGNsaWVudElkGAEgASgJEhMKC2Rp",
-            "c3BsYXlOYW1lGAIgASgJEg8KB2hvcml6b24YAyABKAMilwEKHkhSQ1Byb2Nl",
-            "c3NTaW11bGF0aW9uQ29udGV4dERUTxIKCgJpZBgBIAEoCRIQCghjbGllbnRJ",
-            "ZBgCIAEoCRITCgtkaXNwbGF5TmFtZRgDIAEoCRI0CgVtb2RlbBgEIAEoCzIl",
-            "LkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNNb2RlbERUTxIMCgRkYXRh",
-            "GAUgASgMIu4BChpIUkNQcm9jZXNzU2ltdWxhdGlvbkxvZ0RUTxJJCgdjb250",
-            "ZXh0GAEgASgLMjguRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Byb2Nl",
-            "c3NTaW11bGF0aW9uQ29udGV4dERUTxIRCglzdWNjZWVkZWQYAiABKAgSFwoP",
-            "c2ltdWxhdGlvblN0YXJ0GAMgASgDEhUKDXNpbXVsYXRpb25FbmQYBCABKAMS",
-            "NAoFbW9kZWwYBSABKAsyJS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJD",
-            "TW9kZWxEVE8SDAoEZGF0YRgGIAEoDDLqBgobSFJDUHJvY2Vzc1NpbXVsYXRp",
-            "b25TZXJ2aWNlEo0BChdDcmVhdGVTaW11bGF0aW9uQ29udGV4dBI4LkZTUi5E",
-            "aWdpdGFsVHdpbi5BcHAuR1JQQy5DcmVhdGVTaW11bGF0aW9uQ29udGV4dFJl",
-            "cXVlc3QaOC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJDUHJvY2Vzc1Np",
-            "bXVsYXRpb25Db250ZXh0RFRPEmoKEVNlbmRTaW11bGF0aW9uTG9nEjQuRlNS",
-            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Byb2Nlc3NTaW11bGF0aW9uTG9n",
-            "RFRPGh8uRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkVtcHR5El8KF0dldFBy",
-            "b2Nlc3NEZWNvbXBvc2l0aW9uEiEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBD",
-            "LkdvYWxEVE8aIS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuR29hbERUTxJe",
-            "ChZHZXRQcm9jZXNzRGVwZW5kZW5jaWVzEiEuRlNSLkRpZ2l0YWxUd2luLkFw",
-            "cC5HUlBDLkdvYWxEVE8aIS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuVGFz",
-            "a0RUTxJyChdHZXRGdW5jdGlvblByb3BlcnR5RGF0YRIkLkZTUi5EaWdpdGFs",
-            "VHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPGjEuRlNSLkRpZ2l0YWxUd2luLkFw",
-            "cC5HUlBDLkZ1bmN0aW9uUHJvcGVydHlEYXRhRFRPEm4KFUdldEZ1bmN0aW9u",
-            "T2JqZWN0RGF0YRIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNr",
-            "RFRPGi8uRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkZ1bmN0aW9uT2JqZWN0",
-            "RGF0YURUTxJVCgxHZXRBbGxBZ2VudHMSHy5GU1IuRGlnaXRhbFR3aW4uQXBw",
-            "LkdSUEMuRW1wdHkaIi5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRE",
-            "VE8wARJTCgtHZXRBbGxHb2FscxIfLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQ",
-            "Qy5FbXB0eRohLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5Hb2FsRFRPMAFC",
-            "TKoCSUZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5Qcm9jZXNzLkhSQy5TZXJ2",
-            "aWNlcy5IUkNQcm9jZXNzU2ltdWxhdGlvblNlcnZpY2ViBnByb3RvMw=="));
+            "c2VIUkNUYXNrUmVxdWVzdBIOCgZ0YXNrSWQYASABKAkiVQobR2V0U2ltdWxh",
+            "dGlvbkNvbnRleHRSZXF1ZXN0EhAKCGNsaWVudElkGAEgASgJEhMKC2Rpc3Bs",
+            "YXlOYW1lGAIgASgJEg8KB2hvcml6b24YAyABKAMilwEKHkhSQ1Byb2Nlc3NT",
+            "aW11bGF0aW9uQ29udGV4dERUTxIKCgJpZBgBIAEoCRIQCghjbGllbnRJZBgC",
+            "IAEoCRITCgtkaXNwbGF5TmFtZRgDIAEoCRI0CgVtb2RlbBgEIAEoCzIlLkZT",
+            "Ui5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNNb2RlbERUTxIMCgRkYXRhGAUg",
+            "ASgMIu4BChpIUkNQcm9jZXNzU2ltdWxhdGlvbkxvZ0RUTxJJCgdjb250ZXh0",
+            "GAEgASgLMjguRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Byb2Nlc3NT",
+            "aW11bGF0aW9uQ29udGV4dERUTxIRCglzdWNjZWVkZWQYAiABKAgSFwoPc2lt",
+            "dWxhdGlvblN0YXJ0GAMgASgDEhUKDXNpbXVsYXRpb25FbmQYBCABKAMSNAoF",
+            "bW9kZWwYBSABKAsyJS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJDTW9k",
+            "ZWxEVE8SDAoEZGF0YRgGIAEoDDLkBgobSFJDUHJvY2Vzc1NpbXVsYXRpb25T",
+            "ZXJ2aWNlEocBChRHZXRTaW11bGF0aW9uQ29udGV4dBI1LkZTUi5EaWdpdGFs",
+            "VHdpbi5BcHAuR1JQQy5HZXRTaW11bGF0aW9uQ29udGV4dFJlcXVlc3QaOC5G",
+            "U1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJDUHJvY2Vzc1NpbXVsYXRpb25D",
+            "b250ZXh0RFRPEmoKEVNlbmRTaW11bGF0aW9uTG9nEjQuRlNSLkRpZ2l0YWxU",
+            "d2luLkFwcC5HUlBDLkhSQ1Byb2Nlc3NTaW11bGF0aW9uTG9nRFRPGh8uRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkVtcHR5El8KF0dldFByb2Nlc3NEZWNv",
+            "bXBvc2l0aW9uEiEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkdvYWxEVE8a",
+            "IS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuR29hbERUTxJeChZHZXRQcm9j",
+            "ZXNzRGVwZW5kZW5jaWVzEiEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkdv",
+            "YWxEVE8aIS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuVGFza0RUTxJyChdH",
+            "ZXRGdW5jdGlvblByb3BlcnR5RGF0YRIkLkZTUi5EaWdpdGFsVHdpbi5BcHAu",
+            "R1JQQy5IUkNUYXNrRFRPGjEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkZ1",
+            "bmN0aW9uUHJvcGVydHlEYXRhRFRPEm4KFUdldEZ1bmN0aW9uT2JqZWN0RGF0",
+            "YRIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPGi8uRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkZ1bmN0aW9uT2JqZWN0RGF0YURUTxJV",
+            "CgxHZXRBbGxBZ2VudHMSHy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuRW1w",
+            "dHkaIi5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnREVE8wARJTCgtH",
+            "ZXRBbGxHb2FscxIfLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5FbXB0eRoh",
+            "LkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5Hb2FsRFRPMAFCTKoCSUZTUi5E",
+            "aWdpdGFsVHdpbi5BcHAuR1JQQy5Qcm9jZXNzLkhSQy5TZXJ2aWNlcy5IUkNQ",
+            "cm9jZXNzU2ltdWxhdGlvblNlcnZpY2ViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::FSR.DigitalTwin.App.GRPC.BaseReflection.Descriptor, global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.DecomposeHRCTaskRequest.Parser, new[]{ "TaskId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest.Parser, new[]{ "ClientId", "DisplayName", "Horizon" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest.Parser, new[]{ "ClientId", "DisplayName", "Horizon" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO.Parser, new[]{ "Id", "ClientId", "DisplayName", "Model", "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO.Parser, new[]{ "Context", "Succeeded", "SimulationStart", "SimulationEnd", "Model", "Data" }, null, null, null)
           }));
@@ -202,11 +202,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
 
   }
 
-  public sealed partial class CreateSimulationContextRequest : pb::IMessage<CreateSimulationContextRequest> {
-    private static readonly pb::MessageParser<CreateSimulationContextRequest> _parser = new pb::MessageParser<CreateSimulationContextRequest>(() => new CreateSimulationContextRequest());
+  public sealed partial class GetSimulationContextRequest : pb::IMessage<GetSimulationContextRequest> {
+    private static readonly pb::MessageParser<GetSimulationContextRequest> _parser = new pb::MessageParser<GetSimulationContextRequest>(() => new GetSimulationContextRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<CreateSimulationContextRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<GetSimulationContextRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -219,14 +219,14 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CreateSimulationContextRequest() {
+    public GetSimulationContextRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CreateSimulationContextRequest(CreateSimulationContextRequest other) : this() {
+    public GetSimulationContextRequest(GetSimulationContextRequest other) : this() {
       clientId_ = other.clientId_;
       displayName_ = other.displayName_;
       horizon_ = other.horizon_;
@@ -234,8 +234,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CreateSimulationContextRequest Clone() {
-      return new CreateSimulationContextRequest(this);
+    public GetSimulationContextRequest Clone() {
+      return new GetSimulationContextRequest(this);
     }
 
     /// <summary>Field number for the "clientId" field.</summary>
@@ -273,11 +273,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as CreateSimulationContextRequest);
+      return Equals(other as GetSimulationContextRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(CreateSimulationContextRequest other) {
+    public bool Equals(GetSimulationContextRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -345,7 +345,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(CreateSimulationContextRequest other) {
+    public void MergeFrom(GetSimulationContextRequest other) {
       if (other == null) {
         return;
       }

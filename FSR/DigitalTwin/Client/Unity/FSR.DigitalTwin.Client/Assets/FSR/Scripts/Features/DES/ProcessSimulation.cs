@@ -13,25 +13,25 @@ namespace FSR.DigitalTwin.Client.Features.DES
         {
             public IList<DigitalTwinActorBase> Actors { get; init; } = new List<DigitalTwinActorBase>();
             public IList<SocialOperatorBase> Operators { get; init; } = new List<SocialOperatorBase>();
-            public IDictionary<Goal, IList<Method>> Goals { get; init; } = new Dictionary<Goal, IList<Method>>();
-            public IDictionary<Method, IDictionary<Task, IList<ISet<Task>>>> Methods { get; init; } = new Dictionary<Method, IDictionary<Task, IList<ISet<Task>>>>();
-            public IList<Function> Functions { get; init; } = new List<Function>();
+            public IDictionary<HRCGoal, IList<HRCMethod>> Goals { get; init; } = new Dictionary<HRCGoal, IList<HRCMethod>>();
+            public IDictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>> Methods { get; init; } = new Dictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>>();
+            public IList<HRCFunction> Functions { get; init; } = new List<HRCFunction>();
             public IProcessSimulation Simulation { get; set; }
         }
 
         public IObservable<IProcessSimulation> SimulationStarted => _simulationStarted;
         public IObservable<IProcessSimulation> SimulationFinished => _simulationFinished;
         public IObservable<IProcessSimulation> SimulationReset => _simulationReset;
-        public IObservable<Process> ProcessStarted => _processStarted;
-        public IObservable<ProcessResult> ProcessFinished => _processFinished;
-        public IObservable<Process> ProcessFailed => _processFailed;
+        public IObservable<HRCProcess> ProcessStarted => _processStarted;
+        public IObservable<HRCProcessResult<HRCProcess>> ProcessFinished => _processFinished;
+        public IObservable<HRCProcess> ProcessFailed => _processFailed;
 
         private Subject<IProcessSimulation> _simulationStarted = new();
         private Subject<IProcessSimulation> _simulationFinished = new();
         private Subject<IProcessSimulation> _simulationReset = new();
-        private Subject<Process> _processStarted = new();
-        private Subject<ProcessResult> _processFinished = new();
-        private Subject<Process> _processFailed = new();
+        private Subject<HRCProcess> _processStarted = new();
+        private Subject<HRCProcessResult<HRCProcess>> _processFinished = new();
+        private Subject<HRCProcess> _processFailed = new();
 
         public bool Initialize(out IProcessSimulationContext context)
         {
@@ -50,22 +50,22 @@ namespace FSR.DigitalTwin.Client.Features.DES
             }
         }
 
-        public bool LaunchFunction(string functionId, IProcessSimulationContext context, out Function function, IObservable<FunctionResult> success = null, IObservable<Function> failure = null)
+        public bool LaunchFunction(string functionId, IProcessSimulationContext context, out HRCFunction function, IObservable<HRCProcessResult<HRCFunction>> success = null, IObservable<HRCProcessResult<HRCFunction>> failure = null)
         {
             throw new NotImplementedException();
         }
 
-        public void EmitFunctionFailed(Function function)
+        public void EmitFunctionFailed(HRCFunction function)
         {
             throw new NotImplementedException();
         }
 
-        public void EmitFunctionSucceeded(FunctionResult result)
+        public void EmitFunctionSucceeded(HRCProcessResult<HRCFunction> result)
         {
             throw new NotImplementedException();
         }
 
-        public void Process(Process process, IObservable<ProcessResult> processResult)
+        public void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> processResult)
         {
             throw new NotImplementedException();
         }

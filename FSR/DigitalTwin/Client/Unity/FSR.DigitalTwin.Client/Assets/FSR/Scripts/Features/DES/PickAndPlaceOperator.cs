@@ -14,12 +14,12 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public override bool IsBusy => _isBusy;
         public override string RunningOperation => _runningOperation;
 
-        protected override FunctionResult OnFunction(string function, object[] inputs, object[] inOuts)
+        protected override HRCProcessResult<HRCFunction> OnFunction(string function, object[] inputs, object[] inOuts)
         {
             throw new System.NotImplementedException();
         }
 
-        protected override FunctionResult OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result)
+        protected override HRCProcessResult<HRCFunction> OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result)
         {
             throw new System.NotImplementedException();
         }

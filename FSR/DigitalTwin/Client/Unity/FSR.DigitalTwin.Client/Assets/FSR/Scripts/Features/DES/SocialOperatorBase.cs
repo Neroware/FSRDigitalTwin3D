@@ -6,6 +6,7 @@ using FSR.DigitalTwin.Client.Features.UnityClient;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
+using Google.Protobuf.WellKnownTypes;
 
 namespace FSR.DigitalTwin.Client.Features.DES
 {
@@ -16,8 +17,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public abstract bool IsBusy { get; }
         public abstract string RunningOperation { get; }
 
-        protected abstract FunctionResult OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result);
-        protected abstract FunctionResult OnFunction(string function, object[] inputs, object[] inOuts);
+        protected abstract HRCProcessResult<HRCFunction> OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result);
+        protected abstract HRCProcessResult<HRCFunction> OnFunction(string function, object[] inputs, object[] inOuts);
 
         public Uri OperatorId => operatorId.Length == 0 ? Id : new(operatorId);
 
@@ -42,7 +43,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
                 ProcessName = invocation.ProcessName,
                 State = ProcessExecutionState.EState.INITIATED
             };
-            UnityClient.ProcessResult result = new()
+            ProcessResult result = new()
             {
                 ClientId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_ID,
                 Id = invocation.Id,
@@ -54,10 +55,10 @@ namespace FSR.DigitalTwin.Client.Features.DES
             };
             var operatorInst = DigitalWorkspace.Instance.Operational;
             var res = OnFunction(invocation.ProcessName, operatorInst, state, result);
-            await operatorInst.SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = res.TimeStamp });
+            await operatorInst.SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = (long) res.TimeStamp.TimeOfDay.TotalSeconds });
         }
 
-        public FunctionResult RunFunction(string function, object[] inputs, object[] inOuts)
+        public HRCProcessResult<HRCFunction> RunFunction(string function, object[] inputs, object[] inOuts)
         {
             if (IsBusy)
             {

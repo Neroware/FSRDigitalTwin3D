@@ -12,7 +12,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
   {
     static readonly string __ServiceName = "FSR.DigitalTwin.App.GRPC.HRCProcessSimulationService";
 
-    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest> __Marshaller_FSR_DigitalTwin_App_GRPC_CreateSimulationContextRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest> __Marshaller_FSR_DigitalTwin_App_GRPC_GetSimulationContextRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_HRCProcessSimulationContextDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_HRCProcessSimulationLogDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Empty> __Marshaller_FSR_DigitalTwin_App_GRPC_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Empty.Parser.ParseFrom);
@@ -23,11 +23,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_FunctionObjectDataDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO> __Marshaller_FSR_DigitalTwin_App_GRPC_AgentDTO = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> __Method_CreateSimulationContext = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO>(
+    static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> __Method_GetSimulationContext = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "CreateSimulationContext",
-        __Marshaller_FSR_DigitalTwin_App_GRPC_CreateSimulationContextRequest,
+        "GetSimulationContext",
+        __Marshaller_FSR_DigitalTwin_App_GRPC_GetSimulationContextRequest,
         __Marshaller_FSR_DigitalTwin_App_GRPC_HRCProcessSimulationContextDTO);
 
     static readonly grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty> __Method_SendSimulationLog = new grpc::Method<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty>(
@@ -89,7 +89,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     [grpc::BindServiceMethod(typeof(HRCProcessSimulationService), "BindService")]
     public abstract partial class HRCProcessSimulationServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> CreateSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> GetSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -154,21 +154,21 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       {
       }
 
-      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO CreateSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO GetSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return CreateSimulationContext(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetSimulationContext(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO CreateSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest request, grpc::CallOptions options)
+      public virtual global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO GetSimulationContext(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_CreateSimulationContext, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_GetSimulationContext, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> CreateSimulationContextAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> GetSimulationContextAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return CreateSimulationContextAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetSimulationContextAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> CreateSimulationContextAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO> GetSimulationContextAsync(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_CreateSimulationContext, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_GetSimulationContext, null, options, request);
       }
       public virtual global::FSR.DigitalTwin.App.GRPC.Empty SendSimulationLog(global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -278,7 +278,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     public static grpc::ServerServiceDefinition BindService(HRCProcessSimulationServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_CreateSimulationContext, serviceImpl.CreateSimulationContext)
+          .AddMethod(__Method_GetSimulationContext, serviceImpl.GetSimulationContext)
           .AddMethod(__Method_SendSimulationLog, serviceImpl.SendSimulationLog)
           .AddMethod(__Method_GetProcessDecomposition, serviceImpl.GetProcessDecomposition)
           .AddMethod(__Method_GetProcessDependencies, serviceImpl.GetProcessDependencies)
@@ -294,7 +294,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, HRCProcessSimulationServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_CreateSimulationContext, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.CreateSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO>(serviceImpl.CreateSimulationContext));
+      serviceBinder.AddMethod(__Method_GetSimulationContext, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.GetSimulationContextRequest, global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationContextDTO>(serviceImpl.GetSimulationContext));
       serviceBinder.AddMethod(__Method_SendSimulationLog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService.HRCProcessSimulationLogDTO, global::FSR.DigitalTwin.App.GRPC.Empty>(serviceImpl.SendSimulationLog));
       serviceBinder.AddMethod(__Method_GetProcessDecomposition, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO>(serviceImpl.GetProcessDecomposition));
       serviceBinder.AddMethod(__Method_GetProcessDependencies, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO, global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO>(serviceImpl.GetProcessDependencies));

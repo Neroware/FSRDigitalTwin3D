@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FSR.DigitalTwin.App.GRPC;
@@ -28,12 +29,12 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
         public IProcessSimulationContext GetContext()
         {
             var actors = _client.GetAllAgents(Empty).ResponseStream.ToListAsync().Result
-                .Select(actor => Object.FindObjectsOfType<DigitalTwinActorBase>()
+                .Select(actor => UnityEngine.Object.FindObjectsOfType<DigitalTwinActorBase>()
                     .FirstOrDefault(sceneActor => sceneActor.TryGetComponent(out SocialOperatorBase op) && op.OperatorId == new System.Uri(actor.Id)))
                 .Where(x => x != null);
             var operators = actors.Select(actor => actor.GetComponent<SocialOperatorBase>());
 
-            var ctxt = _client.CreateSimulationContext(new CreateSimulationContextRequest()
+            var ctxt = _client.GetSimulationContext(new GetSimulationContextRequest()
             {
                 ClientId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_ID,
                 DisplayName = "My Simulation",
@@ -41,40 +42,41 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             });
             var model = ctxt.Model;
 
-            Dictionary<Goal, IList<Method>> goals = new();
-            Dictionary<Method, IDictionary<Task, IList<ISet<Task>>>> methods = new();
-            Dictionary<string, Task> tasks = new();
-            Dictionary<Task, List<HashSet<string>>> subTasks = new();
+            Dictionary<HRCGoal, IList<HRCMethod>> goals = new();
+            Dictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>> methods = new();
+            Dictionary<string, HRCTask> tasks = new();
+            Dictionary<HRCTask, List<HashSet<string>>> subTasks = new();
             int methodCounter = 0;
 
             foreach (var goal_ in _client.GetAllGoals(Empty).ResponseStream.ToListAsync().Result)
             {
                 var goal = _client.GetProcessDecomposition(goal_);
-                Goal g = new() { GoalId = goal.GoalId, GoalName = goal.GoalId };
+                HRCGoal g = new() { GoalId = goal.GoalId, GoalName = goal.GoalId };
                 if (!goals.ContainsKey(g))
                 {
-                    goals.Add(g, new List<Method>());
+                    goals.Add(g, new List<HRCMethod>());
                 }
                 foreach (var method in goal.Methods)
                 {
-                    Method m = new() { Goal = g, MethodId = methodCounter++ };
+                    HRCMethod m = new() { Goal = g, MethodId = methodCounter++ };
                     if (!methods.ContainsKey(m))
                     {
-                        methods.Add(m, new Dictionary<Task, IList<ISet<Task>>>());
+                        methods.Add(m, new Dictionary<HRCTask, IList<ISet<HRCTask>>>());
                     }
                     foreach (var (taskId, task) in method.Graph)
                     {
                         if (!task.SubTasks.Any())
                         {
-                            Task t;
+                            HRCTask t;
                             if (model.Tasks.Select(hrcTask => hrcTask.Id).Contains(taskId))
                             {
                                 // TODO Retreive addtional function data...
-                                t = new Function() { TaskId = taskId, Name = taskId, Operator = null, Actor = null };
+                                t = new HRCFunction() { TaskId = taskId, Name = taskId, Operator = null, Actor = null,
+                                    Duration = TimeSpan.FromSeconds(1), DurationUncertainty = TimeSpan.FromSeconds(1), SuccessRate = 0.8 };
                             }
                             else
                             {
-                                t = new Task(ETaskType.Basic) { TaskId = taskId, Name = taskId };
+                                t = new HRCTask(EHRCTaskType.Basic) { TaskId = taskId, Name = taskId };
                             }
                             if (!tasks.ContainsKey(taskId))
                             {
@@ -88,7 +90,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                             {
                                 throw new System.Exception("wrong format in decomposition graph");
                             }
-                            Task t = new(ETaskType.Complex) { TaskId = taskId, Name = taskId };
+                            HRCTask t = new(EHRCTaskType.Complex) { TaskId = taskId, Name = taskId };
                             if (!tasks.ContainsKey(taskId))
                             {
                                 tasks.Add(taskId, t);
@@ -107,9 +109,9 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                     }
                     foreach (var taskId in method.Graph.Keys)
                     {
-                        Task t = tasks[taskId];
-                        methods[m].Add(t, new List<ISet<Task>>());
-                        var taskDecomp = subTasks[t].Select(ts => ts.Select(x => tasks[x]).ToHashSet()).Cast<ISet<Task>>();
+                        HRCTask t = tasks[taskId];
+                        methods[m].Add(t, new List<ISet<HRCTask>>());
+                        var taskDecomp = subTasks[t].Select(ts => ts.Select(x => tasks[x]).ToHashSet()).Cast<ISet<HRCTask>>();
                         foreach (var decomp in taskDecomp)
                         {
                             methods[m][t].Add(decomp);
@@ -122,7 +124,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             {
                 Actors = actors.ToList(),
                 Goals = goals,
-                Functions = tasks.Values.Where(t => t.ProcessType == EProcessType.Function).Cast<Function>().ToList(),
+                Functions = tasks.Values.Where(t => t.ProcessType == EHRCProcessType.Function).Cast<HRCFunction>().ToList(),
                 Methods = methods,
                 Simulation = null
             };

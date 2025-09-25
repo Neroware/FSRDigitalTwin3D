@@ -1,12 +1,13 @@
-using FSR.DigitalTwin.Client.Features.DES.Interfaces;
+using FSR.DigitalTwin.Client.Common.Interfaces;
+using FSR.DigitalTwin.Client.Features.DES;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Features.DES
+namespace FSR.DigitalTwin.Client.Common
 {
     public class UnityVirtualWorkspace : MonoBehaviour, IVirtualWorkspace
     {
         [SerializeField] private SimulationManager simulationManager;
-        public IProcessSimulation ProcessSimulation => simulationManager.ActiveScenario;
+        public SimulationManager SimulationManager => simulationManager;
 
         public UnityVirtualWorkspace()
         {

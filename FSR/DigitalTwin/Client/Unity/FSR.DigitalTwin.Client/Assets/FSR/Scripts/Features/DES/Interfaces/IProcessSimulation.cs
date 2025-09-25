@@ -10,24 +10,24 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
         IObservable<IProcessSimulation> SimulationFinished { get; }
         IObservable<IProcessSimulation> SimulationReset { get; }
 
-        IObservable<Process> ProcessStarted { get; }
-        IObservable<ProcessResult> ProcessFinished { get; }
-        IObservable<Process> ProcessFailed { get; }
+        IObservable<HRCProcess> ProcessStarted { get; }
+        IObservable<HRCProcessResult<HRCProcess>> ProcessFinished { get; }
+        IObservable<HRCProcess> ProcessFailed { get; }
 
         bool Initialize(out IProcessSimulationContext context);
         void Run();
         void Reset();
 
-        void Process(Process process, IObservable<ProcessResult> processResult);
+        void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> processResult);
     }
 
     public interface IProcessSimulationContext
     {
         IList<DigitalTwinActorBase> Actors { init; get; }
         IList<SocialOperatorBase> Operators { init; get; }
-        IDictionary<Goal, IList<Method>> Goals { init; get; }
-        IDictionary<Method, IDictionary<Task, IList<ISet<Task>>>> Methods { init; get; }
-        IList<Function> Functions { init; get; }
+        IDictionary<HRCGoal, IList<HRCMethod>> Goals { init; get; }
+        IDictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>> Methods { init; get; }
+        IList<HRCFunction> Functions { init; get; }
         IProcessSimulation Simulation { set; get; }
 
         /* TODO Later add parameters as well... */

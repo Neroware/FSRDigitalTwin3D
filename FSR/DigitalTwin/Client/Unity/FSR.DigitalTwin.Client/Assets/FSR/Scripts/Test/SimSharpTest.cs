@@ -10,7 +10,7 @@ namespace FSR.DigitalTwin.Client.Test
     {
         private SimSharp.Simulation _simulation = null;
 
-        async Task Start()
+        async void Start()
         {
             var sim = new Simulation(TimeSpan.FromSeconds(10));
             _simulation = sim;

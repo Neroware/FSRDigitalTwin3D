@@ -35,7 +35,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
         _simulation = simulation ?? throw new NullReferenceException(nameof(simulation));
     }
 
-    public override Task<HRCProcessSimulationContextDTO> CreateSimulationContext(CreateSimulationContextRequest request, ServerCallContext context)
+    public override Task<HRCProcessSimulationContextDTO> GetSimulationContext(GetSimulationContextRequest request, ServerCallContext context)
     {
         var model = _authoring.CreateModel(request.Horizon);
         HRCProcessSimulationContext ctxt = _simulation.AddModel(new Uri(request.ClientId), model, request.DisplayName);
