@@ -29,14 +29,14 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             "LnByb3RvGhpQcm90b3MvRFRPL0hSQ01vZGVscy5wcm90byIpChdEZWNvbXBv",
             "c2VIUkNUYXNrUmVxdWVzdBIOCgZ0YXNrSWQYASABKAkiVQobR2V0U2ltdWxh",
             "dGlvbkNvbnRleHRSZXF1ZXN0EhAKCGNsaWVudElkGAEgASgJEhMKC2Rpc3Bs",
-            "YXlOYW1lGAIgASgJEg8KB2hvcml6b24YAyABKAMilwEKHkhSQ1Byb2Nlc3NT",
+            "YXlOYW1lGAIgASgJEg8KB2hvcml6b24YAyABKAIilwEKHkhSQ1Byb2Nlc3NT",
             "aW11bGF0aW9uQ29udGV4dERUTxIKCgJpZBgBIAEoCRIQCghjbGllbnRJZBgC",
             "IAEoCRITCgtkaXNwbGF5TmFtZRgDIAEoCRI0CgVtb2RlbBgEIAEoCzIlLkZT",
             "Ui5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNNb2RlbERUTxIMCgRkYXRhGAUg",
             "ASgMIu4BChpIUkNQcm9jZXNzU2ltdWxhdGlvbkxvZ0RUTxJJCgdjb250ZXh0",
             "GAEgASgLMjguRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkhSQ1Byb2Nlc3NT",
             "aW11bGF0aW9uQ29udGV4dERUTxIRCglzdWNjZWVkZWQYAiABKAgSFwoPc2lt",
-            "dWxhdGlvblN0YXJ0GAMgASgDEhUKDXNpbXVsYXRpb25FbmQYBCABKAMSNAoF",
+            "dWxhdGlvblN0YXJ0GAMgASgCEhUKDXNpbXVsYXRpb25FbmQYBCABKAISNAoF",
             "bW9kZWwYBSABKAsyJS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJDTW9k",
             "ZWxEVE8SDAoEZGF0YRgGIAEoDDLkBgobSFJDUHJvY2Vzc1NpbXVsYXRpb25T",
             "ZXJ2aWNlEocBChRHZXRTaW11bGF0aW9uQ29udGV4dBI1LkZTUi5EaWdpdGFs",
@@ -262,9 +262,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
 
     /// <summary>Field number for the "horizon" field.</summary>
     public const int HorizonFieldNumber = 3;
-    private long horizon_;
+    private float horizon_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Horizon {
+    public float Horizon {
       get { return horizon_; }
       set {
         horizon_ = value;
@@ -286,7 +286,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       }
       if (ClientId != other.ClientId) return false;
       if (DisplayName != other.DisplayName) return false;
-      if (Horizon != other.Horizon) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Horizon, other.Horizon)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -295,7 +295,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       int hash = 1;
       if (ClientId.Length != 0) hash ^= ClientId.GetHashCode();
       if (DisplayName.Length != 0) hash ^= DisplayName.GetHashCode();
-      if (Horizon != 0L) hash ^= Horizon.GetHashCode();
+      if (Horizon != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Horizon);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -317,9 +317,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
         output.WriteRawTag(18);
         output.WriteString(DisplayName);
       }
-      if (Horizon != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(Horizon);
+      if (Horizon != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Horizon);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -335,8 +335,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       if (DisplayName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(DisplayName);
       }
-      if (Horizon != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Horizon);
+      if (Horizon != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -355,7 +355,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       if (other.DisplayName.Length != 0) {
         DisplayName = other.DisplayName;
       }
-      if (other.Horizon != 0L) {
+      if (other.Horizon != 0F) {
         Horizon = other.Horizon;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -377,8 +377,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             DisplayName = input.ReadString();
             break;
           }
-          case 24: {
-            Horizon = input.ReadInt64();
+          case 29: {
+            Horizon = input.ReadFloat();
             break;
           }
         }
@@ -697,9 +697,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
 
     /// <summary>Field number for the "simulationStart" field.</summary>
     public const int SimulationStartFieldNumber = 3;
-    private long simulationStart_;
+    private float simulationStart_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long SimulationStart {
+    public float SimulationStart {
       get { return simulationStart_; }
       set {
         simulationStart_ = value;
@@ -708,9 +708,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
 
     /// <summary>Field number for the "simulationEnd" field.</summary>
     public const int SimulationEndFieldNumber = 4;
-    private long simulationEnd_;
+    private float simulationEnd_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long SimulationEnd {
+    public float SimulationEnd {
       get { return simulationEnd_; }
       set {
         simulationEnd_ = value;
@@ -754,8 +754,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       }
       if (!object.Equals(Context, other.Context)) return false;
       if (Succeeded != other.Succeeded) return false;
-      if (SimulationStart != other.SimulationStart) return false;
-      if (SimulationEnd != other.SimulationEnd) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(SimulationStart, other.SimulationStart)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(SimulationEnd, other.SimulationEnd)) return false;
       if (!object.Equals(Model, other.Model)) return false;
       if (Data != other.Data) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -766,8 +766,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       int hash = 1;
       if (context_ != null) hash ^= Context.GetHashCode();
       if (Succeeded != false) hash ^= Succeeded.GetHashCode();
-      if (SimulationStart != 0L) hash ^= SimulationStart.GetHashCode();
-      if (SimulationEnd != 0L) hash ^= SimulationEnd.GetHashCode();
+      if (SimulationStart != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(SimulationStart);
+      if (SimulationEnd != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(SimulationEnd);
       if (model_ != null) hash ^= Model.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
@@ -791,13 +791,13 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
         output.WriteRawTag(16);
         output.WriteBool(Succeeded);
       }
-      if (SimulationStart != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(SimulationStart);
+      if (SimulationStart != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(SimulationStart);
       }
-      if (SimulationEnd != 0L) {
-        output.WriteRawTag(32);
-        output.WriteInt64(SimulationEnd);
+      if (SimulationEnd != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(SimulationEnd);
       }
       if (model_ != null) {
         output.WriteRawTag(42);
@@ -821,11 +821,11 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       if (Succeeded != false) {
         size += 1 + 1;
       }
-      if (SimulationStart != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SimulationStart);
+      if (SimulationStart != 0F) {
+        size += 1 + 4;
       }
-      if (SimulationEnd != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SimulationEnd);
+      if (SimulationEnd != 0F) {
+        size += 1 + 4;
       }
       if (model_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Model);
@@ -853,10 +853,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
       if (other.Succeeded != false) {
         Succeeded = other.Succeeded;
       }
-      if (other.SimulationStart != 0L) {
+      if (other.SimulationStart != 0F) {
         SimulationStart = other.SimulationStart;
       }
-      if (other.SimulationEnd != 0L) {
+      if (other.SimulationEnd != 0F) {
         SimulationEnd = other.SimulationEnd;
       }
       if (other.model_ != null) {
@@ -890,12 +890,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationServ
             Succeeded = input.ReadBool();
             break;
           }
-          case 24: {
-            SimulationStart = input.ReadInt64();
+          case 29: {
+            SimulationStart = input.ReadFloat();
             break;
           }
-          case 32: {
-            SimulationEnd = input.ReadInt64();
+          case 37: {
+            SimulationEnd = input.ReadFloat();
             break;
           }
           case 42: {

@@ -35,10 +35,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "ZBgBIAEoCRIMCgR0eXBlGAIgASgJEg4KBnRhcmdldBgDIAEoCRIMCgRuYW1l",
             "GAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEgwKBGdvYWwYBiABKAkSMgoF",
             "YWdlbnQYByABKA4yIy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRU",
-            "eXBlEhMKC21pbkR1cmF0aW9uGAggASgDEhMKC21heER1cmF0aW9uGAkgASgD",
-            "EhcKD2F2ZXJhZ2VEdXJhdGlvbhgKIAEoAxIbChNkdXJhdGlvblVuY2VydGFp",
-            "bnR5GAsgASgDEhMKC3N1Y2Nlc3NSYXRlGAwgASgBIscBCgtIUkNNb2RlbERU",
-            "TxIPCgdob3Jpem9uGAEgASgDEjMKBXRhc2tzGAIgAygLMiQuRlNSLkRpZ2l0",
+            "eXBlEhMKC21pbkR1cmF0aW9uGAggASgCEhMKC21heER1cmF0aW9uGAkgASgC",
+            "EhcKD2F2ZXJhZ2VEdXJhdGlvbhgKIAEoAhIbChNkdXJhdGlvblVuY2VydGFp",
+            "bnR5GAsgASgCEhMKC3N1Y2Nlc3NSYXRlGAwgASgBIscBCgtIUkNNb2RlbERU",
+            "TxIPCgdob3Jpem9uGAEgASgCEjMKBXRhc2tzGAIgAygLMiQuRlNSLkRpZ2l0",
             "YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKcm9ib3RUYXNrcxgDIAMo",
             "CzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPEjgKCmh1",
             "bWFuVGFza3MYBCADKAsyJC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJD",
@@ -742,9 +742,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "minDuration" field.</summary>
     public const int MinDurationFieldNumber = 8;
-    private long minDuration_;
+    private float minDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long MinDuration {
+    public float MinDuration {
       get { return minDuration_; }
       set {
         minDuration_ = value;
@@ -753,9 +753,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "maxDuration" field.</summary>
     public const int MaxDurationFieldNumber = 9;
-    private long maxDuration_;
+    private float maxDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long MaxDuration {
+    public float MaxDuration {
       get { return maxDuration_; }
       set {
         maxDuration_ = value;
@@ -764,9 +764,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "averageDuration" field.</summary>
     public const int AverageDurationFieldNumber = 10;
-    private long averageDuration_;
+    private float averageDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long AverageDuration {
+    public float AverageDuration {
       get { return averageDuration_; }
       set {
         averageDuration_ = value;
@@ -775,9 +775,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "durationUncertainty" field.</summary>
     public const int DurationUncertaintyFieldNumber = 11;
-    private long durationUncertainty_;
+    private float durationUncertainty_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long DurationUncertainty {
+    public float DurationUncertainty {
       get { return durationUncertainty_; }
       set {
         durationUncertainty_ = value;
@@ -815,10 +815,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Description != other.Description) return false;
       if (Goal != other.Goal) return false;
       if (Agent != other.Agent) return false;
-      if (MinDuration != other.MinDuration) return false;
-      if (MaxDuration != other.MaxDuration) return false;
-      if (AverageDuration != other.AverageDuration) return false;
-      if (DurationUncertainty != other.DurationUncertainty) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MinDuration, other.MinDuration)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxDuration, other.MaxDuration)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AverageDuration, other.AverageDuration)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DurationUncertainty, other.DurationUncertainty)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(SuccessRate, other.SuccessRate)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -833,10 +833,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Description.Length != 0) hash ^= Description.GetHashCode();
       if (Goal.Length != 0) hash ^= Goal.GetHashCode();
       if (Agent != 0) hash ^= Agent.GetHashCode();
-      if (MinDuration != 0L) hash ^= MinDuration.GetHashCode();
-      if (MaxDuration != 0L) hash ^= MaxDuration.GetHashCode();
-      if (AverageDuration != 0L) hash ^= AverageDuration.GetHashCode();
-      if (DurationUncertainty != 0L) hash ^= DurationUncertainty.GetHashCode();
+      if (MinDuration != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MinDuration);
+      if (MaxDuration != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxDuration);
+      if (AverageDuration != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AverageDuration);
+      if (DurationUncertainty != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DurationUncertainty);
       if (SuccessRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(SuccessRate);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -879,21 +879,21 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(56);
         output.WriteEnum((int) Agent);
       }
-      if (MinDuration != 0L) {
-        output.WriteRawTag(64);
-        output.WriteInt64(MinDuration);
+      if (MinDuration != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(MinDuration);
       }
-      if (MaxDuration != 0L) {
-        output.WriteRawTag(72);
-        output.WriteInt64(MaxDuration);
+      if (MaxDuration != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(MaxDuration);
       }
-      if (AverageDuration != 0L) {
-        output.WriteRawTag(80);
-        output.WriteInt64(AverageDuration);
+      if (AverageDuration != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(AverageDuration);
       }
-      if (DurationUncertainty != 0L) {
-        output.WriteRawTag(88);
-        output.WriteInt64(DurationUncertainty);
+      if (DurationUncertainty != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(DurationUncertainty);
       }
       if (SuccessRate != 0D) {
         output.WriteRawTag(97);
@@ -928,17 +928,17 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Agent != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Agent);
       }
-      if (MinDuration != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MinDuration);
+      if (MinDuration != 0F) {
+        size += 1 + 4;
       }
-      if (MaxDuration != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MaxDuration);
+      if (MaxDuration != 0F) {
+        size += 1 + 4;
       }
-      if (AverageDuration != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(AverageDuration);
+      if (AverageDuration != 0F) {
+        size += 1 + 4;
       }
-      if (DurationUncertainty != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(DurationUncertainty);
+      if (DurationUncertainty != 0F) {
+        size += 1 + 4;
       }
       if (SuccessRate != 0D) {
         size += 1 + 8;
@@ -975,16 +975,16 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.Agent != 0) {
         Agent = other.Agent;
       }
-      if (other.MinDuration != 0L) {
+      if (other.MinDuration != 0F) {
         MinDuration = other.MinDuration;
       }
-      if (other.MaxDuration != 0L) {
+      if (other.MaxDuration != 0F) {
         MaxDuration = other.MaxDuration;
       }
-      if (other.AverageDuration != 0L) {
+      if (other.AverageDuration != 0F) {
         AverageDuration = other.AverageDuration;
       }
-      if (other.DurationUncertainty != 0L) {
+      if (other.DurationUncertainty != 0F) {
         DurationUncertainty = other.DurationUncertainty;
       }
       if (other.SuccessRate != 0D) {
@@ -1029,20 +1029,20 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             Agent = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
             break;
           }
-          case 64: {
-            MinDuration = input.ReadInt64();
+          case 69: {
+            MinDuration = input.ReadFloat();
             break;
           }
-          case 72: {
-            MaxDuration = input.ReadInt64();
+          case 77: {
+            MaxDuration = input.ReadFloat();
             break;
           }
-          case 80: {
-            AverageDuration = input.ReadInt64();
+          case 85: {
+            AverageDuration = input.ReadFloat();
             break;
           }
-          case 88: {
-            DurationUncertainty = input.ReadInt64();
+          case 93: {
+            DurationUncertainty = input.ReadFloat();
             break;
           }
           case 97: {
@@ -1094,9 +1094,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "horizon" field.</summary>
     public const int HorizonFieldNumber = 1;
-    private long horizon_;
+    private float horizon_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Horizon {
+    public float Horizon {
       get { return horizon_; }
       set {
         horizon_ = value;
@@ -1146,7 +1146,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Horizon != other.Horizon) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Horizon, other.Horizon)) return false;
       if(!tasks_.Equals(other.tasks_)) return false;
       if(!robotTasks_.Equals(other.robotTasks_)) return false;
       if(!humanTasks_.Equals(other.humanTasks_)) return false;
@@ -1156,7 +1156,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Horizon != 0L) hash ^= Horizon.GetHashCode();
+      if (Horizon != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Horizon);
       hash ^= tasks_.GetHashCode();
       hash ^= robotTasks_.GetHashCode();
       hash ^= humanTasks_.GetHashCode();
@@ -1173,9 +1173,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Horizon != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(Horizon);
+      if (Horizon != 0F) {
+        output.WriteRawTag(13);
+        output.WriteFloat(Horizon);
       }
       tasks_.WriteTo(output, _repeated_tasks_codec);
       robotTasks_.WriteTo(output, _repeated_robotTasks_codec);
@@ -1188,8 +1188,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Horizon != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Horizon);
+      if (Horizon != 0F) {
+        size += 1 + 4;
       }
       size += tasks_.CalculateSize(_repeated_tasks_codec);
       size += robotTasks_.CalculateSize(_repeated_robotTasks_codec);
@@ -1205,7 +1205,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other == null) {
         return;
       }
-      if (other.Horizon != 0L) {
+      if (other.Horizon != 0F) {
         Horizon = other.Horizon;
       }
       tasks_.Add(other.tasks_);
@@ -1222,8 +1222,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Horizon = input.ReadInt64();
+          case 13: {
+            Horizon = input.ReadFloat();
             break;
           }
           case 18: {

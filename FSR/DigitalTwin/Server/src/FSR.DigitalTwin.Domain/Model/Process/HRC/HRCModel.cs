@@ -3,7 +3,7 @@ using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 namespace FSR.DigitalTwin.Domain.Model.Process.HRC;
 
 public class HRCModel {
-    private readonly long _horizon;
+    private readonly float _horizon;
     private readonly Dictionary<Resource, HRCTask> _tasks = [];
     private readonly Dictionary<Resource, HRCTask> _robotTasks = [];
     private readonly Dictionary<Resource, HRCTask> _humanTasks = [];
@@ -14,7 +14,7 @@ public class HRCModel {
 
     public List<Resource> Goals { init; get; } = [];
 
-    public HRCModel(long horizon)
+    public HRCModel(float horizon)
     {
         _horizon = horizon;
     }

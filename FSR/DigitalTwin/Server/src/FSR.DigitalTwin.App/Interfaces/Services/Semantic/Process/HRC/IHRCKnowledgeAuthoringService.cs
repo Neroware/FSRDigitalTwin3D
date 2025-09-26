@@ -4,5 +4,5 @@ namespace FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 
 public interface IHRCKnowledgeAuthoringService
 {
-    public HRCModel CreateModel(long horizon);
+    public HRCModel CreateModel(float horizon);
 }

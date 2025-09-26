@@ -16,7 +16,7 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public HRCModel CreateModel(long horizon)
+    public HRCModel CreateModel(float horizon)
     {
         HRCModel hrc = new(horizon);
 

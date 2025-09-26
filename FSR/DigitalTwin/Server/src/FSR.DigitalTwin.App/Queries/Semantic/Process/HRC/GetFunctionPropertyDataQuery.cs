@@ -64,14 +64,14 @@ public class GetFunctionPropertyDataQuery : ISparqlQuery<FunctionPropertyData>
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasProcedureDescription"))
             .Select(t => t.Object.AsValuedNode().AsString())
             .FirstOrDefault();
-        long duration = triples
+        float duration = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasDuration"))
-            .Select(t => t.Object.AsValuedNode().AsInteger())
+            .Select(t => t.Object.AsValuedNode().AsFloat())
             .DefaultIfEmpty()
             .Max();
-        long durationUncertainty = triples
+        float durationUncertainty = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasDurationUncertainty"))
-            .Select(t => t.Object.AsValuedNode().AsInteger())
+            .Select(t => t.Object.AsValuedNode().AsFloat())
             .DefaultIfEmpty()
             .Max();
         return new FunctionPropertyData()

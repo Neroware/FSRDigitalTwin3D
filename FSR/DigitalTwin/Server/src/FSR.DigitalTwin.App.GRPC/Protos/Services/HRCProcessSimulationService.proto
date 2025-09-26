@@ -14,7 +14,7 @@ message DecomposeHRCTaskRequest {
 message GetSimulationContextRequest {
     string clientId = 1;
     string displayName = 2;
-    int64 horizon = 3;
+    float horizon = 3;
 }
 
 message HRCProcessSimulationContextDTO {
@@ -28,8 +28,8 @@ message HRCProcessSimulationContextDTO {
 message HRCProcessSimulationLogDTO {
     HRCProcessSimulationContextDTO context = 1;
     bool succeeded = 2;
-    int64 simulationStart = 3;
-    int64 simulationEnd = 4;
+    float simulationStart = 3;
+    float simulationEnd = 4;
     HRCModelDTO model = 5;
     bytes data = 6;
 }

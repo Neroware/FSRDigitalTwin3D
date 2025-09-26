@@ -208,10 +208,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-1"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole1</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH1</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -223,10 +223,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-2"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole2</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH2</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -238,10 +238,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-3"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole3</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH3</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -253,10 +253,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-4"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole4</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH4</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -268,10 +268,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-5"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole5</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH5</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -283,10 +283,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-6"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole6</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH6</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -298,10 +298,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-7"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole7</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH7</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -313,10 +313,10 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-8"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">10</soho:hasDuration>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10</soho:hasDuration>
         <soho:hasGoal>hole8</soho:hasGoal>
         <soho:hasProcedureName>PickPlaceH8</soho:hasProcedureName>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
     </owl:NamedIndividual>
     
 
@@ -345,8 +345,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-1"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole1</soho:hasGoal>
         <soho:hasProcedureName>ScrewH1</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -360,8 +360,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-2"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole2</soho:hasGoal>
         <soho:hasProcedureName>ScrewH2</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -375,8 +375,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-3"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole3</soho:hasGoal>
         <soho:hasProcedureName>ScrewH3</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -390,8 +390,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-4"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole4</soho:hasGoal>
         <soho:hasProcedureName>ScrewH4</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -405,8 +405,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-5"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole5</soho:hasGoal>
         <soho:hasProcedureName>ScrewH5</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -420,8 +420,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-6"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole6</soho:hasGoal>
         <soho:hasProcedureName>ScrewH6</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -435,8 +435,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-7"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole7</soho:hasGoal>
         <soho:hasProcedureName>ScrewH7</soho:hasProcedureName>
     </owl:NamedIndividual>
@@ -450,8 +450,8 @@
         <soho:canBeAssignedTo rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:canBePerformedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
         <soho:hasTarget rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#hole-8"/>
-        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#long">20</soho:hasDuration>
-        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#long">5</soho:hasDurationUncertainty>
+        <soho:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20</soho:hasDuration>
+        <soho:hasDurationUncertainty rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5</soho:hasDurationUncertainty>
         <soho:hasGoal>hole8</soho:hasGoal>
         <soho:hasProcedureName>ScrewH8</soho:hasProcedureName>
     </owl:NamedIndividual>

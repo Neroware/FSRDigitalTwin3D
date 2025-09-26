@@ -177,7 +177,6 @@
 
     <owl:ObjectProperty rdf:about="http://pst.istc.cnr.it/ontologies/2019/01/soho#hasRobotPart">
         <rdfs:subPropertyOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#hasPart"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#RobotInterface"/>
         <rdfs:range rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#RobotInterface"/>
     </owl:ObjectProperty>
@@ -847,7 +846,7 @@
     <!-- http://pst.istc.cnr.it/ontologies/2019/01/soho#AutonomyLevel -->
 
     <owl:Class rdf:about="http://pst.istc.cnr.it/ontologies/2019/01/soho#AutonomyLevel">
-        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#SocialObjectAttribute"/>
+        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Amount"/>
     </owl:Class>
     
 
@@ -911,7 +910,7 @@
     <!-- http://pst.istc.cnr.it/ontologies/2019/01/soho#Capacity -->
 
     <owl:Class rdf:about="http://pst.istc.cnr.it/ontologies/2019/01/soho#Capacity">
-        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#PhysicalAttribute"/>
+        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Amount"/>
     </owl:Class>
     
 
@@ -1277,21 +1276,21 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#canBePerformedBy"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Agent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#hasTarget"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#ProductionObject"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#requiresCapability"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onClass rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#AgentCapability"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2450,7 +2449,7 @@
     <!-- http://pst.istc.cnr.it/ontologies/2019/01/soho#SafetyAttribute -->
 
     <owl:Class rdf:about="http://pst.istc.cnr.it/ontologies/2019/01/soho#SafetyAttribute">
-        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#SocialObjectAttribute"/>
+        <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Amount"/>
     </owl:Class>
     
 

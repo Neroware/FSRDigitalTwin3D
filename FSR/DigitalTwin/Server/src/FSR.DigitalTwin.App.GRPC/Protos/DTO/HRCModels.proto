@@ -43,15 +43,15 @@ message HRCTaskDTO {
     string description = 5;
     string goal = 6;
     AgentType agent = 7;
-    int64 minDuration = 8;
-    int64 maxDuration = 9;
-    int64 averageDuration  = 10;
-    int64 durationUncertainty = 11;
+    float minDuration = 8;
+    float maxDuration = 9;
+    float averageDuration  = 10;
+    float durationUncertainty = 11;
     double successRate = 12;
 }
 
 message HRCModelDTO {
-    int64 horizon = 1;
+    float horizon = 1;
     repeated HRCTaskDTO tasks = 2;
     repeated HRCTaskDTO robotTasks = 3;
     repeated HRCTaskDTO humanTasks = 4;
