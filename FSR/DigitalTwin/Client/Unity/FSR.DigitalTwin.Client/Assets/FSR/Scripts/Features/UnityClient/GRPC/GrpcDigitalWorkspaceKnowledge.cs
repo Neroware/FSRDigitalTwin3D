@@ -9,7 +9,6 @@ using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 using Grpc.Core;
 using Grpc.Core.Utils;
-using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
 {
@@ -71,12 +70,16 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                             if (model.Tasks.Select(hrcTask => hrcTask.Id).Contains(taskId))
                             {
                                 // TODO Retreive addtional function data...
-                                t = new HRCFunction() { TaskId = taskId, Name = taskId, Operator = null, Actor = null,
-                                    Duration = TimeSpan.FromSeconds(1), DurationUncertainty = TimeSpan.FromSeconds(1), SuccessRate = 0.8 };
+                                t = new HRCFunction()
+                                {
+                                    TaskId = taskId,
+                                    Operator = null,
+                                    Actor = null,
+                                };
                             }
                             else
                             {
-                                t = new HRCTask(EHRCTaskType.Basic) { TaskId = taskId, Name = taskId };
+                                t = new HRCTask() { TaskId = taskId };
                             }
                             if (!tasks.ContainsKey(taskId))
                             {
@@ -88,9 +91,9 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                         {
                             if (task.Type != TaskType.Disjuction)
                             {
-                                throw new System.Exception("wrong format in decomposition graph");
+                                throw new Exception("wrong format in decomposition graph");
                             }
-                            HRCTask t = new(EHRCTaskType.Complex) { TaskId = taskId, Name = taskId };
+                            HRCTask t = new() { TaskId = taskId };
                             if (!tasks.ContainsKey(taskId))
                             {
                                 tasks.Add(taskId, t);
@@ -100,7 +103,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                             {
                                 if (subTask.Type != TaskType.Conjuction)
                                 {
-                                    throw new System.Exception("wrong format in decomposition graph");
+                                    throw new Exception("wrong format in decomposition graph");
                                 }
                                 HashSet<string> ts = new(subTask.SubTasks.Select(x => x.TaskId));
                                 subTasks[t].Add(ts);

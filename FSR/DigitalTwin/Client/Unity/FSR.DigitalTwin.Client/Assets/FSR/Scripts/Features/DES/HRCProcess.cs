@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 
@@ -11,7 +12,14 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
     public enum EHRCTaskType
     {
-        Basic = 0, Complex = 1
+        Basic = 0,
+        Independent = 1,
+        Simultaneous = 2,
+        Supportive = 3,
+        Synchronous = 4,
+        Complex = 5,
+        Conjuctive = 6,
+        Disjunctive = 7,
     }
 
     public record HRCProcess
@@ -39,24 +47,28 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
     public record HRCTask : HRCProcess
     {
-        private EHRCTaskType _type;
-        public HRCTask(EHRCTaskType type)
-        {
-            _type = type;
-        }
         public string TaskId { init; get; }
         public override EHRCProcessType ProcessType => EHRCProcessType.Task;
-        public EHRCTaskType TaskType => _type;
-        public string Name { set; get; }
+        public HRCTaskDescription TaskDescription { set; get; } = null;
         public override int GetHashCode() => TaskId.GetHashCode();
+    }
+
+    public record HRCTaskDescription
+    {
+        public EHRCTaskType TaskType { init; get; }
+        public string TaskName { init; get; }
     }
 
     public record HRCFunction : HRCTask
     {
-        public HRCFunction() : base(EHRCTaskType.Basic) { }
         public override EHRCProcessType ProcessType => EHRCProcessType.Function;
         public IDigitalTwinEntity Actor { init; get; }
         public ISocialOperator Operator { init; get; }
+        public HRCFunctionDescription FunctionDescription => TaskDescription as HRCFunctionDescription;
+    }
+
+    public record HRCFunctionDescription : HRCTaskDescription
+    {
         public TimeSpan Duration { init; get; }
         public TimeSpan DurationUncertainty { init; get; }
         public double SuccessRate { init; get; }
