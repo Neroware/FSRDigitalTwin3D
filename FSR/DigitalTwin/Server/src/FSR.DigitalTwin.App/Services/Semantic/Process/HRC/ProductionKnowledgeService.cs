@@ -191,6 +191,13 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
+    public InteractionModality GetInteractionModality(Resource task)
+    {
+        var result = _ontology.RunSparqlQuery((server) =>
+            new GetInteractionModality(task) { SparqlServer = server });
+        return result.Value;
+    }
+
     public IEnumerable<Resource> GetGoals()
     {
         var result = _ontology.RunSparqlQuery((server) =>

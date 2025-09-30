@@ -72,6 +72,23 @@ enum TaskType {
     TASK_TYPE_FUNCTION = 6;
 }
 
+enum InteractionModalityType {
+    INTERACTION_MODALITY_TYPE_NONE = 0;
+    INTERACTION_MODALITY_TYPE_INDEPENDENT = 1;
+    INTERACTION_MODALITY_TYPE_SEQUENTIAL = 2;
+    INTERACTION_MODALITY_TYPE_SIMULTANEOUS = 3;
+    INTERACTION_MODALITY_TYPE_SUPPORTIVE = 4;
+}
+
+message InteractionModalityDTO {
+    string id = 1;
+    InteractionModalityType type = 2;
+    string firstFunction = 3;
+    string secondFunction = 4;
+    string humanFunction = 5;
+    string robotFunction = 6;
+}
+
 message TaskDTO {
     string taskId = 1;
     TaskType type = 2;

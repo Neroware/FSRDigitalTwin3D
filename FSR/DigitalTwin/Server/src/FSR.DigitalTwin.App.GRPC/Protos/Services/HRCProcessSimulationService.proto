@@ -38,9 +38,10 @@ service HRCProcessSimulationService {
     rpc GetSimulationContext (GetSimulationContextRequest) returns (HRCProcessSimulationContextDTO);
     rpc SendSimulationLog (HRCProcessSimulationLogDTO) returns (Empty);
     rpc GetProcessDecomposition (GoalDTO) returns (GoalDTO);
-    rpc GetProcessDependencies (GoalDTO) returns (TaskDTO);
+    // rpc GetProcessDependencies (GoalDTO) returns (TaskDTO);
     rpc GetFunctionPropertyData (HRCTaskDTO) returns (FunctionPropertyDataDTO);
     rpc GetFunctionObjectData (HRCTaskDTO) returns (FunctionObjectDataDTO);
+    rpc GetInteractionModality (TaskDTO) returns (InteractionModalityDTO);
     rpc GetAllAgents (Empty) returns (stream AgentDTO);
     rpc GetAllGoals (Empty) returns (stream GoalDTO);
 }

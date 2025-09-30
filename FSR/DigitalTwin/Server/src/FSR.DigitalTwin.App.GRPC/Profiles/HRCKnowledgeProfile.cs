@@ -1,6 +1,8 @@
 using AutoMapper;
+using FSR.DigitalTwin.App.Common.Utils.Semantic;
 using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using VDS.RDF;
@@ -31,10 +33,22 @@ public class HRCKnowledgeProfile : Profile
         CreateMap<FunctionPropertyData, FunctionPropertyDataDTO>()
             .ForMember(dest => dest.FunctionId, opt => opt.MapFrom(src => src.Function.Uri.ToSafeString()));
         CreateMap<HRCProcessSimulationContext, HRCProcessSimulationContextDTO>();
+        CreateMap<InteractionModality, InteractionModalityDTO>()
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => ConvertInteractionModalityType(src.Type)))
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Resource.ToString()));
     }
 
     private void CreateModelMappings()
     {
         CreateMap<HRCProcessSimulationLogDTO, HRCProcessSimulationLog>();
+    }
+
+    private static InteractionModalityType ConvertInteractionModalityType(Resource resource)
+    {
+        if (resource.Uri == UriPrefix.SOHO + "Simultaneous") return InteractionModalityType.Simultaneous;
+        if (resource.Uri == UriPrefix.SOHO + "Sequential") return InteractionModalityType.Sequential;
+        if (resource.Uri == UriPrefix.SOHO + "Supportive") return InteractionModalityType.Supportive;
+        if (resource.Uri == UriPrefix.SOHO + "Independent") return InteractionModalityType.Independent;
+        return InteractionModalityType.None;
     }
 }

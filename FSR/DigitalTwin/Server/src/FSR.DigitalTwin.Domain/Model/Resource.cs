@@ -72,3 +72,8 @@ public class Resource : SharedKernel.Resource.Resource
     public override string ToString() => Uri?.ToSafeString() ?? $"_:{LocalName ?? "_"}";
     public override StreamReader GetStreamReader() => new(new MemoryStream(_bytes));
 }
+
+public static class ResourceExtension
+{
+    public static Resource AsResource(this INode node) => (Resource)(BaseNode)node;
+}

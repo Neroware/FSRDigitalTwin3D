@@ -121,24 +121,30 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
         return Task.FromResult(request);
     }
 
-    public override Task<TaskDTO> GetProcessDependencies(GoalDTO request, ServerCallContext context)
+    // public override Task<TaskDTO> GetProcessDependencies(GoalDTO request, ServerCallContext context)
+    // {
+    //     var dependencies = _knowledgeBase.GetDependencyGraph(request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId }
+    //         : new Resource() { Uri = new Uri(request.GoalId) });
+
+    //     TaskDTO result = new() { TaskId = request.GoalId, Type = TaskType.Goal };
+    //     foreach (var task in dependencies)
+    //     {
+    //         TaskDTO taskDTO = new() { TaskId = task.Key.Uri.ToSafeString(), Type = TaskType.Task };
+    //         foreach (var subTask in task.Value)
+    //         {
+    //             TaskDTO subTaskDTO = new() { TaskId = subTask.Uri.ToSafeString(), Type = TaskType.Task };
+    //             taskDTO.SubTasks.Add(subTaskDTO);
+    //         }
+    //         result.SubTasks.Add(taskDTO);
+    //     }
+
+    //     return Task.FromResult(result);
+    // }
+
+    public override Task<InteractionModalityDTO> GetInteractionModality(TaskDTO request, ServerCallContext context)
     {
-        var dependencies = _knowledgeBase.GetDependencyGraph(request.GoalId.StartsWith('_') ? new Resource() { LocalName = request.GoalId }
-            : new Resource() { Uri = new Uri(request.GoalId) });
-
-        TaskDTO result = new() { TaskId = request.GoalId, Type = TaskType.Goal };
-        foreach (var task in dependencies)
-        {
-            TaskDTO taskDTO = new() { TaskId = task.Key.Uri.ToSafeString(), Type = TaskType.Task };
-            foreach (var subTask in task.Value)
-            {
-                TaskDTO subTaskDTO = new() { TaskId = subTask.Uri.ToSafeString(), Type = TaskType.Task };
-                taskDTO.SubTasks.Add(subTaskDTO);
-            }
-            result.SubTasks.Add(taskDTO);
-        }
-
-        return Task.FromResult(result);
+        var interactionModality = _knowledgeBase.GetInteractionModality(new Resource() { Uri = new Uri(request.TaskId) });
+        return Task.FromResult(_mapper.Map<InteractionModalityDTO>(interactionModality));
     }
 
     private static HRCAgentType GetAgentType(Resource type)

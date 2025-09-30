@@ -4,6 +4,7 @@ using System.Linq;
 using FSR.DigitalTwin.App.GRPC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
+using FSR.DigitalTwin.Client.Common.Utils.Semantic;
 using FSR.DigitalTwin.Client.Features.DES;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
@@ -23,6 +24,9 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
+
+            var result = _client.GetInteractionModality(new TaskDTO() { TaskId = (UriPrefix.PI + "doCollaborativeScrewH1").ToString() });
+            UnityEngine.Debug.Log("> " + result.Id);
         }
 
         public IProcessSimulationContext GetContext()

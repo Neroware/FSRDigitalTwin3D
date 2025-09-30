@@ -1,4 +1,5 @@
 using AutoMapper;
+using FSR.DigitalTwin.Domain.Model;
 using Google.Protobuf;
 using VDS.RDF;
 
@@ -24,5 +25,6 @@ public class BaseProfile : Profile
             .ConvertUsing((src, dst, ctxt) => ctxt.Mapper.Map<Uri>(new System.Uri(src)));
         CreateMap<System.Uri, Uri>();
         CreateMap<Uri, System.Uri>();
+        CreateMap<Resource, string>().ConvertUsing(res => res.ToString());
     }
 }

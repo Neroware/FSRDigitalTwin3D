@@ -15,4 +15,16 @@ public static class TripleHelper
             triples.Add(new Triple(subject, predicate, node));
         }
     }
+
+    public static void AddTriple(JsonElement binding, List<Triple> triples, INode subject, INode predicate, string propertyName, INode? objectType = null)
+    {
+        var element = binding.GetProperty(propertyName);
+        var node = RdfNodeFactory.CreateFromJson(element);
+        if (objectType != null)
+            triples.Add(new Triple(node, UriPrefix.RDF | "type", objectType));
+        triples.Add(new Triple(subject, predicate, node));
+    }
+
+    public static void AddTriple(List<Triple> triples, INode s, INode p, INode o) => triples.Add(new Triple(s, p, o));
+    public static void AddType(List<Triple> triples, INode s, INode type) => triples.Add(new Triple(s, UriPrefix.RDF | "type", type));
 }

@@ -1,0 +1,32 @@
+PREFIX so: <http://schema.org/>
+PREFIX ex: <http://www.example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX DUL: <http://www.loa-cnr.it/ontologies/DUL.owl#>
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
+PREFIX soho: <http://pst.istc.cnr.it/ontologies/2019/01/soho#>
+PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots/sobots#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
+
+SELECT DISTINCT
+    ?modality
+    ?modalityType
+    ?function
+	?constraint
+    ?constraintType
+    (IF(EXISTS { ?function a soho:HumanFunction }, true, false) AS ?isHuman)
+    (IF(EXISTS { ?function a soho:RobotFunction }, true, false) AS ?isRobot)
+    (IF(EXISTS { ?constraint soho:isFirstTask ?function }, true, false) AS ?isFirst)
+    (IF(EXISTS { ?constraint soho:isSecondTask ?function }, true, false) AS ?isSecond)
+WHERE {
+    pi:tmp0 a soho:SimpleTask .
+    pi:tmp0 DUL:isDescribedBy ?modality . 
+    ?modality a soho:InteractionModality .
+    ?modality a ?modalityType.
+    ?modalityType rdfs:subClassOf soho:InteractionModality .
+    ?modality DUL:isDescribedBy ?constraint .
+    ?modality soho:constrains ?function .
+    ?constraint a ?constraintType .
+    ?constraintType rdfs:subClassOf soho:OperativeConstraint .
+}
