@@ -83,10 +83,10 @@ enum InteractionModalityType {
 message InteractionModalityDTO {
     string id = 1;
     InteractionModalityType type = 2;
-    string firstFunction = 3;
-    string secondFunction = 4;
-    string humanFunction = 5;
-    string robotFunction = 6;
+    string function1 = 3;
+    AgentType agent1 = 4;
+    string function2 = 5 ;
+    AgentType agent2 = 6;
 }
 
 message TaskDTO {

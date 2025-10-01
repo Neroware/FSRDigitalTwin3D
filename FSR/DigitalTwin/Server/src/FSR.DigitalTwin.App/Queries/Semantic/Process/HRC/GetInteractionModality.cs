@@ -204,10 +204,13 @@ public class GetInteractionModality : ISparqlQuery<InteractionModality>
         {
             Resource = taskNode.AsResource(),
             Type = modalityTypeNode.AsResource(),
-            FirstFunction = firstFunction,
-            SecondFunction = secondFunction,
-            RobotFunction = robotFunction,
-            HumanFunction = humanFunction
+            Function1 = firstFunction ?? throw new NullReferenceException("should not happen"),
+            Agent1 = firstFunction == humanFunction ? HRCTask.EAgent.Human :
+                firstFunction == robotFunction ? HRCTask.EAgent.Robot : HRCTask.EAgent.Any,
+            Function2 = secondFunction,
+            Agent2 = secondFunction == null ? HRCTask.EAgent.Any : secondFunction == robotFunction ?
+                HRCTask.EAgent.Robot : secondFunction == humanFunction ?
+                HRCTask.EAgent.Human : HRCTask.EAgent.Any
         };
     }
 }
