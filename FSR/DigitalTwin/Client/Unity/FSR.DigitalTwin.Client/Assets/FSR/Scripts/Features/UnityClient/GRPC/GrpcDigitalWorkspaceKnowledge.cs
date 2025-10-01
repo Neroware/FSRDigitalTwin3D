@@ -24,6 +24,10 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
+
+            var result = _client.GetInteractionModality(new TaskDTO() { TaskId = (UriPrefix.PI + "doCollaborativeScrewH1").ToString() });
+            var ctxt = GetContext();
+            UnityEngine.Debug.Log("Goal> " + ctxt.Goals.First().Key.GoalId);
         }
 
         public IProcessSimulationContext GetContext()
@@ -140,7 +144,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                 }
             }
 
-            return new ProcessSimulation.ProcessSimulationContext()
+            return new ProcessSimulationContext()
             {
                 Actors = actors.ToList(),
                 Goals = goals,

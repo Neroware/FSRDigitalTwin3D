@@ -18,7 +18,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
         void Run();
         void Reset();
 
-        void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> processResult);
+        void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> success, IObservable<Exception> failure = null);
     }
 
     public interface IProcessSimulationContext
