@@ -24,9 +24,6 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
-
-            var result = _client.GetInteractionModality(new TaskDTO() { TaskId = (UriPrefix.PI + "doCollaborativeScrewH1").ToString() });
-            UnityEngine.Debug.Log("> " + result.Id);
         }
 
         public IProcessSimulationContext GetContext()
@@ -71,14 +68,30 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                         if (!task.SubTasks.Any())
                         {
                             HRCTask t;
-                            if (model.Tasks.Select(hrcTask => hrcTask.Id).Contains(taskId))
+                            HRCTaskDTO taskDTO = model.Tasks.Where(hrcTask => hrcTask.TaskId == taskId).FirstOrDefault();
+                            if (taskDTO != null)
                             {
-                                // TODO Retreive addtional function data...
+                                HRCFunctionDescription description = new()
+                                {
+                                    TaskType = EHRCTaskType.Basic,
+                                    Name = taskDTO.Name,
+                                    Duration = TimeSpan.FromSeconds(taskDTO.AverageDuration),
+                                    MaxDuration = TimeSpan.FromSeconds(taskDTO.MaxDuration),
+                                    MinDuration = TimeSpan.FromSeconds(taskDTO.MinDuration),
+                                    DurationUncertainty = TimeSpan.FromSeconds(taskDTO.DurationUncertainty),
+                                    AgentType = (EHRCAgentType)taskDTO.Agent,
+                                    SuccessRate = taskDTO.SuccessRate,
+                                    Description = taskDTO.Description,
+                                    Id = taskDTO.Id,
+                                    Target = taskDTO.Target,
+                                    StartLocation = taskDTO.StartLocation,
+                                    EndLocation = taskDTO.EndLocation,
+                                    Location = taskDTO.Location
+                                };
                                 t = new HRCFunction()
                                 {
                                     TaskId = taskId,
-                                    Operator = null,
-                                    Actor = null,
+                                    TaskDescription = description
                                 };
                             }
                             else

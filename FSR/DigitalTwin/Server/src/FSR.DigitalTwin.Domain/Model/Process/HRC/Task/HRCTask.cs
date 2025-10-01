@@ -13,9 +13,12 @@ public class HRCTask
     public Resource? Target { set; get; }
 
     public string Name { set; get; }
+    public long Id { set; get; }
     public string? Description { set; get; }
     public string? Goal { set; get; }
-    public string? Start { set; get; }
+    public string? StartLocation { set; get; }
+    public string? EndLocation { set; get; }
+    public string? Location { set; get; }
     public EAgent Agent { set; get; } = EAgent.Any;
     public Tuple<float, float> Duration => new(
         Math.Max(1, AverageDuration - DurationUncertainty),

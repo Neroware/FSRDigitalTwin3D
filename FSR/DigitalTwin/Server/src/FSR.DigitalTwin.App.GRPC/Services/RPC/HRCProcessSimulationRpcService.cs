@@ -39,6 +39,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     {
         var model = _authoring.CreateModel(request.Horizon);
         HRCProcessSimulationContext ctxt = _simulation.AddModel(new Uri(request.ClientId), model, request.DisplayName);
+        _authoring.AttachMetadata(ctxt.Model);
         return Task.FromResult(_mapper.Map<HRCProcessSimulationContextDTO>(ctxt));
     }
 
@@ -82,14 +83,14 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     public override Task<FunctionObjectDataDTO> GetFunctionObjectData(HRCTaskDTO request, ServerCallContext context)
     {
         var functionObjectData = _knowledgeBase.GetFunctionObjectProperties(
-            request.Id.StartsWith('_') ? new Resource() { LocalName = request.Id } : new Resource() { Uri = new Uri(request.Id) });
+            request.TaskId.StartsWith('_') ? new Resource() { LocalName = request.TaskId } : new Resource() { Uri = new Uri(request.TaskId) });
         return Task.FromResult(_mapper.Map<FunctionObjectDataDTO>(functionObjectData));
     }
 
     public override Task<FunctionPropertyDataDTO> GetFunctionPropertyData(HRCTaskDTO request, ServerCallContext context)
     {
-        var functionPropertyData = _knowledgeBase.GetFunctionObjectProperties(
-            request.Id.StartsWith('_') ? new Resource() { LocalName = request.Id } : new Resource() { Uri = new Uri(request.Id) });
+        var functionPropertyData = _knowledgeBase.GetFunctionDataProperties(
+            request.TaskId.StartsWith('_') ? new Resource() { LocalName = request.TaskId } : new Resource() { Uri = new Uri(request.TaskId) });
         return Task.FromResult(_mapper.Map<FunctionPropertyDataDTO>(functionPropertyData));
     }
 

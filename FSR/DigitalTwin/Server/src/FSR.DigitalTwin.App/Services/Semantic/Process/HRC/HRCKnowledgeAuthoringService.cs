@@ -1,7 +1,6 @@
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using Microsoft.Extensions.Logging;
-using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 
@@ -44,5 +43,25 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
         hrc.Goals.AddRange(goals);
 
         return hrc;
+    }
+
+    public void AttachMetadata(HRCModel model)
+    {
+        var allTasks = model.HumanTasks.Concat(model.RobotTasks).Concat(model.Tasks).ToHashSet();
+        foreach (var task in allTasks)
+        {
+            var functionObjectData = _knowledgeBase.GetFunctionObjectProperties(task.Resource);
+            var functionPropertyData = _knowledgeBase.GetFunctionDataProperties(task.Resource);
+            task.AverageDuration = functionPropertyData.Duration;
+            task.DurationUncertainty = functionPropertyData.DurationUncertainty;
+            task.SuccessRate = 1.0;
+            task.Description = functionPropertyData.ProcedureDescription;
+            task.Name = functionPropertyData.ProcedureName ?? task.Name;
+            task.Id = functionPropertyData.ProcedureId;
+            task.Target = functionObjectData.Target.FirstOrDefault();
+            task.StartLocation = functionObjectData.StartLocation.Select(res => res.ToString()).FirstOrDefault();
+            task.EndLocation = functionObjectData.EndLocation.Select(res => res.ToString()).FirstOrDefault();
+            task.Location = functionObjectData.Location.Select(res => res.ToString()).FirstOrDefault();
+        }
     }
 }

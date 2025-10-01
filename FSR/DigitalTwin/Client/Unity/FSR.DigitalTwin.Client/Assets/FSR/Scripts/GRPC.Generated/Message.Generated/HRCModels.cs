@@ -27,61 +27,64 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             "ChpQcm90b3MvRFRPL0hSQ01vZGVscy5wcm90bxIYRlNSLkRpZ2l0YWxUd2lu",
             "LkFwcC5HUlBDIqABChdGdW5jdGlvblByb3BlcnR5RGF0YURUTxISCgpmdW5j",
             "dGlvbklkGAEgASgJEhUKDXByb2NlZHVyZU5hbWUYAiABKAkSFgoOcHJvY2Vk",
-            "dXJlRGVzY3IYAyABKAkSEwoLcHJvY2VkdXJlSWQYBCABKAkSEAoIZHVyYXRp",
+            "dXJlRGVzY3IYAyABKAkSEwoLcHJvY2VkdXJlSWQYBCABKAMSEAoIZHVyYXRp",
             "b24YBSABKAESGwoTZHVyYXRpb25VbmNlcnRhaW50eRgGIAEoASJ5ChVGdW5j",
             "dGlvbk9iamVjdERhdGFEVE8SEgoKZnVuY3Rpb25JZBgBIAEoCRIOCgZ0YXJn",
             "ZXQYAiABKAkSFQoNc3RhcnRMb2NhdGlvbhgDIAEoCRITCgtlbmRMb2NhdGlv",
-            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSKQAgoKSFJDVGFza0RUTxIKCgJp",
-            "ZBgBIAEoCRIMCgR0eXBlGAIgASgJEg4KBnRhcmdldBgDIAEoCRIMCgRuYW1l",
-            "GAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEgwKBGdvYWwYBiABKAkSMgoF",
-            "YWdlbnQYByABKA4yIy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRU",
-            "eXBlEhMKC21pbkR1cmF0aW9uGAggASgCEhMKC21heER1cmF0aW9uGAkgASgC",
-            "EhcKD2F2ZXJhZ2VEdXJhdGlvbhgKIAEoAhIbChNkdXJhdGlvblVuY2VydGFp",
-            "bnR5GAsgASgCEhMKC3N1Y2Nlc3NSYXRlGAwgASgBIscBCgtIUkNNb2RlbERU",
-            "TxIPCgdob3Jpem9uGAEgASgCEjMKBXRhc2tzGAIgAygLMiQuRlNSLkRpZ2l0",
-            "YWxUd2luLkFwcC5HUlBDLkhSQ1Rhc2tEVE8SOAoKcm9ib3RUYXNrcxgDIAMo",
-            "CzIkLkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPEjgKCmh1",
-            "bWFuVGFza3MYBCADKAsyJC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJD",
-            "VGFza0RUTyJPCgdHb2FsRFRPEg4KBmdvYWxJZBgBIAEoCRI0CgdtZXRob2Rz",
-            "GAIgAygLMiMuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLk1ldGhvZERUTyLC",
-            "AQoWSW50ZXJhY3Rpb25Nb2RhbGl0eURUTxIKCgJpZBgBIAEoCRI/CgR0eXBl",
-            "GAIgASgOMjEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLkludGVyYWN0aW9u",
-            "TW9kYWxpdHlUeXBlEhUKDWZpcnN0RnVuY3Rpb24YAyABKAkSFgoOc2Vjb25k",
-            "RnVuY3Rpb24YBCABKAkSFQoNaHVtYW5GdW5jdGlvbhgFIAEoCRIVCg1yb2Jv",
-            "dEZ1bmN0aW9uGAYgASgJIoABCgdUYXNrRFRPEg4KBnRhc2tJZBgBIAEoCRIw",
-            "CgR0eXBlGAIgASgOMiIuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlRhc2tU",
-            "eXBlEjMKCHN1YlRhc2tzGAMgAygLMiEuRlNSLkRpZ2l0YWxUd2luLkFwcC5H",
-            "UlBDLlRhc2tEVE8iqwEKCU1ldGhvZERUTxIOCgZnb2FsSWQYASABKAkSPQoF",
-            "Z3JhcGgYAiADKAsyLi5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuTWV0aG9k",
-            "RFRPLkdyYXBoRW50cnkaTwoKR3JhcGhFbnRyeRILCgNrZXkYASABKAkSMAoF",
-            "dmFsdWUYAiABKAsyIS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuVGFza0RU",
-            "TzoCOAEiWgoIQWdlbnREVE8SCgoCaWQYASABKAkSNAoEdHlwZRgCIAEoDjIm",
-            "LkZTUi5EaWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNBZ2VudFR5cGUSDAoEbmFt",
-            "ZRgDIAEoCSpLCglBZ2VudFR5cGUSEgoOQUdFTlRfVFlQRV9BTlkQABIUChBB",
-            "R0VOVF9UWVBFX0hVTUFOEAESFAoQQUdFTlRfVFlQRV9ST0JPVBACKp4BCgxI",
-            "UkNBZ2VudFR5cGUSHAoYSFJDX0FHRU5UX1RZUEVfVU5ERUZJTkVEEAASGAoU",
-            "SFJDX0FHRU5UX1RZUEVfSFVNQU4QARIYChRIUkNfQUdFTlRfVFlQRV9ST0JP",
-            "VBACEiIKHkhSQ19BR0VOVF9UWVBFX1dPUktFUl9PUEVSQVRPUhADEhgKFEhS",
-            "Q19BR0VOVF9UWVBFX0NPQk9UEAQqqwEKCFRhc2tUeXBlEhIKDlRBU0tfVFlQ",
-            "RV9UQVNLEAASEgoOVEFTS19UWVBFX0dPQUwQARIUChBUQVNLX1RZUEVfTUVU",
-            "SE9EEAISFQoRVEFTS19UWVBFX0NPTVBMRVgQAxIYChRUQVNLX1RZUEVfQ09O",
-            "SlVDVElPThAEEhgKFFRBU0tfVFlQRV9ESVNKVUNUSU9OEAUSFgoSVEFTS19U",
-            "WVBFX0ZVTkNUSU9OEAYq6AEKF0ludGVyYWN0aW9uTW9kYWxpdHlUeXBlEiIK",
-            "HklOVEVSQUNUSU9OX01PREFMSVRZX1RZUEVfTk9ORRAAEikKJUlOVEVSQUNU",
-            "SU9OX01PREFMSVRZX1RZUEVfSU5ERVBFTkRFTlQQARIoCiRJTlRFUkFDVElP",
-            "Tl9NT0RBTElUWV9UWVBFX1NFUVVFTlRJQUwQAhIqCiZJTlRFUkFDVElPTl9N",
-            "T0RBTElUWV9UWVBFX1NJTVVMVEFORU9VUxADEigKJElOVEVSQUNUSU9OX01P",
-            "REFMSVRZX1RZUEVfU1VQUE9SVElWRRAEQieqAiRGU1IuRGlnaXRhbFR3aW4u",
-            "QXBwLkdSUEMuUHJvY2Vzcy5IUkNiBnByb3RvMw=="));
+            "bhgEIAEoCRIQCghsb2NhdGlvbhgFIAEoCSLeAgoKSFJDVGFza0RUTxIOCgZ0",
+            "YXNrSWQYASABKAkSDAoEdHlwZRgCIAEoCRIOCgZ0YXJnZXQYAyABKAkSDAoE",
+            "bmFtZRgEIAEoCRIKCgJpZBgFIAEoAxITCgtkZXNjcmlwdGlvbhgGIAEoCRIM",
+            "CgRnb2FsGAcgASgJEhUKDXN0YXJ0TG9jYXRpb24YCCABKAkSEwoLZW5kTG9j",
+            "YXRpb24YCSABKAkSEAoIbG9jYXRpb24YCiABKAkSMgoFYWdlbnQYCyABKA4y",
+            "Iy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRUeXBlEhMKC21pbkR1",
+            "cmF0aW9uGAwgASgCEhMKC21heER1cmF0aW9uGA0gASgCEhcKD2F2ZXJhZ2VE",
+            "dXJhdGlvbhgOIAEoAhIbChNkdXJhdGlvblVuY2VydGFpbnR5GA8gASgCEhMK",
+            "C3N1Y2Nlc3NSYXRlGBAgASgBIscBCgtIUkNNb2RlbERUTxIPCgdob3Jpem9u",
+            "GAEgASgCEjMKBXRhc2tzGAIgAygLMiQuRlNSLkRpZ2l0YWxUd2luLkFwcC5H",
+            "UlBDLkhSQ1Rhc2tEVE8SOAoKcm9ib3RUYXNrcxgDIAMoCzIkLkZTUi5EaWdp",
+            "dGFsVHdpbi5BcHAuR1JQQy5IUkNUYXNrRFRPEjgKCmh1bWFuVGFza3MYBCAD",
+            "KAsyJC5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuSFJDVGFza0RUTyJPCgdH",
+            "b2FsRFRPEg4KBmdvYWxJZBgBIAEoCRI0CgdtZXRob2RzGAIgAygLMiMuRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLk1ldGhvZERUTyL1AQoWSW50ZXJhY3Rp",
+            "b25Nb2RhbGl0eURUTxIKCgJpZBgBIAEoCRI/CgR0eXBlGAIgASgOMjEuRlNS",
+            "LkRpZ2l0YWxUd2luLkFwcC5HUlBDLkludGVyYWN0aW9uTW9kYWxpdHlUeXBl",
+            "EhEKCWZ1bmN0aW9uMRgDIAEoCRIzCgZhZ2VudDEYBCABKA4yIy5GU1IuRGln",
+            "aXRhbFR3aW4uQXBwLkdSUEMuQWdlbnRUeXBlEhEKCWZ1bmN0aW9uMhgFIAEo",
+            "CRIzCgZhZ2VudDIYBiABKA4yIy5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMu",
+            "QWdlbnRUeXBlIoABCgdUYXNrRFRPEg4KBnRhc2tJZBgBIAEoCRIwCgR0eXBl",
+            "GAIgASgOMiIuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlRhc2tUeXBlEjMK",
+            "CHN1YlRhc2tzGAMgAygLMiEuRlNSLkRpZ2l0YWxUd2luLkFwcC5HUlBDLlRh",
+            "c2tEVE8iqwEKCU1ldGhvZERUTxIOCgZnb2FsSWQYASABKAkSPQoFZ3JhcGgY",
+            "AiADKAsyLi5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuTWV0aG9kRFRPLkdy",
+            "YXBoRW50cnkaTwoKR3JhcGhFbnRyeRILCgNrZXkYASABKAkSMAoFdmFsdWUY",
+            "AiABKAsyIS5GU1IuRGlnaXRhbFR3aW4uQXBwLkdSUEMuVGFza0RUTzoCOAEi",
+            "WgoIQWdlbnREVE8SCgoCaWQYASABKAkSNAoEdHlwZRgCIAEoDjImLkZTUi5E",
+            "aWdpdGFsVHdpbi5BcHAuR1JQQy5IUkNBZ2VudFR5cGUSDAoEbmFtZRgDIAEo",
+            "CSpLCglBZ2VudFR5cGUSEgoOQUdFTlRfVFlQRV9BTlkQABIUChBBR0VOVF9U",
+            "WVBFX0hVTUFOEAESFAoQQUdFTlRfVFlQRV9ST0JPVBACKp4BCgxIUkNBZ2Vu",
+            "dFR5cGUSHAoYSFJDX0FHRU5UX1RZUEVfVU5ERUZJTkVEEAASGAoUSFJDX0FH",
+            "RU5UX1RZUEVfSFVNQU4QARIYChRIUkNfQUdFTlRfVFlQRV9ST0JPVBACEiIK",
+            "HkhSQ19BR0VOVF9UWVBFX1dPUktFUl9PUEVSQVRPUhADEhgKFEhSQ19BR0VO",
+            "VF9UWVBFX0NPQk9UEAQqqwEKCFRhc2tUeXBlEhIKDlRBU0tfVFlQRV9UQVNL",
+            "EAASEgoOVEFTS19UWVBFX0dPQUwQARIUChBUQVNLX1RZUEVfTUVUSE9EEAIS",
+            "FQoRVEFTS19UWVBFX0NPTVBMRVgQAxIYChRUQVNLX1RZUEVfQ09OSlVDVElP",
+            "ThAEEhgKFFRBU0tfVFlQRV9ESVNKVUNUSU9OEAUSFgoSVEFTS19UWVBFX0ZV",
+            "TkNUSU9OEAYq6AEKF0ludGVyYWN0aW9uTW9kYWxpdHlUeXBlEiIKHklOVEVS",
+            "QUNUSU9OX01PREFMSVRZX1RZUEVfTk9ORRAAEikKJUlOVEVSQUNUSU9OX01P",
+            "REFMSVRZX1RZUEVfSU5ERVBFTkRFTlQQARIoCiRJTlRFUkFDVElPTl9NT0RB",
+            "TElUWV9UWVBFX1NFUVVFTlRJQUwQAhIqCiZJTlRFUkFDVElPTl9NT0RBTElU",
+            "WV9UWVBFX1NJTVVMVEFORU9VUxADEigKJElOVEVSQUNUSU9OX01PREFMSVRZ",
+            "X1RZUEVfU1VQUE9SVElWRRAEQieqAiRGU1IuRGlnaXRhbFR3aW4uQXBwLkdS",
+            "UEMuUHJvY2Vzcy5IUkNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCAgentType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskType), typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.InteractionModalityType), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionPropertyDataDTO.Parser, new[]{ "FunctionId", "ProcedureName", "ProcedureDescr", "ProcedureId", "Duration", "DurationUncertainty" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.FunctionObjectDataDTO.Parser, new[]{ "FunctionId", "Target", "StartLocation", "EndLocation", "Location" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "Id", "Type", "Target", "Name", "Description", "Goal", "Agent", "MinDuration", "MaxDuration", "AverageDuration", "DurationUncertainty", "SuccessRate" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCTaskDTO.Parser, new[]{ "TaskId", "Type", "Target", "Name", "Id", "Description", "Goal", "StartLocation", "EndLocation", "Location", "Agent", "MinDuration", "MaxDuration", "AverageDuration", "DurationUncertainty", "SuccessRate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.HRCModelDTO.Parser, new[]{ "Horizon", "Tasks", "RobotTasks", "HumanTasks" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.GoalDTO.Parser, new[]{ "GoalId", "Methods" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.InteractionModalityDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.InteractionModalityDTO.Parser, new[]{ "Id", "Type", "FirstFunction", "SecondFunction", "HumanFunction", "RobotFunction" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.InteractionModalityDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.InteractionModalityDTO.Parser, new[]{ "Id", "Type", "Function1", "Agent1", "Function2", "Agent2" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.TaskDTO.Parser, new[]{ "TaskId", "Type", "SubTasks" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.MethodDTO.Parser, new[]{ "GoalId", "Graph" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO), global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentDTO.Parser, new[]{ "Id", "Type", "Name" }, null, null, null)
@@ -200,12 +203,12 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     /// <summary>Field number for the "procedureId" field.</summary>
     public const int ProcedureIdFieldNumber = 4;
-    private string procedureId_ = "";
+    private long procedureId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string ProcedureId {
+    public long ProcedureId {
       get { return procedureId_; }
       set {
-        procedureId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        procedureId_ = value;
       }
     }
 
@@ -259,7 +262,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (FunctionId.Length != 0) hash ^= FunctionId.GetHashCode();
       if (ProcedureName.Length != 0) hash ^= ProcedureName.GetHashCode();
       if (ProcedureDescr.Length != 0) hash ^= ProcedureDescr.GetHashCode();
-      if (ProcedureId.Length != 0) hash ^= ProcedureId.GetHashCode();
+      if (ProcedureId != 0L) hash ^= ProcedureId.GetHashCode();
       if (Duration != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Duration);
       if (DurationUncertainty != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(DurationUncertainty);
       if (_unknownFields != null) {
@@ -287,9 +290,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(26);
         output.WriteString(ProcedureDescr);
       }
-      if (ProcedureId.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(ProcedureId);
+      if (ProcedureId != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(ProcedureId);
       }
       if (Duration != 0D) {
         output.WriteRawTag(41);
@@ -316,8 +319,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (ProcedureDescr.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ProcedureDescr);
       }
-      if (ProcedureId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ProcedureId);
+      if (ProcedureId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ProcedureId);
       }
       if (Duration != 0D) {
         size += 1 + 8;
@@ -345,7 +348,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.ProcedureDescr.Length != 0) {
         ProcedureDescr = other.ProcedureDescr;
       }
-      if (other.ProcedureId.Length != 0) {
+      if (other.ProcedureId != 0L) {
         ProcedureId = other.ProcedureId;
       }
       if (other.Duration != 0D) {
@@ -377,8 +380,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             ProcedureDescr = input.ReadString();
             break;
           }
-          case 34: {
-            ProcedureId = input.ReadString();
+          case 32: {
+            ProcedureId = input.ReadInt64();
             break;
           }
           case 41: {
@@ -661,12 +664,16 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public HRCTaskDTO(HRCTaskDTO other) : this() {
-      id_ = other.id_;
+      taskId_ = other.taskId_;
       type_ = other.type_;
       target_ = other.target_;
       name_ = other.name_;
+      id_ = other.id_;
       description_ = other.description_;
       goal_ = other.goal_;
+      startLocation_ = other.startLocation_;
+      endLocation_ = other.endLocation_;
+      location_ = other.location_;
       agent_ = other.agent_;
       minDuration_ = other.minDuration_;
       maxDuration_ = other.maxDuration_;
@@ -681,14 +688,14 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       return new HRCTaskDTO(this);
     }
 
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private string id_ = "";
+    /// <summary>Field number for the "taskId" field.</summary>
+    public const int TaskIdFieldNumber = 1;
+    private string taskId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Id {
-      get { return id_; }
+    public string TaskId {
+      get { return taskId_; }
       set {
-        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        taskId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -725,8 +732,19 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 5;
+    private long id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
     /// <summary>Field number for the "description" field.</summary>
-    public const int DescriptionFieldNumber = 5;
+    public const int DescriptionFieldNumber = 6;
     private string description_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Description {
@@ -737,7 +755,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "goal" field.</summary>
-    public const int GoalFieldNumber = 6;
+    public const int GoalFieldNumber = 7;
     private string goal_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Goal {
@@ -747,8 +765,41 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
+    /// <summary>Field number for the "startLocation" field.</summary>
+    public const int StartLocationFieldNumber = 8;
+    private string startLocation_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string StartLocation {
+      get { return startLocation_; }
+      set {
+        startLocation_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "endLocation" field.</summary>
+    public const int EndLocationFieldNumber = 9;
+    private string endLocation_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string EndLocation {
+      get { return endLocation_; }
+      set {
+        endLocation_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "location" field.</summary>
+    public const int LocationFieldNumber = 10;
+    private string location_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Location {
+      get { return location_; }
+      set {
+        location_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "agent" field.</summary>
-    public const int AgentFieldNumber = 7;
+    public const int AgentFieldNumber = 11;
     private global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType agent_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType Agent {
@@ -759,7 +810,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "minDuration" field.</summary>
-    public const int MinDurationFieldNumber = 8;
+    public const int MinDurationFieldNumber = 12;
     private float minDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float MinDuration {
@@ -770,7 +821,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "maxDuration" field.</summary>
-    public const int MaxDurationFieldNumber = 9;
+    public const int MaxDurationFieldNumber = 13;
     private float maxDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float MaxDuration {
@@ -781,7 +832,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "averageDuration" field.</summary>
-    public const int AverageDurationFieldNumber = 10;
+    public const int AverageDurationFieldNumber = 14;
     private float averageDuration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float AverageDuration {
@@ -792,7 +843,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "durationUncertainty" field.</summary>
-    public const int DurationUncertaintyFieldNumber = 11;
+    public const int DurationUncertaintyFieldNumber = 15;
     private float durationUncertainty_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public float DurationUncertainty {
@@ -803,7 +854,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     }
 
     /// <summary>Field number for the "successRate" field.</summary>
-    public const int SuccessRateFieldNumber = 12;
+    public const int SuccessRateFieldNumber = 16;
     private double successRate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public double SuccessRate {
@@ -826,12 +877,16 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id) return false;
+      if (TaskId != other.TaskId) return false;
       if (Type != other.Type) return false;
       if (Target != other.Target) return false;
       if (Name != other.Name) return false;
+      if (Id != other.Id) return false;
       if (Description != other.Description) return false;
       if (Goal != other.Goal) return false;
+      if (StartLocation != other.StartLocation) return false;
+      if (EndLocation != other.EndLocation) return false;
+      if (Location != other.Location) return false;
       if (Agent != other.Agent) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MinDuration, other.MinDuration)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MaxDuration, other.MaxDuration)) return false;
@@ -844,12 +899,16 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (TaskId.Length != 0) hash ^= TaskId.GetHashCode();
       if (Type.Length != 0) hash ^= Type.GetHashCode();
       if (Target.Length != 0) hash ^= Target.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Id != 0L) hash ^= Id.GetHashCode();
       if (Description.Length != 0) hash ^= Description.GetHashCode();
       if (Goal.Length != 0) hash ^= Goal.GetHashCode();
+      if (StartLocation.Length != 0) hash ^= StartLocation.GetHashCode();
+      if (EndLocation.Length != 0) hash ^= EndLocation.GetHashCode();
+      if (Location.Length != 0) hash ^= Location.GetHashCode();
       if (Agent != 0) hash ^= Agent.GetHashCode();
       if (MinDuration != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MinDuration);
       if (MaxDuration != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MaxDuration);
@@ -869,9 +928,9 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Id.Length != 0) {
+      if (TaskId.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Id);
+        output.WriteString(TaskId);
       }
       if (Type.Length != 0) {
         output.WriteRawTag(18);
@@ -885,36 +944,52 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(34);
         output.WriteString(Name);
       }
+      if (Id != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(Id);
+      }
       if (Description.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteString(Description);
       }
       if (Goal.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(58);
         output.WriteString(Goal);
       }
+      if (StartLocation.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(StartLocation);
+      }
+      if (EndLocation.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(EndLocation);
+      }
+      if (Location.Length != 0) {
+        output.WriteRawTag(82);
+        output.WriteString(Location);
+      }
       if (Agent != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(88);
         output.WriteEnum((int) Agent);
       }
       if (MinDuration != 0F) {
-        output.WriteRawTag(69);
+        output.WriteRawTag(101);
         output.WriteFloat(MinDuration);
       }
       if (MaxDuration != 0F) {
-        output.WriteRawTag(77);
+        output.WriteRawTag(109);
         output.WriteFloat(MaxDuration);
       }
       if (AverageDuration != 0F) {
-        output.WriteRawTag(85);
+        output.WriteRawTag(117);
         output.WriteFloat(AverageDuration);
       }
       if (DurationUncertainty != 0F) {
-        output.WriteRawTag(93);
+        output.WriteRawTag(125);
         output.WriteFloat(DurationUncertainty);
       }
       if (SuccessRate != 0D) {
-        output.WriteRawTag(97);
+        output.WriteRawTag(129, 1);
         output.WriteDouble(SuccessRate);
       }
       if (_unknownFields != null) {
@@ -925,8 +1000,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Id.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      if (TaskId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TaskId);
       }
       if (Type.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
@@ -937,11 +1012,23 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
+      if (Id != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
       if (Description.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
       }
       if (Goal.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Goal);
+      }
+      if (StartLocation.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(StartLocation);
+      }
+      if (EndLocation.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EndLocation);
+      }
+      if (Location.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Location);
       }
       if (Agent != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Agent);
@@ -959,7 +1046,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         size += 1 + 4;
       }
       if (SuccessRate != 0D) {
-        size += 1 + 8;
+        size += 2 + 8;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -972,8 +1059,8 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other == null) {
         return;
       }
-      if (other.Id.Length != 0) {
-        Id = other.Id;
+      if (other.TaskId.Length != 0) {
+        TaskId = other.TaskId;
       }
       if (other.Type.Length != 0) {
         Type = other.Type;
@@ -984,11 +1071,23 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
+      if (other.Id != 0L) {
+        Id = other.Id;
+      }
       if (other.Description.Length != 0) {
         Description = other.Description;
       }
       if (other.Goal.Length != 0) {
         Goal = other.Goal;
+      }
+      if (other.StartLocation.Length != 0) {
+        StartLocation = other.StartLocation;
+      }
+      if (other.EndLocation.Length != 0) {
+        EndLocation = other.EndLocation;
+      }
+      if (other.Location.Length != 0) {
+        Location = other.Location;
       }
       if (other.Agent != 0) {
         Agent = other.Agent;
@@ -1020,7 +1119,7 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Id = input.ReadString();
+            TaskId = input.ReadString();
             break;
           }
           case 18: {
@@ -1035,35 +1134,51 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             Name = input.ReadString();
             break;
           }
-          case 42: {
-            Description = input.ReadString();
+          case 40: {
+            Id = input.ReadInt64();
             break;
           }
           case 50: {
+            Description = input.ReadString();
+            break;
+          }
+          case 58: {
             Goal = input.ReadString();
             break;
           }
-          case 56: {
+          case 66: {
+            StartLocation = input.ReadString();
+            break;
+          }
+          case 74: {
+            EndLocation = input.ReadString();
+            break;
+          }
+          case 82: {
+            Location = input.ReadString();
+            break;
+          }
+          case 88: {
             Agent = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
             break;
           }
-          case 69: {
+          case 101: {
             MinDuration = input.ReadFloat();
             break;
           }
-          case 77: {
+          case 109: {
             MaxDuration = input.ReadFloat();
             break;
           }
-          case 85: {
+          case 117: {
             AverageDuration = input.ReadFloat();
             break;
           }
-          case 93: {
+          case 125: {
             DurationUncertainty = input.ReadFloat();
             break;
           }
-          case 97: {
+          case 129: {
             SuccessRate = input.ReadDouble();
             break;
           }
@@ -1438,10 +1553,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
     public InteractionModalityDTO(InteractionModalityDTO other) : this() {
       id_ = other.id_;
       type_ = other.type_;
-      firstFunction_ = other.firstFunction_;
-      secondFunction_ = other.secondFunction_;
-      humanFunction_ = other.humanFunction_;
-      robotFunction_ = other.robotFunction_;
+      function1_ = other.function1_;
+      agent1_ = other.agent1_;
+      function2_ = other.function2_;
+      agent2_ = other.agent2_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1472,47 +1587,47 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
     }
 
-    /// <summary>Field number for the "firstFunction" field.</summary>
-    public const int FirstFunctionFieldNumber = 3;
-    private string firstFunction_ = "";
+    /// <summary>Field number for the "function1" field.</summary>
+    public const int Function1FieldNumber = 3;
+    private string function1_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string FirstFunction {
-      get { return firstFunction_; }
+    public string Function1 {
+      get { return function1_; }
       set {
-        firstFunction_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        function1_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "secondFunction" field.</summary>
-    public const int SecondFunctionFieldNumber = 4;
-    private string secondFunction_ = "";
+    /// <summary>Field number for the "agent1" field.</summary>
+    public const int Agent1FieldNumber = 4;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType agent1_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string SecondFunction {
-      get { return secondFunction_; }
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType Agent1 {
+      get { return agent1_; }
       set {
-        secondFunction_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        agent1_ = value;
       }
     }
 
-    /// <summary>Field number for the "humanFunction" field.</summary>
-    public const int HumanFunctionFieldNumber = 5;
-    private string humanFunction_ = "";
+    /// <summary>Field number for the "function2" field.</summary>
+    public const int Function2FieldNumber = 5;
+    private string function2_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string HumanFunction {
-      get { return humanFunction_; }
+    public string Function2 {
+      get { return function2_; }
       set {
-        humanFunction_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        function2_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "robotFunction" field.</summary>
-    public const int RobotFunctionFieldNumber = 6;
-    private string robotFunction_ = "";
+    /// <summary>Field number for the "agent2" field.</summary>
+    public const int Agent2FieldNumber = 6;
+    private global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType agent2_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string RobotFunction {
-      get { return robotFunction_; }
+    public global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType Agent2 {
+      get { return agent2_; }
       set {
-        robotFunction_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        agent2_ = value;
       }
     }
 
@@ -1531,10 +1646,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       }
       if (Id != other.Id) return false;
       if (Type != other.Type) return false;
-      if (FirstFunction != other.FirstFunction) return false;
-      if (SecondFunction != other.SecondFunction) return false;
-      if (HumanFunction != other.HumanFunction) return false;
-      if (RobotFunction != other.RobotFunction) return false;
+      if (Function1 != other.Function1) return false;
+      if (Agent1 != other.Agent1) return false;
+      if (Function2 != other.Function2) return false;
+      if (Agent2 != other.Agent2) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1543,10 +1658,10 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Type != 0) hash ^= Type.GetHashCode();
-      if (FirstFunction.Length != 0) hash ^= FirstFunction.GetHashCode();
-      if (SecondFunction.Length != 0) hash ^= SecondFunction.GetHashCode();
-      if (HumanFunction.Length != 0) hash ^= HumanFunction.GetHashCode();
-      if (RobotFunction.Length != 0) hash ^= RobotFunction.GetHashCode();
+      if (Function1.Length != 0) hash ^= Function1.GetHashCode();
+      if (Agent1 != 0) hash ^= Agent1.GetHashCode();
+      if (Function2.Length != 0) hash ^= Function2.GetHashCode();
+      if (Agent2 != 0) hash ^= Agent2.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1568,21 +1683,21 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
         output.WriteRawTag(16);
         output.WriteEnum((int) Type);
       }
-      if (FirstFunction.Length != 0) {
+      if (Function1.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(FirstFunction);
+        output.WriteString(Function1);
       }
-      if (SecondFunction.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(SecondFunction);
+      if (Agent1 != 0) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) Agent1);
       }
-      if (HumanFunction.Length != 0) {
+      if (Function2.Length != 0) {
         output.WriteRawTag(42);
-        output.WriteString(HumanFunction);
+        output.WriteString(Function2);
       }
-      if (RobotFunction.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteString(RobotFunction);
+      if (Agent2 != 0) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) Agent2);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1598,17 +1713,17 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (Type != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
-      if (FirstFunction.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(FirstFunction);
+      if (Function1.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Function1);
       }
-      if (SecondFunction.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(SecondFunction);
+      if (Agent1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Agent1);
       }
-      if (HumanFunction.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(HumanFunction);
+      if (Function2.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Function2);
       }
-      if (RobotFunction.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(RobotFunction);
+      if (Agent2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Agent2);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1627,17 +1742,17 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
       if (other.Type != 0) {
         Type = other.Type;
       }
-      if (other.FirstFunction.Length != 0) {
-        FirstFunction = other.FirstFunction;
+      if (other.Function1.Length != 0) {
+        Function1 = other.Function1;
       }
-      if (other.SecondFunction.Length != 0) {
-        SecondFunction = other.SecondFunction;
+      if (other.Agent1 != 0) {
+        Agent1 = other.Agent1;
       }
-      if (other.HumanFunction.Length != 0) {
-        HumanFunction = other.HumanFunction;
+      if (other.Function2.Length != 0) {
+        Function2 = other.Function2;
       }
-      if (other.RobotFunction.Length != 0) {
-        RobotFunction = other.RobotFunction;
+      if (other.Agent2 != 0) {
+        Agent2 = other.Agent2;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1659,19 +1774,19 @@ namespace FSR.DigitalTwin.App.GRPC.Process.HRC {
             break;
           }
           case 26: {
-            FirstFunction = input.ReadString();
+            Function1 = input.ReadString();
             break;
           }
-          case 34: {
-            SecondFunction = input.ReadString();
+          case 32: {
+            Agent1 = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
             break;
           }
           case 42: {
-            HumanFunction = input.ReadString();
+            Function2 = input.ReadString();
             break;
           }
-          case 50: {
-            RobotFunction = input.ReadString();
+          case 48: {
+            Agent2 = (global::FSR.DigitalTwin.App.GRPC.Process.HRC.AgentType) input.ReadEnum();
             break;
           }
         }

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 
@@ -7,7 +7,18 @@ namespace FSR.DigitalTwin.Client.Features.DES
 {
     public enum EHRCProcessType
     {
-        Event = 0, Goal = 1, Method = 2, Task = 3, Function = 4
+        Event = 0,
+        Goal = 1,
+        Method = 2,
+        Task = 3,
+        Function = 4
+    }
+
+    public enum EHRCAgentType
+    {
+        Any = 0,
+        Human = 1,
+        Robot = 2
     }
 
     public enum EHRCTaskType
@@ -55,22 +66,31 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
     public record HRCTaskDescription
     {
-        public EHRCTaskType TaskType { init; get; }
-        public string TaskName { init; get; }
+        public EHRCTaskType TaskType { init; get; } = EHRCTaskType.Basic;
+        public string Name { init; get; } = null;
     }
 
     public record HRCFunction : HRCTask
     {
         public override EHRCProcessType ProcessType => EHRCProcessType.Function;
-        public IDigitalTwinEntity Actor { init; get; }
-        public ISocialOperator Operator { init; get; }
+        public IDigitalTwinEntity Actor { set; get; } = null;
+        public ISocialOperator Operator { set; get; } = null;
         public HRCFunctionDescription FunctionDescription => TaskDescription as HRCFunctionDescription;
     }
 
     public record HRCFunctionDescription : HRCTaskDescription
     {
         public TimeSpan Duration { init; get; }
-        public TimeSpan DurationUncertainty { init; get; }
-        public double SuccessRate { init; get; }
+        public TimeSpan MaxDuration { init; get; }
+        public TimeSpan MinDuration { init; get; }
+        public TimeSpan DurationUncertainty { init; get; } = TimeSpan.Zero;
+        public EHRCAgentType AgentType { init; get; } = EHRCAgentType.Any;
+        public double SuccessRate { init; get; } = 1.0;
+        public string Description { init; get; } = "";
+        public long Id { init; get; }
+        public string Target { init; get; } = null;
+        public string StartLocation { init; get; } = null;
+        public string EndLocation { init; get; } = null;
+        public string Location { init; get; } = null;
     }
 }

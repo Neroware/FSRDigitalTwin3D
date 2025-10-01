@@ -8,7 +8,7 @@ message FunctionPropertyDataDTO {
     string functionId = 1;
     string procedureName = 2;
     string procedureDescr = 3;
-    string procedureId = 4;
+    int64 procedureId = 4;
     double duration = 5;
     double durationUncertainty = 6;
 }
@@ -36,18 +36,22 @@ enum HRCAgentType {
 }
 
 message HRCTaskDTO {
-    string id = 1;
+    string taskId = 1;
     string type = 2;
     string target = 3;
     string name = 4;
-    string description = 5;
-    string goal = 6;
-    AgentType agent = 7;
-    float minDuration = 8;
-    float maxDuration = 9;
-    float averageDuration  = 10;
-    float durationUncertainty = 11;
-    double successRate = 12;
+    int64 id = 5;
+    string description = 6;
+    string goal = 7;
+    string startLocation = 8;
+    string endLocation = 9;
+    string location = 10;
+    AgentType agent = 11;
+    float minDuration = 12;
+    float maxDuration = 13;
+    float averageDuration = 14;
+    float durationUncertainty = 15;
+    double successRate = 16;
 }
 
 message HRCModelDTO {

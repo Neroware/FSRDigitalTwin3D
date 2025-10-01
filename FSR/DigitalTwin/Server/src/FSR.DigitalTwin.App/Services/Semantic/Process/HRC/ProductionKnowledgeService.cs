@@ -120,7 +120,7 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
             return new FunctionPropertyData()
             {
                 Function = function,
-                ProcedureId = null,
+                ProcedureId = -1,
                 ProcedureName = null,
                 ProcedureDescription = null,
                 Duration = 0,

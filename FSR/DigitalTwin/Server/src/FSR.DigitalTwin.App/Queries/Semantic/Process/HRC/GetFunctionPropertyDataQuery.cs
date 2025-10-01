@@ -52,9 +52,9 @@ public class GetFunctionPropertyDataQuery : ISparqlQuery<FunctionPropertyData>
 
     private FunctionPropertyData CreateFunctionData(IEnumerable<Triple> triples)
     {
-        string? id = triples
+        long id = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasProcedureId"))
-            .Select(t => t.Object.AsValuedNode().AsString())
+            .Select(t => t.Object.AsValuedNode().AsInteger())
             .FirstOrDefault();
         string? name = triples
             .Where(t => t.Predicate as BaseNode == (UriPrefix.SOHO | "hasProcedureName"))
