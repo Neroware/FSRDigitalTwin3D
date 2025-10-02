@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using FSR.DigitalTwin.Client.Common.Utils.Semantic;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
+using FSR.DigitalTwin.Client.Features.DES.SimSharpBridge;
 using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.DES
@@ -17,7 +18,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
         public IProcessSimulation AddScenario(Uri scenario)
         {
-            ProcessSimulation processSimulation = new();
+            SimSharpProcessSimulation processSimulation = new();
             _scenarios.Add(scenario, processSimulation);
             return processSimulation;
         }

@@ -11,14 +11,14 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
         IObservable<IProcessSimulation> SimulationReset { get; }
 
         IObservable<HRCProcess> ProcessStarted { get; }
-        IObservable<HRCProcessResult<HRCProcess>> ProcessFinished { get; }
+        IObservable<HRCProcessResult> ProcessFinished { get; }
         IObservable<HRCProcess> ProcessFailed { get; }
 
         bool Initialize(out IProcessSimulationContext context);
         void Run();
         void Reset();
 
-        void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> success, IObservable<Exception> failure = null);
+        void Process(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure = null);
     }
 
     public interface IProcessSimulationContext
@@ -30,7 +30,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
         IList<HRCFunction> Functions { init; get; }
         IProcessSimulation Simulation { set; get; }
 
-        /* TODO Later add parameters as well... */
+        /* TODO Later add simulation parameters as well... */
     }
 
 }
