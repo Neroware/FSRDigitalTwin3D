@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 using UniRx;
@@ -7,31 +8,31 @@ using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.DES
 {
-    public class ProcessSimulation : IProcessSimulation
+    public class ProcessSimulationContext : IProcessSimulationContext
     {
-        public class ProcessSimulationContext : IProcessSimulationContext
-        {
-            public IList<DigitalTwinActorBase> Actors { get; init; } = new List<DigitalTwinActorBase>();
-            public IList<SocialOperatorBase> Operators { get; init; } = new List<SocialOperatorBase>();
-            public IDictionary<HRCGoal, IList<HRCMethod>> Goals { get; init; } = new Dictionary<HRCGoal, IList<HRCMethod>>();
-            public IDictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>> Methods { get; init; } = new Dictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>>();
-            public IList<HRCFunction> Functions { get; init; } = new List<HRCFunction>();
-            public IProcessSimulation Simulation { get; set; }
-        }
+        public IList<DigitalTwinActorBase> Actors { get; init; } = new List<DigitalTwinActorBase>();
+        public IList<SocialOperatorBase> Operators { get; init; } = new List<SocialOperatorBase>();
+        public IDictionary<HRCGoal, IList<HRCMethod>> Goals { get; init; } = new Dictionary<HRCGoal, IList<HRCMethod>>();
+        public IDictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>> Methods { get; init; } = new Dictionary<HRCMethod, IDictionary<HRCTask, IList<ISet<HRCTask>>>>();
+        public IList<HRCFunction> Functions { get; init; } = new List<HRCFunction>();
+        public IProcessSimulation Simulation { get; set; }
+    }
 
+    public abstract class ProcessSimulationBase : IProcessSimulation
+    {
         public IObservable<IProcessSimulation> SimulationStarted => _simulationStarted;
         public IObservable<IProcessSimulation> SimulationFinished => _simulationFinished;
         public IObservable<IProcessSimulation> SimulationReset => _simulationReset;
         public IObservable<HRCProcess> ProcessStarted => _processStarted;
-        public IObservable<HRCProcessResult<HRCProcess>> ProcessFinished => _processFinished;
+        public IObservable<HRCProcessResult> ProcessFinished => _processFinished;
         public IObservable<HRCProcess> ProcessFailed => _processFailed;
 
-        private Subject<IProcessSimulation> _simulationStarted = new();
-        private Subject<IProcessSimulation> _simulationFinished = new();
-        private Subject<IProcessSimulation> _simulationReset = new();
-        private Subject<HRCProcess> _processStarted = new();
-        private Subject<HRCProcessResult<HRCProcess>> _processFinished = new();
-        private Subject<HRCProcess> _processFailed = new();
+        protected Subject<IProcessSimulation> _simulationStarted = new();
+        protected Subject<IProcessSimulation> _simulationFinished = new();
+        protected Subject<IProcessSimulation> _simulationReset = new();
+        protected Subject<HRCProcess> _processStarted = new();
+        protected Subject<HRCProcessResult> _processFinished = new();
+        protected Subject<HRCProcess> _processFailed = new();
 
         public bool Initialize(out IProcessSimulationContext context)
         {
@@ -39,7 +40,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
             {
                 context = DigitalWorkspace.Instance.Knowledge.GetContext();
                 context.Simulation = this;
-                DoInitialize(context);
+                OnInitialize(context);
                 return true;
             }
             catch (Exception e)
@@ -50,41 +51,44 @@ namespace FSR.DigitalTwin.Client.Features.DES
             }
         }
 
-        public bool LaunchFunction(string functionId, IProcessSimulationContext context, out HRCFunction function, IObservable<HRCProcessResult<HRCFunction>> success = null, IObservable<HRCProcessResult<HRCFunction>> failure = null)
+        public void Process(HRCProcess process, IObservable<HRCProcessResult> success_ = null, IObservable<Exception> failure_ = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public void EmitFunctionFailed(HRCFunction function)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EmitFunctionSucceeded(HRCProcessResult<HRCFunction> result)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Process(HRCProcess process, IObservable<HRCProcessResult<HRCProcess>> processResult)
-        {
-            throw new NotImplementedException();
+            IObservable<HRCProcessResult> success = success_ ?? Observable.Never<HRCProcessResult>();
+            if (process is HRCFunction function)
+            {
+                OnFunctionLaunch(function, out bool hasOperator, out SocialOperatorBase socialOperator);
+                if (hasOperator && socialOperator != null)
+                {
+                    success = success.Merge(
+                        Task.Run(() => (HRCProcessResult)socialOperator.RunFunction(
+                            function.FunctionDescription.Name, function.Inputs, function.InOuts))
+                                .ToObservable()
+                    );
+                }
+            }
+            OnProcess(process, success, failure_);
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            OnReset();
+            _simulationReset.OnNext(this);
         }
-
         public void Run()
         {
-            throw new NotImplementedException();
+            OnRun();
+            _simulationStarted.OnNext(this);
         }
 
-        private void DoInitialize(IProcessSimulationContext context)
+        protected abstract void OnRun();
+        protected abstract void OnReset();
+        protected virtual void OnFunctionLaunch(HRCFunction function, out bool hasOperator, out SocialOperatorBase socialOperator)
         {
-            // Transfer process decomposition to observable data streams
-            
+            hasOperator = false;
+            socialOperator = null;
         }
+        protected abstract void OnInitialize(IProcessSimulationContext context);
+        protected virtual void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure) => _processStarted.OnNext(process);
     }
 
 }
