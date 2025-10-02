@@ -6,7 +6,7 @@ using FSR.DigitalTwin.Client.Features.UnityClient;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
-using Google.Protobuf.WellKnownTypes;
+using System.Threading.Tasks;
 
 namespace FSR.DigitalTwin.Client.Features.DES
 {
@@ -17,8 +17,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public abstract bool IsBusy { get; }
         public abstract string RunningOperation { get; }
 
-        protected abstract HRCProcessResult<HRCFunction> OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result);
-        protected abstract HRCProcessResult<HRCFunction> OnFunction(string function, object[] inputs, object[] inOuts);
+        protected abstract Task<HRCProcessResult<HRCFunction>> OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, ProcessResult result);
+        protected abstract Task<HRCProcessResult<HRCFunction>> OnFunction(string function, object[] inputs, object[] inOuts);
 
         public Uri OperatorId => operatorId.Length == 0 ? Id : new(operatorId);
 
@@ -54,8 +54,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
                 TimeStamp = -1
             };
             var operatorInst = DigitalWorkspace.Instance.Operational;
-            var res = OnFunction(invocation.ProcessName, operatorInst, state, result);
-            await operatorInst.SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = (long) res.TimeStamp.TimeOfDay.TotalSeconds });
+            var res = await OnFunction(invocation.ProcessName, operatorInst, state, result);
+            await operatorInst.SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = (long)res.TimeStamp.TimeOfDay.TotalSeconds });
         }
 
         public HRCProcessResult<HRCFunction> RunFunction(string function, object[] inputs, object[] inOuts)
@@ -64,7 +64,16 @@ namespace FSR.DigitalTwin.Client.Features.DES
             {
                 throw new InvalidOperationException("Cannot run function because operator is busy!");
             }
-            return OnFunction(function, inputs, inOuts);
+            return OnFunction(function, inputs, inOuts).Result;
+        }
+        
+        public async Task<HRCProcessResult<HRCFunction>> RunFunctionAsync(string function, object[] inputs, object[] inOuts)
+        {
+            if (IsBusy)
+            {
+                throw new InvalidOperationException("Cannot run function because operator is busy!");
+            }
+            return await OnFunction(function, inputs, inOuts);
         }
     }
 
