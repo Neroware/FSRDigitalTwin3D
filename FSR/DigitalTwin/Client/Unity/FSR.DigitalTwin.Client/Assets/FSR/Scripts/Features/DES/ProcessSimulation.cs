@@ -79,7 +79,13 @@ namespace FSR.DigitalTwin.Client.Features.DES
             OnRun();
             _simulationStarted.OnNext(this);
         }
+        public void Stop()
+        {
+            OnStop();
+            _simulationFinished.OnNext(this);
+        }
 
+        protected abstract void OnStop();
         protected abstract void OnRun();
         protected abstract void OnReset();
         protected virtual void OnFunctionLaunch(HRCFunction function, out bool hasOperator, out SocialOperatorBase socialOperator)

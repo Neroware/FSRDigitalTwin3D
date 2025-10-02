@@ -16,6 +16,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
 
         bool Initialize(out IProcessSimulationContext context);
         void Run();
+        void Stop();
         void Reset();
 
         void Process(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure = null);
