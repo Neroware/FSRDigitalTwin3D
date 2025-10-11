@@ -14,6 +14,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         private Event _stopEvent;
         private IProcessSimulationContext _context;
 
+        public Simulation Environment => _environment;
+
         public Process Process(IEnumerable<Event> generator, int priority = 0)
             => _environment.Process(generator, priority);
 
