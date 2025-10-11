@@ -85,13 +85,48 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         protected override void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure)
         {
-            // Create the generator function from the process
-            base.OnProcess(process, success, failure);
+            Event p = new(_environment);
+            IEnumerable<Event> process_()
+            {
+                _processStarted.OnNext(process);
+                yield return p;
+                _processFinished.OnNext(new HRCProcessResult()
+                {
+                    Process = process,
+                    TimeStamp = _environment.Now,
+                    Outputs = new object[0]
+                });
+            }
+            _disposable.Add(success.Subscribe(_ => { p.Trigger(p); }));
+            _disposable.Add(failure.Subscribe(_ => { p.Fail(); _processFailed.OnNext(process); }));
+            _environment.Process(process_());
         }
 
-        protected override void OnFunctionLaunch(HRCFunction function, out bool hasOperator, out SocialOperatorBase socialOperator)
+        protected override void OnProcess(HRCFunction function, bool realtime, IObservable<HRCProcessResult> success, IObservable<Exception> failure)
         {
-            base.OnFunctionLaunch(function, out hasOperator, out socialOperator);
+            if (realtime)
+            {
+                OnProcess(function, success, failure);
+            }
+            else
+            {
+                Event p = new(_environment);
+                Event timeout_ = _environment.Timeout(function?.FunctionDescription.Duration ?? TimeSpan.Zero);
+                IEnumerable<Event> process_()
+                {
+                    _processStarted.OnNext(function);
+                    yield return new AnyOf(_environment, p, timeout_);
+                    _processFinished.OnNext(new HRCProcessResult()
+                    {
+                        Process = function,
+                        TimeStamp = _environment.Now,
+                        Outputs = new object[0]
+                    });
+                }
+                _disposable.Add(success.Subscribe(_ => { p.Trigger(p); }));
+                _disposable.Add(failure.Subscribe(_ => { p.Fail(); _processFailed.OnNext(function); }));
+                _environment.Process(process_());
+            }
         }
     }
 

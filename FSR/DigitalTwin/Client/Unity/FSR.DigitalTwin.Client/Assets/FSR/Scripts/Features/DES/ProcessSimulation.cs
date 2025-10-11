@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 using UniRx;
@@ -56,8 +55,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
             IObservable<HRCProcessResult> success = success_ ?? Observable.Never<HRCProcessResult>();
             if (process is HRCFunction function)
             {
-                OnFunctionLaunch(function, out bool hasOperator, out SocialOperatorBase socialOperator);
-                if (hasOperator && socialOperator != null)
+                bool hasOperator = OnFunctionLaunch(function, out SocialOperatorBase socialOperator);
+                if (hasOperator)
                 {
                     success = success.Merge(
                         socialOperator.RunFunctionAsync(
@@ -65,9 +64,18 @@ namespace FSR.DigitalTwin.Client.Features.DES
                                 .ToObservable()
                                 .Select(result => (HRCProcessResult)result)
                     );
+                    OnProcess(function, true, success, failure_);
+                }
+                else
+                {
+                    OnProcess(function, false, success, failure_);
                 }
             }
-            OnProcess(process, success, failure_);
+            else
+            {
+                OnProcess(process, success, failure_);
+            }
+
         }
 
         public void Reset()
@@ -89,13 +97,15 @@ namespace FSR.DigitalTwin.Client.Features.DES
         protected abstract void OnStop();
         protected abstract void OnRun();
         protected abstract void OnReset();
-        protected virtual void OnFunctionLaunch(HRCFunction function, out bool hasOperator, out SocialOperatorBase socialOperator)
+        protected virtual bool OnFunctionLaunch(HRCFunction function, out SocialOperatorBase socialOperator)
         {
-            hasOperator = false;
             socialOperator = null;
+            return false;
         }
         protected abstract void OnInitialize(IProcessSimulationContext context);
         protected virtual void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure) => _processStarted.OnNext(process);
+        protected virtual void OnProcess(HRCFunction function, bool realtime, IObservable<HRCProcessResult> success, IObservable<Exception> failure) => OnProcess(function, success, failure);
+
     }
 
 }
