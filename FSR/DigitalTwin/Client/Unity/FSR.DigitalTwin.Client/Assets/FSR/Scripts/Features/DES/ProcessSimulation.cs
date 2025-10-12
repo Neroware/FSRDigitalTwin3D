@@ -19,19 +19,21 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
     public abstract class ProcessSimulationBase : IProcessSimulation
     {
-        public IObservable<IProcessSimulation> SimulationStarted => _simulationStarted;
-        public IObservable<IProcessSimulation> SimulationFinished => _simulationFinished;
-        public IObservable<IProcessSimulation> SimulationReset => _simulationReset;
+        public IObservable<HRCProcess> SimulationStarted => _simulationStarted;
+        public IObservable<HRCProcessResult> SimulationFinished => _simulationFinished;
+        public IObservable<HRCProcess> SimulationReset => _simulationReset;
         public IObservable<HRCProcess> ProcessStarted => _processStarted;
         public IObservable<HRCProcessResult> ProcessFinished => _processFinished;
         public IObservable<HRCProcess> ProcessFailed => _processFailed;
 
-        protected Subject<IProcessSimulation> _simulationStarted = new();
-        protected Subject<IProcessSimulation> _simulationFinished = new();
-        protected Subject<IProcessSimulation> _simulationReset = new();
+        protected Subject<HRCProcess> _simulationStarted = new();
+        protected Subject<HRCProcessResult> _simulationFinished = new();
+        protected Subject<HRCProcess> _simulationReset = new();
         protected Subject<HRCProcess> _processStarted = new();
         protected Subject<HRCProcessResult> _processFinished = new();
         protected Subject<HRCProcess> _processFailed = new();
+
+        private HRCProcess _simulationProcess = null;
 
         public bool Initialize(out IProcessSimulationContext context)
         {
@@ -81,17 +83,18 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public void Reset()
         {
             OnReset();
-            _simulationReset.OnNext(this);
+            _simulationReset.OnNext(_simulationProcess);
         }
         public void Run()
         {
             OnRun();
-            _simulationStarted.OnNext(this);
+            _simulationProcess = new() { Timestamp = Now() };
+            _simulationStarted.OnNext(_simulationProcess);
         }
         public void Stop()
         {
             OnStop();
-            _simulationFinished.OnNext(this);
+            _simulationFinished.OnNext(new HRCProcessResult() { Process = _simulationProcess, TimeStamp = Now() });
         }
 
         protected abstract void OnStop();
@@ -105,6 +108,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         protected abstract void OnInitialize(IProcessSimulationContext context);
         protected virtual void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure) => _processStarted.OnNext(process);
         protected virtual void OnProcess(HRCFunction function, bool realtime, IObservable<HRCProcessResult> success, IObservable<Exception> failure) => OnProcess(function, success, failure);
+        public abstract DateTime Now();
 
     }
 

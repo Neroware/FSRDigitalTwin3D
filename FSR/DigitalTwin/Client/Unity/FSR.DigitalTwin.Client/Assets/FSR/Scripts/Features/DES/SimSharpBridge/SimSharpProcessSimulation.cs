@@ -37,7 +37,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         protected override void OnRun()
         {
-            _disposable.Add(TaskScheduler.Schedule(this, _context));
+            _disposable.Add(new NaiveTaskScheduler().Schedule(this, _context));
             _environment.Run(_stopEvent);
         }
 
@@ -130,6 +130,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 _environment.Process(process_());
             }
         }
+
+        public override DateTime Now() => _environment.Now;
     }
 
 }
