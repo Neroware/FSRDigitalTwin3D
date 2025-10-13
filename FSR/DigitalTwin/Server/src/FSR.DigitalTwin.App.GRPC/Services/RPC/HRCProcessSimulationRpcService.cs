@@ -145,6 +145,10 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     public override Task<InteractionModalityDTO> GetInteractionModality(TaskDTO request, ServerCallContext context)
     {
         var interactionModality = _knowledgeBase.GetInteractionModality(new Resource() { Uri = new Uri(request.TaskId) });
+        if (interactionModality == null)
+        {
+            return Task.FromResult(new InteractionModalityDTO() { Type = InteractionModalityType.None });
+        }
         return Task.FromResult(_mapper.Map<InteractionModalityDTO>(interactionModality));
     }
 

@@ -25,12 +25,9 @@ namespace FSR.DigitalTwin.Client.Features.DES
     {
         Basic = 0,
         Independent = 1,
-        Simultaneous = 2,
-        Supportive = 3,
-        Synchronous = 4,
-        Complex = 5,
-        Conjuctive = 6,
-        Disjunctive = 7,
+        Sequential = 2,
+        Simultaneous = 3,
+        Supportive = 4,
     }
 
     public record HRCProcess

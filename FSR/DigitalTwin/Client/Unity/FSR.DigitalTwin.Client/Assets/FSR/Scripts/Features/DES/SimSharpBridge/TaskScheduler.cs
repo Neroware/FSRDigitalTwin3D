@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using UniRx;
 
@@ -51,14 +52,60 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         public IDisposable Schedule(ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         {
             CompositeDisposable disposable = new();
-
+            var prev = sim.SimulationStarted.AsSingleUnitObservable();
+            foreach(HRCGoal goal in ctxt.Goals.Keys)
+            {
+                disposable.Add(ScheduleGoal(goal, prev, sim, ctxt));
+                prev = sim.ProcessFinished.Where(p => p.Process == goal).AsSingleUnitObservable();
+            }
             return disposable;
         }
-
-        private IDisposable ScheduleGoal<ProcessT>(HRCGoal goal, IObservable<ProcessT> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt) where ProcessT : HRCProcess
+        private IDisposable ScheduleGoal(HRCGoal goal, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         {
-            return null;
+            // The naive scheduler always selects the first method given!
+            var myMethod = ctxt.Goals[goal].First();
+            return ScheduleMethod(myMethod, previous, sim, ctxt);
         }
+        private IDisposable ScheduleMethod(HRCMethod method, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        {
+            CompositeDisposable disposable = new();
+            var methodTasks = ctxt.Methods[method].Keys
+                .Where(task => !ctxt.Methods[method].Values
+                    .Any(x => x.Any(x => x.Any(x => x.TaskId == task.TaskId))));
+
+            var prev = previous;
+            foreach(HRCTask task in methodTasks)
+            {
+                disposable.Add(ScheduleTask(task, method, prev, sim, ctxt));
+                prev = sim.ProcessFinished.Where(p => p.Process == task).AsSingleUnitObservable();
+            }
+            return disposable;
+        }
+        private IDisposable ScheduleTask(HRCTask task, HRCMethod method, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        {
+            if (task.ProcessType == EHRCProcessType.Function)
+            {
+                return ScheduleFunction(task as HRCFunction, previous, sim, ctxt);
+            }
+            else if (task.TaskDescription == null || task.TaskDescription.TaskType == EHRCTaskType.Basic)
+            {
+                CompositeDisposable disposable = new();
+                var prev = previous;
+                // The naive scheduler always selects the first alternative given!
+                foreach (var subTask in ctxt.Methods[method][task].First())
+                {
+                    disposable.Add(ScheduleTask(subTask, method, prev, sim, ctxt));
+                    prev = sim.ProcessFinished.Where(p => p.Process == subTask).AsSingleUnitObservable();
+                }
+                return disposable;
+            }
+            throw new NotImplementedException();
+        }
+        private IDisposable ScheduleFunction(HRCFunction function, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        {
+            throw new NotImplementedException();
+        }
+
 
         // private IObservable<HRCGoal> ScheduleGoal(HRCGoal goal, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         // {
@@ -74,10 +121,10 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         // {
         //     return Observable.Never<HRCTask>();
         // }
-        
+
         // private IObservable<HRCFunction> ScheduleFunction(HRCTask function, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         // {
-            
+
         // }
     }
 }

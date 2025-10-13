@@ -6,9 +6,9 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
 {
     public interface IProcessSimulation
     {
-        IObservable<HRCProcess> SimulationStarted { get; }
-        IObservable<HRCProcessResult> SimulationFinished { get; }
-        IObservable<HRCProcess> SimulationReset { get; }
+        IObservable<IProcessSimulation> SimulationStarted { get; }
+        IObservable<IProcessSimulation> SimulationFinished { get; }
+        IObservable<IProcessSimulation> SimulationReset { get; }
 
         IObservable<HRCProcess> ProcessStarted { get; }
         IObservable<HRCProcessResult> ProcessFinished { get; }

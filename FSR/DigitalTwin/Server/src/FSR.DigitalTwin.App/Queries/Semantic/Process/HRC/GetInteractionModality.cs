@@ -38,10 +38,10 @@ public class GetInteractionModality : ISparqlQuery<InteractionModality>
             var task = (BaseNode)SimpleTask;
             List<Triple> result = [new Triple(task, UriPrefix.RDF | "type", UriPrefix.SOHO | "SimpleTask")];
 
-            if (bindings.GetArrayLength() == 0 || bindings.GetArrayLength() > 2)
-            {
-                throw new InvalidDataException("Found multiple interaction modality constraints. This is not allowed!");
-            }
+            if (bindings.GetArrayLength() == 0) 
+                throw new InvalidDataException("Missing interaction modality constraints!");
+            if (bindings.GetArrayLength() > 2) 
+                throw new InvalidDataException("Found multiple interaction modality constraints or more than 2 sub-functions. This is not allowed!");
 
             var binding1 = bindings.EnumerateArray().First();
             var modality1 = (BaseNode)RdfNodeFactory.CreateFromJson(binding1, "modality");

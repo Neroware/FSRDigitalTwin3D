@@ -129,6 +129,11 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                                 HashSet<string> ts = new(subTask.SubTasks.Select(x => x.TaskId));
                                 subTasks[t].Add(ts);
                             }
+                            var modality = _client.GetInteractionModality(new TaskDTO() { TaskId = taskId });
+                            if(modality.Type != InteractionModalityType.None)
+                            {
+                                t.TaskDescription = new() { TaskType = (EHRCTaskType)modality.Type, Name = modality.Id };
+                            }
                         }
                     }
                     foreach (var taskId in method.Graph.Keys)

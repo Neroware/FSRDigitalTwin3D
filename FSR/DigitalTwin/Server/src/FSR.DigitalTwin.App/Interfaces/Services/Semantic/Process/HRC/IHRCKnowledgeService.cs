@@ -26,5 +26,5 @@ public interface IHRCKnowledgeService
     Resource GetFunctionTarget(Resource function);
     FunctionPropertyData GetFunctionDataProperties(Resource function);
     FunctionObjectData GetFunctionObjectProperties(Resource function);
-    InteractionModality GetInteractionModality(Resource task);
+    InteractionModality? GetInteractionModality(Resource task);
 }
