@@ -8,55 +8,23 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
     /// <summary>
     /// A class for a naive scheduling strategy. Scheduling is a non-trivial problem, 
     /// however, I lack the time to create a proper scheduler. Therefore, I'll use a naive scheduling strategy
-    /// that just always selects the first offered method and task disjunction. This is also the reason why this
-    /// class is static and not an interface following the strategy design pattern.
+    /// that just always selects the first offered method and task disjunction.
     /// <br/><br/>
-    /// NOTE: I need to change this asap!
+    /// NOTE: At some point a scheduler could query the ROS2 scheduler from the sharework project...
     /// </summary>
-    // public static class TaskScheduler
-    // {
-    //     public static IDisposable Schedule(ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-    //     {
-    //         // TODO Schedule HRCFunctions with based on InteractionModality
-    //         //
-    //         // We already did the horizontal dependency of tasks and subtasks, now, we do the vertical (sequential) 
-    //         // one using this scheduler class! We do this by sequentially calling ProcessSimulation.Process(...)
-    //         // each time the previous process terminated using the observables from ProcessSimulationBase.
-
-    //         return null;
-    //     }
-
-    //     private static IObservable<HRCGoal> ScheduleGoal(HRCGoal goal, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-    //     {
-    //         throw new NotImplementedException();
-    //     }
-
-    //     private static IObservable<HRCMethod> ScheduleMethod(HRCMethod method, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-    //     {
-    //         throw new NotImplementedException();
-    //     }
-
-    //     private static IObservable<HRCTask> ScheduleTask(HRCTask task, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-    //     {
-    //         throw new NotImplementedException();
-    //     }
-
-    //     private static IObservable<HRCFunction> ScheduleFunction(HRCFunction function, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-    //     {
-    //         throw new NotImplementedException();
-    //     }
-    // }
-
     public class NaiveTaskScheduler : ITaskScheduler
     {
         public IDisposable Schedule(ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         {
             CompositeDisposable disposable = new();
             var prev = sim.SimulationStarted.AsSingleUnitObservable();
+            var goalFinished = sim.ProcessFinished
+                .Where(p => p.Process.ProcessType == EHRCProcessType.Goal)
+                .Select(p => p.Process as HRCGoal);
             foreach(HRCGoal goal in ctxt.Goals.Keys)
             {
                 disposable.Add(ScheduleGoal(goal, prev, sim, ctxt));
-                prev = sim.ProcessFinished.Where(p => p.Process == goal).AsSingleUnitObservable();
+                prev = goalFinished.Where(g => g.GoalId == goal.GoalId).AsSingleUnitObservable();
             }
             return disposable;
         }
@@ -72,12 +40,11 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             var methodTasks = ctxt.Methods[method].Keys
                 .Where(task => !ctxt.Methods[method].Values
                     .Any(x => x.Any(x => x.Any(x => x.TaskId == task.TaskId))));
-
             var prev = previous;
             foreach(HRCTask task in methodTasks)
             {
                 disposable.Add(ScheduleTask(task, method, prev, sim, ctxt));
-                prev = sim.ProcessFinished.Where(p => p.Process == task).AsSingleUnitObservable();
+                prev = sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == task.TaskId).AsSingleUnitObservable();
             }
             return disposable;
         }
@@ -85,7 +52,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         {
             if (task.ProcessType == EHRCProcessType.Function)
             {
-                return ScheduleFunction(task as HRCFunction, previous, sim, ctxt);
+                return ScheduleFunction(task as HRCFunction, previous, sim);
             }
             else if (task.TaskDescription == null || task.TaskDescription.TaskType == EHRCTaskType.Basic)
             {
@@ -95,36 +62,45 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 foreach (var subTask in ctxt.Methods[method][task].First())
                 {
                     disposable.Add(ScheduleTask(subTask, method, prev, sim, ctxt));
-                    prev = sim.ProcessFinished.Where(p => p.Process == subTask).AsSingleUnitObservable();
+                    prev = sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == subTask.TaskId).AsSingleUnitObservable();
                 }
                 return disposable;
             }
-            throw new NotImplementedException();
+            else if (task.TaskDescription.TaskType == EHRCTaskType.Sequential && task.TaskDescription.Constraints.Any(x => x is HRCPrecidenceConstraint))
+            {
+                CompositeDisposable disposable = new();
+                var constraint = task.TaskDescription.Constraints.First(x => x is HRCPrecidenceConstraint) as HRCPrecidenceConstraint;
+                var function1 = ctxt.Methods[method][task].First().Where(t => t.TaskId == constraint.First).First();
+                var function2 = ctxt.Methods[method][task].First().Where(t => t.TaskId == constraint.Second).First();
+                disposable.Add(ScheduleTask(function1, method, previous, sim, ctxt));
+                disposable.Add(ScheduleTask(function2, method, sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == function1.TaskId)
+                    .AsSingleUnitObservable(), sim, ctxt));
+                return disposable;
+            }
+            else if (task.TaskDescription.TaskType == EHRCTaskType.Sequential)
+            {
+                CompositeDisposable disposable = new();
+                var function1 = ctxt.Methods[method][task].First().First();
+                var function2 = ctxt.Methods[method][task].First().Skip(1).First();
+                disposable.Add(ScheduleTask(function1, method, previous, sim, ctxt));
+                disposable.Add(ScheduleTask(function2, method, sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == function1.TaskId)
+                    .AsSingleUnitObservable(), sim, ctxt));
+                return disposable;
+            }
+            else
+            {
+                CompositeDisposable disposable = new();
+                foreach (var subTask in ctxt.Methods[method][task].First())
+                {
+                    disposable.Add(ScheduleTask(subTask, method, previous, sim, ctxt));
+                }
+                return disposable;
+            }
+            
         }
-        private IDisposable ScheduleFunction(HRCFunction function, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        private IDisposable ScheduleFunction(HRCFunction function, IObservable<Unit> previous, ProcessSimulationBase sim)
         {
-            throw new NotImplementedException();
+            return previous.Subscribe(_ => sim.Process(function));
         }
-
-
-        // private IObservable<HRCGoal> ScheduleGoal(HRCGoal goal, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-        // {
-        //     return Observable.Never<HRCGoal>();
-        // }
-
-        // private IObservable<HRCMethod> ScheduleMethod(HRCMethod method, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-        // {
-        //     return Observable.Never<HRCMethod>();
-        // }
-
-        // private IObservable<HRCTask> ScheduleTask(HRCTask task, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-        // {
-        //     return Observable.Never<HRCTask>();
-        // }
-
-        // private IObservable<HRCFunction> ScheduleFunction(HRCTask function, CompositeDisposable disp, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
-        // {
-
-        // }
     }
 }

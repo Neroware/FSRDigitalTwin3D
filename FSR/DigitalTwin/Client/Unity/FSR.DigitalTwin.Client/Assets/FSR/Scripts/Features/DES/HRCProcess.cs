@@ -30,6 +30,12 @@ namespace FSR.DigitalTwin.Client.Features.DES
         Supportive = 4,
     }
 
+    public record HRCPrecidenceConstraint
+    {
+        public string First;
+        public string Second;
+    }
+
     public record HRCProcess
     {
         public virtual EHRCProcessType ProcessType => EHRCProcessType.Event;
@@ -65,6 +71,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
     {
         public EHRCTaskType TaskType { init; get; } = EHRCTaskType.Basic;
         public string Name { init; get; } = null;
+        public object[] Constraints { init; get; } = new object[0];
     }
 
     public record HRCFunction : HRCTask

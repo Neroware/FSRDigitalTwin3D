@@ -132,6 +132,11 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                             var modality = _client.GetInteractionModality(new TaskDTO() { TaskId = taskId });
                             if(modality.Type != InteractionModalityType.None)
                             {
+                                List<object> constraints = new();
+                                if (modality.Type == InteractionModalityType.Sequential && modality.Function1.Length > 0 && modality.Function2.Length > 0)
+                                {
+                                    constraints.Add(new HRCPrecidenceConstraint() { First = modality.Function1, Second = modality.Function2 });
+                                }
                                 t.TaskDescription = new() { TaskType = (EHRCTaskType)modality.Type, Name = modality.Id };
                             }
                         }
