@@ -53,6 +53,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public void Process(HRCProcess process, IObservable<HRCProcessResult> success_ = null, IObservable<Exception> failure_ = null)
         {
             IObservable<HRCProcessResult> success = success_ ?? Observable.Never<HRCProcessResult>();
+            IObservable<Exception> failure = failure_ ?? Observable.Never<Exception>();
             if (process is HRCFunction function)
             {
                 bool hasOperator = OnFunctionLaunch(function, out SocialOperatorBase socialOperator);
@@ -64,16 +65,16 @@ namespace FSR.DigitalTwin.Client.Features.DES
                                 .ToObservable()
                                 .Select(result => (HRCProcessResult)result)
                     );
-                    OnProcess(function, true, success, failure_);
+                    OnProcess(function, true, success, failure);
                 }
                 else
                 {
-                    OnProcess(function, false, success, failure_);
+                    OnProcess(function, false, success, failure);
                 }
             }
             else
             {
-                OnProcess(process, success, failure_);
+                OnProcess(process, success, failure);
             }
 
         }

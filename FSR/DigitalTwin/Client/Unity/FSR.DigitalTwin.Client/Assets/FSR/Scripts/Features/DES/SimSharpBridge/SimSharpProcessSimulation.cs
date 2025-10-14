@@ -35,11 +35,24 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             OnInitialize(_context);
         }
 
-        protected override void OnRun()
+        protected override async void OnRun()
         {
             _disposable.Add(new NaiveTaskScheduler().Schedule(this, _context));
-            // _environment.Run(_stopEvent);
-            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p => UnityEngine.Debug.Log($"Process finished: {p}")));
+            _disposable.Add(Observable.Zip(_context.Goals.Keys
+                    .Select(goal => _context.Simulation.ProcessFinished
+                        .Where(p => (p.Process as HRCGoal)?.GoalId == goal.GoalId))
+                )
+                .Subscribe(x => {
+                    UnityEngine.Debug.Log("!!!!"); 
+                    _stopEvent.Trigger(_stopEvent); 
+                })
+            );
+            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(x => {
+                UnityEngine.Debug.Log($"Finished process: {x}"); 
+            }));
+            await _environment.RunAsync(_stopEvent);
+            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(
+                p => UnityEngine.Debug.Log($"Process finished: {p}")));
         }
 
         protected override void OnStop()
@@ -74,6 +87,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
                     foreach (var task in _context.Methods[method].Keys)
                     {
+                        if (_context.Methods[method][task].Count == 0)
+                            continue;
                         sub = _context.Methods[method][task].Select(conj => Observable.Zip(conj.Select(task => _processFinished
                             .Where(t => t.Process.ProcessType >= EHRCProcessType.Task
                                 && task.TaskId == ((HRCTask)t.Process).TaskId))))

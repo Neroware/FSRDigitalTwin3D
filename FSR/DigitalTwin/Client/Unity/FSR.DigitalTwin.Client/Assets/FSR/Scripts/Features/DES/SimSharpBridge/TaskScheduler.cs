@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using UniRx;
+using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 {
@@ -17,17 +18,28 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         public IDisposable Schedule(ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         {
             CompositeDisposable disposable = new();
-            var prev = sim.SimulationStarted.AsSingleUnitObservable();
+            var prev = Observable.Return(Unit.Default);
             var goalFinished = sim.ProcessFinished
                 .Where(p => p.Process.ProcessType == EHRCProcessType.Goal)
                 .Select(p => p.Process as HRCGoal);
-            foreach(HRCGoal goal in ctxt.Goals.Keys)
+            foreach (HRCGoal goal in ctxt.Goals.Keys)
             {
                 disposable.Add(ScheduleGoal(goal, prev, sim, ctxt));
                 prev = goalFinished.Where(g => g.GoalId == goal.GoalId).AsSingleUnitObservable();
             }
             return disposable;
         }
+        public IDisposable ScheduleGoal(HRCGoal goal, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        {
+            var prev = Observable.Return(Unit.Default);
+            return ScheduleGoal(goal, prev, sim, ctxt);
+        }
+        public IDisposable ScheduleMethod(HRCMethod method, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
+        {
+            var prev = Observable.Return(Unit.Default);
+            return ScheduleMethod(method, prev, sim, ctxt);
+        }
+
         private IDisposable ScheduleGoal(HRCGoal goal, IObservable<Unit> previous, ProcessSimulationBase sim, IProcessSimulationContext ctxt)
         {
             // The naive scheduler always selects the first method given!

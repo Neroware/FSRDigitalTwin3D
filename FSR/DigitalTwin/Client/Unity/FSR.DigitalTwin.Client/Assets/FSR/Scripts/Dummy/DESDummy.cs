@@ -24,8 +24,8 @@ namespace FSR.DigitalTwin.Client.Dummy
                 return;
             }
             var simulation = simulationManager.AddScenario(UriPrefix.PI + "myscenario1");
-            simulation.Initialize(out IProcessSimulationContext context);
-            simulation.Run();
+            if (simulation.Initialize(out IProcessSimulationContext context))
+                simulation.Run();
         }
     }
 }
