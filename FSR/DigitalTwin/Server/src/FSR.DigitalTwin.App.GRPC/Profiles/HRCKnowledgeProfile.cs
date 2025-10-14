@@ -45,10 +45,17 @@ public class HRCKnowledgeProfile : Profile
 
     private static InteractionModalityType ConvertInteractionModalityType(Resource resource)
     {
-        if (resource.Uri == UriPrefix.SOHO + "Simultaneous") return InteractionModalityType.Simultaneous;
-        if (resource.Uri == UriPrefix.SOHO + "Sequential") return InteractionModalityType.Sequential;
-        if (resource.Uri == UriPrefix.SOHO + "Supportive") return InteractionModalityType.Supportive;
-        if (resource.Uri == UriPrefix.SOHO + "Independent") return InteractionModalityType.Independent;
-        return InteractionModalityType.None;
+        if (resource.Uri != UriPrefix.SOHO + "")
+        {
+            return InteractionModalityType.None;
+        }
+        return resource.Uri.Fragment switch
+        {
+            "#Simultaneous" => InteractionModalityType.Simultaneous,
+            "#Sequential" => InteractionModalityType.Sequential,
+            "#Supportive" => InteractionModalityType.Supportive,
+            "#Independent" => InteractionModalityType.Independent,
+            _ => InteractionModalityType.None
+        };
     }
 }

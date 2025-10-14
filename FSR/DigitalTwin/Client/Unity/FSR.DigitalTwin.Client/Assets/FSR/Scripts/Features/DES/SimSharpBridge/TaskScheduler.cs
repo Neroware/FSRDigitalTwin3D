@@ -19,13 +19,10 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         {
             CompositeDisposable disposable = new();
             var prev = Observable.Return(Unit.Default);
-            var goalFinished = sim.ProcessFinished
-                .Where(p => p.Process.ProcessType == EHRCProcessType.Goal)
-                .Select(p => p.Process as HRCGoal);
             foreach (HRCGoal goal in ctxt.Goals.Keys)
             {
                 disposable.Add(ScheduleGoal(goal, prev, sim, ctxt));
-                prev = goalFinished.Where(g => g.GoalId == goal.GoalId).AsSingleUnitObservable();
+                prev = sim.ObserveOnGoalFinished(goal.GoalId).First().AsUnitObservable();
             }
             return disposable;
         }
@@ -56,7 +53,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             foreach(HRCTask task in methodTasks)
             {
                 disposable.Add(ScheduleTask(task, method, prev, sim, ctxt));
-                prev = sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == task.TaskId).AsSingleUnitObservable();
+                prev = sim.ObserveOnTaskFinished<HRCTask>(task.TaskId).First().AsUnitObservable();
             }
             return disposable;
         }
@@ -74,7 +71,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 foreach (var subTask in ctxt.Methods[method][task].First())
                 {
                     disposable.Add(ScheduleTask(subTask, method, prev, sim, ctxt));
-                    prev = sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == subTask.TaskId).AsSingleUnitObservable();
+                    prev = sim.ObserveOnTaskFinished<HRCTask>(subTask.TaskId).First().AsUnitObservable();
                 }
                 return disposable;
             }
@@ -85,8 +82,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 var function1 = ctxt.Methods[method][task].First().Where(t => t.TaskId == constraint.First).First();
                 var function2 = ctxt.Methods[method][task].First().Where(t => t.TaskId == constraint.Second).First();
                 disposable.Add(ScheduleTask(function1, method, previous, sim, ctxt));
-                disposable.Add(ScheduleTask(function2, method, sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == function1.TaskId)
-                    .AsSingleUnitObservable(), sim, ctxt));
+                disposable.Add(ScheduleTask(function2, method, sim.ObserveOnTaskFinished<HRCFunction>(function1.TaskId)
+                    .First().AsUnitObservable(), sim, ctxt));
                 return disposable;
             }
             else if (task.TaskDescription.TaskType == EHRCTaskType.Sequential)
@@ -95,8 +92,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 var function1 = ctxt.Methods[method][task].First().First();
                 var function2 = ctxt.Methods[method][task].First().Skip(1).First();
                 disposable.Add(ScheduleTask(function1, method, previous, sim, ctxt));
-                disposable.Add(ScheduleTask(function2, method, sim.ProcessFinished.Where(p => (p.Process as HRCTask)?.TaskId == function1.TaskId)
-                    .AsSingleUnitObservable(), sim, ctxt));
+                disposable.Add(ScheduleTask(function2, method, sim.ObserveOnTaskFinished<HRCFunction>(function1.TaskId)
+                    .First().AsUnitObservable(), sim, ctxt));
                 return disposable;
             }
             else

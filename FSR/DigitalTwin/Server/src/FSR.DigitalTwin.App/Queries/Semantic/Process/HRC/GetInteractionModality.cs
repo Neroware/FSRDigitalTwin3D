@@ -55,7 +55,7 @@ public class GetInteractionModality : ISparqlQuery<InteractionModality>
             bool isSecond1 = RdfNodeFactory.CreateFromJson(binding1, "isSecond").AsValuedNode().AsBoolean();
 
             TripleHelper.AddTriple(result, task, UriPrefix.DUL | "isDescribedBy", modality1);
-            TripleHelper.AddType(result, task, modalityType1);
+            TripleHelper.AddType(result, modality1, modalityType1);
 
             TripleHelper.AddTriple(result, modality1, UriPrefix.DUL | "isDescribedBy", constraint1);
             TripleHelper.AddType(result, constraint1, constraintType1);
@@ -144,7 +144,7 @@ public class GetInteractionModality : ISparqlQuery<InteractionModality>
             ?.Object
             ?? throw new InvalidDataException("No InteractionModality found for SimpleTask.");
         var modalityTypeNode = triples
-            .FirstOrDefault(t => t.Subject.Equals(taskNode) &&
+            .FirstOrDefault(t => t.Subject.Equals(modalityNode) &&
                                 t.Predicate.Equals(UriPrefix.RDF | "type"))
             ?.Object
             ?? throw new InvalidDataException("No ModalityType found.");

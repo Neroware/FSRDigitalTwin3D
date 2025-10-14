@@ -33,6 +33,29 @@ namespace FSR.DigitalTwin.Client.Features.DES
         protected Subject<HRCProcessResult> _processFinished = new();
         protected Subject<HRCProcess> _processFailed = new();
 
+        public IObservable<HRCProcessResult<ProcessT>> ObserveOnTaskFinished<ProcessT>(string taskId) where ProcessT : HRCTask
+        {
+            return ProcessFinished
+                .Where(p => (p.Process as HRCTask)?.TaskId == taskId)
+                .Select(p => new HRCProcessResult<ProcessT>()
+                {
+                    Process = p.Process as ProcessT,
+                    TimeStamp = p.TimeStamp,
+                    Outputs = p.Outputs
+                });
+        }
+        public IObservable<HRCProcessResult<HRCGoal>> ObserveOnGoalFinished(string goalId)
+        {
+            return ProcessFinished
+                .Where(p => (p.Process as HRCGoal)?.GoalId == goalId)
+                .Select(p => new HRCProcessResult<HRCGoal>()
+                {
+                    Process = p.Process as HRCGoal,
+                    TimeStamp = p.TimeStamp,
+                    Outputs = p.Outputs
+                });
+        }
+
         public bool Initialize(out IProcessSimulationContext context)
         {
             try
@@ -76,7 +99,6 @@ namespace FSR.DigitalTwin.Client.Features.DES
             {
                 OnProcess(process, success, failure);
             }
-
         }
 
         public void Reset()

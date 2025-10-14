@@ -47,12 +47,10 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                     _stopEvent.Trigger(_stopEvent); 
                 })
             );
-            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(x => {
-                UnityEngine.Debug.Log($"Finished process: {x}"); 
+            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p => {
+                UnityEngine.Debug.Log($"Finished process: {p}");
             }));
             await _environment.RunAsync(_stopEvent);
-            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(
-                p => UnityEngine.Debug.Log($"Process finished: {p}")));
         }
 
         protected override void OnStop()
