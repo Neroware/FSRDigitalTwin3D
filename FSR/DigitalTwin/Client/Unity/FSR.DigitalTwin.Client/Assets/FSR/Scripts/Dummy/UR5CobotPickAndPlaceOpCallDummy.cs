@@ -6,9 +6,9 @@ using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
 using UniRx;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Test {
+namespace FSR.DigitalTwin.Client.Dummy {
 
-    public class UR5CobotPickAndPlaceOpCallTest : MonoBehaviour {
+    public class UR5CobotPickAndPlaceOpCallDummy : MonoBehaviour {
 
         void Start() {
             // DigitalWorkspace.Instance.Connection.IsConnected.Where(x => x).Subscribe(_ => RunTest()).AddTo(this);

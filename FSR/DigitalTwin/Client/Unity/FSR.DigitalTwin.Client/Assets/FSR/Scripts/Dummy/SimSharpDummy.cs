@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Features.DES.SimSharpBridge;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Client.Test
+namespace FSR.DigitalTwin.Client.Dummy
 {
-    public class SimSharpTest : MonoBehaviour
+    public class SimSharpDummy : MonoBehaviour
     {
         private SimSharp.Simulation _simulation = null;
 

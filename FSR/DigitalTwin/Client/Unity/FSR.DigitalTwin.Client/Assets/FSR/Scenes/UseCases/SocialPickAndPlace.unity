@@ -5745,8 +5745,9 @@ GameObject:
   - component: {fileID: 399024707}
   - component: {fileID: 399024708}
   - component: {fileID: 399024709}
+  - component: {fileID: 399024710}
   m_Layer: 0
-  m_Name: Tests
+  m_Name: Testing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5774,7 +5775,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399024706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aafaa369e5d33142941fbda48777b70, type: 3}
   m_Name: 
@@ -5786,11 +5787,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399024706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1b8edb501d6ef1469748a5effbbdc51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &399024710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399024706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9076c35492d044eb27b97c8c66d4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulationManager: {fileID: 235922133}
 --- !u!1 &399213439
 GameObject:
   m_ObjectHideFlags: 0
@@ -27979,6 +27993,18 @@ PrefabInstance:
     - target: {fileID: 7499921428312381421, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 119.42478
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529551079614223320, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 399024710}
+    - target: {fileID: 7529551079614223320, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RunDESSimulation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529551079614223320, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FSR.DigitalTwin.Client.Dummy.DESDummy, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7966997562750277670, guid: 378324f8659ffcece8daaedffe42d27e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

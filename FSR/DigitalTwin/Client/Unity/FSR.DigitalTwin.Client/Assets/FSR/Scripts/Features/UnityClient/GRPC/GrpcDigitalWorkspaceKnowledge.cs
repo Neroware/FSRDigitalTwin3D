@@ -24,10 +24,6 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
         {
             _rpcChannel = rpcChannel;
             _client = new(rpcChannel);
-
-            var result = _client.GetInteractionModality(new TaskDTO() { TaskId = (UriPrefix.PI + "doCollaborativeScrewH1").ToString() });
-            var ctxt = GetContext();
-            UnityEngine.Debug.Log("Goal> " + ctxt.Goals.First().Key.GoalId);
         }
 
         public IProcessSimulationContext GetContext()
@@ -35,7 +31,8 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             var actors = _client.GetAllAgents(Empty).ResponseStream.ToListAsync().Result
                 .Select(actor => UnityEngine.Object.FindObjectsOfType<DigitalTwinActorBase>()
                     .FirstOrDefault(sceneActor => sceneActor.TryGetComponent(out SocialOperatorBase op) && op.OperatorId == new System.Uri(actor.Id)))
-                .Where(x => x != null);
+                .Where(x => x != null)
+                .Distinct();
             var operators = actors.Select(actor => actor.GetComponent<SocialOperatorBase>());
 
             var ctxt = _client.GetSimulationContext(new GetSimulationContextRequest()
@@ -63,6 +60,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                 foreach (var method in goal.Methods)
                 {
                     HRCMethod m = new() { Goal = g, MethodId = methodCounter++ };
+                    goals[g].Add(m);
                     if (!methods.ContainsKey(m))
                     {
                         methods.Add(m, new Dictionary<HRCTask, IList<ISet<HRCTask>>>());

@@ -38,7 +38,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         protected override void OnRun()
         {
             _disposable.Add(new NaiveTaskScheduler().Schedule(this, _context));
-            _environment.Run(_stopEvent);
+            // _environment.Run(_stopEvent);
+            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p => UnityEngine.Debug.Log($"Process finished: {p}")));
         }
 
         protected override void OnStop()
