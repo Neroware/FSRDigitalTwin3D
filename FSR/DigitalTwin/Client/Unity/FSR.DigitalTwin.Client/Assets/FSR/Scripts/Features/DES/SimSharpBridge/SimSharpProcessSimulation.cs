@@ -60,13 +60,14 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         private void InitTaskHierarchy()
         {
+            // TODO Move this into TaskScheduler!
             foreach (HRCGoal goal in _context.Goals.Keys)
             {
                 var sub = _processFinished
                     .Where(p => p.Process.ProcessType == EHRCProcessType.Method
                         && _context.Goals[goal].Contains(p.Process as HRCMethod))
                     .First()
-                    .Subscribe(_ => _processFinished.OnNext(new HRCProcessResult() { Process = goal, TimeStamp = _environment.Now }));
+                    .Subscribe(res => _processFinished.OnNext(new HRCProcessResult() { Process = goal, Succeeded = res.Succeeded, TimeStamp = _environment.Now }));
                 _disposable.Add(sub);
 
                 foreach (HRCMethod method in _context.Goals[goal])
@@ -75,24 +76,21 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                         .Where(task => !_context.Methods[method].Values
                             .Any(x => x.Any(x => x.Any(x => x.TaskId == task.TaskId))));
                     var methodTasksFinished = methodTasks
-                        .Select(task => _processFinished.Where(t => t.Process.ProcessType >= EHRCProcessType.Task
-                            && ((HRCTask)t.Process).TaskId == task.TaskId));
+                        .Select(task => ObserveOnTaskFinished<HRCTask>(task.TaskId));
                     sub = Observable.Zip(methodTasksFinished)
                         .First()
-                        .Subscribe(_ => _processFinished.OnNext(
-                            new HRCProcessResult() { Process = method, TimeStamp = _environment.Now }));
+                        .Subscribe(res => _processFinished.OnNext(
+                            new HRCProcessResult() { Process = method, Succeeded = res.All(x => x.Succeeded), TimeStamp = _environment.Now }));
                     _disposable.Add(sub);
 
                     foreach (var task in _context.Methods[method].Keys)
                     {
                         if (_context.Methods[method][task].Count == 0)
                             continue;
-                        sub = _context.Methods[method][task].Select(conj => Observable.Zip(conj.Select(task => _processFinished
-                            .Where(t => t.Process.ProcessType >= EHRCProcessType.Task
-                                && task.TaskId == ((HRCTask)t.Process).TaskId))))
+                        sub = _context.Methods[method][task].Select(conj => Observable.Zip(conj.Select(task => ObserveOnTaskFinished<HRCTask>(task.TaskId))))
                             .First()
-                            .Subscribe(_ => _processFinished.OnNext(
-                                new HRCProcessResult() { Process = task, TimeStamp = _environment.Now }));
+                            .Subscribe(res => _processFinished.OnNext(
+                                new HRCProcessResult() { Process = task, Succeeded = res.All(x => x.Succeeded), TimeStamp = _environment.Now }));
                         _disposable.Add(sub);
                     }
                 }
@@ -104,11 +102,13 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             Event p = new(_environment);
             IEnumerable<Event> process_()
             {
+                process.Timestamp = _environment.Now;
                 _processStarted.OnNext(process);
                 yield return p;
                 _processFinished.OnNext(new HRCProcessResult()
                 {
                     Process = process,
+                    Succeeded = true,
                     TimeStamp = _environment.Now,
                     Outputs = new object[0]
                 });
@@ -130,11 +130,13 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 Event timeout_ = _environment.Timeout(function?.FunctionDescription.Duration ?? TimeSpan.Zero);
                 IEnumerable<Event> process_()
                 {
+                    function.Timestamp = _environment.Now;
                     _processStarted.OnNext(function);
                     yield return new AnyOf(_environment, p, timeout_);
                     _processFinished.OnNext(new HRCProcessResult()
                     {
                         Process = function,
+                        Succeeded = true,
                         TimeStamp = _environment.Now,
                         Outputs = new object[0]
                     });

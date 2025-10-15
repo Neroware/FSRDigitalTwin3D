@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
+using FSR.DigitalTwin.Client.Features.Operation;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 using UniRx;
 using UnityEngine;
@@ -40,6 +41,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
                 .Select(p => new HRCProcessResult<ProcessT>()
                 {
                     Process = p.Process as ProcessT,
+                    Succeeded = p.Succeeded,
                     TimeStamp = p.TimeStamp,
                     Outputs = p.Outputs
                 });
@@ -51,6 +53,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
                 .Select(p => new HRCProcessResult<HRCGoal>()
                 {
                     Process = p.Process as HRCGoal,
+                    Succeeded = p.Succeeded,
                     TimeStamp = p.TimeStamp,
                     Outputs = p.Outputs
                 });

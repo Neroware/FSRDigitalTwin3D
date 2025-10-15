@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FSR.DigitalTwin.Client.Features.Operation;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 
 namespace FSR.DigitalTwin.Client.Features.DES.Interfaces

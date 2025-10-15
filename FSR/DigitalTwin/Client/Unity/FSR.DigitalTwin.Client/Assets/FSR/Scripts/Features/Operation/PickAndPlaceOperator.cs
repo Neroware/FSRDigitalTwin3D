@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
+using FSR.DigitalTwin.Client.Features.DES;
 using FSR.DigitalTwin.Client.Features.UnityClient;
-using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 using Unity.VisualScripting;
 
-namespace FSR.DigitalTwin.Client.Features.DES
+namespace FSR.DigitalTwin.Client.Features.Operation
 {
 
     public class PickAndPlaceOperator : SocialOperatorBase
@@ -15,11 +15,6 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public override string RunningOperation => _runningOperation;
 
         protected override Task<HRCProcessResult<HRCFunction>> OnFunction(string function, object[] inputs, object[] inOuts)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        protected override Task<HRCProcessResult<HRCFunction>> OnFunction(string function, IDigitalWorkspaceOperational operatorInst, ProcessExecutionState state, UnityClient.ProcessResult result)
         {
             throw new System.NotImplementedException();
         }
