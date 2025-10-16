@@ -24,14 +24,14 @@ namespace FSR.DigitalTwin.Client.Features.UI {
         [SerializeField] private TMP_Dropdown operationMode;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             DigitalWorkspace.Instance.Connection.IsConnected.Subscribe(OnConnectionChanged).AddTo(this);
             DigitalWorkspace.Instance.OperationMode = (DigitalWorkspace.EOperationMode) operationMode.value;
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
         
         }

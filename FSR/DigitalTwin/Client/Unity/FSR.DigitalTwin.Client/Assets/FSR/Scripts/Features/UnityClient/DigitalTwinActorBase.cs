@@ -18,9 +18,13 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient {
             get => _components.Cast<IDigitalTwinEntityComponent>(); 
             set => throw new NotImplementedException(); }
 
-        private void Start() {
+        private void Start()
+        {
             DigitalWorkspace.Instance?.Connection.IsConnected.Subscribe(OnConnectionChanged).AddTo(this);
+            OnInitActor();
         }
+        
+        protected virtual void OnInitActor() { }
 
         private async void OnConnectionChanged(bool isConnected) {
             _hasConnection = isConnected && await DigitalWorkspace.Instance.Entities.HasEntityAsync(_id);

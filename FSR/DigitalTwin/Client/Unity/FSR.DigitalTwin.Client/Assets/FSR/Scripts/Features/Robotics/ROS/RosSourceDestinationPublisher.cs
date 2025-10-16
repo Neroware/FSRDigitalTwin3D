@@ -33,7 +33,7 @@ namespace FSR.DigitalTwin.Client.Features.Robotics.ROS {
         public override GameObject Target => _target;
         public override GameObject TargetPlacement => _targetPlacement;
 
-        void Start()
+        private void Start()
         {
             // Get ROS connection static instance
             _rosConn = ROSConnection.GetOrCreateInstance();

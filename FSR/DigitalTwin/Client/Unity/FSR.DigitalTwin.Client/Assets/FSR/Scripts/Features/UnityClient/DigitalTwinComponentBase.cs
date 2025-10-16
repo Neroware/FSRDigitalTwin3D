@@ -29,7 +29,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient {
         private DigitalWorkspace.EOperationMode _operationMode =>
             _enableOperationModeOverride ? _operationModeOverride : DigitalWorkspace.Instance.OperationMode;
 
-        protected void Start()
+        private void Start()
         {
             // TODO Adjust!
             bool requestRunning = false;
@@ -49,7 +49,10 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient {
                 .AddTo(this);
             DigitalWorkspace.Instance.Connection.IsConnected.Where(x => x).Subscribe(_ => OnConnect()).AddTo(this);
             DigitalWorkspace.Instance.Connection.IsConnected.Where(x => !x).Subscribe(_ => OnDisconnect()).AddTo(this);
+            OnInitComponent();
         }
+
+        protected virtual void OnInitComponent() { }
     }
 
 }

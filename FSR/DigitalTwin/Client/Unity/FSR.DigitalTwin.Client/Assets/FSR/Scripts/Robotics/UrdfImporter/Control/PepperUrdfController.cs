@@ -112,7 +112,7 @@ namespace Unity.Robotics.UrdfImporter.Control
             }            
         }
 
-        void Start()
+        private void Start()
         {
             rshoulder_ab = Rshoulder.GetComponent<ArticulationBody>();
             rforearm_ab = RForearm.GetComponent<ArticulationBody>();
@@ -152,7 +152,7 @@ namespace Unity.Robotics.UrdfImporter.Control
             InitialiseJointPhysics(LShoulderChain);
         }
 
-        void Update()
+        private void Update()
         {
             switch (moveAction) {
                 case "origin": {

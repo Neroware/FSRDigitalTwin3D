@@ -45,7 +45,7 @@ namespace FSR.DigitalTwin.Client.Features.Robotics.ROS {
         ///     Find all robot joints in Awake() and add them to the jointArticulationBodies array.
         ///     Find left and right finger joints and assign them to their respective articulation body objects.
         /// </summary>
-        void Start()
+        private void Start()
         {
             // Get ROS connection static instance
             m_Ros = ROSConnection.GetOrCreateInstance();

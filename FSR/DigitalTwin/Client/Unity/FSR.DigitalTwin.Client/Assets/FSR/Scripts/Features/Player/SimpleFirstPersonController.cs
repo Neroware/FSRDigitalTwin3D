@@ -49,7 +49,7 @@ namespace FSR.DigitalTwin.Client.Features.Player
             }
         }
 
-        void Update()
+        private void Update()
         {
             // Bewegung
             Vector3 move = transform.forward * moveInput.y + transform.right * moveInput.x;

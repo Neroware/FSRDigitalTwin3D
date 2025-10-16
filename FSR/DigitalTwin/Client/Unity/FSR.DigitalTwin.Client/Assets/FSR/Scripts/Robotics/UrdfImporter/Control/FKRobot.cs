@@ -25,7 +25,7 @@ namespace Unity.Robotics.UrdfImporter.Control {
         public const string k_TagName = "robot";
 
         // TODO : Automatically adding DH parameters 2. Detecting number of active joints
-        void Start()
+        private void Start()
         {
             if (dh == null)
             {
@@ -67,7 +67,7 @@ namespace Unity.Robotics.UrdfImporter.Control {
             return null;
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (dh.Count == jointChain.Count)
                 FK();

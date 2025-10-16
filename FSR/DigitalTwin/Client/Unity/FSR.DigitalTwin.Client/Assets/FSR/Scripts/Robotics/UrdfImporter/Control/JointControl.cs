@@ -20,7 +20,7 @@ public class JointControl : MonoBehaviour
     public ArticulationBody joint;
 
 
-    void Start()
+    private void Start()
     {
         direction = 0;
         controller = (UrdfController)this.GetComponentInParent(typeof(UrdfController));
@@ -31,7 +31,7 @@ public class JointControl : MonoBehaviour
         acceleration = controller.Acceleration;
     }
 
-    void FixedUpdate(){
+    private void FixedUpdate(){
 
         speed = controller.Speed;
         torque = controller.Torque;

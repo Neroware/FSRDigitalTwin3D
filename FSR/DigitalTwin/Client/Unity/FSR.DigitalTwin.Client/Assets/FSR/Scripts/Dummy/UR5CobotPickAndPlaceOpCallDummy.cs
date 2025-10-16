@@ -10,7 +10,7 @@ namespace FSR.DigitalTwin.Client.Dummy {
 
     public class UR5CobotPickAndPlaceOpCallDummy : MonoBehaviour {
 
-        void Start() {
+        private void Start() {
             // DigitalWorkspace.Instance.Connection.IsConnected.Where(x => x).Subscribe(_ => RunTest()).AddTo(this);
             // DigitalWorkspace.Instance.Connection.IsConnected.Where(x => x).Subscribe(_ => {
             //     DigitalWorkspace.Instance.Operational.ProcessInvoked.First().Subscribe(x => RunDummyProcess(x)).AddTo(this);
