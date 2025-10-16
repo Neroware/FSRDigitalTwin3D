@@ -31,7 +31,9 @@ namespace FSR.DigitalTwin.Client.Dummy
             }
             else
             {
-                var simulation = simulationManager.AddScenario(UriPrefix.PI + "myscenario1");
+                var scenario = UriPrefix.PI + "myscenario1";
+                var simulation = simulationManager.AddScenario(scenario);
+                simulationManager.SetActiveScenario(scenario);
                 if (simulation.Initialize(out IProcessSimulationContext _))
                     simulation.Run();
             }

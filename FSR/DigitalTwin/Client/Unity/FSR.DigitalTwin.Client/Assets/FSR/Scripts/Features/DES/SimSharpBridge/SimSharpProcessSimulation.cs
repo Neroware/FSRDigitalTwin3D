@@ -54,6 +54,8 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         protected override void OnStop()
         {
+            if (_stopEvent.IsTriggered)
+                return;
             _stopEvent.Trigger(_stopEvent);
         }
 

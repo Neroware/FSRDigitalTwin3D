@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
 using UniRx;
-using UnityEngine;
 
 namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 {

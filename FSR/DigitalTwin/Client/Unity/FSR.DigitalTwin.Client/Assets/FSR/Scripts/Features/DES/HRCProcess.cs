@@ -56,6 +56,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public int MethodId { init; get; }
         public HRCGoal Goal { init; get; }
         public override EHRCProcessType ProcessType => EHRCProcessType.Method;
+        public override int GetHashCode() => MethodId.GetHashCode();
     }
 
     public record HRCTask : HRCProcess
