@@ -1,6 +1,6 @@
 using System;
 
-namespace FSR.DigitalTwin.Client.Features.Operation.Interfaces
+namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces
 {
 
     public interface ISocialOperator

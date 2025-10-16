@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Features.Robotics.Controller;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Unity.Client.Features.Operation.Function
+namespace FSR.DigitalTwin.Unity.Client.Features.SkillBasedProgramming.Function
 {
     public class PickAndPlace : OperatorSkillBase
     {

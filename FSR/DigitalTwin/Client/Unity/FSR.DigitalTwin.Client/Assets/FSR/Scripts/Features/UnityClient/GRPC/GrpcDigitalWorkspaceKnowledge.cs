@@ -6,7 +6,7 @@ using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
 using FSR.DigitalTwin.Client.Features.DES;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
-using FSR.DigitalTwin.Client.Features.Operation;
+using FSR.DigitalTwin.Client.Features.SkillBasedProgramming;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 using Grpc.Core;
 using Grpc.Core.Utils;

@@ -3,7 +3,7 @@ using FSR.DigitalTwin.Client.Features.DES;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 using Unity.VisualScripting;
 
-namespace FSR.DigitalTwin.Client.Features.Operation
+namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
 {
 
     public class PickAndPlaceOperator : SocialOperatorBase

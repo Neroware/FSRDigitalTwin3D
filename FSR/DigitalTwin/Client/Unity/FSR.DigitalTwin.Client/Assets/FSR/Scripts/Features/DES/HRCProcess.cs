@@ -1,5 +1,5 @@
 using System;
-using FSR.DigitalTwin.Client.Features.Operation.Interfaces;
+using FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces;
 using FSR.DigitalTwin.Client.Features.UnityClient.Interfaces;
 
 namespace FSR.DigitalTwin.Client.Features.DES

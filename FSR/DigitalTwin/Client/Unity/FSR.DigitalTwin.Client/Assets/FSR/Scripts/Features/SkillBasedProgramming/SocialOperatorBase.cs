@@ -6,9 +6,9 @@ using FSR.DigitalTwin.Client.Features.UnityClient;
 using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
 using System.Threading.Tasks;
 using FSR.DigitalTwin.Client.Features.DES;
-using FSR.DigitalTwin.Client.Features.Operation.Interfaces;
+using FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces;
 
-namespace FSR.DigitalTwin.Client.Features.Operation
+namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
 {
     public abstract class SocialOperatorBase : DigitalTwinComponentBase, ISocialOperator
     {

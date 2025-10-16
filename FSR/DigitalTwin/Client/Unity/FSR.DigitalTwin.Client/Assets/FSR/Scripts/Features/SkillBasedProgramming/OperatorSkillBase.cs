@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using FSR.DigitalTwin.Client.Features.Operation.Interfaces;
+using FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces;
 using UnityEngine;
 
-namespace FSR.DigitalTwin.Unity.Client.Features.Operation
+namespace FSR.DigitalTwin.Unity.Client.Features.SkillBasedProgramming
 {
     public abstract class OperatorSkillBase : MonoBehaviour, IOperatorSkill
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace FSR.DigitalTwin.Client.Features.Operation.Interfaces
+namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces
 {
     public interface IOperatorSkill
     {
