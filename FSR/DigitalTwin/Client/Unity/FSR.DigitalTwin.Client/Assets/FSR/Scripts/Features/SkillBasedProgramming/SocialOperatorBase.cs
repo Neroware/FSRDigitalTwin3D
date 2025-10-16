@@ -5,8 +5,8 @@ using UnityEngine;
 using FSR.DigitalTwin.Client.Features.UnityClient;
 using FSR.DigitalTwin.Client.Features.UnityClient.GRPC;
 using System.Threading.Tasks;
-using FSR.DigitalTwin.Client.Features.DES;
 using FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces;
+using FSR.DigitalTwin.Client.Features.DES;
 
 namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
 {
@@ -17,7 +17,7 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
         public abstract bool IsBusy { get; }
         public abstract string RunningOperation { get; }
 
-        protected abstract Task<HRCProcessResult<HRCFunction>> OnFunction(string function, object[] inputs, object[] inOuts);
+        protected abstract Task<SkillResult> OnFunction(string function, object[] inputs, object[] inOuts);
 
         public Uri OperatorId => operatorId.Length == 0 ? Id : new(operatorId);
 
@@ -62,13 +62,19 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
             await DigitalWorkspace.Instance.Operational
                 .SetExecutionProcessStateAsync(state with { State = ProcessExecutionState.EState.COMPLETED });
             await DigitalWorkspace.Instance.Operational
-                .SetResultAsync(result with { InOuts = res.InOuts, Outputs = res.Outputs, TimeStamp = (long)res.TimeStamp.TimeOfDay.TotalSeconds });
+                .SetResultAsync(result with
+                {
+                    InOuts = invocation.InOuts,
+                    Outputs = res.Value,
+                    TimeStamp = (long) (DateTimeOffset.FromUnixTimeSeconds(
+                        invocation.TimeStamp).DateTime + res.TimeExpired).TimeOfDay.TotalSeconds
+                });
         }
         public async void RunFunction(ProcessInvocation invocation)
         {
             await RunFunctionAsync(invocation);
         }
-        public HRCProcessResult<HRCFunction> RunFunction(string function, object[] inputs, object[] inOuts)
+        public SkillResult RunFunction(string function, object[] inputs, object[] inOuts)
         {
             if (IsBusy)
             {
@@ -76,13 +82,35 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
             }
             return OnFunction(function, inputs, inOuts).Result;
         }
-        public async Task<HRCProcessResult<HRCFunction>> RunFunctionAsync(string function, object[] inputs, object[] inOuts)
+        public async Task<SkillResult> RunFunctionAsync(string function, object[] inputs, object[] inOuts)
         {
             if (IsBusy)
             {
                 throw new InvalidOperationException("Cannot run function because operator is busy!");
             }
             return await OnFunction(function, inputs, inOuts);
+        }
+        public HRCProcessResult<HRCFunction> RunFunction(HRCFunction function)
+        {
+            var res = RunFunction(function.TaskId, function.Inputs, function.InOuts);
+            return new HRCProcessResult<HRCFunction>()
+            {
+                Process = function,
+                Succeeded = res.Succeeded,
+                TimeStamp = function.Timestamp + res.TimeExpired,
+                Outputs = res.Value
+            };
+        }
+        public async Task<HRCProcessResult<HRCFunction>> RunFunctionAsync(HRCFunction function)
+        {
+            var res = await RunFunctionAsync(function.TaskId, function.Inputs, function.InOuts);
+            return new HRCProcessResult<HRCFunction>()
+            {
+                Process = function,
+                Succeeded = res.Succeeded,
+                TimeStamp = function.Timestamp + res.TimeExpired,
+                Outputs = res.Value
+            };
         }
     }
 

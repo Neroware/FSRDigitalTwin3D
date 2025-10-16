@@ -14,7 +14,7 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming
         public override bool IsBusy => _isBusy;
         public override string RunningOperation => _runningOperation;
 
-        protected override Task<HRCProcessResult<HRCFunction>> OnFunction(string function, object[] inputs, object[] inOuts)
+        protected override Task<SkillResult> OnFunction(string function, object[] inputs, object[] inOuts)
         {
             throw new System.NotImplementedException();
         }

@@ -7,8 +7,8 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Interfaces
     {
         string ShortId { get; }
         Uri Id { get; }
-        bool Run(object[] inputs, object[] inOuts, out object[] outputs);
-        Task<bool> RunAsync(object[] inputs, object[] inOuts, out object[] outputs);
+        SkillResult Run(object[] inputs, object[] inOuts);
+        Task<SkillResult> RunAsync(object[] inputs, object[] inOuts);
     }
 }
 

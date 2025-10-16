@@ -86,10 +86,9 @@ namespace FSR.DigitalTwin.Client.Features.DES
                 if (hasOperator)
                 {
                     success = success.Merge(
-                        socialOperator.RunFunctionAsync(
-                            function.FunctionDescription.Name, function.Inputs, function.InOuts)
-                                .ToObservable()
-                                .Select(result => (HRCProcessResult)result)
+                        socialOperator.RunFunctionAsync(function)
+                            .ToObservable()
+                            .Select(result => (HRCProcessResult)result)
                     );
                     OnProcess(function, true, success, failure);
                 }
