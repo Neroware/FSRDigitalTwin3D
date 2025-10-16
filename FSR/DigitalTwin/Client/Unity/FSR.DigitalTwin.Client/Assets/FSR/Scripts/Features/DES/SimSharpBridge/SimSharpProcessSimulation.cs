@@ -26,7 +26,6 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             _stopEvent = new(_environment);
             _context = context;
             _disposable = new();
-            InitTaskHierarchy();
         }
 
         protected override void OnReset()
@@ -38,63 +37,24 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         protected override async void OnRun()
         {
             _disposable.Add(new NaiveTaskScheduler().Schedule(this, _context));
-            _disposable.Add(Observable.Zip(_context.Goals.Keys
+            _disposable.Add(
+                Observable.Zip(_context.Goals.Keys
                     .Select(goal => _context.Simulation.ProcessFinished
                         .Where(p => (p.Process as HRCGoal)?.GoalId == goal.GoalId))
-                )
-                .Subscribe(x => {
-                    UnityEngine.Debug.Log("!!!!"); 
-                    _stopEvent.Trigger(_stopEvent); 
-                })
+                    )
+                .Subscribe(_ => _stopEvent.Trigger(_stopEvent))
             );
-            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p => {
+            _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p =>
+            {
                 UnityEngine.Debug.Log($"Finished process: {p}");
             }));
             await _environment.RunAsync(_stopEvent);
+            UnityEngine.Debug.Log("Finished process simulation run...");
         }
 
         protected override void OnStop()
         {
             _stopEvent.Trigger(_stopEvent);
-        }
-
-        private void InitTaskHierarchy()
-        {
-            // TODO Move this into TaskScheduler!
-            foreach (HRCGoal goal in _context.Goals.Keys)
-            {
-                var sub = _processFinished
-                    .Where(p => p.Process.ProcessType == EHRCProcessType.Method
-                        && _context.Goals[goal].Contains(p.Process as HRCMethod))
-                    .First()
-                    .Subscribe(res => _processFinished.OnNext(new HRCProcessResult() { Process = goal, Succeeded = res.Succeeded, TimeStamp = _environment.Now }));
-                _disposable.Add(sub);
-
-                foreach (HRCMethod method in _context.Goals[goal])
-                {
-                    var methodTasks = _context.Methods[method].Keys
-                        .Where(task => !_context.Methods[method].Values
-                            .Any(x => x.Any(x => x.Any(x => x.TaskId == task.TaskId))));
-                    var methodTasksFinished = methodTasks
-                        .Select(task => ObserveOnTaskFinished<HRCTask>(task.TaskId));
-                    sub = Observable.Zip(methodTasksFinished)
-                        .First()
-                        .Subscribe(res => _processFinished.OnNext(
-                            new HRCProcessResult() { Process = method, Succeeded = res.All(x => x.Succeeded), TimeStamp = _environment.Now }));
-                    _disposable.Add(sub);
-
-                    foreach (var task in _context.Methods[method].Keys)
-                    {
-                        if (_context.Methods[method][task].Count == 0)
-                            continue;
-                        sub = _context.Methods[method][task].Select(conj => Observable.Zip(conj.Select(task => ObserveOnTaskFinished<HRCTask>(task.TaskId))))
-                            .First()
-                            .Subscribe(res => _processFinished.OnNext(
-                                new HRCProcessResult() { Process = task, Succeeded = res.All(x => x.Succeeded), TimeStamp = _environment.Now }));
-                        _disposable.Add(sub);
-                    }
-                }
-            }
         }
 
         protected override void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure)

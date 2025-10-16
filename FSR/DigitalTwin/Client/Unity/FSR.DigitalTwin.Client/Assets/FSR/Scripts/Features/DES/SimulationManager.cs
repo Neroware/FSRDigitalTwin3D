@@ -15,7 +15,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         Dictionary<Uri, IProcessSimulation> Scenarios => _scenarios;
         public IProcessSimulation ActiveScenario => _scenarios.ContainsKey(_activeScenario) ?
             _scenarios[_activeScenario] : throw new NullReferenceException("missing scenario, did you forget to add it?");
-
+        public bool HasActiveScenario() => _activeScenario != null;
         public IProcessSimulation AddScenario(Uri scenario)
         {
             SimSharpProcessSimulation processSimulation = new();
@@ -27,7 +27,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         {
             _activeScenario = scenario;
         }
-        public void SetActiveScenario(string scenario) => AddScenario(UriPrefix.PI + scenario);
+        public void SetActiveScenario(string scenario) => SetActiveScenario(UriPrefix.PI + scenario);
     }
 
 }

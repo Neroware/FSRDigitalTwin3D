@@ -63,8 +63,18 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 OnRunFinished();
                 completedEvent.Set();
             }
-
-            var _ = step.Subscribe((_) => Step(), (e) => onSimulationStop(e as StopSimulationException), () => onSimulationFinish());
+            void onStep()
+            {
+                try
+                {
+                    Step();
+                }
+                catch (StopSimulationException e)
+                {
+                    onSimulationStop(e);
+                } 
+            }
+            var _ = step.Subscribe((_) => onStep(), (e) => onSimulationStop(e as StopSimulationException), () => onSimulationFinish());
             completedEvent.Wait();
             if (error[0] != null) return error[0];
             if (stopEvent == null) return null;
