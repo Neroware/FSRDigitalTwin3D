@@ -28509,6 +28509,8 @@ MonoBehaviour:
   _id: https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#AAS_UR5e
   _components:
   - {fileID: 579219119}
+  - {fileID: 1741056423}
+  - {fileID: 5955250382980222842}
 --- !u!114 &5955250382980222834
 MonoBehaviour:
   m_ObjectHideFlags: 0
