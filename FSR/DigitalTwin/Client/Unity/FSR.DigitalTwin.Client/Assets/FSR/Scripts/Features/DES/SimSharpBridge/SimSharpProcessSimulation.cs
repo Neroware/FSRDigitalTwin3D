@@ -68,11 +68,12 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         protected override void OnProcess(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure)
         {
             Event p = new(_environment);
+            Event timeout_ = _environment.Timeout(TimeSpan.FromDays(1));
             IEnumerable<Event> process_()
             {
                 process.Timestamp = _environment.Now;
                 _processStarted.OnNext(process);
-                yield return p;
+                yield return new AnyOf(_environment, p, timeout_);
                 _processFinished.OnNext(new HRCProcessResult()
                 {
                     Process = process,

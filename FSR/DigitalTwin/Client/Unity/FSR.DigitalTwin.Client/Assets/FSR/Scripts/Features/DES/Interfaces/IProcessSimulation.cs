@@ -26,6 +26,7 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
 
     public interface IProcessSimulationContext
     {
+        float Horizon { init; get; }
         IList<DigitalTwinActorBase> Actors { init; get; }
         IList<SocialOperatorBase> Operators { init; get; }
         IDictionary<HRCGoal, IList<HRCMethod>> Goals { init; get; }

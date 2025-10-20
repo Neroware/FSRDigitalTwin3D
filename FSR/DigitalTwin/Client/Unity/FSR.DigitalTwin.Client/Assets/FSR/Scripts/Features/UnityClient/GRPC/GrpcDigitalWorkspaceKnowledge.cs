@@ -26,7 +26,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             _client = new(rpcChannel);
         }
 
-        public IProcessSimulationContext GetContext()
+        public IProcessSimulationContext GetContext(float horizon = 86400.0f)
         {
             var actors = _client.GetAllAgents(Empty).ResponseStream.ToListAsync().Result
                 .Select(actor => UnityEngine.Object.FindObjectsOfType<DigitalTwinActorBase>()
@@ -39,7 +39,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             {
                 ClientId = GrpcDigitalWorkspaceConnection.UNITY_CLIENT_ID,
                 DisplayName = "My Simulation",
-                Horizon = 1000000
+                Horizon = horizon
             });
             var model = ctxt.Model;
 
@@ -155,6 +155,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
 
             return new ProcessSimulationContext()
             {
+                Horizon = model.Horizon,
                 Actors = actors.ToList(),
                 Operators = operators.ToList(),
                 Goals = goals,

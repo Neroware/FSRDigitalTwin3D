@@ -4,6 +4,6 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.Interfaces
 {
     public interface IDigitalWorkspaceKnowledge
     {
-        IProcessSimulationContext GetContext();
+        IProcessSimulationContext GetContext(float horizon = 86400.0f);
     }
 }

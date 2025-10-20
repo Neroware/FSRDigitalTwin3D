@@ -10,6 +10,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
 {
     public class ProcessSimulationContext : IProcessSimulationContext
     {
+        public float Horizon { get; init; }
         public IList<DigitalTwinActorBase> Actors { get; init; } = new List<DigitalTwinActorBase>();
         public IList<SocialOperatorBase> Operators { get; init; } = new List<SocialOperatorBase>();
         public IDictionary<HRCGoal, IList<HRCMethod>> Goals { get; init; } = new Dictionary<HRCGoal, IList<HRCMethod>>();
