@@ -38,6 +38,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         {
             return ProcessFinished
                 .Where(p => (p.Process as HRCTask)?.TaskId == taskId)
+                .First()
                 .Select(p => new HRCProcessResult<ProcessT>()
                 {
                     Process = p.Process as ProcessT,
@@ -50,6 +51,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         {
             return ProcessFinished
                 .Where(p => (p.Process as HRCGoal)?.GoalId == goalId)
+                .First()
                 .Select(p => new HRCProcessResult<HRCGoal>()
                 {
                     Process = p.Process as HRCGoal,

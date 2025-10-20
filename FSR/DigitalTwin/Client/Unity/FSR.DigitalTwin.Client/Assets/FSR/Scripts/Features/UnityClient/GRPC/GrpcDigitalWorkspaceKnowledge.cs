@@ -75,6 +75,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
                             {
                                 HRCFunctionDescription description = new()
                                 {
+                                    FunctionType = taskDTO.Type,
                                     TaskType = EHRCTaskType.Basic,
                                     Name = taskDTO.Name,
                                     Duration = TimeSpan.FromSeconds(taskDTO.AverageDuration),
@@ -155,6 +156,7 @@ namespace FSR.DigitalTwin.Client.Features.UnityClient.GRPC
             return new ProcessSimulationContext()
             {
                 Actors = actors.ToList(),
+                Operators = operators.ToList(),
                 Goals = goals,
                 Functions = tasks.Values.Where(t => t.ProcessType == EHRCProcessType.Function).Cast<HRCFunction>().ToList(),
                 Methods = methods,

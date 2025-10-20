@@ -2,17 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FSR.DigitalTwin.Client.Features.DES.Interfaces;
+using FSR.DigitalTwin.Client.Features.SkillBasedProgramming;
 using SimSharp;
 using UniRx;
+using UnityEngine;
+using Event = SimSharp.Event;
 
 namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 {
     public class SimSharpProcessSimulation : ProcessSimulationBase
     {
+        [SerializeField] private double rtTimeScale = 1.0;
         private CompositeDisposable _disposable;
         private Simulation _environment;
         private Event _stopEvent;
         private IProcessSimulationContext _context;
+
+        private int _runningFunctionCounter = 0;
 
         public Simulation Environment => _environment;
 
@@ -46,10 +52,10 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             );
             _disposable.Add(_context.Simulation.ProcessFinished.Subscribe(p =>
             {
-                UnityEngine.Debug.Log($"Finished process: {p}");
+                Debug.Log($"Finished process: {p}");
             }));
             await _environment.RunAsync(_stopEvent);
-            UnityEngine.Debug.Log("Finished process simulation run...");
+            Debug.Log("Finished process simulation run...");
         }
 
         protected override void OnStop()
@@ -107,6 +113,28 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 _disposable.Add(failure.Subscribe(_ => { p.Fail(); _processFailed.OnNext(function); }));
                 _environment.Process(process_());
             }
+        }
+
+        protected override bool OnFunctionLaunch(HRCFunction function, out SocialOperatorBase socialOperator)
+        {
+            socialOperator = null;
+            var agent = _context.Operators
+                .Where(op => op.AgentType == EHRCAgentType.Any
+                    || function.FunctionDescription.AgentType == EHRCAgentType.Any || op.AgentType == op.AgentType)
+                .Where(op => op.CanRun(new Uri(function.FunctionDescription.FunctionType)))
+                .FirstOrDefault();
+            if (agent == null)
+            {
+                return false;
+            }
+            _runningFunctionCounter++;
+            _environment.SetRealtime(rtTimeScale);
+            _disposable.Add(
+                ObserveOnTaskFinished<HRCFunction>(function.TaskId)
+                    .Where(_ => --_runningFunctionCounter == 0)
+                    .Subscribe(_ => _environment.SetVirtualtime()));
+            socialOperator = agent;
+            return true;
         }
 
         public override DateTime Now() => _environment.Now;

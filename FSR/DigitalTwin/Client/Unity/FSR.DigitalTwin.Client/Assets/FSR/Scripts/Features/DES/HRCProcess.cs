@@ -84,6 +84,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
 
     public record HRCFunctionDescription : HRCTaskDescription
     {
+        public string FunctionType { init; get; }
         public TimeSpan Duration { init; get; }
         public TimeSpan MaxDuration { init; get; }
         public TimeSpan MinDuration { init; get; }

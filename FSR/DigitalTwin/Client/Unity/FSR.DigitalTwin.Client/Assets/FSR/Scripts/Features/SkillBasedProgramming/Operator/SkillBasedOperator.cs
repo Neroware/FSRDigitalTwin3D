@@ -9,7 +9,7 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Operator
     public class SkillBasedOperator : SocialOperatorBase
     {
         [SerializeField] private GameObject _skillList = null;
-        private readonly Dictionary<Uri, OperatorSkillBase> _skills = new();
+        private readonly Dictionary<string, OperatorSkillBase> _skills = new();
         private readonly Dictionary<string, OperatorSkillBase> _shortIds = new();
         private bool _isBusy = false;
         private string _runningOperation = null;
@@ -27,12 +27,12 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Operator
             var functions = skillList.GetComponents<OperatorSkillBase>();
             foreach (var function in functions)
             {
-                if (_skills.ContainsKey(function.Id))
+                if (_skills.ContainsKey(function.Id.ToString()))
                 {
                     Debug.LogError($"Duplicate function {function.Id} found in operator {OperatorId}");
                     continue;
                 }
-                _skills.Add(function.Id, function);
+                _skills.Add(function.Id.ToString(), function);
                 foreach(var shortId in function.ShortIds)
                 {
                     _shortIds[shortId] = function;
@@ -52,7 +52,7 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Operator
                 _runningOperation = "";
                 return res;
             }
-            else if (_skills.TryGetValue(new Uri(function), out OperatorSkillBase skill0))
+            else if (_skills.TryGetValue(function, out OperatorSkillBase skill0))
             {
                 _isBusy = true;
                 _runningOperation = function;
@@ -64,5 +64,8 @@ namespace FSR.DigitalTwin.Client.Features.SkillBasedProgramming.Operator
             Debug.LogError($"Unknown function '{function}' in operator '{OperatorId}'");
             return new SkillResult() { Succeeded = false, TimeExpired = TimeSpan.Zero };
         }
+
+        public override bool CanRun(string shortId) => _shortIds.ContainsKey(shortId);
+        public override bool CanRun(Uri skillUri) => _skills.ContainsKey(skillUri.ToString());
     }
 }

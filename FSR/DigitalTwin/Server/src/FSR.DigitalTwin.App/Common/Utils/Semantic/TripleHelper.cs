@@ -5,6 +5,19 @@ namespace FSR.DigitalTwin.App.Common.Utils.Semantic;
 
 public static class TripleHelper
 {
+    public static void AddTripleOrDefault(JsonElement binding, List<Triple> triples, INode subject, INode predicate, string propertyName, BaseNode default_)
+    {
+        if (binding.TryGetProperty(propertyName, out JsonElement element))
+        {
+            var node = RdfNodeFactory.CreateFromJson(element);
+            triples.Add(new Triple(subject, predicate, node));
+        }
+        else
+        {
+            triples.Add(new Triple(subject, predicate, default_));
+        }
+    }
+
     public static void AddOptionalTriple(JsonElement binding, List<Triple> triples, INode subject, INode predicate, string propertyName, INode? objectType = null)
     {
         if (binding.TryGetProperty(propertyName, out JsonElement element))
