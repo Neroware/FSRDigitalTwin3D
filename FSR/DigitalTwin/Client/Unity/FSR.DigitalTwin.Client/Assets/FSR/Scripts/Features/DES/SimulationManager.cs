@@ -9,6 +9,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
 {
     public class SimulationManager : MonoBehaviour
     {
+        [SerializeField] private double realTimeScale = 1.0f;
+        [SerializeField] private bool virtualTimeSkipsEnabled = true;
         private Dictionary<Uri, IProcessSimulation> _scenarios = new();
         private Uri _activeScenario = null;
 
@@ -18,7 +20,7 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public bool HasActiveScenario() => _activeScenario != null;
         public IProcessSimulation AddScenario(Uri scenario)
         {
-            SimSharpProcessSimulation processSimulation = new();
+            SimSharpProcessSimulation processSimulation = new(realTimeScale, virtualTimeSkipsEnabled);
             _scenarios.Add(scenario, processSimulation);
             return processSimulation;
         }

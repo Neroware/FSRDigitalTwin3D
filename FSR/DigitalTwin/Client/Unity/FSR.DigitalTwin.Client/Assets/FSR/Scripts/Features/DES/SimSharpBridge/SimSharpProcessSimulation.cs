@@ -12,15 +12,22 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 {
     public class SimSharpProcessSimulation : ProcessSimulationBase
     {
-        [SerializeField] private double rtTimeScale = 1.0;
         private CompositeDisposable _disposable;
         private Simulation _environment;
         private Event _stopEvent;
         private IProcessSimulationContext _context;
 
+        private readonly double _rtTimeScale = 1.0;
+        private readonly bool _rtTimeSkips = true;
         private int _runningFunctionCounter = 0;
 
         public Simulation Environment => _environment;
+
+        public SimSharpProcessSimulation(double rtTimeScale = 1.0, bool rtTimeSkips = true)
+        {
+            _rtTimeScale = rtTimeScale;
+            _rtTimeSkips = rtTimeSkips;
+        }
 
         public Process Process(IEnumerable<Event> generator, int priority = 0)
             => _environment.Process(generator, priority);
@@ -28,7 +35,10 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         protected override void OnInitialize(IProcessSimulationContext context)
         {
             _environment = new Simulation();
-            _environment.SetVirtualtime();
+            if (_rtTimeSkips) 
+                _environment.SetVirtualtime();
+            else
+                _environment.SetRealtime(_rtTimeScale);
             _stopEvent = new(_environment);
             _context = context;
             _disposable = new();
@@ -121,19 +131,23 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
             socialOperator = null;
             var agent = _context.Operators
                 .Where(op => op.AgentType == EHRCAgentType.Any
-                    || function.FunctionDescription.AgentType == EHRCAgentType.Any || op.AgentType == op.AgentType)
+                    || function.FunctionDescription.AgentType == EHRCAgentType.Any 
+                    || function.FunctionDescription.AgentType == op.AgentType)
                 .Where(op => op.CanRun(new Uri(function.FunctionDescription.FunctionType)))
                 .FirstOrDefault();
             if (agent == null)
             {
                 return false;
             }
-            _runningFunctionCounter++;
-            _environment.SetRealtime(rtTimeScale);
-            _disposable.Add(
-                ObserveOnTaskFinished<HRCFunction>(function.TaskId)
-                    .Where(_ => --_runningFunctionCounter == 0)
-                    .Subscribe(_ => _environment.SetVirtualtime()));
+            _environment.SetRealtime(_rtTimeScale);
+            if (_rtTimeSkips)
+            {
+                _runningFunctionCounter++;
+                _disposable.Add(
+                    ObserveOnTaskFinished<HRCFunction>(function.TaskId)
+                        .Where(_ => --_runningFunctionCounter == 0)
+                        .Subscribe(_ => _environment.SetVirtualtime()));
+            }
             socialOperator = agent;
             return true;
         }
