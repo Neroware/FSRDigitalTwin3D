@@ -30,6 +30,25 @@ namespace FSR.DigitalTwin.Client.Features.DES
             _activeScenario = scenario;
         }
         public void SetActiveScenario(string scenario) => SetActiveScenario(UriPrefix.PI + scenario);
+        public void RunActiveScenario()
+        {
+            var activeScenario = (SimSharpProcessSimulation)ActiveScenario;
+            if (activeScenario.IsRunning) throw new InvalidOperationException("Active scenario already running.");
+            activeScenario.TimeScale = realTimeScale;
+            activeScenario.VirtualTimeSkips = virtualTimeSkipsEnabled;
+            if (activeScenario.IsFinished)
+            {
+                activeScenario.Reset();
+                activeScenario.Run();
+            }
+            else
+            {
+                if (activeScenario.Initialize(out IProcessSimulationContext _))
+                    activeScenario.Run();
+                else throw new InvalidOperationException("Failed to initialize scenario.");
+            }
+        }
+        public void StopActiveScenario() => throw new NotImplementedException("Not implemented as it also requires stopping running operators.");
     }
 
 }

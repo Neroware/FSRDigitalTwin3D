@@ -28,6 +28,9 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public IObservable<HRCProcessResult> ProcessFinished => _processFinished;
         public IObservable<HRCProcess> ProcessFailed => _processFailed;
 
+        public abstract bool IsRunning { get; }
+        public abstract bool IsFinished { get; }
+
         protected Subject<IProcessSimulation> _simulationStarted = new();
         protected Subject<IProcessSimulation> _simulationFinished = new();
         protected Subject<IProcessSimulation> _simulationReset = new();

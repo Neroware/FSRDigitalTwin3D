@@ -22,6 +22,9 @@ namespace FSR.DigitalTwin.Client.Features.DES.Interfaces
         DateTime Now();
 
         void Process(HRCProcess process, IObservable<HRCProcessResult> success, IObservable<Exception> failure = null);
+
+        bool IsRunning { get; }
+        bool IsFinished { get; }
     }
 
     public interface IProcessSimulationContext

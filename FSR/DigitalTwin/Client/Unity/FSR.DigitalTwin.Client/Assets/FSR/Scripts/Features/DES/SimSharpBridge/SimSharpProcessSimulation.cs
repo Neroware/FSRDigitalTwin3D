@@ -17,11 +17,21 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
         private Event _stopEvent;
         private IProcessSimulationContext _context;
 
-        private readonly double _rtTimeScale = 1.0;
-        private readonly bool _rtTimeSkips = true;
+        private double _rtTimeScale = 1.0;
+        private bool _rtTimeSkips = true;
         private int _runningFunctionCounter = 0;
 
+        public double TimeScale { set => _rtTimeScale = value; }
+        public bool VirtualTimeSkips { set => _rtTimeSkips = value; }
         public Simulation Environment => _environment;
+
+        private enum EState
+        {
+            AWAIT_INIT, INITIALIZED, RUNNING, TERMINATED
+        }
+        private EState _state = EState.AWAIT_INIT;
+        public override bool IsRunning => _state == EState.RUNNING;
+        public override bool IsFinished => _state == EState.TERMINATED;
 
         public SimSharpProcessSimulation(double rtTimeScale = 1.0, bool rtTimeSkips = true)
         {
@@ -34,6 +44,9 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         protected override void OnInitialize(IProcessSimulationContext context)
         {
+            if (_state == EState.RUNNING) throw new InvalidOperationException("Simulation already running. Use stop command first.");
+            if (_state == EState.TERMINATED) throw new InvalidOperationException("Simulation already terminated. Use reset command first.");
+            _state = EState.INITIALIZED;
             _environment = new Simulation();
             if (_rtTimeSkips) 
                 _environment.SetVirtualtime();
@@ -46,12 +59,19 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
 
         protected override void OnReset()
         {
+            if (_state == EState.AWAIT_INIT) throw new InvalidOperationException("Simulation not initialized.");
+            if (_state == EState.RUNNING) throw new InvalidOperationException("Simulation still running. Use stop command first.");
+            _state = EState.INITIALIZED;
             _disposable.Dispose();
             OnInitialize(_context);
         }
 
         protected override async void OnRun()
         {
+            if (_state == EState.AWAIT_INIT) throw new InvalidOperationException("Simulation not initialized.");
+            if (_state == EState.RUNNING) throw new InvalidOperationException("Simulation already running.");
+            if (_state == EState.TERMINATED) throw new InvalidOperationException("Simulation already terminated. Use reset command first.");
+            _state = EState.RUNNING;
             _disposable.Add(new NaiveTaskScheduler().Schedule(this, _context));
             _disposable.Add(
                 Observable.Zip(_context.Goals.Keys
@@ -65,11 +85,14 @@ namespace FSR.DigitalTwin.Client.Features.DES.SimSharpBridge
                 Debug.Log($"Finished process: {p}");
             }));
             await _environment.RunAsync(_stopEvent);
+            _state = EState.TERMINATED;
             Debug.Log("Finished process simulation run...");
         }
 
         protected override void OnStop()
         {
+            if (_state != EState.RUNNING) throw new InvalidOperationException("Simulation not running.");
+            _state = EState.TERMINATED;
             if (_stopEvent.IsTriggered)
                 return;
             _stopEvent.Trigger(_stopEvent);

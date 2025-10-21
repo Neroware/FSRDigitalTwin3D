@@ -23,20 +23,13 @@ namespace FSR.DigitalTwin.Client.Dummy
                 Debug.LogError("Missing connection to digital twin server!");
                 return;
             }
-            if (simulationManager.HasActiveScenario())
-            {
-                simulationManager.ActiveScenario.Stop();
-                simulationManager.ActiveScenario.Reset();
-                simulationManager.ActiveScenario.Run();
-            }
-            else
+            if (!simulationManager.HasActiveScenario())
             {
                 var scenario = UriPrefix.PI + "myscenario1";
-                var simulation = simulationManager.AddScenario(scenario);
+                simulationManager.AddScenario(scenario);
                 simulationManager.SetActiveScenario(scenario);
-                if (simulation.Initialize(out IProcessSimulationContext _))
-                    simulation.Run();
             }
+            simulationManager.RunActiveScenario();
         }
     }
 }
