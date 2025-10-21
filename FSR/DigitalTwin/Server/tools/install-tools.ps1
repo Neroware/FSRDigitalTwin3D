@@ -7,7 +7,7 @@ if (-not (Test-Path -Path ./.tmp/)) {
 Write-Host "Installing protoc..."
 
 $URL = "https://packages.grpc.io/archive/2019/11/6950e15882f28e43685e948a7e5227bfcef398cd-6d642d6c-a6fc-4897-a612-62b0a3c9026b/protoc/grpc-protoc_windows_x64-1.26.0-dev.zip"
-$DESTINATION = "./protoc/"
+$DESTINATION = "./Protoc/"
 
 # Create the destination directory if it doesn't exist
 if (-not (Test-Path -Path $DESTINATION)) {
@@ -34,12 +34,7 @@ if ($?) {
 Write-Host "Installing aas-core-codegen..."
 
 $URL = "https://github.com/aas-core-works/aas-core-codegen/releases/download/v0.0.15/aas-core-codegen.0.0.15.win-x64.zip"
-$DESTINATION = "./aas-core-codegen/"
-
-# Create the destination directory if it doesn't exist
-if (-not (Test-Path -Path $DESTINATION)) {
-    New-Item -ItemType Directory -Path $DESTINATION | Out-Null
-}
+$DESTINATION = "./AasCoreCodegen/"
 
 # Download the zip file using Invoke-WebRequest
 Write-Host "Downloading $URL..."
@@ -47,7 +42,8 @@ Invoke-WebRequest -Uri $URL -OutFile "./.tmp/aas-core-codegen.0.0.15.win-x64.zip
 
 # Extract the contents of the zip file using Expand-Archive
 Write-Host "Extracting ./.tmp/aas-core-codegen.0.0.15.win-x64.zip..."
-Expand-Archive -Path "./.tmp/aas-core-codegen.0.0.15.win-x64.zip" -DestinationPath $DESTINATION/../
+Expand-Archive -Path "./.tmp/aas-core-codegen.0.0.15.win-x64.zip" -DestinationPath "./.tmp/"
+Move-Item -Path "./.tmp/aas-core-codegen/" -Destination $DESTINATION
 
 # Check if the extraction was successful
 if ($?) {
@@ -61,7 +57,7 @@ if ($?) {
 Write-Host "Installing aasx-package-explorer..."
 
 $URL = "https://github.com/admin-shell-io/aasx-package-explorer/releases/download/v2023-11-17.alpha/aasx-package-explorer-blazorexplorer.2023-11-17.alpha.zip"
-$DESTINATION = "./aasx-package-explorer/"
+$DESTINATION = "./AasxPackageExplorer/"
 
 # Create the destination directory if it doesn't exist
 if (-not (Test-Path -Path $DESTINATION)) {

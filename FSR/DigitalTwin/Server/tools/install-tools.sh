@@ -9,7 +9,7 @@ fi
 echo "Installing protoc..."
 
 URL="https://packages.grpc.io/archive/2019/11/6950e15882f28e43685e948a7e5227bfcef398cd-6d642d6c-a6fc-4897-a612-62b0a3c9026b/protoc/grpc-protoc_linux_x64-1.26.0-dev.tar.gz"
-DESTINATION="./protoc/"
+DESTINATION="./Protoc/"
 
 # Create the destination directory if it doesn't exist
 if [ ! -d "$DESTINATION" ]; then

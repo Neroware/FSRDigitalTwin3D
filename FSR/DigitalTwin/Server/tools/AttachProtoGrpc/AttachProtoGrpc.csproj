@@ -14,13 +14,13 @@
   <Target Name="AttachToUnityWin" BeforeTargets="BeforeBuild" Condition=" '$(OS)' == 'Windows_NT' ">
     <Exec Command="if exist $(ProjectDir)\Protos\ del /F /Q $(ProjectDir)\Protos\" />
     <Exec Command="xcopy /E /Y $(SolutionDir)src\FSR.DigitalTwin.App.GRPC\Protos\ $(ProjectDir)\Protos\" />
-    <Exec Command="powershell .\attach-proto-grpc.ps1 csharp --proto-tools $(SolutionDir)..\..\Tools\protoc\ --output $(SolutionDir)..\Client\Unity\FSR.DigitalTwin.Client\Assets\FSR\Scripts\GRPC.Generated\ --protos $(Protos)" />
+    <Exec Command="powershell .\attach-proto-grpc.ps1 csharp --proto-tools $(SolutionDir)tools\Protoc\ --output $(SolutionDir)..\Client\Unity\FSR.DigitalTwin.Client\Assets\FSR\Scripts\GRPC.Generated\ --protos $(Protos)" />
   </Target>
 
   <Target Name="AttachToUnity" BeforeTargets="BeforeBuild" Condition=" '$(OS)' == 'UNIX' ">
     <Exec Command="mkdir -p $(ProjectDir)/Protos/" />
     <Exec Command="cp -r $(SolutionDir)src/FSR.DigitalTwin.App.GRPC/Protos/* $(ProjectDir)/Protos/" />
-    <Exec Command="./attach-proto-grpc.sh csharp --proto-tools $(SolutionDir)../../Tools/protoc/ --output $(SolutionDir)../Client/Unity/FSR.DigitalTwin.Client/Assets/FSR/Scripts/GRPC.Generated/ --protos $(Protos)" />
+    <Exec Command="./attach-proto-grpc.sh csharp --proto-tools $(SolutionDir)tools/Protoc/ --output $(SolutionDir)../Client/Unity/FSR.DigitalTwin.Client/Assets/FSR/Scripts/GRPC.Generated/ --protos $(Protos)" />
   </Target>
 
 </Project>
