@@ -25,3 +25,6 @@
 [submodule "FSR/DigitalTwin/Server/modules/ROS2"]
 	path = FSR/DigitalTwin/Server/modules/ROS2
 	url = https://github.com/Neroware/FSRDigitalTwin3D-ROS.git
+[submodule "FSR/DigitalTwin/Client/Unity/FSR.DigitalTwin.Client.Unity"]
+	path = FSR/DigitalTwin/Client/Unity/FSR.DigitalTwin.Client.Unity
+	url = https://github.com/Neroware/FSRDigitalTwin3D-Simulation.git
