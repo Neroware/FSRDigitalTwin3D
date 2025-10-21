@@ -27,6 +27,8 @@ namespace FSR.DigitalTwin.Client.Features.DES
         public IProcessSimulation AddScenario(string scenario) => AddScenario(UriPrefix.PI + scenario);
         public void SetActiveScenario(Uri scenario)
         {
+            if (HasActiveScenario() && ActiveScenario.IsRunning)
+                throw new InvalidOperationException("Cannot update active scenario during simulation run.");
             _activeScenario = scenario;
         }
         public void SetActiveScenario(string scenario) => SetActiveScenario(UriPrefix.PI + scenario);

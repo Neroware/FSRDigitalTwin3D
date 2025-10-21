@@ -3190,6 +3190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a051349e4849d49825cd1d2eb78871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  realTimeScale: 1
+  virtualTimeSkipsEnabled: 1
 --- !u!4 &235922134
 Transform:
   m_ObjectHideFlags: 0
