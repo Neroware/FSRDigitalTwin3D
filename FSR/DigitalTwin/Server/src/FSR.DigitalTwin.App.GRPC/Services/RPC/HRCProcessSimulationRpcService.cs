@@ -55,7 +55,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
             .Select(agent =>
             {
                 // TODO Use custom SPARQL query to get agent data more efficiently!
-                var agentType = _knowledgeBase.GetResourceType(agent);
+                var agentType = _knowledgeBase.GetResourceType(agent).First();
                 Uri foo = UriPrefix.PI + "tmp";
                 return new AgentDTO()
                 {

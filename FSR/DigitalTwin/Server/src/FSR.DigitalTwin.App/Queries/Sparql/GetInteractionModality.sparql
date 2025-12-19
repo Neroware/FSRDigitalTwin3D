@@ -5,7 +5,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX DUL: <http://www.loa-cnr.it/ontologies/DUL.owl#>
 PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#>
 PREFIX soho: <http://pst.istc.cnr.it/ontologies/2019/01/soho#>
-PREFIX sobots: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/projekte/forschung/forsocialrobots/sobots#>
+PREFIX sobots: <https://www.forsocialrobots.de/ontologies/sobots.owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX pi: <https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#>
 

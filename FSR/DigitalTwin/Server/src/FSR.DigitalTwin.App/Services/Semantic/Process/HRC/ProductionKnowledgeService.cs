@@ -265,15 +265,15 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.IsSuccess ? result.Value : [];
     }
 
-    public Resource GetResourceType(Resource resource)
+    public IEnumerable<Resource> GetResourceType(Resource resource)
     {
         var result = _ontology.RunSparqlQuery((server) =>
             new GetResourceTypeQuery(resource) { SparqlServer = server });
-        if (result.IsFailure || !result.Value.Any())
+        if (result.IsFailure)
         {
-            throw new HRCKnowledgeException($"Missing RDF:type property for resource: {resource}");
+            throw new HRCKnowledgeException($"Failed to retreive types of {resource}");
         }
-        return result.Value.First();
+        return result.Value;
     }
 
     public bool HasResourceType(Resource resource, Resource type)

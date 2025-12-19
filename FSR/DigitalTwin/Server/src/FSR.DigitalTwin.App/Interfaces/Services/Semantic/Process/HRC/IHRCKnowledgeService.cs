@@ -22,7 +22,7 @@ public interface IHRCKnowledgeService
     IEnumerable<IDictionary<Resource, IList<ISet<Resource>>>> GetDecompositionGraph(Resource goal);
     IDictionary<Resource, ISet<Resource>> GetDependencyGraph(Resource goal);
     IEnumerable<IEnumerable<Resource>> GetHierarchy(Resource goal);
-    Resource GetResourceType(Resource resource);
+    IEnumerable<Resource> GetResourceType(Resource resource);
     Resource GetFunctionTarget(Resource function);
     FunctionPropertyData GetFunctionDataProperties(Resource function);
     FunctionObjectData GetFunctionObjectProperties(Resource function);
