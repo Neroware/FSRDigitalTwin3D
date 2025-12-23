@@ -1,5 +1,6 @@
 using FSR.DigitalTwin.App.Common.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.SharedKernel;
 
 
@@ -7,7 +8,6 @@ namespace FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 
 public interface IOntologyModelService
 {
-
     bool Empty => IsEmpty();
     int Count => CountTriples();
 
@@ -21,6 +21,11 @@ public interface IOntologyModelService
 
     Result<T> RunSparqlQuery<T>(Func<ISparqlServer, ISparqlQuery<T>> queryFactory);
     Task<Result<T>> RunSparqlQueryAsync<T>(Func<ISparqlServer, ISparqlQuery<T>> queryFactory, CancellationToken cancellationToken = default);
+
+    IEnumerable<Resource> GetInstances(Resource classRes);
+    IEnumerable<Resource> GetIndividuals(Resource classRes);
+    IEnumerable<Resource> GetProperty(Resource individual, Resource property);
+    IEnumerable<Resource> GetResourceType(Resource resource);
 }
 
 public enum OntologyModelFileFormat {

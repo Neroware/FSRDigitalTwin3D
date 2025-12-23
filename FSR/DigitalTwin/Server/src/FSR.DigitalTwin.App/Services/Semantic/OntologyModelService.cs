@@ -1,7 +1,9 @@
 using FSR.DigitalTwin.App.Common.Semantic;
+using FSR.DigitalTwin.App.Ex;
 using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 using FSR.DigitalTwin.App.Queries.Semantic.Base;
+using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using Microsoft.Extensions.Logging;
 
@@ -84,5 +86,36 @@ public class OntologyModelService : IOntologyModelService
         ISparqlQuery<T> query = queryFactory(_sparqlServer);
         return query.RunAsync(cancellationToken);
     }
-    
+
+    public IEnumerable<Resource> GetIndividuals(Resource classRes)
+    {
+        var result = RunSparqlQuery((server) =>
+            new GetIndividualsQuery(classRes) { SparqlServer = server });
+        return result.IsSuccess ? result.Value.Distinct() : [];
+    }
+
+    public IEnumerable<Resource> GetInstances(Resource classRes)
+    {
+        var result = RunSparqlQuery((server) =>
+            new GetInstancesQuery(classRes) { SparqlServer = server });
+        return result.IsSuccess ? result.Value.Distinct() : [];
+    }
+
+    public IEnumerable<Resource> GetProperty(Resource individual, Resource property)
+    {
+        var result = RunSparqlQuery((server) =>
+            new GetPropertyQuery(property, individual) { SparqlServer = server });
+        return result.IsSuccess ? result.Value : [];
+    }
+
+    public IEnumerable<Resource> GetResourceType(Resource resource)
+    {
+        var result = RunSparqlQuery((server) =>
+            new GetResourceTypeQuery(resource) { SparqlServer = server });
+        if (result.IsFailure)
+        {
+            throw new KnowledgeException($"Failed to retreive types of {resource}");
+        }
+        return result.Value;
+    }
 }

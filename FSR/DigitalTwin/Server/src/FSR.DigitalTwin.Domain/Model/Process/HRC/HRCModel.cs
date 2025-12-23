@@ -7,12 +7,13 @@ public class HRCModel {
     private readonly Dictionary<Resource, HRCTask> _tasks = [];
     private readonly Dictionary<Resource, HRCTask> _robotTasks = [];
     private readonly Dictionary<Resource, HRCTask> _humanTasks = [];
+    private readonly Dictionary<Resource, AgentSkill> _skills = [];
 
     public IList<HRCTask> Tasks => [.. _tasks.Values];
     public IList<HRCTask> RobotTasks => [.. _robotTasks.Values];
     public IList<HRCTask> HumanTasks => [.. _humanTasks.Values];
-
     public List<Resource> Goals { init; get; } = [];
+    public IList<AgentSkill> Skills => [.. _skills.Values];
 
     public HRCModel(float horizon)
     {
@@ -39,5 +40,16 @@ public class HRCModel {
         HRCTask task = new(function, type, _horizon);
         _tasks.Add(task.Resource, task);
         return task;
+    }
+
+    public AgentSkill CreateAgentSkill(Resource skill_, Resource capability, List<Resource> methods)
+    {
+        AgentSkill skill = new(skill_)
+        {
+            Capability = capability,
+            Methods = methods
+        };
+        _skills.Add(skill.Resource, skill);
+        return skill;
     }
 }

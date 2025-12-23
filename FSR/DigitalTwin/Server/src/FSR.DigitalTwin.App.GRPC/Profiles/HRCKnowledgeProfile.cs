@@ -3,6 +3,7 @@ using FSR.DigitalTwin.App.Common.Utils.Semantic;
 using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
 using FSR.DigitalTwin.Domain.Model;
+using FSR.DigitalTwin.Domain.Model.Process;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using VDS.RDF;
@@ -27,6 +28,7 @@ public class HRCKnowledgeProfile : Profile
             .ForMember(dest => dest.Goal, opt => opt.MapFrom(src => src.Goal ?? ""))
             .ForMember(dest => dest.Target, opt => opt.MapFrom(src => src.Target == null ? "" : src.Target.ToString()))
             .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.Resource.ToString()));
+        CreateMap<AgentSkill, HRCSkillDTO>();
         CreateMap<HRCModel, HRCModelDTO>();
         CreateMap<FunctionObjectData, FunctionObjectDataDTO>()
             .ForMember(dest => dest.FunctionId, opt => opt.MapFrom(src => src.Function.Uri.ToSafeString()));

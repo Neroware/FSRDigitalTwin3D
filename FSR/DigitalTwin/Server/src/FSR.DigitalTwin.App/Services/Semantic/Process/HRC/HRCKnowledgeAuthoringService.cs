@@ -1,4 +1,5 @@
 using FSR.DigitalTwin.App.Common.Utils.Semantic;
+using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using Microsoft.Extensions.Logging;
@@ -9,19 +10,15 @@ namespace FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
 {
     private readonly IHRCKnowledgeService _knowledgeBase;
+    private readonly ISkillBasedProgrammingService _skillBase;
     private readonly ILogger<HRCKnowledgeAuthoringService> _logger;
 
-    public HRCKnowledgeAuthoringService(IHRCKnowledgeService knowledgeBase, ILogger<HRCKnowledgeAuthoringService> logger)
+    public HRCKnowledgeAuthoringService(IHRCKnowledgeService knowledgeBase, ISkillBasedProgrammingService skillBase, ILogger<HRCKnowledgeAuthoringService> logger)
     {
         _knowledgeBase = knowledgeBase ?? throw new ArgumentNullException(nameof(knowledgeBase));
+        _skillBase = skillBase ?? throw new ArgumentNullException(nameof(skillBase));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-    private static readonly string[] knownTaskTypes = [
-        (UriPrefix.SOHO + "Screw").ToString(),
-        (UriPrefix.SOHO + "Join").ToString(),
-        (UriPrefix.SOHO + "PickPlace").ToString(),
-        (UriPrefix.SOHO + "Motion").ToString()
-    ];
 
     public HRCModel CreateModel(float horizon)
     {
@@ -33,9 +30,7 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
             var functions = _knowledgeBase.GetFunctionsByAgent(human);
             foreach (var function in functions)
             {
-                hrc.CreateHumanTask(function, _knowledgeBase.GetResourceType(function)
-                    .Where(x => knownTaskTypes.Contains(x.ToSafeString()))
-                    .FirstOrDefault(new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"}));
+                hrc.CreateHumanTask(function, new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"});
             }
         }
 
@@ -45,14 +40,19 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
             var functions = _knowledgeBase.GetFunctionsByAgent(robot);
             foreach (var function in functions)
             {
-                hrc.CreateRobotTask(function, _knowledgeBase.GetResourceType(function)
-                    .Where(x => knownTaskTypes.Contains(x.ToSafeString()))
-                    .FirstOrDefault(new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"}));
+                hrc.CreateRobotTask(function, new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"});
             }
         }
 
         var goals = _knowledgeBase.GetGoals();
         hrc.Goals.AddRange(goals);
+
+        var skills = _skillBase.GetSkills();
+        foreach(var skill in skills)
+        {
+            hrc.CreateAgentSkill(skill.Resource, 
+                skill.Capability ?? throw new NullReferenceException("should not happen"), skill.Methods);
+        }
 
         return hrc;
     }

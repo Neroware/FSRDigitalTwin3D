@@ -3,11 +3,11 @@ using AutoMapper;
 using FSR.DigitalTwin.App.Common.Utils.Semantic;
 using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
+using FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using Grpc.Core;
-using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.GRPC.Services.RPC;
 
@@ -18,6 +18,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     private readonly IAppLogger<HRCProcessSimulationRpcService> _logger;
     private readonly IMapper _mapper;
     private readonly IHRCKnowledgeService _knowledgeBase;
+    [Obsolete("Removed as soon as agent data is received via SPARQL")] private readonly IOntologyModelService _ontology;
     private readonly IHRCKnowledgeAuthoringService _authoring;
     private readonly IHRCProcessSimulationService _simulation;
 
@@ -26,11 +27,12 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
     public static readonly Uri uriHuman = UriPrefix.SOHO + "Human";
     public static readonly Uri uriWorkOperator = UriPrefix.SOHO + "WorkOperator";
 
-    public HRCProcessSimulationRpcService(IAppLogger<HRCProcessSimulationRpcService> logger, IMapper mapper, IHRCKnowledgeService knowledgeBase, IHRCKnowledgeAuthoringService authoring, IHRCProcessSimulationService simulation)
+    public HRCProcessSimulationRpcService(IAppLogger<HRCProcessSimulationRpcService> logger, IMapper mapper, IHRCKnowledgeService knowledgeBase, IOntologyModelService ontology, IHRCKnowledgeAuthoringService authoring, IHRCProcessSimulationService simulation)
     {
         _logger = logger ?? throw new NullReferenceException(nameof(logger));
         _mapper = mapper ?? throw new NullReferenceException(nameof(mapper));
         _knowledgeBase = knowledgeBase ?? throw new NullReferenceException(nameof(knowledgeBase));
+        _ontology = ontology ?? throw new NullReferenceException(nameof(ontology));
         _authoring = authoring ?? throw new NullReferenceException(nameof(authoring));
         _simulation = simulation ?? throw new NullReferenceException(nameof(simulation));
     }
@@ -55,7 +57,7 @@ public class HRCProcessSimulationRpcService : HRCProcessSimulationService.HRCPro
             .Select(agent =>
             {
                 // TODO Use custom SPARQL query to get agent data more efficiently!
-                var agentType = _knowledgeBase.GetResourceType(agent).First();
+                var agentType = _ontology.GetResourceType(agent).First();
                 Uri foo = UriPrefix.PI + "tmp";
                 return new AgentDTO()
                 {

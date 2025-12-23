@@ -55,11 +55,19 @@ message HRCTaskDTO {
     double successRate = 16;
 }
 
+message HRCSkillDTO {
+    string skillId = 1;
+    string type = 2;
+    string capability = 3;
+    repeated string methods = 4;
+}
+
 message HRCModelDTO {
     float horizon = 1;
     repeated HRCTaskDTO tasks = 2;
     repeated HRCTaskDTO robotTasks = 3;
     repeated HRCTaskDTO humanTasks = 4;
+    repeated HRCSkillDTO agentSkills = 5;
 }
 
 message GoalDTO {
