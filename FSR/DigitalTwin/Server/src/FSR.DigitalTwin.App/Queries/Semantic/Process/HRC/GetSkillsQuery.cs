@@ -3,7 +3,7 @@ using FSR.DigitalTwin.App.Common.Semantic;
 using FSR.DigitalTwin.App.Common.Utils.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Queries.Semantic;
 using FSR.DigitalTwin.Domain.Model;
-using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
+using FSR.DigitalTwin.Domain.Model.Process;
 using FSR.DigitalTwin.Domain.SharedKernel;
 using VDS.RDF;
 
