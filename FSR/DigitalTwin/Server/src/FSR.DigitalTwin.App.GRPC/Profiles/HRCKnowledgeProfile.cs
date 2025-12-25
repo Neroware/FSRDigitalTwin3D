@@ -28,7 +28,9 @@ public class HRCKnowledgeProfile : Profile
             .ForMember(dest => dest.Goal, opt => opt.MapFrom(src => src.Goal ?? ""))
             .ForMember(dest => dest.Target, opt => opt.MapFrom(src => src.Target == null ? "" : src.Target.ToString()))
             .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.Resource.ToString()));
-        CreateMap<AgentSkill, HRCSkillDTO>();
+        CreateMap<AgentSkill, HRCSkillDTO>()
+            .ForMember(dest => dest.SkillId, opt => opt.MapFrom(src => src.Resource.ToString()))
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(_ => UriPrefix.SOBOTS + "Skill"));
         CreateMap<HRCModel, HRCModelDTO>();
         CreateMap<FunctionObjectData, FunctionObjectDataDTO>()
             .ForMember(dest => dest.FunctionId, opt => opt.MapFrom(src => src.Function.Uri.ToSafeString()));

@@ -14,7 +14,7 @@ public class GetSkillsQuery : ISparqlQuery<IEnumerable<AgentSkill>>
     private readonly ISparqlServer? _sparqlServer;
 
     // TODO Use config paths!
-    public string Query => SparqlHelper.LoadQuery("../FSR.DigitalTwin.App/Queries/Sparql/GetSkillsQuery.sparql", []);
+    public string Query => SparqlHelper.LoadQuery("../FSR.DigitalTwin.App/Queries/Sparql/GetSkills.sparql", []);
     public ISparqlResponseParser Parser => new ResponseParser();
     public ISparqlServer SparqlServer { get => _sparqlServer ?? throw new NullReferenceException(); init => _sparqlServer = value; }
 
