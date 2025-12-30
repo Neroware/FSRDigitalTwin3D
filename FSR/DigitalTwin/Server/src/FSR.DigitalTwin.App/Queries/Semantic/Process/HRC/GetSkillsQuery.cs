@@ -55,7 +55,7 @@ public class GetSkillsQuery : ISparqlQuery<IEnumerable<AgentSkill>>
                 triples.Add(new Triple(skill, UriPrefix.DUL | "describes", capabilities[skill]));
                 foreach (INode method in methods[skill])
                 {
-                    triples.Add(new Triple(skill, UriPrefix.SSN | "implementedBy", method));
+                    triples.Add(new Triple(skill, UriPrefix.SSN | "implements", method));
                 }
             }
             return triples;
@@ -74,7 +74,7 @@ public class GetSkillsQuery : ISparqlQuery<IEnumerable<AgentSkill>>
                 .Select(t => t.Object.AsResource())
                 .First();
             var methods = triples
-                .Where(t => t.Predicate as BaseNode == (UriPrefix.SSN | "implementedBy"))
+                .Where(t => t.Predicate as BaseNode == (UriPrefix.SSN | "implements"))
                 .Select(t => t.Object.AsResource());
             yield return new AgentSkill(skill) { Capability = capability, Methods = [.. methods] };
         }

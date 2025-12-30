@@ -15,5 +15,5 @@ WHERE {
   	?capability a soho:AgentCapability .
     ?function a soho:Function .
     ?skill DUL:describes ?capability .
-    ?skill ssn:implementedBy ?function .
+    ?skill ssn:implements ?function .
 }

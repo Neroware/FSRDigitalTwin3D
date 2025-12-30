@@ -456,14 +456,14 @@
 
     <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-screw-skill">
         <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#Skill"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole1"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole2"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole3"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole4"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole5"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole6"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole7"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole8"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole1"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole2"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole3"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole4"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole5"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole6"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole7"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#screw-hole8"/>
         <DUL:describes rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robotAssemblyCapability"/>
     </owl:NamedIndividual>
     
@@ -654,14 +654,14 @@
 
     <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#worker-pickplace-skill">
         <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#Skill"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole1"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole2"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole3"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole4"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole5"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole6"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole7"/>
-        <ssn:implementedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole8"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole1"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole2"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole3"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole4"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole5"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole6"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole7"/>
+        <ssn:implements rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#pickplace-hole8"/>
         <DUL:describes rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#workerAssemblyCapability"/>
     </owl:NamedIndividual>
     
