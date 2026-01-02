@@ -3,7 +3,6 @@ using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using Microsoft.Extensions.Logging;
-using VDS.RDF;
 
 namespace FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 
@@ -30,7 +29,8 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
             var functions = _knowledgeBase.GetFunctionsByAgent(human);
             foreach (var function in functions)
             {
-                hrc.CreateHumanTask(function, new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"});
+                var defaultType = new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"};
+                hrc.CreateHumanTask(function.Resource, function.Type.FirstOrDefault(defaultType));
             }
         }
 
@@ -40,7 +40,8 @@ public class HRCKnowledgeAuthoringService : IHRCKnowledgeAuthoringService
             var functions = _knowledgeBase.GetFunctionsByAgent(robot);
             foreach (var function in functions)
             {
-                hrc.CreateRobotTask(function, new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"});
+                var defaultType = new Domain.Model.Resource() { Uri = UriPrefix.SOHO + "Function"};
+                hrc.CreateRobotTask(function.Resource, function.Type.FirstOrDefault(defaultType));
             }
         }
 

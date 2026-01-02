@@ -155,9 +155,11 @@ public class ProductionKnowledgeService : IHRCKnowledgeService
         return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
-    public IEnumerable<Resource> GetFunctionsByAgent(Resource agent)
+    public IEnumerable<Individual> GetFunctionsByAgent(Resource agent)
     {
-        return _ontology.GetProperty(agent, UriPrefix.SOHO + "canPerform");
+        var result = _ontology.RunSparqlQuery((server) =>
+            new GetFunctionsByAgentQuery(agent) { SparqlServer = server });
+        return result.IsSuccess ? result.Value.Distinct() : [];
     }
 
     public Resource GetFunctionTarget(Resource function)

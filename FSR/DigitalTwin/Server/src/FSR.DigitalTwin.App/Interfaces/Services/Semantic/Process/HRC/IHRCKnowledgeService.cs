@@ -14,7 +14,7 @@ public interface IHRCKnowledgeService
     IEnumerable<Resource> GetHumans();
     IEnumerable<Resource> GetCobots();
     IEnumerable<Resource> GetFunctions();
-    IEnumerable<Resource> GetFunctionsByAgent(Resource agent);
+    IEnumerable<Individual> GetFunctionsByAgent(Resource agent);
     IEnumerable<IDictionary<Resource, IList<ISet<Resource>>>> GetDecompositionGraph(Resource goal);
     IDictionary<Resource, ISet<Resource>> GetDependencyGraph(Resource goal);
     IEnumerable<IEnumerable<Resource>> GetHierarchy(Resource goal);
