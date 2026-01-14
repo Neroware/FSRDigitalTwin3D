@@ -69,11 +69,13 @@ public class GetSkillsQuery : ISparqlQuery<IEnumerable<AgentSkill>>
             .Select(t => t.Subject.AsResource());
         foreach (Resource skill in skills)
         {
-            Resource capability = triples
+            var skillProps = triples
+                .Where(t => t.Subject is UriNode node && node.Uri.ToString() == skill.Uri?.ToString());
+            Resource capability = skillProps
                 .Where(t => t.Predicate as BaseNode == (UriPrefix.DUL | "describes"))
                 .Select(t => t.Object.AsResource())
                 .First();
-            var methods = triples
+            var methods = skillProps
                 .Where(t => t.Predicate as BaseNode == (UriPrefix.SSN | "implements"))
                 .Select(t => t.Object.AsResource());
             yield return new AgentSkill(skill) { Capability = capability, Methods = [.. methods] };
