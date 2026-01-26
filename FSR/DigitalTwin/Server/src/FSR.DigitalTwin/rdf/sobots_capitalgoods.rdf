@@ -12,7 +12,8 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:soho="http://pst.istc.cnr.it/ontologies/2019/01/soho#"
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
-     xmlns:terms="http://purl.org/dc/terms/">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:sobots="https://www.forsocialrobots.de/ontologies/sobots.owl#">
     <owl:Ontology rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi">
         <owl:versionIRI rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi/1.0.0"/>
         <owl:imports rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho/1.0.0"/>
@@ -35,10 +36,38 @@
     
 
 
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#action -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#action">
+        <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#SocialAction"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#bolts -->
 
     <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#bolts">
         <rdf:type rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#ProductionObject"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#decision-process -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#decision-process">
+        <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#DecisionProcess"/>
+        <DUL:hasPart rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#desire"/>
+        <sobots:isPreconditionEventOf rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#desire -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#desire">
+        <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#OccurentDesire"/>
+        <DUL:isDescribedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#task-assembly-goal"/>
+        <sobots:isRealizationOf rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-desire"/>
     </owl:NamedIndividual>
     
 
@@ -461,6 +490,26 @@
     
 
 
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-desire -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-desire">
+        <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#DispositionalDesire"/>
+        <DUL:isQualityOf rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-intention -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-intention">
+        <rdf:type rdf:resource="https://www.forsocialrobots.de/ontologies/sobots.owl#Intention"/>
+        <DUL:isDescribedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#table-assembly-plan"/>
+        <DUL:isQualityOf rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot"/>
+        <sobots:isSpecifiedOutputOf rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#decision-process"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-screw-skill -->
 
     <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#robot-screw-skill">
@@ -637,6 +686,16 @@
     <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#table-assembly-method-1">
         <rdf:type rdf:resource="http://pst.istc.cnr.it/ontologies/2019/01/soho#ProductionMethod"/>
         <DUL:hasConstituent rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#doRotaryTable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#table-assembly-plan -->
+
+    <owl:NamedIndividual rdf:about="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#table-assembly-plan">
+        <rdf:type rdf:resource="http://www.loa-cnr.it/ontologies/DUL.owl#Plan"/>
+        <DUL:hasComponent rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#task-assembly-goal"/>
+        <DUL:isDescribedBy rdf:resource="https://www.uni-augsburg.de/de/fakultaet/fai/informatik/prof/pi#table-assembly-method-1"/>
     </owl:NamedIndividual>
     
 
