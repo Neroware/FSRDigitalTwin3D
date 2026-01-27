@@ -1,37 +1,61 @@
-PREFIX :       <http://base/#>
-PREFIX fuseki: <http://jena.apache.org/fuseki#>
-PREFIX ja:     <http://jena.hpl.hp.com/2005/11/Assembler#>
-PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX tdb:    <http://jena.hpl.hp.com/2008/tdb#>
-PREFIX tdb2:   <http://jena.apache.org/2016/tdb#>
+## Licensed under the terms of http://www.apache.org/licenses/LICENSE-2.0
 
-:service1  rdf:type                   fuseki:Service;
-        fuseki:dataset                :dataset;
-        fuseki:name                   "fsrtriples";
-        fuseki:serviceQuery           "" , "sparql" , "query";
-        fuseki:serviceReadGraphStore  "get";
-        fuseki:serviceReadWriteGraphStore
-                "data";
-        fuseki:serviceUpdate          "" , "update";
-        fuseki:serviceUpload          "upload" .
+# A data service with only SPARQL query on an 
+# in-memory inference model.  Data is taken from a file
+# when the data service is started.
 
-# :dataset  rdf:type  ja:DatasetTxnMem .
-# :dataset  rdf:type  ja:MemoryDataset .
+PREFIX :        <#>
+PREFIX fuseki:  <http://jena.apache.org/fuseki#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
 
-:dataset  rdf:type  ja:RDFDataset;
-        ja:defaultGraph :inferenceModel
-        .
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     :service
+   ) .
 
-:inferenceModel  rdf:type  ja:InfModel;
-        ja:reasoner [ 
-                ja:reasonerURL <http://jena.hpl.hp.com/2003/GenericRuleReasoner>;
-                ja:rulesFrom <file:./../../../../modules/Sobots/ThirdParty/SOHO/soho_rules.rules>
-        ];
-        ja:baseModel  :baseModel
-        .
+# Service description for "/fsrtriples" with all endpoints.
+:service rdf:type fuseki:Service ;
+    fuseki:name "fsrtriples" ;
+    fuseki:endpoint [
+        fuseki:operation fuseki:query ;
+        fuseki:name "sparql" 
+    ] ;
+    fuseki:endpoint [
+        fuseki:operation fuseki:query ;
+        fuseki:name "query" 
+    ] ;
+    fuseki:dataset :dataset ;
+    fuseki:serviceReadGraphStore "get";
+    fuseki:serviceReadWriteGraphStore "data";
+    fuseki:serviceUpdate "" , "update";
+    fuseki:serviceUpload "upload"
+    .
 
-:baseModel  rdf:type tdb2:GraphTDB2;  # for example.
-     tdb2:location "./run/databases/fsrtriples/";
-     # etc
+# Dataset with only the default graph.
+:dataset rdf:type       ja:RDFDataset ;
+    ja:defaultGraph     :model_inf ;
      .
+
+# The inference model
+:model_inf a ja:InfModel ;
+     ja:baseModel :baseModel ;
+     ja:reasoner [
+         ja:reasonerURL <http://jena.hpl.hp.com/2003/GenericRuleReasoner>;
+         ja:rulesFrom <file:./../../../../src/FSR.DigitalTwin/rdf/rules/test.rules>,
+            <file:./../../../../modules/Sobots/sobots_rules.rules>,
+            <file:./../../../../modules/Jena/jena-core/src/main/resources/etc/rdfs.rules>,
+            #<file:./../../../../modules/Jena/jena-core/src/main/resources/etc/owl.rules>,
+            <file:./../../../../modules/Sobots/ThirdParty/SOHO/soho_rules.rules>
+     ] .
+
+# The base data.
+:baseModel a ja:MemoryModel ;
+    ja:content [ja:externalContent 
+        <file:./../../../../modules/Sobots/ThirdParty/DUL/DUL.rdf>,
+        <file:./../../../../modules/Sobots/ThirdParty/OCRA/ocra.rdf>,
+        <file:./../../../../modules/Sobots/ThirdParty/SSN/ssn.rdf>,
+        <file:./../../../../modules/Sobots/ThirdParty/SOHO/soho_core_v1.1.rdf>
+        ] ;
+    .

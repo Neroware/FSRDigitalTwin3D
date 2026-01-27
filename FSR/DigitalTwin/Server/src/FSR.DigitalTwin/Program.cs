@@ -10,6 +10,7 @@ using FSR.DigitalTwin.App.Queries.Semantic.Process.HRC;
 using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Infra.Jena;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using VDS.RDF;
 using INode = VDS.RDF.INode;
 
@@ -23,15 +24,17 @@ SecurityHelper.SecurityInit();
 var ontoModel = host.Services.GetService<IOntologyModelService>()
     ?? throw new NullReferenceException("should not happen");
 var ontoOptions = host.Services.GetRequiredService<IOptions<JenaSemanticDataRepositoryOptions>>().Value;
-await ontoModel.DeleteOntologyModelAsync();
-foreach (string modelFile in ontoOptions.ModelFiles)
-{
-    string ontoModelPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), modelFile);
-    if (!File.Exists(ontoModelPath))
-        continue;
-    await ontoModel.LoadOntologyModelAsync(ontoModelPath, OntologyModelFileFormat.RDF_XML);
-}
 var knowledgeBase = host.Services.GetService<IHRCKnowledgeService>() ?? throw new NullReferenceException("should not happen");
+if (knowledgeBase.GetGoals().IsNullOrEmpty())
+{
+    foreach (string modelFile in ontoOptions.ModelFiles)
+    {
+        string ontoModelPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), modelFile);
+        if (!File.Exists(ontoModelPath))
+            continue;
+        await ontoModel.LoadOntologyModelAsync(ontoModelPath, OntologyModelFileFormat.RDF_XML);
+    }
+}
 var doRotaryTable = knowledgeBase.GetDecompositionGraph(UriPrefix.PI + "task-assembly-goal");
 var method = doRotaryTable.First();
 foreach (ISet<Resource> rs in method[UriPrefix.PI + "doRotaryTable"])
