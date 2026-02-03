@@ -45,8 +45,6 @@ PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
          ja:reasonerURL <http://jena.hpl.hp.com/2003/GenericRuleReasoner>;
          ja:rulesFrom <file:./../../../../src/FSR.DigitalTwin/rdf/rules/test.rules>,
             <file:./../../../../modules/Sobots/sobots_rules.rules>,
-            <file:./../../../../modules/Jena/jena-core/src/main/resources/etc/rdfs.rules>,
-            #<file:./../../../../modules/Jena/jena-core/src/main/resources/etc/owl.rules>,
             <file:./../../../../modules/Sobots/ThirdParty/SOHO/soho_rules.rules>
      ] .
 
