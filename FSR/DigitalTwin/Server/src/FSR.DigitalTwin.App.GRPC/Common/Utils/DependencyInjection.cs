@@ -16,6 +16,7 @@ public static class GrpcService {
         endpoints.MapGrpcService<SubmodelRpcService>();
         endpoints.MapGrpcService<DigitalTwinClientConnectionRpcService>();
         endpoints.MapGrpcService<HRCProcessSimulationRpcService>();
+        endpoints.MapGrpcService<BDIDecisionProcessRpcService>();
     }
 
     public static void AddAppGrpcServices(this IServiceCollection services) {

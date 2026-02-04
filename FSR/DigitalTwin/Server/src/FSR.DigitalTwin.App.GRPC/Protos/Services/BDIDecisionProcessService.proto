@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "FSR.DigitalTwin.App.GRPC.Process.BDI.Services.BDIDecisionProcessService";
+
+import "Protos/Base.proto";
+import "Protos/DTO/BDIModels.proto";
+
+package FSR.DigitalTwin.App.GRPC;
+
+message RunDecisionProcessRequest {
+    string id = 1;
+}
+
+service BDIDecisionProcessService {
+    rpc RunDecisionProcess (RunDecisionProcessRequest) returns (ActionDTO);
+}

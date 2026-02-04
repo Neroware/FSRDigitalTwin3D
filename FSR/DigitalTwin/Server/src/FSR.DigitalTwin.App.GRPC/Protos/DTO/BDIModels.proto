@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option csharp_namespace = "FSR.DigitalTwin.App.GRPC.Process.BDI";
+
+package FSR.DigitalTwin.App.GRPC;
+
+message ActionDTO {
+    string id = 1;
+    string decision = 2;
+    repeated string tasks = 3;
+}

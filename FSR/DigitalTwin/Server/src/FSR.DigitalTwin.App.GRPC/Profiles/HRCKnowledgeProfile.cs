@@ -1,9 +1,11 @@
 using AutoMapper;
 using FSR.DigitalTwin.App.Common.Utils.Semantic;
+using FSR.DigitalTwin.App.GRPC.Process.BDI;
 using FSR.DigitalTwin.App.GRPC.Process.HRC;
 using FSR.DigitalTwin.App.GRPC.Process.HRC.Services.HRCProcessSimulationService;
 using FSR.DigitalTwin.Domain.Model;
 using FSR.DigitalTwin.Domain.Model.Process;
+using FSR.DigitalTwin.Domain.Model.Process.BDI;
 using FSR.DigitalTwin.Domain.Model.Process.HRC;
 using FSR.DigitalTwin.Domain.Model.Process.HRC.Task;
 using VDS.RDF;
@@ -40,6 +42,8 @@ public class HRCKnowledgeProfile : Profile
         CreateMap<InteractionModality, InteractionModalityDTO>()
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => ConvertInteractionModalityType(src.Type)))
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Resource.ToString()));
+        CreateMap<BDIActionIntent, ActionDTO>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Resource.Uri.ToSafeString()));
     }
 
     private void CreateModelMappings()

@@ -21,6 +21,7 @@
     <Protobuf Include="Protos/DTO/AasModels.V3.proto" GrpcServices="Server" />
     <Protobuf Include="Protos/DTO/AasApiModels.V3.proto" GrpcServices="Server" />
     <Protobuf Include="Protos/DTO/HRCModels.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos/DTO/BDIModels.proto" GrpcServices="Server" />
 
     <Protobuf Include="Protos/Services/AdminShellRepositoryService.proto" GrpcServices="Server" />
     <Protobuf Include="Protos/Services/SubmodelRepositoryService.proto" GrpcServices="Server" />
@@ -28,6 +29,7 @@
     <Protobuf Include="Protos/Services/SubmodelService.proto" GrpcServices="Server" />
     <Protobuf Include="Protos/Services/DigitalTwinClientConnectionService.proto" GrpcServices="Server" />
     <Protobuf Include="Protos/Services/HRCProcessSimulationService.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos/Services/BDIDecisionProcessService.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

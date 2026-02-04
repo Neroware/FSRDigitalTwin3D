@@ -28,7 +28,6 @@ public static class TripleHelper
             triples.Add(new Triple(subject, predicate, node));
         }
     }
-
     public static void AddTriple(JsonElement binding, List<Triple> triples, INode subject, INode predicate, string propertyName, INode? objectType = null)
     {
         var element = binding.GetProperty(propertyName);
@@ -37,7 +36,24 @@ public static class TripleHelper
             triples.Add(new Triple(node, UriPrefix.RDF | "type", objectType));
         triples.Add(new Triple(subject, predicate, node));
     }
-
+    public static void AddTriple(JsonElement binding, List<Triple> triples, string subjectName, string propertyName, string objectName)
+    {
+        var s = binding.GetProperty(subjectName);
+        var subj = RdfNodeFactory.CreateFromJson(s);
+        var p = binding.GetProperty(propertyName);
+        var prop = RdfNodeFactory.CreateFromJson(p);
+        var o = binding.GetProperty(objectName);
+        var obj = RdfNodeFactory.CreateFromJson(o);
+        triples.Add(new Triple(subj, prop, obj));
+    }
+    public static void AddTriple(JsonElement binding, List<Triple> triples, string subjectName, INode property, string objectName)
+    {
+        var s = binding.GetProperty(subjectName);
+        var subj = RdfNodeFactory.CreateFromJson(s);
+        var o = binding.GetProperty(objectName);
+        var obj = RdfNodeFactory.CreateFromJson(o);
+        triples.Add(new Triple(subj, property, obj));
+    }
     public static void AddTriple(List<Triple> triples, INode s, INode p, INode o) => triples.Add(new Triple(s, p, o));
     public static void AddType(List<Triple> triples, INode s, INode type) => triples.Add(new Triple(s, UriPrefix.RDF | "type", type));
 }

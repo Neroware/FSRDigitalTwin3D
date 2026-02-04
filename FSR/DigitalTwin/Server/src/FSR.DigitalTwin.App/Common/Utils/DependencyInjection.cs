@@ -3,11 +3,13 @@ using FSR.DigitalTwin.App.Interfaces.Services;
 using FSR.DigitalTwin.App.Interfaces.Services.Dummy;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process;
+using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.BDI;
 using FSR.DigitalTwin.App.Interfaces.Services.Semantic.Process.HRC;
 using FSR.DigitalTwin.App.Services;
 using FSR.DigitalTwin.App.Services.Dummy;
 using FSR.DigitalTwin.App.Services.Semantic;
 using FSR.DigitalTwin.App.Services.Semantic.Process;
+using FSR.DigitalTwin.App.Services.Semantic.Process.BDI;
 using FSR.DigitalTwin.App.Services.Semantic.Process.HRC;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,5 +29,6 @@ public static class DependencyInjection {
         services.AddTransient<ISkillBasedProgrammingService, SkillBasedProgrammingService>();
         services.AddSingleton<IHRCSimulationState, HRCSimulationState>();
         services.AddTransient<IHRCProcessSimulationService, HRCProcessSimulationService>();
+        services.AddTransient<IBDIDecisionProcessService, BDIDecisionProcessService>();
     }
 }
