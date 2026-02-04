@@ -3,7 +3,7 @@
 
 This repository contains the knowledge server with our deployed ontological model [Sobots](https://github.com/Neroware/Sobots) presented for [IEEE ARSO 2026](https://ieee-arso.org/).
 
-The system performs an interactive collaborative assembly using skill-based processing combined BDI agent modelling.
+The system performs an interactive collaborative assembly using skill-based processing combined with BDI agent modelling.
 
 ## Requirements
 This project has OS support for Linux and Windows.
