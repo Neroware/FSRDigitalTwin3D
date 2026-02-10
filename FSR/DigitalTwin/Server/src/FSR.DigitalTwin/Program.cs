@@ -44,7 +44,7 @@ foreach (ISet<Resource> rs in method[UriPrefix.PI + "doRotaryTable"])
         Console.WriteLine($"n> {r}");
     }
 }
-Console.WriteLine($"Number of triples loaded in semantic database: {ontoModel.Count}");
+// Console.WriteLine($"Number of triples loaded in semantic database: {ontoModel.Count}");
 #endif
 
 // Run file
